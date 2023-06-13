@@ -1,0 +1,252 @@
+//reset slick slider css
+.slick-prev {
+    left      : -10 !important;
+    z-index   : 1000 !important;
+    height    : 48px !important;
+    width     : 44px !important;
+    background: #fff !important;
+    border    : 2px solid #d7d7d7 !important;
+
+    &:hover {
+        background: #d6d6d6 !important;
+    }
+}
+
+.slick-prev::before,
+.slick-next::before {
+    font-family: FontAwesome !important;
+    color      : #a5a4a4 !important;
+}
+
+.slick-next {
+    right     : -2 !important;
+    z-index   : 1000 !important;
+    height    : 48px !important;
+    width     : 50px !important;
+    background: #fff !important;
+    border    : 2px solid #d7d7d7 !important;
+
+    &:hover {
+        background: #d6d6d6 !important;
+    }
+}
+
+.section-share {
+
+    &.section-medical {
+        background   : #f5f5ff;
+        border-top   : 3px solid #f1eeee;
+        border-bottom: 3px solid #f1eeee;
+    }
+
+    &.section-handbook {
+        background   : #f5f5ff;
+        border-top   : 3px solid #f1eeee;
+        border-bottom: 3px solid #f1eeee;
+    }
+
+    &.section-about {
+        height: 480px !important;
+    }
+
+
+
+    .section-body {
+        margin-top: 50px;
+
+        .section-customize {
+            .bg-image {
+                background-color   : #eee;
+                height             : 165px;
+                width              : 280px;
+                background-size    : cover;
+                background-repeat  : no-repeat !important;
+                background-position: center center;
+
+                &.section-specialty {
+                    background-image: url('../../assets/specialty/co-xuong-khop.jpg');
+                }
+
+                &.section-medical-facility {
+                    background-image: url('../../assets/CoSoYte/103904-logo-thucuc.png');
+                }
+
+                &.section-outstanding-doctor {
+                    background-image: url('../../assets/Doctor/103848anh-dai-dien-bs.jpg');
+                    width           : 120px;
+                    height          : 120px;
+                    border-radius   : 50%;
+                }
+
+                &.section-handbook {
+                    background-image: url('../../assets/handbook/142734-top-dia-chi-kham-tai-mui-hong-hai-ba-trung-uy-tin.png');
+                }
+            }
+        }
+    }
+}
+
+.section-share {
+    height: 360px;
+
+
+    .section-container {
+        margin        : 0 109px;
+        display       : flex;
+        flex-direction: column;
+
+        .section-header {
+            height     : 60px;
+            padding-top: 35px;
+
+            .title-section {
+                font-size  : 22px;
+                font-weight: 600;
+            }
+
+            .btn-section {
+                float         : right;
+                padding       : 10px 15px;
+                border        : none;
+                outline       : none;
+                display       : block;
+                background    : #e2dfdf;
+                color         : black;
+                cursor        : pointer;
+                text-transform: uppercase;
+
+                &:hover {
+                    color     : #fff;
+                    background: #f7d800;
+                }
+            }
+        }
+    }
+}
+
+.section-outStandingDoctor {
+    .outer-bg {
+        display        : flex;
+        justify-content: center;
+        margin-bottom  : 10px;
+    }
+
+    .section-customize {
+        padding: 5px;
+
+        .customize-border {
+            border : 1px solid #e7c585;
+            padding: 20px;
+        }
+    }
+}
+
+.home-footer {
+    height     : 50px;
+    background : #64b9e5;
+    text-align : center;
+    padding-top: 15px;
+
+    a {
+        text-decoration: unset;
+        color          : black;
+    }
+
+}
+
+.section-about {
+    margin: 0 100px;
+
+    .section-about-header {
+        padding    : 20px 10px;
+        font-size  : 22px;
+        font-weight: 600;
+    }
+
+    .section-about-content {
+        display: flex;
+        gap    : 15px;
+
+        .content-left {
+            width: 60%;
+        }
+
+        .content-right {
+            width: 40%;
+
+            .content-right-header {
+                font-size  : 19px;
+                font-weight: 500;
+            }
+
+            p {
+                text-align : justify; //căn đều text
+                font-style : italic;
+                padding-top: 30px;
+            }
+        }
+    }
+}
+
+.footer {
+    height     : 270px !important;
+    padding-top: 10px;
+    background : #f5f5ff !important;
+
+    .footer-container {
+        margin : 0 100px !important;
+        display: flex;
+
+        .footer-left {
+            font-size  : 15px;
+            width      : 20% !important;
+            height     : 240px !important;
+            padding-top: 10px;
+
+            .logo {
+                background: url(../../assets/Logo.png) !important;
+                width     : 100% !important;
+                height    : 62px !important;
+                cursor    : pointer;
+            }
+
+            .footer-bootom {
+                padding-top: 20px;
+
+                p {
+                    padding-top: 10px !important;
+                }
+            }
+        }
+
+        .footer-center {
+            width      : 50%;
+            margin-left: 350px;
+            height     : 250px;
+
+            .title-footer-center {
+                font-size  : 20px;
+                font-weight: 500;
+                padding-top: 15px;
+
+                .social-login {
+
+                    .social-icon {
+                        font-size: 36px;
+                        margin   : 0 15px;
+
+                    }
+
+                    .fb {
+                        color: #4c6ef5;
+                    }
+                }
+
+                .text-lk {
+                    font-size : 15px;
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
