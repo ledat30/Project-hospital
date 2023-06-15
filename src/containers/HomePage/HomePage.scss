@@ -189,8 +189,8 @@
 }
 
 .footer {
-    height     : 270px !important;
-    padding-top: 10px;
+    height     : 300px !important;
+    padding-top: 20px;
     background : #f5f5ff !important;
 
     .footer-container {
@@ -199,7 +199,7 @@
 
         .footer-left {
             font-size  : 15px;
-            width      : 20% !important;
+            width      : 21% !important;
             height     : 240px !important;
             padding-top: 10px;
 
@@ -220,8 +220,8 @@
         }
 
         .footer-center {
-            width      : 50%;
-            margin-left: 350px;
+            width      : 25%;
+            margin-left: 68px;
             height     : 250px;
 
             .title-footer-center {
@@ -247,6 +247,12 @@
                     margin-top: 10px;
                 }
             }
+        }
+
+        .footer-right {
+            width      : 47%;
+            margin-left: 32px;
+            height     : 250px;
         }
     }
 }

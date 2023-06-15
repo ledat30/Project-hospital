@@ -27,6 +27,11 @@ class HomeFooter extends Component {
                             <a href='https://www.facebook.com/le.dat.1276487' target='_blank' className='social-login'><i className="fab fa-facebook social-icon fb"></i></a>
                         </div>
                     </div>
+                    <div className='footer-right'>
+                        <div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.207318037857!2d105.98658315363527!3d21.02438913101041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135a639434f9919%3A0xa28914d65a784015!2zVHLGsOG7nW5nIG3huqdtIG5vbiBLaW0gU8ahbiwgS2ltIFPGoW4sIEdpYSBMw6JtLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1686717092949!5m2!1svi!2s" width="540" height="248" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
