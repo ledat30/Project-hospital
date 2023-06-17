@@ -30,10 +30,23 @@
             "crud-redux": "CRUD redux",
             "manage-clinic": "Quản lý Phòng khám",
             "clinic": "Phòng khám",
-            "specialty" : " Chuyên Khoa",
-            "manage-specialty" :"Quản lý chuyên khoa",
-            "handbook":"Cẩm nang",
-            "manage-handbook":"Quản lý cẩm nang"
+            "specialty": " Chuyên Khoa",
+            "manage-specialty": "Quản lý chuyên khoa",
+            "handbook": "Cẩm nang",
+            "manage-handbook": "Quản lý cẩm nang"
         }
+    },
+    "manage-user": {
+        "add": "Thêm mới người dùng",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "fullName": "Tên đầy đủ",
+        "phonenumber": "Số điện thoại",
+        "address": "Địa chỉ",
+        "gender" :"Giới tính",
+        "posisition" :"Chức danh",
+        "roleId":"Vai trò",
+        "image":"Hình ảnh",
+        "save":"Lưu user"
     }
 }
