@@ -47,6 +47,7 @@
         "posisition" :"Chức danh",
         "roleId":"Vai trò",
         "image":"Hình ảnh",
-        "save":"Lưu user"
+        "save":"Lưu user",
+        "Upload" : "Tải ảnh"
     }
 }
