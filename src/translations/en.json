@@ -48,6 +48,7 @@
         "roleId": "Role",
         "image": "Image",
         "save": "Save user",
-        "Upload" : "Upload Image"
+        "Upload" : "Upload Image",
+        "manageUser" : "Manage Users"
     }
 }

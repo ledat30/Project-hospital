@@ -48,6 +48,7 @@
         "roleId":"Vai trò",
         "image":"Hình ảnh",
         "save":"Lưu user",
-        "Upload" : "Tải ảnh"
+        "Upload" : "Tải ảnh",
+        "manageUser" : "Quản lý người dùng"
     }
 }
