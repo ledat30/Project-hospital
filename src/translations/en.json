@@ -49,6 +49,7 @@
         "image": "Image",
         "save": "Save user",
         "Upload" : "Upload Image",
-        "manageUser" : "Manage Users"
+        "manageUser" : "Manage Users",
+        "edit":"Save changes"
     }
 }

@@ -47,8 +47,9 @@
         "posisition" :"Chức danh",
         "roleId":"Vai trò",
         "image":"Hình ảnh",
-        "save":"Lưu user",
+        "save":"Tạo mới User",
         "Upload" : "Tải ảnh",
-        "manageUser" : "Quản lý người dùng"
+        "manageUser" : "Quản lý người dùng",
+        "edit":"Lưu Thay đổi"
     }
 }
