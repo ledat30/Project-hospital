@@ -33,8 +33,8 @@ class OutStandingDoctor extends Component {
             <div className='section-share section-outStandingDoctor '>
                 <div className='section-container'>
                     <div className='section-header'>
-                        <span className='title-section'>Bác Sĩ Nổi Bật Tuần Qua</span>
-                        <button className='btn-section'>Xem thêm</button>
+                        <span className='title-section'><FormattedMessage id="homepage.out-standing-doctor" /></span>
+                        <button className='btn-section'><FormattedMessage id="homepage.see-more" /></button>
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
@@ -50,12 +50,12 @@ class OutStandingDoctor extends Component {
                                         <div className='section-customize' key={index}>
                                             <div className='customize-border'>
                                                 <div className='outer-bg'>
-                                                    <div className='bg-image section-outstanding-doctor' 
-                                                     style={{ backgroundImage: `url(${imageBase64})` }}
+                                                    <div className='bg-image section-outstanding-doctor'
+                                                        style={{ backgroundImage: `url(${imageBase64})` }}
                                                     />
                                                 </div>
                                                 <div className='position text-center'>
-                                                    <div>{language === LANGUAGES.VI ? nameVi : nameEn }</div>
+                                                    <div>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
                                                     <div>Cơ xương khớp</div>
                                                 </div>
                                             </div>

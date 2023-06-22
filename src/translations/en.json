@@ -12,7 +12,7 @@
         "welcome": "Welcome "
     },
     "banner": {
-        "tiitle1": "MEDICAL BACKGROUND",
+        "tiitle1": "MEDICAL PLATFORM",
         "tiitle2": " FAMILY HEALTH CARE",
         "child1": " Specialized examination",
         "child2": " Remote examination",
@@ -51,5 +51,9 @@
         "Upload" : "Upload Image",
         "manageUser" : "Manage Users",
         "edit":"Save changes"
+    },
+    "homepage":{
+        "out-standing-doctor" : "Last Week's Featured Doctor",
+        "see-more":"See more"
     }
 }
