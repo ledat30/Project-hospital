@@ -7,14 +7,9 @@ import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import './ManageDoctor.scss';
-
+import { LANGUAGES } from '../../../utils';
 
 import Select from 'react-select';
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-];
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -27,16 +22,44 @@ class ManageDoctor extends Component {
             contentHTML: '',
             selectedDoctor: '',
             description: '',
+            listDoctors: [],
 
         }
     }
 
     componentDidMount() {
+        this.props.fetchAllDoctor()
+    }
 
+    buildDataInputSelect = (inputData) => {
+        let result = [];
+        let { language } = this.props;
+        if (inputData && inputData.length > 0) {
+            inputData.map((item, index) => {
+                let object = {};
+                let labelVi = `${item.fullName}`;
+                let labelEn = `${item.fullName}`;
+                object.label = language === LANGUAGES.VI ? labelVi : labelEn;
+                object.value = item.id;
+                result.push(object)
+            })
+        }
+        return result;
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-
+        if (prevProps.allDoctors !== this.props.allDoctors) {
+            let dataSelect = this.buildDataInputSelect(this.props.allDoctors)
+            this.setState({
+                listDoctors: dataSelect
+            })
+        }
+        if (prevProps.language !== this.props.language) {
+            let dataSelect = this.buildDataInputSelect(this.props.allDoctors)
+            this.setState({
+                listDoctors: dataSelect
+            })
+        }
     }
 
     handleEditorChange = ({ html, text }) => {
@@ -47,7 +70,12 @@ class ManageDoctor extends Component {
     }
 
     handleSaveContentMarkdown = () => {
-        console.log(this.state)
+        this.props.saveDetailDoctor({
+            contentHTML: this.state.contentHTML,
+            contentMarkdown: this.state.contentMarkdown,
+            description: this.state.description,
+            doctorId: this.state.selectedDoctor.value
+        })
     }
 
     handleChange = selectedDoctor => {
@@ -60,6 +88,7 @@ class ManageDoctor extends Component {
         })
     }
     render() {
+        console.log(this.state)
         return (
             <div className='manage-doctor-container'>
                 <div className='doctor-title'>Tạo thêm thông tin Bác sĩ</div>
@@ -69,7 +98,7 @@ class ManageDoctor extends Component {
                         <Select
                             value={this.state.selectedDoctor}
                             onChange={this.handleChange}
-                            options={options}
+                            options={this.state.listDoctors}
                         />
                     </div>
                     <div className='content-right'>
@@ -82,7 +111,7 @@ class ManageDoctor extends Component {
                     </div>
                 </div>
                 <div className='manage-doctor-editor'>
-                    <MdEditor style={{ height: '450px' }}
+                    <MdEditor style={{ height: '350px' }}
                         renderHTML={text => mdParser.render(text)}
                         onChange={this.handleEditorChange} />
                 </div>
@@ -96,14 +125,15 @@ class ManageDoctor extends Component {
 
 const mapStateToProps = state => {
     return {
-        listUsers: state.admin.users
+        allDoctors: state.admin.allDoctors,
+        language: state.app.language,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchUserRedux: () => dispatch(actions.fetchAllUsersStart()),
-        deleteUserRedux: (id) => dispatch(actions.deleteUser(id))
+        fetchAllDoctor: (id) => dispatch(actions.fetchAllDoctor()),
+        saveDetailDoctor: (data) => dispatch(actions.saveDetailDoctor(data))
     };
 };
 
