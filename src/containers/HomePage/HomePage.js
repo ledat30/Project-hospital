@@ -25,13 +25,13 @@ class HomePage extends Component {
         }
         return (
             <div>
-                <HeaderHome />
+                <HeaderHome isShowBanner={true} />
                 <Specialty settings={settings} />
                 <CoSoYte settings={settings} />
                 <OutStandingDoctor settings={settings} />
                 <HandBook settings={settings} />
                 <About />
-                <Footer/>
+                <Footer />
                 <HomeFooter />
             </div>
         );
