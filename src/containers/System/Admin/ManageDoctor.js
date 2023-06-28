@@ -9,7 +9,6 @@ import 'react-markdown-editor-lite/lib/index.css';
 import './ManageDoctor.scss';
 import { CRUD_ACTIONS, LANGUAGES } from '../../../utils';
 import { getDetailInforDoctor } from '../../../services/userService';
-
 import Select from 'react-select';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
@@ -159,7 +158,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchAllDoctor: (id) => dispatch(actions.fetchAllDoctor()),
+        fetchAllDoctor: () => dispatch(actions.fetchAllDoctor()),
         saveDetailDoctor: (data) => dispatch(actions.saveDetailDoctor(data))
     };
 };

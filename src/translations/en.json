@@ -58,5 +58,11 @@
     "homepage":{
         "out-standing-doctor" : "Last Week's Featured Doctor",
         "see-more":"See more"
+    },
+    "manage-schedule":{
+        "title":"Manage doctor's examination plan",
+        "day" :"Choose a date",
+        "doctor" : "Choose a doctor",
+        "save" :"Save information"
     }
 }
