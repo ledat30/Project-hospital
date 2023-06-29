@@ -4,6 +4,7 @@ import HeaderHome from '../../HomePage/HeaderHome';
 import './DetailDoctor.scss';
 import { getDetailInforDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
+import DoctorSchedule from './DoctorSchedule';
 
 class DetailDoctor extends Component {
 
@@ -58,7 +59,16 @@ class DetailDoctor extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className='schedule-doctor'></div>
+                    <div className='schedule-doctor'>
+                        <div className='content-left'>
+                            <DoctorSchedule
+                                doctorIdFormParent={detaiDoctor && detaiDoctor.id ? detaiDoctor.id : -1}
+                            />
+                        </div>
+                        <div className='content-right'>
+
+                        </div>
+                    </div>
                     <div className='detail-infor-doctor'>
                         {detaiDoctor && detaiDoctor.Markdown && detaiDoctor.Markdown.contentHTML
                             &&
