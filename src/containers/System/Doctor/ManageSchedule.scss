@@ -20,4 +20,12 @@
             border : 1px solid gray;
         }
     }
+
+    .btn-schedule {
+        background-color: #f9f9f9;
+
+        &.active {
+            background-color: orange;
+        }
+    }
 }
