@@ -35,8 +35,8 @@
             "handbook": "Handbook",
             "manage-handbook": "Manage Handbook"
         },
-        "doctor":{
-            "manage-schedule" :"Manage Doctor's schedule"
+        "doctor": {
+            "manage-schedule": "Manage Doctor's schedule"
         }
     },
     "manage-user": {
@@ -51,18 +51,26 @@
         "roleId": "Role",
         "image": "Image",
         "save": "Save user",
-        "Upload" : "Upload Image",
-        "manageUser" : "Manage Users",
-        "edit":"Save changes"
+        "Upload": "Upload Image",
+        "manageUser": "Manage Users",
+        "edit": "Save changes"
     },
-    "homepage":{
-        "out-standing-doctor" : "Last Week's Featured Doctor",
-        "see-more":"See more"
+    "homepage": {
+        "out-standing-doctor": "Last Week's Featured Doctor",
+        "see-more": "See more"
     },
-    "manage-schedule":{
-        "title":"Manage doctor's examination plan",
-        "day" :"Choose a date",
-        "doctor" : "Choose a doctor",
-        "save" :"Save information"
+    "manage-schedule": {
+        "title": "Manage doctor's examination plan",
+        "day": "Choose a date",
+        "doctor": "Choose a doctor",
+        "save": "Save information"
+    },
+    "patient": {
+        "detail-doctor": {
+            "Schedule": "Schedule",
+            "no_schedule": "The doctor does not have an appointment during this time, please choose another time! ",
+            "choose": "Choose ",
+            "book-free": " and book (free)"
+        }
     }
 }

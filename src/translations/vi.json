@@ -35,8 +35,8 @@
             "handbook": "Cẩm nang",
             "manage-handbook": "Quản lý cẩm nang"
         },
-        "doctor":{
-            "manage-schedule" :" Quản lý kế hoạch khám bệnh"
+        "doctor": {
+            "manage-schedule": " Quản lý kế hoạch khám bệnh"
         }
     },
     "manage-user": {
@@ -46,23 +46,31 @@
         "fullName": "Tên đầy đủ",
         "phonenumber": "Số điện thoại",
         "address": "Địa chỉ",
-        "gender" :"Giới tính",
-        "posisition" :"Chức danh",
-        "roleId":"Vai trò",
-        "image":"Hình ảnh",
-        "save":"Tạo mới User",
-        "Upload" : "Tải ảnh",
-        "manageUser" : "Quản lý người dùng",
-        "edit":"Lưu Thay đổi"
+        "gender": "Giới tính",
+        "posisition": "Chức danh",
+        "roleId": "Vai trò",
+        "image": "Hình ảnh",
+        "save": "Tạo mới User",
+        "Upload": "Tải ảnh",
+        "manageUser": "Quản lý người dùng",
+        "edit": "Lưu Thay đổi"
     },
-    "homepage":{
-        "out-standing-doctor" : "Bác sĩ nổi bật tuần qua",
-        "see-more":"Xem thêm"
+    "homepage": {
+        "out-standing-doctor": "Bác sĩ nổi bật tuần qua",
+        "see-more": "Xem thêm"
     },
-    "manage-schedule":{
-        "title":"Quản lý kế hoạch khám bệnh của bác sĩ",
-        "day" :" Chọn ngày",
-        "doctor" : " Chọn bác sĩ",
-        "save" :"Lưu thông tin"
+    "manage-schedule": {
+        "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
+        "day": " Chọn ngày",
+        "doctor": " Chọn bác sĩ",
+        "save": "Lưu thông tin"
+    },
+    "patient": {
+        "detail-doctor": {
+            "Schedule": "Lịch khám",
+            "no_schedule": "Bác sĩ không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác ! ",
+            "choose": "Chọn ",
+            "book-free": " và đặt (miễn phí)"
+        }
     }
 }
