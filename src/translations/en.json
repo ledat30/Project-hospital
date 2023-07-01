@@ -79,7 +79,13 @@
             "choose": "Choose doctors",
             "Introduction_information" : "Introduction information",
             "Create_information" : "Create information",
-            "save_information" : "Save information"
+            "save_information" : "Save information",
+            "price":"Price of medical examination",
+            "payment":"Payment methods",
+            "province":"Choose a province",
+            "name_clinic":"Clinic name",
+            "address_clinic":"Clinic address",
+            "note":"Note"
         }
     }
 }
