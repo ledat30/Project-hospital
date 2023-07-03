@@ -27,6 +27,10 @@
         .short-infor {
             text-transform: uppercase;
 
+            .currentcy {
+                color: #333;
+            }
+
             span {
                 cursor        : pointer;
                 color         : #45c3d2;

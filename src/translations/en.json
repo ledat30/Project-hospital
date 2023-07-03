@@ -71,21 +71,28 @@
             "no_schedule": "The doctor does not have an appointment during this time, please choose another time! ",
             "choose": "Choose ",
             "book-free": " and book (free)"
+        },
+        "extra-infor-doctor": {
+            "address_clinic": "Address clinic",
+            "price": "Examination price",
+            "see-detail": "See detail",
+            "Payments": "Payments",
+            "hide-price-list": "Hide price list"
         }
     },
     "admin": {
         "manage-doctor": {
             "title": "CREATE MORE DOCTOR INFORMATION",
             "choose": "Choose doctors",
-            "Introduction_information" : "Introduction information",
-            "Create_information" : "Create information",
-            "save_information" : "Save information",
-            "price":"Price of medical examination",
-            "payment":"Payment methods",
-            "province":"Choose a province",
-            "name_clinic":"Clinic name",
-            "address_clinic":"Clinic address",
-            "note":"Note"
+            "Introduction_information": "Introduction information",
+            "Create_information": "Create information",
+            "save_information": "Save information",
+            "price": "Price of medical examination",
+            "payment": "Payment methods",
+            "province": "Choose a province",
+            "name_clinic": "Clinic name",
+            "address_clinic": "Clinic address",
+            "note": "Note"
         }
     }
 }
