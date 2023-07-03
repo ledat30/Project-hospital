@@ -5,6 +5,8 @@ import './DetailDoctor.scss';
 import { getDetailInforDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
+import HomeFooter from '../../HomePage/HomeFooter';
+import DoctorExtrainfor from './DoctorExtrainfor';
 
 class DetailDoctor extends Component {
 
@@ -70,7 +72,7 @@ class DetailDoctor extends Component {
                             />
                         </div>
                         <div className='content-right'>
-
+                            <DoctorExtrainfor doctorIdFormParent={this.state.currentDoctorId} />
                         </div>
                     </div>
                     <div className='detail-infor-doctor'>
@@ -80,6 +82,7 @@ class DetailDoctor extends Component {
                         }
                     </div>
                     <div className='comment-doctor'></div>
+                    <HomeFooter />
                 </div>
             </>
         );
