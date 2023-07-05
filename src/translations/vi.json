@@ -72,27 +72,41 @@
             "choose": "Chọn ",
             "book-free": " và đặt (miễn phí)"
         },
-        "extra-infor-doctor":{
-            "address_clinic" :"Địa chỉ phòng khám",
-            "price" :"Giá khám ",
-            "see-detail" : "Xem chi tiết",
-            "Payments" : "Hình thức thanh toán" ,
-            "hide-price-list" :"Ẩn bảng giá"
+        "extra-infor-doctor": {
+            "address_clinic": "Địa chỉ phòng khám",
+            "price": "Giá khám ",
+            "see-detail": "Xem chi tiết",
+            "Payments": "Hình thức thanh toán",
+            "hide-price-list": "Ẩn bảng giá"
+        },
+        "booking-modal": {
+            "title": "Thông tin đặt lịch khám bệnh",
+            "fullname": "Họ và tên",
+            "phone": "Số điện thoại",
+            "email": "Email",
+            "address": "Địa chỉ",
+            "reason": "Lý do khám bệnh",
+            "date": "Ngày sinh",
+            "sex": "Giới tính",
+            "Confirm": "Xác nhận",
+            "cancel": "Huỷ bỏ",
+            "Free-booking": "Miễn phí đặt lịch",
+            "examination_price": "Giá khám : "
         }
     },
     "admin": {
         "manage-doctor": {
             "title": "TẠO THÊM THÔNG TIN BÁC SĨ",
             "choose": "Chọn bác sĩ",
-            "Introduction_information" : "Thông tin giới thiệu",
-            "Create_information" : "Tạo thông tin",
-            "save_information" : "Lưu thông tin",
-            "price":"Giá khám bệnh",
-            "payment":"Phương thức thanh toán",
-            "province":"Chọn tỉnh thành",
-            "name_clinic":"Tên phòng khám",
-            "address_clinic":"Địa chỉ phòng khám",
-            "note":"Lưu ý"
+            "Introduction_information": "Thông tin giới thiệu",
+            "Create_information": "Tạo thông tin",
+            "save_information": "Lưu thông tin",
+            "price": "Giá khám bệnh",
+            "payment": "Phương thức thanh toán",
+            "province": "Chọn tỉnh thành",
+            "name_clinic": "Tên phòng khám",
+            "address_clinic": "Địa chỉ phòng khám",
+            "note": "Lưu ý"
         }
     }
 }

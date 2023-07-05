@@ -12,7 +12,7 @@ class HomeFooter extends Component {
                         <div className='logo'>
                         </div>
                         <div className='footer-bootom'>
-                            <b>Chắm sóc sức khoẻ cùng Health care</b>
+                            <b>Chăm sóc sức khoẻ cùng Health care</b>
                             <p><i className="fas fa-map-marker-alt"></i> Đường 181,Kim Sơn,Gia Lâm,Hà Nội </p>
                         </div>
                     </div>
