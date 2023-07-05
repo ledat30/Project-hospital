@@ -60,7 +60,7 @@ class DoctorExtrainfor extends Component {
                                 className='currentcy'
                                 value={axtraInfor.priceTypeData.valueVi}
                                 displayType={'text'}
-                                thousandSepartor={true}
+                                thousandsepartor="true"
                                 suffix={'VND'}
                             />
                         }
@@ -71,7 +71,7 @@ class DoctorExtrainfor extends Component {
                                     className='currentcy'
                                     value={axtraInfor.priceTypeData.valueEn}
                                     displayType={'text'}
-                                    thousandSepartor={true}
+                                    thousandsepartor="true"
                                     suffix={'$'}
                                 />
                             }
@@ -91,7 +91,7 @@ class DoctorExtrainfor extends Component {
                                                 className='currentcy'
                                                 value={axtraInfor.priceTypeData.valueVi}
                                                 displayType={'text'}
-                                                thousandSepartor={true}
+                                                thousandsepartor="true"
                                                 suffix={'VND'}
                                             />
                                         }
@@ -102,7 +102,7 @@ class DoctorExtrainfor extends Component {
                                                 className='currentcy'
                                                 value={axtraInfor.priceTypeData.valueEn}
                                                 displayType={'text'}
-                                                thousandSepartor={true}
+                                                thousandsepartor="true"
                                                 suffix={'$'}
                                             />
                                         }
