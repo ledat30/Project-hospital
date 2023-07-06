@@ -1,0 +1,35 @@
+.verify-email-container {
+    .infor-booking-fail {
+        margin-top      : 110px;
+        width           : 50%;
+        height          : 300px;
+        background-color: #ccc;
+        margin-left     : 340px;
+        border-radius   : 10px;
+
+        .content-fail {
+            font-size     : 18px;
+            font-weight   : 600;
+            padding-top   : 130px;
+            text-align    : center;
+            text-transform: uppercase;
+        }
+    }
+
+    .infor-booking-success {
+        margin-top      : 110px;
+        width           : 50%;
+        height          : 300px;
+        background-color: #b2e0b4;
+        margin-left     : 340px;
+        border-radius   : 10px;
+
+        .content-success {
+            font-size     : 18px;
+            font-weight   : 600;
+            padding-top   : 130px;
+            text-align    : center;
+            text-transform: uppercase;
+        }
+    }
+}

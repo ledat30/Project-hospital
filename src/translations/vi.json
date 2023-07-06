@@ -92,6 +92,10 @@
             "cancel": "Huỷ bỏ",
             "Free-booking": "Miễn phí đặt lịch",
             "examination_price": "Giá khám : "
+        },
+        "messega": {
+            "success": "XÁC NHẬN LỊCH HẸN KHÁM CỦA QUÝ KHÁCH ĐÃ THÀNH CÔNG !",
+            "fail": "XÁC NHẬN LỊCH HẸN KHÁM CỦA QUÝ KHÁCH ĐÃ THẤT BẠI !"
         }
     },
     "admin": {

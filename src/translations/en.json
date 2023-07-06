@@ -92,6 +92,10 @@
             "cancel": "Cancel",
             "Free-booking": "Free booking",
             "examination_price": "Examination price : "
+        },
+        "messega": {
+            "success": "CONFIRM YOUR EXAMINATION SCHEDULE IS SUCCESSFUL!",
+            "fail": "CONFIRMED YOUR EXAMINATION SCHEDULE HAS Fails!"
         }
     },
     "admin": {
