@@ -68,7 +68,7 @@
                 background-position: center center;
 
                 &.section-specialty {
-                    background-image: url('../../assets/specialty/co-xuong-khop.jpg');
+                    // background-image: url('../../assets/specialty/co-xuong-khop.jpg');
                 }
 
                 &.section-medical-facility {
@@ -84,6 +84,19 @@
 
                 &.section-handbook {
                     background-image: url('../../assets/handbook/142734-top-dia-chi-kham-tai-mui-hong-hai-ba-trung-uy-tin.png');
+                }
+            }
+
+        }
+
+        .specialty-child {
+            cursor: pointer;
+
+            .specialty-name {
+                padding: 10px 0;
+
+                &:hover {
+                    color: #64b9e5;
                 }
             }
         }
@@ -117,6 +130,7 @@
                 background    : #e2dfdf;
                 color         : black;
                 cursor        : pointer;
+                border-radius : 3px;
                 text-transform: uppercase;
 
                 &:hover {
