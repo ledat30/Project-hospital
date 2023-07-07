@@ -112,7 +112,9 @@
             "province": "Chọn tỉnh thành",
             "name_clinic": "Tên phòng khám",
             "address_clinic": "Địa chỉ phòng khám",
-            "note": "Lưu ý"
+            "note": "Lưu ý",
+            "specialty":"Chọn chuyên khoa",
+            "clinic" : "Chọn phòng khám"
         }
     }
 }

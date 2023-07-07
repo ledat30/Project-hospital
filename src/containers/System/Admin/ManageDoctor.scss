@@ -1,5 +1,5 @@
 .manage-doctor-container {
-    padding: 5px;
+    padding: 6px;
 
     .doctor-title {
         text-align    : center;
@@ -40,17 +40,7 @@
         }
     }
 
-    .more-infor {
-        display       : flex;
-        gap           : 15px;
-        padding-bottom: 15px;
-
-        .content-left {
-            width: 40%;
-        }
-
-        .content-right {
-            width: 60%;
-        }
+    .intro {
+        padding-bottom: 20px;
     }
 }
