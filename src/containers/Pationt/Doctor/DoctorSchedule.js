@@ -24,6 +24,13 @@ class DoctorSchedule extends Component {
         let allDays = this.getArrDays(language);
         // console.log('vi:', moment(new Date()).format('dddd- DD/MM'));
         // console.log('en:', moment(new Date()).locale('en').format('ddd- DD/MM'));
+        if (this.props.doctorIdFormParent) {
+            let res = await getScheduleDoctorByDate(this.props.doctorIdFormParent, allDays[0].value);
+            this.setState({
+                allAvalableTime: res.data ? res.data : []
+            })
+        }
+
         this.setState({
             allDays: allDays,
         })
@@ -104,7 +111,7 @@ class DoctorSchedule extends Component {
         })
     }
     render() {
-        let { allDays, allAvalableTime, isOpenModalBooking ,dataScheduleTimeModal } = this.state;
+        let { allDays, allAvalableTime, isOpenModalBooking, dataScheduleTimeModal } = this.state;
         let { language } = this.props;
         return (
             <>
