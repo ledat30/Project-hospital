@@ -67,12 +67,14 @@
                 background-repeat  : no-repeat !important;
                 background-position: center center;
 
+
                 &.section-specialty {
                     // background-image: url('../../assets/specialty/co-xuong-khop.jpg');
+
                 }
 
                 &.section-medical-facility {
-                    background-image: url('../../assets/CoSoYte/103904-logo-thucuc.png');
+                    // background-image: url('../../assets/CoSoYte/103904-logo-thucuc.png');
                 }
 
                 &.section-outstanding-doctor {
@@ -93,6 +95,18 @@
             cursor: pointer;
 
             .specialty-name {
+                padding: 10px 0;
+
+                &:hover {
+                    color: #64b9e5;
+                }
+            }
+        }
+
+        .clinic-child {
+            cursor: pointer;
+
+            .clinic-name {
                 padding: 10px 0;
 
                 &:hover {
