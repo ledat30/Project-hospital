@@ -36,7 +36,8 @@
             "manage-handbook": "Quản lý cẩm nang"
         },
         "doctor": {
-            "manage-schedule": " Quản lý kế hoạch khám bệnh"
+            "manage-schedule": " Quản lý kế hoạch khám bệnh",
+            "manage-patient": " Quản lý bệnh nhân khám bệnh"
         }
     },
     "manage-user": {
@@ -58,8 +59,8 @@
     "homepage": {
         "out-standing-doctor": "Bác sĩ nổi bật tuần qua",
         "see-more": "Xem thêm",
-        "specialty" :"Chuyên Khoa Phổ Biến",
-        "see":"Xem thêm"
+        "specialty": "Chuyên Khoa Phổ Biến",
+        "see": "Xem thêm"
     },
     "manage-schedule": {
         "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
@@ -113,8 +114,8 @@
             "name_clinic": "Tên phòng khám",
             "address_clinic": "Địa chỉ phòng khám",
             "note": "Lưu ý",
-            "specialty":"Chọn chuyên khoa",
-            "clinic" : "Chọn phòng khám"
+            "specialty": "Chọn chuyên khoa",
+            "clinic": "Chọn phòng khám"
         }
     }
 }

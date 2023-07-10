@@ -55,8 +55,11 @@ export const doctorMenu = [
     {
         name: 'menu.admin.manage-user',
         menus: [
-            {
+            {//quan ly ke hoach cua bac si
                 name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule',
+            },
+            {// quản lý bệnh nhân khám bệnh của bac si
+                name: 'menu.doctor.manage-patient', link: '/doctor/manage-patient',
             },
         ]
     }
