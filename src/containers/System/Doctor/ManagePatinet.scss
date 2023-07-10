@@ -37,5 +37,31 @@
             background-color: #04AA6D;
             color           : white;
         }
+
+        button {
+            border : none;
+            cursor : pointer;
+            outline: none;
+        }
+
+        .btn-confirm {
+            margin-right : 10px;
+            height       : 30px;
+            border-radius: 3px;
+            background   : orange;
+        }
+
+        .btn-hoadon {
+            height       : 30px;
+            border-radius: 3px;
+            background   : rgb(156, 221, 118);
+        }
+
+        .error {
+            text-align : center;
+            font-size  : 15px;
+            font-weight: 600;
+
+        }
     }
 }
