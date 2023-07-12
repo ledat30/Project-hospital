@@ -47,7 +47,7 @@ class CoSoYte extends Component {
                                             onClick={() => this.handleViewDetailClinic(item)}
                                         >
                                             <div className='bg-image section-medical-facility'
-                                                style={{ backgroundImage: `url(${item.image})`, objectFit: 'contain ' }}
+                                                style={{ backgroundImage: `url(${item.image})`, backgroundSize: 'contain ', backgroundColor: 'white' }}
                                             />
                                             <div className='clinic-name'>{item.name}</div>
                                         </div>

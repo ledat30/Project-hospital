@@ -7,6 +7,8 @@ import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
 import HomeFooter from '../../HomePage/HomeFooter';
 import DoctorExtrainfor from './DoctorExtrainfor';
+import LikeAndShare from '../SocialPlugin/LikeAndShare';
+import Comment from '../SocialPlugin/Comment';
 
 class DetailDoctor extends Component {
 
@@ -42,6 +44,10 @@ class DetailDoctor extends Component {
             nameVi = `${detaiDoctor.positionData.valueVi},${detaiDoctor.fullName}`;
             nameEn = `${detaiDoctor.positionData.valueEn},${detaiDoctor.fullName}`;
         }
+
+        let  currentURL = +process.env.REACT_APP_IS_LOCALHOST === 1 ?
+        "https://www.facebook.com/" : window.location.href;
+
         return (
             <>
                 <HeaderHome isShowBanner={false} />
@@ -62,6 +68,11 @@ class DetailDoctor extends Component {
                                         {detaiDoctor.Markdown.description}
                                     </span>
                                 }
+                                <div className='like-share-plugin'>
+                                    <LikeAndShare
+                                        dataHref={currentURL}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -81,7 +92,11 @@ class DetailDoctor extends Component {
                             <div dangerouslySetInnerHTML={{ __html: detaiDoctor.Markdown.contentHTML }}></div>
                         }
                     </div>
-                    <div className='comment-doctor'></div>
+                    <div className='comment-doctor'>
+                        <Comment
+                            dataHref={currentURL}
+                            width={"100%"} />
+                    </div>
                     <HomeFooter />
                 </div>
             </>

@@ -14,7 +14,7 @@ class HeaderHome extends Component {
 
     }
 
-    returnToHome = ()=>{
+    returnToHome = () => {
         if (this.props.history) {
             this.props.history.push(`/home`)
         }
@@ -28,7 +28,7 @@ class HeaderHome extends Component {
                         <div className='left-content'>
                             <i className='fas fa-bars'></i>
                             <div className='header-logo'
-                            onClick={()=>this.returnToHome()}
+                                onClick={() => this.returnToHome()}
                             >
                             </div>
                         </div>
@@ -51,9 +51,9 @@ class HeaderHome extends Component {
                             </div>
                         </div>
                         <div className='right-content'>
-                            <div className='support'>
-                                <i className='fas fa-question-circle'></i>
-                                <FormattedMessage id="homeheader.support" />
+                            <div className='child-content '>
+                                <div> <i className='fas fa-question-circle'></i> <FormattedMessage id="homeheader.support" /></div>
+                                <div className='subs-title'>0386582177</div>
                             </div>
                             <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}>
                                 <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN </span> /
@@ -90,26 +90,10 @@ class HeaderHome extends Component {
                                 </div>
                                 <div className='option-child'>
                                     <div className='icon-child'>
-                                        <i className='fas fa-mobile-alt'></i>
-                                    </div>
-                                    <div className='text-child'>
-                                        <FormattedMessage id="banner.child2" />
-                                    </div>
-                                </div>
-                                <div className='option-child'>
-                                    <div className='icon-child'>
                                         <i className='fas fa-procedures'></i>
                                     </div>
                                     <div className='text-child'>
                                         <FormattedMessage id="banner.child3" />
-                                    </div>
-                                </div>
-                                <div className='option-child'>
-                                    <div className='icon-child'>
-                                        <i className='fas fa-flask'></i>
-                                    </div>
-                                    <div className='text-child'>
-                                        <FormattedMessage id="banner.child4" />
                                     </div>
                                 </div>
                                 <div className='option-child'>

@@ -3,35 +3,20 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableManageUser.scss';
 import * as actions from '../../../store/actions';
-
-
-// import MarkdownIt from 'markdown-it';
-// import MdEditor from 'react-markdown-editor-lite';
-// // import style manually
-// import 'react-markdown-editor-lite/lib/index.css';
-
-// // Register plugins if required
-// // MdEditor.use(YOUR_PLUGINS_HERE);
-
-// // Initialize a markdown parser
-// const mdParser = new MarkdownIt(/* Markdown-it options */);
-
-// // Finish!
-// function handleEditorChange({ html, text }) {
-//     console.log('handleEditorChange', html, text);
-// }
-
-
+import ReactPaginate from 'react-paginate';
 
 
 class TableManageUser extends Component {
 
+
     constructor(props) {
         super(props);
         this.state = {
-            userRedux: []
+            userRedux: [],
         }
     }
+
+
 
     componentDidMount() {
         this.props.fetchUserRedux();
@@ -51,6 +36,10 @@ class TableManageUser extends Component {
 
     handleEditUser = (user) => {
         this.props.handleEditUserFromPaentKey(user)
+    }
+
+    handlePageClick = () => {
+
     }
     render() {
         let arrUser = this.state.userRedux;
@@ -85,7 +74,25 @@ class TableManageUser extends Component {
                     </tbody>
                 </table>
 
-                {/* <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} /> */}
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="next >"
+                    onPageChange={() => this.handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={20}
+                    previousLabel="< previous"
+
+                    pageClassName='page-item'
+                    pageLinkClassName='page-link'
+                    previousLinkClassName='page-link'
+                    nextClassName='page-item'
+                    nextLinkClassName='page-link'
+                    breakClassName='page-item'
+                    breakLinkClassName='page-link'
+                    containerClassName='pagination'
+                    activeClassName='active'
+                />
+
             </>
         );
     }

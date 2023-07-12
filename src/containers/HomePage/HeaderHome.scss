@@ -40,11 +40,13 @@
             display        : flex;
             justify-content: space-between;
             align-items    : center;
+            cursor: pointer;
 
             .child-content {
                 .subs-title {
                     font-size  : 12;
                     font-weight: 400;
+                    cursor: pointer;
                 }
             }
 
@@ -56,20 +58,10 @@
             justify-content: center;
             align-items    : center;
             justify-content: flex-end;
-
-            .support {
-                padding-right: 50px;
-                display      : flex;
-                align-items  : center;
-                cursor       : pointer;
-
-                i {
-                    font-size   : 15px;
-                    margin-right: 5px;
-                }
-            }
+            cursor: pointer;
 
             .language-vi {
+                margin-left: 45px;
                 cursor : pointer;
                 opacity: 0.2;
 
