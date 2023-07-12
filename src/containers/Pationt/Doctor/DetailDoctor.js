@@ -45,8 +45,8 @@ class DetailDoctor extends Component {
             nameEn = `${detaiDoctor.positionData.valueEn},${detaiDoctor.fullName}`;
         }
 
-        let  currentURL = +process.env.REACT_APP_IS_LOCALHOST === 1 ?
-        "https://www.facebook.com/" : window.location.href;
+        let currentURL = +process.env.REACT_APP_IS_LOCALHOST === 1 ?
+            "https://www.facebook.com/ledat30052002/" : window.location.href;
 
         return (
             <>

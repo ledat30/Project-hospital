@@ -174,6 +174,21 @@ class ManageDoctor extends Component {
             clinicId: this.state.selectedClinic && this.state.selectedClinic.value ? this.state.selectedClinic.value : '',
             specialtyId: this.state.selectedSpecialty.value,
         })
+        this.setState({
+            doctorId: '',
+            contentHTML: '',
+            contentMarkdown: '',
+            description: '',
+            hasOldData: false,
+            addressClinic: '',
+            nameClinic: '',
+            note: '',
+            selectedPayment: '',
+            selectedPrice: '',
+            selectedProvince: '',
+            selectedSpecialty: '',
+            selectedClinic: '',
+        })
     }
 
     handleChangeSelect = async (selectedDoctor) => {

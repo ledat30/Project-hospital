@@ -149,6 +149,18 @@ class BookingModal extends Component {
         } else {
             toast.error('Booking a new appointment error!')
         }
+        this.setState({
+            fullName: '',
+            phoneNumber: '',
+            email: '',
+            address: '',
+            reason: '',
+            birthday: '',
+            selectedGender: '',
+            doctorId: '',
+            genders: '',
+            timeType: '',
+        })
     }
     render() {
         let { isOpenModal, closeBookingClose, dataTime } = this.props;
