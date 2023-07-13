@@ -5,10 +5,13 @@ import './ManageClinic.scss';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import { CommonUtils } from '../../../utils';
-import { createNewSpecialty, createNewClinic } from '../../../services/userService';
+import { createNewClinic, getAllClinic } from '../../../services/userService';
 import { toast } from 'react-toastify';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
+import TableManagerClinic from './TableManagerClinic';
+import * as actions from '../../../store/actions';
+
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -22,7 +25,7 @@ class ManageClinic extends Component {
             isOpen: false,
             descriptionHTML: '',
             descriptionMarkdown: '',
-            address: ''
+            address: '',
         }
     }
     async componentDidMount() {
@@ -71,6 +74,7 @@ class ManageClinic extends Component {
 
     handleSaveNewClinic = async () => {
         let res = await createNewClinic(this.state)
+       
         if (res && res.errCode === 0) {
             toast.success('Add new clinic success!')
             this.setState({
@@ -84,6 +88,7 @@ class ManageClinic extends Component {
             toast.error('Add new specialty error!')
             console.log('res', res)
         }
+        this.props.fetchClinicRedux();
     }
     render() {
 
@@ -130,6 +135,13 @@ class ManageClinic extends Component {
                             Lưu
                         </button>
                     </div>
+                    <div className='col-12 mb-5'>
+                        <div className='title my-3'><FormattedMessage id="manage-clinic.title" /></div>
+                        <TableManagerClinic
+                        // handleEditUserFromPaentKey={this.handleEditUserFromPaent}
+                        // action={this.state.action}
+                        />
+                    </div>
                 </div>
                 {this.state.isOpen === true &&
                     <Lightbox
@@ -145,11 +157,15 @@ class ManageClinic extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
+        listClinics: state.admin.clinics
+
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        fetchClinicRedux: () => dispatch(actions.fetchAllClinicStart()),
+
     };
 };
 

@@ -66,6 +66,9 @@
         "doctor": " Chọn bác sĩ",
         "save": "Lưu thông tin"
     },
+    "manage-clinic":{
+        "title":"Danh sách cơ sở y tế"
+    },
     "patient": {
         "detail-doctor": {
             "Schedule": "Lịch khám",

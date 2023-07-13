@@ -9,6 +9,8 @@ import { createNewSpecialty } from '../../../services/userService';
 import { toast } from 'react-toastify';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
+import TableManagerSpecialty from './TableManagerSpecialty';
+import * as actions from '../../../store/actions';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -82,6 +84,7 @@ class ManageSpecialty extends Component {
             toast.error('Add new specialty error!')
             console.log('res', res)
         }
+        this.props.fetchSpecialtyRedux();
     }
     render() {
 
@@ -122,6 +125,7 @@ class ManageSpecialty extends Component {
                             Lưu
                         </button>
                     </div>
+                    <TableManagerSpecialty />
                 </div>
                 {this.state.isOpen === true &&
                     <Lightbox
@@ -142,6 +146,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        fetchSpecialtyRedux: () => dispatch(actions.fetchAllSpecialtyStart()),
+
     };
 };
 

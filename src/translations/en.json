@@ -66,6 +66,9 @@
         "doctor": "Choose a doctor",
         "save": "Save information"
     },
+    "manage-clinic":{
+        "title":"List of medical facilities"
+    },
     "patient": {
         "detail-doctor": {
             "Schedule": "Schedule",

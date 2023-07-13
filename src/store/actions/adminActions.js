@@ -1,7 +1,8 @@
 import actionTypes from './actionTypes';
 import {
     getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService,
-    getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService, getAllSpecialty, getAllClinic
+    getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService, getAllSpecialty, getAllClinic,
+    deleteClinicService, deleteSpecialtyService
 } from "../../services/userService";
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -312,7 +313,7 @@ export const getRequiredDoctorInfor = () => {
                     resPayment: resPayment.data,
                     resProvince: resProvince.data,
                     resSpecialty: resSpecialty.data,
-                    resCLinic : resCLinic.data,
+                    resCLinic: resCLinic.data,
                 }
                 dispatch(fetchRequiredDoctorInforSuccess(data))
             } else {
@@ -333,3 +334,100 @@ export const fetchRequiredDoctorInforFaided = () => ({
     type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAIDED
 })
 
+export const fetchAllClinicStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllClinic();
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllClinicSuccess(res.data.reverse()))
+            } else {
+                dispatch(fetchAllClinicFailed());
+            }
+        } catch (e) {
+            dispatch(fetchAllClinicFailed());
+            console.log(e);
+        }
+    }
+}
+export const fetchAllClinicSuccess = (data) => ({
+    type: 'FETCH_ALL_CLINIC_SUCCESS',
+    clinics: data
+})
+export const fetchAllClinicFailed = () => ({
+    type: 'FETCH_ALL_CLINIC_FAIDED'
+})
+
+
+export const deleteClinic = (clinicId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteClinicService(clinicId);
+            if (res && res.errCode === 0) {
+                toast.success("Delete the clinic success!")
+                dispatch(deleteClinicSuccess())
+                dispatch(fetchAllClinicStart())
+            } else {
+                toast.error("Delete the clinic failed!")
+                dispatch(deleteClinicFaided());
+            }
+        } catch (e) {
+            dispatch(deleteClinicFaided());
+            console.log(e);
+        }
+    }
+}
+export const deleteClinicSuccess = () => ({
+    type: actionTypes.FETCH_DELETE_CLINIC_SUCCESS,
+})
+export const deleteClinicFaided = () => ({
+    type: actionTypes.FETCH_DELETE_CLINIC_FAIDED
+})
+
+
+export const fetchAllSpecialtyStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllSpecialty();
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllSpecialtySuccess(res.data.reverse()))
+            } else {
+                dispatch(fetchAllSpecialtyFailed());
+            }
+        } catch (e) {
+            dispatch(fetchAllSpecialtyFailed());
+            console.log(e);
+        }
+    }
+}
+export const fetchAllSpecialtySuccess = (data) => ({
+    type: 'FETCH_ALL_SPECIALTY_SUCCESS',
+    specialty: data
+})
+export const fetchAllSpecialtyFailed = () => ({
+    type: 'FETCH_ALL_SPECIALTY_FAIDED'
+})
+
+export const deleteSpecialty = (specialtyId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteSpecialtyService(specialtyId);
+            if (res && res.errCode === 0) {
+                toast.success("Delete the specialty success!")
+                dispatch(deleteSpecialtySuccess())
+                dispatch(fetchAllSpecialtyStart())
+            } else {
+                toast.error("Delete the clinic failed!")
+                dispatch(deleteSpecialtyFaided());
+            }
+        } catch (e) {
+            dispatch(deleteSpecialtyFaided());
+            console.log(e);
+        }
+    }
+}
+export const deleteSpecialtySuccess = () => ({
+    type: actionTypes.FETCH_DELETE_SPECIALTY_SUCCESS,
+})
+export const deleteSpecialtyFaided = () => ({
+    type: actionTypes.FETCH_DELETE_SPECIALTY_FAIDED
+})
