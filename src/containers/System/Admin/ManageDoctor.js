@@ -10,6 +10,7 @@ import './ManageDoctor.scss';
 import { CRUD_ACTIONS, LANGUAGES } from '../../../utils';
 import { getDetailInforDoctor } from '../../../services/userService';
 import Select from 'react-select';
+import TableManagerDoctor from './TableManagerDoctor';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -388,6 +389,7 @@ class ManageDoctor extends Component {
                         </span> : <span><FormattedMessage id={'admin.manage-doctor.Create_information'} /></span>
                     }
                 </button>
+                <TableManagerDoctor />
             </div >
         );
     }

@@ -36,6 +36,14 @@ const getAllDoctors = () => {
     return axios.get(`/api/get-all-doctor`)
 }
 
+const deleteDoctorService = (doctorId) => {
+    return axios.delete('/api/delete-doctor', {
+        data: {
+            id: doctorId
+        }
+    });
+}
+
 const saveDetailDoctorService = (data) => {
     return axios.post(`/api/save-infor-doctor`, data)
 }
@@ -125,5 +133,6 @@ export {
     getDetailInforDoctor, saveBulkScheduleDoctor, getScheduleDoctorByDate, getExtraInforDoctorById
     , getProfileDoctorById, postPatientBookAppointment, postVerifyBookAppointment, createNewSpecialty,
     getAllSpecialty, getDetailSpecialtyById, createNewClinic, getAllClinic, getDetailClinicById,
-    getAllPatientForDoctor, postSendRemedy, deleteClinicService, deleteSpecialtyService
+    getAllPatientForDoctor, postSendRemedy, deleteClinicService, deleteSpecialtyService, deleteDoctorService,
+
 }

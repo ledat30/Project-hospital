@@ -2,7 +2,7 @@ import actionTypes from './actionTypes';
 import {
     getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService,
     getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService, getAllSpecialty, getAllClinic,
-    deleteClinicService, deleteSpecialtyService
+    deleteClinicService, deleteSpecialtyService,deleteDoctorService
 } from "../../services/userService";
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -246,9 +246,8 @@ export const saveDetailDoctor = (data) => {
             let res = await saveDetailDoctorService(data);
             if (res && res.errCode === 0) {
                 toast.success("Save Infor Detail Doctor success!")
-                dispatch({
-                    type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
-                })
+                dispatch({ type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS, })
+                dispatch(fetchAllDoctor())
             } else {
                 toast.error("Save Infor Detail Doctor Fail!");
                 dispatch({
@@ -264,6 +263,31 @@ export const saveDetailDoctor = (data) => {
         }
     }
 }
+export const deleteDoctor = (doctorId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteDoctorService(doctorId);
+            if (res && res.errCode === 0) {
+                toast.success("Delete the doctor success!")
+                dispatch(deleteDoctorSuccess())
+                dispatch(fetchAllDoctor())
+            } else {
+                toast.error("Delete the doctor failed!")
+                dispatch(deleteDoctorFaided());
+            }
+        } catch (e) {
+            dispatch(deleteDoctorFaided());
+            console.log(e);
+        }
+    }
+}
+export const deleteDoctorSuccess = () => ({
+    type: actionTypes.FETCH_DELETE_DOCTOR_SUCCESS,
+})
+export const deleteDoctorFaided = () => ({
+    type: actionTypes.FETCH_DELETE_DOCTOR_FAIDED
+})
+
 
 
 
