@@ -67,7 +67,9 @@
         "save": "Lưu thông tin"
     },
     "manage-clinic":{
-        "title":"Danh sách cơ sở y tế"
+        "title":"Danh sách cơ sở y tế",
+        "save":"Lưu cơ sở ",
+        "edit":"Sửa cơ sở "
     },
     "patient": {
         "detail-doctor": {

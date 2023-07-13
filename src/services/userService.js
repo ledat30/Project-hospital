@@ -100,7 +100,7 @@ const deleteSpecialtyService = (specialtyId) => {
     });
 }
 
-const createNewClinic = (data) => {
+const createNewClinics = (data) => {
     return axios.post(`/api/create-new-clinic`, data)
 }
 const getAllClinic = () => {
@@ -117,6 +117,9 @@ const deleteClinicService = (clinicId) => {
         }
     });
 }
+const editClinicService = (inputData) => {
+    return axios.put('/api/edit-clinic', inputData);
+}
 
 const getAllPatientForDoctor = (data) => {
     return axios.get(`/api/get-list-patient?doctorId=${data.doctorId}&date=${data.date}`)
@@ -132,7 +135,7 @@ export {
     getAllCodeService, getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService,
     getDetailInforDoctor, saveBulkScheduleDoctor, getScheduleDoctorByDate, getExtraInforDoctorById
     , getProfileDoctorById, postPatientBookAppointment, postVerifyBookAppointment, createNewSpecialty,
-    getAllSpecialty, getDetailSpecialtyById, createNewClinic, getAllClinic, getDetailClinicById,
+    getAllSpecialty, getDetailSpecialtyById, createNewClinics, getAllClinic, getDetailClinicById,
     getAllPatientForDoctor, postSendRemedy, deleteClinicService, deleteSpecialtyService, deleteDoctorService,
-
+    editClinicService
 }

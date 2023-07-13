@@ -33,8 +33,8 @@ class TableManagerClinic extends Component {
         this.props.deleteClinicRedux(clinic.id);
     }
 
-    handleEditUser = (user) => {
-        this.props.handleEditUserFromPaentKey(user)
+    handleEditClinic = (clinic) => {
+        this.props.handleEditClinicFromPaentKey(clinic)
     }
 
     handlePageClick = () => {
@@ -58,7 +58,9 @@ class TableManagerClinic extends Component {
                                     <td>{item.address}</td>
                                     <td>
                                         <button className='btn-edit'
-                                            onClick={() => this.handleEditUser(item)}><i className='fas fa-pencil-alt'></i></button>
+                                            onClick={() => this.handleEditClinic(item)}>
+                                            <i className='fas fa-pencil-alt'></i>
+                                        </button>
                                         <button className='btn-delete'
                                             onClick={() => this.handleDeleteClinic(item)}>
                                             <i className='fas fa-trash'></i>
@@ -85,6 +87,7 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchClinicRedux: () => dispatch(actions.fetchAllClinicStart()),
         deleteClinicRedux: (id) => dispatch(actions.deleteClinic(id))
+
     };
 };
 

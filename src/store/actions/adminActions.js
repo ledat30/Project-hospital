@@ -2,7 +2,7 @@ import actionTypes from './actionTypes';
 import {
     getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService,
     getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService, getAllSpecialty, getAllClinic,
-    deleteClinicService, deleteSpecialtyService,deleteDoctorService
+    deleteClinicService, deleteSpecialtyService,deleteDoctorService ,editClinicService
 } from "../../services/userService";
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -381,7 +381,6 @@ export const fetchAllClinicFailed = () => ({
     type: 'FETCH_ALL_CLINIC_FAIDED'
 })
 
-
 export const deleteClinic = (clinicId) => {
     return async (dispatch, getState) => {
         try {
@@ -405,6 +404,31 @@ export const deleteClinicSuccess = () => ({
 })
 export const deleteClinicFaided = () => ({
     type: actionTypes.FETCH_DELETE_CLINIC_FAIDED
+})
+
+export const editClinic = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editClinicService(data);
+            if (res && res.errCode === 0) {
+                toast.success("Edit the clinic success!")
+                dispatch(editClinicSuccess())
+                dispatch(fetchAllClinicStart())
+            } else {
+                toast.error("Edit the clinic failed!")
+                dispatch(editClinicFailed());
+            }
+        } catch (e) {
+            dispatch(editClinicFailed());
+            console.log(e);
+        }
+    }
+}
+export const editClinicSuccess = () => ({
+    type: actionTypes.EDIT_CLINIC_SUCCESS,
+})
+export const editClinicFailed = () => ({
+    type: actionTypes.EDIT_CLINIC_FAILED
 })
 
 

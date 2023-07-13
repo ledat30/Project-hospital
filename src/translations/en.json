@@ -67,7 +67,9 @@
         "save": "Save information"
     },
     "manage-clinic":{
-        "title":"List of medical facilities"
+        "title":"List of medical facilities",
+        "save":"Save clinic",
+        "edit":"Edit clinic "
     },
     "patient": {
         "detail-doctor": {
