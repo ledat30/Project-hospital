@@ -66,10 +66,15 @@
         "doctor": "Choose a doctor",
         "save": "Save information"
     },
-    "manage-clinic":{
-        "title":"List of medical facilities",
-        "save":"Save clinic",
-        "edit":"Edit clinic "
+    "manage-clinic": {
+        "title": "List of medical facilities",
+        "save": "Save clinic",
+        "edit": "Edit clinic "
+    },
+    "manage-specialty": {
+        "title": "List of specialties",
+        "save": "Save specialty ",
+        "edit": "Edit specialty "
     },
     "patient": {
         "detail-doctor": {

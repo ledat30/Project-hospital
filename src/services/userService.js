@@ -99,6 +99,9 @@ const deleteSpecialtyService = (specialtyId) => {
         }
     });
 }
+const editSpecialtyService = (inputData) => {
+    return axios.put('/api/edit-specialty', inputData);
+}
 
 const createNewClinics = (data) => {
     return axios.post(`/api/create-new-clinic`, data)
@@ -137,5 +140,5 @@ export {
     , getProfileDoctorById, postPatientBookAppointment, postVerifyBookAppointment, createNewSpecialty,
     getAllSpecialty, getDetailSpecialtyById, createNewClinics, getAllClinic, getDetailClinicById,
     getAllPatientForDoctor, postSendRemedy, deleteClinicService, deleteSpecialtyService, deleteDoctorService,
-    editClinicService
+    editClinicService, editSpecialtyService
 }

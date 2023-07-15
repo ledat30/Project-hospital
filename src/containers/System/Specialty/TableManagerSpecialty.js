@@ -33,13 +33,11 @@ class TableManagerSpecialty extends Component {
         this.props.deleteSpecialtyRedux(specialty.id);
     }
 
-    handleEditUser = (user) => {
-        this.props.handleEditUserFromPaentKey(user)
+    handleEditSpecialty = (specialty) => {
+        this.props.handleEditSpecialtyFromPaentKey(specialty)
     }
 
-    handlePageClick = () => {
 
-    }
     render() {
         let arrSpecialty = this.state.specialtyRedux;
         return (
@@ -48,7 +46,7 @@ class TableManagerSpecialty extends Component {
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <th>Action</th> 
+                            <th>Action</th>
                         </tr>
                         {arrSpecialty && arrSpecialty.length > 0 && arrSpecialty.map((item, index) => {
                             return (
@@ -56,7 +54,9 @@ class TableManagerSpecialty extends Component {
                                     <td>{item.name}</td>
                                     <td>
                                         <button className='btn-edit'
-                                            onClick={() => this.handleEditUser(item)}><i className='fas fa-pencil-alt'></i></button>
+                                            onClick={() => this.handleEditSpecialty(item)}>
+                                            <i className='fas fa-pencil-alt'></i>
+                                        </button>
                                         <button className='btn-delete'
                                             onClick={() => this.handleDeleteSpecialty(item)}>
                                             <i className='fas fa-trash'></i>

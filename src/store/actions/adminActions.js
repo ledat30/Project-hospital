@@ -2,7 +2,7 @@ import actionTypes from './actionTypes';
 import {
     getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService,
     getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService, getAllSpecialty, getAllClinic,
-    deleteClinicService, deleteSpecialtyService,deleteDoctorService ,editClinicService
+    deleteClinicService, deleteSpecialtyService,deleteDoctorService ,editClinicService,editSpecialtyService
 } from "../../services/userService";
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -478,4 +478,30 @@ export const deleteSpecialtySuccess = () => ({
 })
 export const deleteSpecialtyFaided = () => ({
     type: actionTypes.FETCH_DELETE_SPECIALTY_FAIDED
+})
+
+
+export const editSpecialty = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editSpecialtyService(data);
+            if (res && res.errCode === 0) {
+                toast.success("Edit the specialty success!")
+                dispatch(editSpecialtySuccess())
+                dispatch(fetchAllSpecialtyStart())
+            } else {
+                toast.error("Edit the specialty failed!")
+                dispatch(editSpecialtyFailed());
+            }
+        } catch (e) {
+            dispatch(editSpecialtyFailed());
+            console.log(e);
+        }
+    }
+}
+export const editSpecialtySuccess = () => ({
+    type: actionTypes.EDIT_SPECIALTY_SUCCESS,
+})
+export const editSpecialtyFailed = () => ({
+    type: actionTypes.EDIT_SPECIALTY_FAILED
 })

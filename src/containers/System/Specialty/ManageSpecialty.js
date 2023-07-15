@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import './ManageSpecialty.scss';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
-import { CommonUtils } from '../../../utils';
+import { CommonUtils, CRUD_ACTIONS } from '../../../utils';
 import { createNewSpecialty } from '../../../services/userService';
 import { toast } from 'react-toastify';
 import Lightbox from 'react-image-lightbox';
@@ -20,10 +20,12 @@ class ManageSpecialty extends Component {
         super(props);
         this.state = {
             name: '',
-            imagaBase64: '',
+            previewImgURL: '',
             isOpen: false,
             descriptionHTML: '',
-            descriptionMarkdown: ''
+            descriptionMarkdown: '',
+            specialtyEditId: '',
+            avatar: ''
         }
     }
     async componentDidMount() {
@@ -32,6 +34,16 @@ class ManageSpecialty extends Component {
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.language !== prevProps.language) {
+        }
+        if (prevProps.listSpecialty !== this.props.listSpecialty) {
+            this.setState({
+                name: '',
+                descriptionHTML: '',
+                descriptionMarkdown: '',
+                avatar: '',
+                action: CRUD_ACTIONS.CREATE,
+                previewImgURL: '',
+            })
         }
     }
 
@@ -54,40 +66,77 @@ class ManageSpecialty extends Component {
         let data = event.target.files;
         let file = data[0];
         if (file) {
-            let base64 = await CommonUtils.getBase64(file)
-            let objectUrl = URL.createObjectURL(file)
+            let base64 = await CommonUtils.getBase64(file);
+            let objectUrl = URL.createObjectURL(file);
             this.setState({
-                imagaBase64: base64
-                // avatar: base64
+                previewImgURL: objectUrl,
+                avatar: base64
             })
         }
     }
     openPreviewImg = () => {
-        if (!this.state.imagaBase64) return;
+        if (!this.state.previewImgURL) return;
         this.setState({
             isOpen: true
         })
     }
 
+    checkValidateInput = () => {
+        let isValid = true;
+        let arrCheck = ['name', 'descriptionHTML', 'descriptionMarkdown']
+        for (let i = 0; i < arrCheck.length; i++) {
+            if (!this.state[arrCheck[i]]) {
+                isValid = false;
+                toast('This input is required: ' + arrCheck[i])
+                break;
+            }
+        }
+        return isValid;
+    }
 
     handleSaveNewSpecialty = async () => {
-        let res = await createNewSpecialty(this.state)
-        if (res && res.errCode === 0) {
+        let isValid = this.checkValidateInput();
+        if (isValid === false) return;
+        let { action } = this.state;
+        let res = await createNewSpecialty(this.state);
+
+        if (res && res.errCode === 0 && action === CRUD_ACTIONS.CREATE) {
             toast.success('Add new specialty success!')
-            this.setState({
-                name: '',
-                imagaBase64: '',
-                descriptionHTML: '',
-                descriptionMarkdown: ''
-            })
-        } else {
-            toast.error('Add new specialty error!')
-            console.log('res', res)
         }
         this.props.fetchSpecialtyRedux();
     }
-    render() {
 
+    handleEditSpecialty = () => {
+        let { action } = this.state;
+        if (action === CRUD_ACTIONS.EDIT) {
+            this.props.editSpecialtyRedux({
+                id: this.state.specialtyEditId,
+                name: this.state.name,
+                avatar: this.state.avatar,
+                descriptionHTML: this.state.descriptionHTML,
+                descriptionMarkdown: this.state.descriptionMarkdown
+            })
+        }
+        this.props.fetchSpecialtyRedux();
+    }
+
+    handleEditSpecialtyFromPaent = (specialty) => {
+        let imageBase64 = '';
+        if (specialty.image) {
+            imageBase64 = new Buffer.from(specialty.image, 'base64').toString('binary');
+        }
+        this.setState({
+            name: specialty.name,
+            descriptionHTML: specialty.descriptionHTML,
+            descriptionMarkdown: specialty.descriptionMarkdown,
+            avatar: '',
+            previewImgURL: imageBase64,
+            action: CRUD_ACTIONS.EDIT,
+            specialtyEditId: specialty.id
+        })
+    }
+
+    render() {
         return (
             <div className='manage-specilty-container'>
                 <div className='ms-title'>Quản lý chuyên khoa</div>
@@ -107,29 +156,48 @@ class ManageSpecialty extends Component {
                             />
                             <label htmlFor='prevewimg' className='lable-upload'><FormattedMessage id="manage-user.Upload" /> <i className='fas fa-upload'></i></label>
                             <div className='preview-image'
-                                style={{ backgroundImage: `url(${this.state.imagaBase64})` }}
+                                style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
                                 onClick={() => this.openPreviewImg()}
                             >
                             </div>
                         </div>
                     </div>
                     <div className='col-12'>
-                        <MdEditor style={{ height: '400px' }}
+                        <MdEditor style={{ height: '350px' }}
                             renderHTML={text => mdParser.render(text)}
                             onChange={this.handleEditorChange}
                             value={this.state.descriptionMarkdown}
                         />
                     </div>
                     <div className='col-12'>
-                        <button className='btn-save-specialty' onClick={() => { this.handleSaveNewSpecialty() }}>
-                            Lưu
-                        </button>
+                        <div>
+                            {this.state.action === CRUD_ACTIONS.EDIT ?
+                                < button className={"btn-btn-warning"}
+                                    onClick={() => { this.handleEditSpecialty() }}>
+                                    <FormattedMessage id={'manage-specialty.edit'} />
+                                </button>
+                                :
+                                < button className={'btn-save-specialty'}
+                                    onClick={() => { this.handleSaveNewSpecialty() }}>
+                                    <FormattedMessage id={'manage-specialty.save'} />
+                                </button>
+                            }
+                        </div>
+
                     </div>
-                    <TableManagerSpecialty />
+
+                    <div className='col-12 mb-5'>
+                        <div className='title my-3'><FormattedMessage id="manage-specialty.title" /></div>
+                        <TableManagerSpecialty
+                            handleEditSpecialtyFromPaentKey={this.handleEditSpecialtyFromPaent}
+                            action={this.state.action}
+                        />
+                    </div>
+
                 </div>
                 {this.state.isOpen === true &&
                     <Lightbox
-                        mainSrc={this.state.imagaBase64}
+                        mainSrc={this.state.previewImgURL}
                         onCloseRequest={() => this.setState({ isOpen: false })}
                     />
                 }
@@ -141,13 +209,14 @@ class ManageSpecialty extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
+        listSpecialty: state.admin.specialty
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         fetchSpecialtyRedux: () => dispatch(actions.fetchAllSpecialtyStart()),
-
+        editSpecialtyRedux: (data) => dispatch(actions.editSpecialty(data))
     };
 };
 

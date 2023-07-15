@@ -168,8 +168,9 @@
         cursor : pointer;
 
         .customize-border {
-            border : 1px solid #e7c585;
-            padding: 20px;
+            border       : 1px solid #e7c585;
+            padding      : 20px;
+            border-radius: 10px;
         }
     }
 }

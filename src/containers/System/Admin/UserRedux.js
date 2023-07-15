@@ -7,6 +7,7 @@ import './userRedux.scss';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import TableManageUser from './TableManageUser';
+import { toast } from 'react-toastify';
 
 class UserRedux extends Component {
 
@@ -148,7 +149,7 @@ class UserRedux extends Component {
         for (let i = 0; i < arrCheck.length; i++) {
             if (!this.state[arrCheck[i]]) {
                 isValid = false;
-                alert('This input is required: ' + arrCheck[i])
+                toast('This input is required: ' + arrCheck[i])
                 break;
             }
         }
@@ -167,7 +168,7 @@ class UserRedux extends Component {
     handleEditUserFromPaent = (user) => {
         let imageBase64 = '';
         if (user.image) {
-            imageBase64 = new Buffer(user.image, 'base64').toString('binary');
+            imageBase64 = new Buffer.from(user.image, 'base64').toString('binary');
         }
         this.setState({
             email: user.email,

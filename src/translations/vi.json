@@ -71,6 +71,11 @@
         "save":"Lưu cơ sở ",
         "edit":"Sửa cơ sở "
     },
+    "manage-specialty":{
+        "title":"Danh sách chuyên khoa",
+        "save":"Lưu chuyên khoa ",
+        "edit":"Sửa chuyên khoa "
+    },
     "patient": {
         "detail-doctor": {
             "Schedule": "Lịch khám",

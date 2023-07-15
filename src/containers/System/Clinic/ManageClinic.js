@@ -21,7 +21,7 @@ class ManageClinic extends Component {
         super(props);
         this.state = {
             name: '',
-            imagaBase64: '',
+            previewImgURL: '',
             isOpen: false,
             descriptionHTML: '',
             descriptionMarkdown: '',
@@ -37,6 +37,17 @@ class ManageClinic extends Component {
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.language !== prevProps.language) {
+        }
+        if (prevProps.listClinics !== this.props.listClinics) {
+            this.setState({
+                name: '',
+                descriptionHTML: '',
+                descriptionMarkdown: '',
+                address: '',
+                avatar: '',
+                action: CRUD_ACTIONS.CREATE,
+                previewImgURL: '',
+            })
         }
 
     }
@@ -63,64 +74,65 @@ class ManageClinic extends Component {
             let base64 = await CommonUtils.getBase64(file)
             let objectUrl = URL.createObjectURL(file)
             this.setState({
-                imagaBase64: base64,
+                previewImgURL: objectUrl,
                 avatar: base64
             })
         }
     }
     openPreviewImg = () => {
-        if (!this.state.imagaBase64) return;
+        if (!this.state.previewImgURL) return;
         this.setState({
             isOpen: true
         })
     }
 
+    checkValidateInput = () => {
+        let isValid = true;
+        let arrCheck = ['name', 'address', 'descriptionHTML', 'descriptionMarkdown']
+        for (let i = 0; i < arrCheck.length; i++) {
+            if (!this.state[arrCheck[i]]) {
+                isValid = false;
+                toast('This input is required: ' + arrCheck[i])
+                break;
+            }
+        }
+        return isValid;
+    }
 
     handleSaveNewClinic = async () => {
+        let isValid = this.checkValidateInput();
+        if (isValid === false) return;
         let res = await createNewClinics(this.state)
         let { action } = this.state;
 
-        if (res && res.errCode === 0) {
+
+        if (res && res.errCode === 0 && action === CRUD_ACTIONS.CREATE) {
             toast.success('Add new clinic success!')
-            this.setState({
-                name: '',
-                imagaBase64: '',
-                address: '',
-                descriptionHTML: '',
-                descriptionMarkdown: '',
-            })
-        } else {
-            toast.error('Add new specialty error!')
-            console.log('res', res)
-        }
 
-
-
-        if (action === CRUD_ACTIONS.EDIT) {
-            this.props.editClinicRedux({
-                id: this.state.userEditId,
-                name: this.state.name,
-                // avatar: this.state.avatar,
-                address: this.state.address,
-                descriptionHTML: this.state.descriptionHTML,
-                descriptionMarkdown: this.state.descriptionMarkdown
-            })
-            this.setState({
-                name: '',
-                imagaBase64: '',
-                address: '',
-                descriptionHTML: '',
-                descriptionMarkdown: '',
-            })
         }
         this.props.fetchClinicRedux();
     }
 
 
+    handleEditClinic = () => {
+        let { action } = this.state;
+        if (action === CRUD_ACTIONS.EDIT) {
+            this.props.editClinicRedux({
+                id: this.state.userEditId,
+                name: this.state.name,
+                avatar: this.state.avatar,
+                address: this.state.address,
+                descriptionHTML: this.state.descriptionHTML,
+                descriptionMarkdown: this.state.descriptionMarkdown
+            })
+        }
+        this.props.fetchClinicRedux();
+    }
+
     handleEditClinicFromPaent = (clinic) => {
         let imageBase64 = '';
         if (clinic.image) {
-            imageBase64 = new Buffer(clinic.image, 'base64').toString('binary');
+            imageBase64 = new Buffer.from(clinic.image, 'base64').toString('binary');
         }
         this.setState({
             name: clinic.name,
@@ -128,13 +140,12 @@ class ManageClinic extends Component {
             descriptionMarkdown: clinic.descriptionMarkdown,
             address: clinic.address,
             avatar: '',
-            // imagaBase64: imageBase64,
+            previewImgURL: imageBase64,
             action: CRUD_ACTIONS.EDIT,
             userEditId: clinic.id
         })
     }
     render() {
-
         return (
             <div className='manage-specilty-container'>
                 <div className='ms-title'>Quản lý cơ sở </div>
@@ -158,9 +169,11 @@ class ManageClinic extends Component {
                             <input id='prevewimg' type='file' hidden
                                 onChange={(event) => this.handleOnchangeImage(event)}
                             />
-                            <label htmlFor='prevewimg' className='lable-upload'><FormattedMessage id="manage-user.Upload" /> <i className='fas fa-upload'></i></label>
+                            <label htmlFor='prevewimg' className='lable-upload'>
+                                <FormattedMessage id="manage-user.Upload" /> <i className='fas fa-upload'></i>
+                            </label>
                             <div className='preview-image'
-                                style={{ backgroundImage: `url(${this.state.imagaBase64})` }}
+                                style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
                                 onClick={() => this.openPreviewImg()}
                             >
                             </div>
@@ -174,14 +187,21 @@ class ManageClinic extends Component {
                         />
                     </div>
                     <div className='col-12'>
-                        <button className={this.state.action === CRUD_ACTIONS.EDIT ? "btn-btn-warning" : 'btn-save-specialty'}
-                            onClick={() => { this.handleSaveNewClinic() }}>
+                        <div>
                             {this.state.action === CRUD_ACTIONS.EDIT ?
-                                <FormattedMessage id={'manage-clinic.edit'} />
+                                < button className={"btn-btn-warning"}
+                                    onClick={() => { this.handleEditClinic() }}>
+                                    <FormattedMessage id={'manage-clinic.edit'} />
+                                </button>
                                 :
-                                <FormattedMessage id={'manage-clinic.save'} />
+                                < button className={'btn-save-specialty'}
+                                    onClick={() => { this.handleSaveNewClinic() }}>
+                                    <FormattedMessage id={'manage-clinic.save'} />
+                                </button>
                             }
-                        </button>
+                        </div>
+
+
                     </div>
                     <div className='col-12 mb-5'>
                         <div className='title my-3'><FormattedMessage id="manage-clinic.title" /></div>
@@ -191,13 +211,14 @@ class ManageClinic extends Component {
                         />
                     </div>
                 </div>
-                {this.state.isOpen === true &&
+                {
+                    this.state.isOpen === true &&
                     <Lightbox
-                        mainSrc={this.state.imagaBase64}
+                        mainSrc={this.state.previewImgURL}
                         onCloseRequest={() => this.setState({ isOpen: false })}
                     />
                 }
-            </div>
+            </div >
         );
     }
 }
@@ -214,7 +235,7 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchClinicRedux: () => dispatch(actions.fetchAllClinicStart()),
         editClinicRedux: (data) => dispatch(actions.editClinic(data)),
-       
+
     };
 };
 
