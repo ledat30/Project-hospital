@@ -90,11 +90,11 @@ class ProfileDoctor extends Component {
                         <div className='down'>
                             {isShowDescriptionDoctor === true ?
                                 <>
-                                    {dataProfile && dataProfile.Markdown
-                                        && dataProfile.Markdown.description
+                                    {dataProfile && dataProfile.Doctor_infor
+                                        && dataProfile.Doctor_infor.description
                                         &&
                                         <span>
-                                            {dataProfile.Markdown.description}
+                                            {dataProfile.Doctor_infor.description}
                                         </span>
                                     }
                                 </>

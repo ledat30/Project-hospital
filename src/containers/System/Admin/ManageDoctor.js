@@ -197,8 +197,8 @@ class ManageDoctor extends Component {
         let { listPayment, listProvince, listPrice, listSpecialty, listClinic } = this.state;
 
         let res = await getDetailInforDoctor(selectedDoctor.value);
-        if (res && res.errCode === 0 && res.data && res.data.Markdown) {
-            let markdown = res.data.Markdown;
+        if (res && res.errCode === 0 && res.data && res.data.Doctor_infor) {
+            let markdown = res.data.Doctor_infor;
 
             let addressClinic = '', nameClinic = '', note = '', paymentId = '', priceId = '',
                 specialtyId = '', clinicId = '', provinceId = '', selectedPayment = '', selectedPrice = '',
