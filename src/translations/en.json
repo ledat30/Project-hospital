@@ -76,6 +76,9 @@
         "save": "Save specialty ",
         "edit": "Edit specialty "
     },
+    "manage-doctor":{
+        "title":"List of Doctor "
+    },
     "patient": {
         "detail-doctor": {
             "Schedule": "Schedule",

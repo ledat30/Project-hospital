@@ -76,6 +76,9 @@
         "save":"Lưu chuyên khoa ",
         "edit":"Sửa chuyên khoa "
     },
+    "manage-doctor":{
+        "title":"Danh sách bác sĩ "
+    },
     "patient": {
         "detail-doctor": {
             "Schedule": "Lịch khám",
