@@ -38,6 +38,7 @@ class Login extends Component {
     }
 
     handleLogin = async () => {
+
         this.setState({
             errMessage: ''
         })
@@ -124,13 +125,6 @@ class Login extends Component {
                         </div>
                         <div className="col-12">
                             <span className="forgot-password">Forgot your password?</span>
-                        </div>
-                        <div className="col-12 text-center login-with mt-3">
-                            <span className="">Or login with:</span>
-                        </div>
-                        <div className="col-12 social-login">
-                            <i className="fab fa-facebook social-icon fb"></i>
-                            <i className="fab fa-google-plus social-icon gg"></i>
                         </div>
                     </div>
                 </div>

@@ -42,23 +42,23 @@ class DoctorSchedule extends Component {
             let object = {};
             if (language === LANGUAGES.VI) {
                 if (i === 0) {
-                    let ddMM = moment(new Date()).format('DD/MM');
-                    let today = `Hôm nay - ${ddMM}`;
+                    let ddMM = moment(new Date().setDate(new Date().getDate() + 1)).format('DD/MM');
+                    let today = `Ngày Mai - ${ddMM}`;
                     object.label = today;
                 } else {
-                    object.label = moment(new Date()).add(i, 'days').format('dddd- DD/MM');
+                    object.label = moment(new Date().setDate(new Date().getDate() + 1)).add(i, 'days').format('dddd- DD/MM');
                 }
             }
             else {
                 if (i === 0) {
-                    let ddMM = moment(new Date()).format('DD/MM');
-                    let today = `Today - ${ddMM}`;
+                    let ddMM = moment(new Date().setDate(new Date().getDate() + 1)).format('DD/MM');
+                    let today = `Tomorrow - ${ddMM}`;
                     object.label = today;
                 } else {
-                    object.label = moment(new Date()).add(i, 'days').locale('en').format('ddd- DD/MM');
+                    object.label = moment(new Date().setDate(new Date().getDate() + 1)).add(i, 'days').locale('en').format('ddd- DD/MM');
                 }
             }
-            object.value = moment(new Date()).add(i, 'days').startOf('day').valueOf();
+            object.value = moment(new Date().setDate(new Date().getDate() + 1)).add(i, 'days').startOf('day').valueOf();
 
             allDays.push(object);
         }
