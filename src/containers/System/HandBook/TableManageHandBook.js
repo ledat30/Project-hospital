@@ -29,12 +29,12 @@ class TableManageHandBook extends Component {
         }
     }
 
-    handleDeleteSpecialty = (handbook) => {
+    handleDeleteHandbook = (handbook) => {
         this.props.deleteHandBookRedux(handbook.id);
     }
 
-    handleEditSpecialty = (specialty) => {
-        this.props.handleEditSpecialtyFromPaentKey(specialty)
+    handleEditHandbook = (handbook) => {
+        this.props.handleEditHandBookFromPaentKey(handbook)
     }
 
 
@@ -55,11 +55,11 @@ class TableManageHandBook extends Component {
                                     <td>{item.title}</td>
                                     <td>
                                         <button className='btn-edit'
-                                            onClick={() => this.handleEditSpecialty(item)}>
+                                            onClick={() => this.handleEditHandbook(item)}>
                                             <i className='fas fa-pencil-alt'></i>
                                         </button>
                                         <button className='btn-delete'
-                                            onClick={() => this.handleDeleteSpecialty(item)}>
+                                            onClick={() => this.handleDeleteHandbook(item)}>
                                             <i className='fas fa-trash'></i>
                                         </button>
                                     </td>

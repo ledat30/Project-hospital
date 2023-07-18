@@ -3,7 +3,7 @@ import {
     getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService,
     getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService, getAllSpecialty, getAllClinic,
     deleteClinicService, deleteSpecialtyService, deleteDoctorService, editClinicService, editSpecialtyService, getAllHandBook,
-    deleteHandbookService
+    deleteHandbookService, editHandBookService
 } from "../../services/userService";
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -554,4 +554,29 @@ export const deleteHandbookSuccess = () => ({
 })
 export const deleteHandbookFaided = () => ({
     type: actionTypes.FETCH_DELETE_HANDBOOK_FAIDED
+})
+
+export const editHandBook = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editHandBookService(data);
+            if (res && res.errCode === 0) {
+                toast.success("Edit the handbook success!")
+                dispatch(editHandbookSuccess())
+                dispatch(fetchAllHandBookStart())
+            } else {
+                toast.error("Edit the handbook failed!")
+                dispatch(editHandbookFailed());
+            }
+        } catch (e) {
+            dispatch(editHandbookFailed());
+            console.log(e);
+        }
+    }
+}
+export const editHandbookSuccess = () => ({
+    type: actionTypes.EDIT_HANDBOOK_SUCCESS,
+})
+export const editHandbookFailed = () => ({
+    type: actionTypes.EDIT_HANDBOOK_FAILED
 })

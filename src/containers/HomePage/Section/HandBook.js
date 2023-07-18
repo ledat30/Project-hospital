@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Slider from 'react-slick';
 import { getAllHandBook } from '../../../services/userService';
+import { withRouter } from 'react-router';
 
 class HandBook extends Component {
     constructor(props) {
@@ -20,6 +21,13 @@ class HandBook extends Component {
             })
         }
     }
+
+    handleViewDetailHandBook = (handbook) => {
+        if (this.props.history) {
+            this.props.history.push(`/detail-handbook/${handbook.id}`)
+        }
+
+    }
     render() {
         let { dataHandBook } = this.state;
         return (
@@ -34,7 +42,10 @@ class HandBook extends Component {
                             {dataHandBook && dataHandBook.length > 0 &&
                                 dataHandBook.map((item, index) => {
                                     return (
-                                        <div className='section-customize hb-child' key={index}>
+                                        <div className='section-customize hb-child'
+                                            key={index}
+                                            onClick={() => this.handleViewDetailHandBook(item)}
+                                        >
                                             <div className='bg-image section-handbook'
                                                 style={{ backgroundImage: `url(${item.image})` }} />
                                             <div className='handbook-title'>{item.title}</div>
@@ -62,4 +73,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HandBook);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HandBook));

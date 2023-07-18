@@ -23,7 +23,8 @@ class ManageHandBook extends Component {
             contentMarkdownVi: '',
             contentHTMLEn: '',
             contentMarkdownEn: '',
-            avatar: ''
+            avatar: '',
+            handbookEditId: ''
         }
     }
     async componentDidMount() {
@@ -114,6 +115,40 @@ class ManageHandBook extends Component {
         this.props.fetchAllHandBookRedux();
     }
 
+    handleEditHandBook = () => {
+        let { action } = this.state;
+        if (action === CRUD_ACTIONS.EDIT) {
+            this.props.editHandBookRedux({
+                id: this.state.handbookEditId,
+                contentHTMLVi: this.state.contentHTMLVi,
+                contentMarkdownVi: this.state.contentMarkdownVi,
+                contentHTMLEn: this.state.contentHTMLEn,
+                contentMarkdownEn: this.state.contentMarkdownEn,
+                title: this.state.title,
+                avatar: this.state.avatar,
+            })
+        }
+        this.props.fetchAllHandBookRedux();
+    }
+
+    handleEditHandBookFromPaent = (handbook) => {
+        let imageBase64 = '';
+        if (handbook.image) {
+            imageBase64 = new Buffer.from(handbook.image, 'base64').toString('binary');
+        }
+        this.setState({
+            title: handbook.title,
+            contentHTMLVi: handbook.contentHTMLVi,
+            contentMarkdownVi: handbook.contentMarkdownVi,
+            contentHTMLEn: handbook.contentHTMLEn,
+            contentMarkdownEn: handbook.contentMarkdownEn,
+            avatar: '',
+            previewImgURL: imageBase64,
+            action: CRUD_ACTIONS.EDIT,
+            handbookEditId: handbook.id
+        })
+    }
+
     render() {
 
         return (
@@ -161,7 +196,7 @@ class ManageHandBook extends Component {
                         <div>
                             {this.state.action === CRUD_ACTIONS.EDIT ?
                                 < button className={"btn-btn-warning"}
-                                    onClick={() => { this.handleEditSpecialty() }}>
+                                    onClick={() => { this.handleEditHandBook() }}>
                                     <FormattedMessage id={'manage-handbook.edit'} />
                                 </button>
                                 :
@@ -177,7 +212,7 @@ class ManageHandBook extends Component {
                     <div className='col-12 mb-5'>
                         <div className='title my-3'><FormattedMessage id="manage-handbook.title" /></div>
                         <TableManageHandBook
-                            handleEditSpecialtyFromPaentKey={this.handleEditSpecialtyFromPaent}
+                            handleEditHandBookFromPaentKey={this.handleEditHandBookFromPaent}
                             action={this.state.action}
                         />
                     </div>
@@ -204,6 +239,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchAllHandBookRedux: () => dispatch(actions.fetchAllHandBookStart()),
+        editHandBookRedux: (data) => dispatch(actions.editHandBook(data))
     };
 };
 
