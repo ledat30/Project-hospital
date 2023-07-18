@@ -10,7 +10,8 @@ const initialState = {
     allDoctors: [],
     allScheduleTime: [],
     clinics: [],
-    specialty:[],
+    specialty: [],
+    handbook: [],
 
     allRequiredDoctorInfor: []
 }
@@ -138,6 +139,17 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.FETCH_ALL_SPECIALTY_FAIDED:
             state.specialty = [];
+            return {
+                ...state,
+            }
+
+        case actionTypes.FETCH_ALL_HANDBOOK_SUCCESS:
+            state.handbook = action.specialty;
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_ALL_HANDBOOK_FAIDED:
+            state.handbook = [];
             return {
                 ...state,
             }

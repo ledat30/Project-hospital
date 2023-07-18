@@ -66,18 +66,23 @@
         "doctor": " Chọn bác sĩ",
         "save": "Lưu thông tin"
     },
-    "manage-clinic":{
-        "title":"Danh sách cơ sở y tế",
-        "save":"Lưu cơ sở ",
-        "edit":"Sửa cơ sở "
+    "manage-clinic": {
+        "title": "Danh sách cơ sở y tế",
+        "save": "Lưu cơ sở ",
+        "edit": "Sửa cơ sở "
     },
-    "manage-specialty":{
-        "title":"Danh sách chuyên khoa",
-        "save":"Lưu chuyên khoa ",
-        "edit":"Sửa chuyên khoa "
+    "manage-specialty": {
+        "title": "Danh sách chuyên khoa",
+        "save": "Lưu chuyên khoa ",
+        "edit": "Sửa chuyên khoa "
     },
-    "manage-doctor":{
-        "title":"Danh sách bác sĩ "
+    "manage-handbook": {
+        "title": "Danh sách cẩm nang",
+        "save": "Lưu cẩm nang ",
+        "edit": "Sửa cẩm nang "
+    },
+    "manage-doctor": {
+        "title": "Danh sách bác sĩ "
     },
     "patient": {
         "detail-doctor": {

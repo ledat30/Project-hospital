@@ -70,11 +70,14 @@
 
                 &.section-specialty {
                     // background-image: url('../../assets/specialty/co-xuong-khop.jpg');
-
+                    box-shadow   : 0 1px 6px #3d3e4147;
+                    border-radius: 8px;
                 }
 
                 &.section-medical-facility {
                     // background-image: url('../../assets/CoSoYte/103904-logo-thucuc.png');
+                    box-shadow   : 0 1px 6px #3d3e4147;
+                    border-radius: 8px;
                 }
 
                 &.section-outstanding-doctor {
@@ -85,7 +88,9 @@
                 }
 
                 &.section-handbook {
-                    background-image: url('../../assets/handbook/142734-top-dia-chi-kham-tai-mui-hong-hai-ba-trung-uy-tin.png');
+                    // background-image: url('../../assets/handbook/142734-top-dia-chi-kham-tai-mui-hong-hai-ba-trung-uy-tin.png');
+                    box-shadow   : 0 1px 6px #3d3e4147;
+                    border-radius: 8px;
                 }
             }
 
@@ -107,6 +112,18 @@
             cursor: pointer;
 
             .clinic-name {
+                padding: 10px 0;
+
+                &:hover {
+                    color: #64b9e5;
+                }
+            }
+        }
+
+        .hb-child {
+            cursor: pointer;
+
+            .handbook-title {
                 padding: 10px 0;
 
                 &:hover {

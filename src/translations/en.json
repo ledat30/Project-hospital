@@ -76,8 +76,13 @@
         "save": "Save specialty ",
         "edit": "Edit specialty "
     },
-    "manage-doctor":{
-        "title":"List of Doctor "
+    "manage-handbook": {
+        "title": "List of Handbook",
+        "save": "Save handbook",
+        "edit": "Edit handbook "
+    },
+    "manage-doctor": {
+        "title": "List of Doctor "
     },
     "patient": {
         "detail-doctor": {

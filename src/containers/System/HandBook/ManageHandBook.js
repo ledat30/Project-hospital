@@ -1,30 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { FormattedMessage } from 'react-intl';
-import './ManageSpecialty.scss';
+import './ManageHandBook.scss';
+import Lightbox from 'react-image-lightbox';
+import { CommonUtils, CRUD_ACTIONS } from '../../../utils';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
-import { CommonUtils, CRUD_ACTIONS } from '../../../utils';
-import { createNewSpecialty } from '../../../services/userService';
+import { createNewHandbook } from '../../../services/userService';
 import { toast } from 'react-toastify';
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css';
-import TableManagerSpecialty from './TableManagerSpecialty';
+import TableManageHandBook from './TableManageHandBook';
 import * as actions from '../../../store/actions';
-
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
-class ManageSpecialty extends Component {
+class ManageHandBook extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
+            title: '',
             previewImgURL: '',
-            isOpen: false,
-            descriptionHTML: '',
-            descriptionMarkdown: '',
-            specialtyEditId: '',
+            contentHTMLVi: '',
+            contentMarkdownVi: '',
+            contentHTMLEn: '',
+            contentMarkdownEn: '',
             avatar: ''
         }
     }
@@ -35,14 +33,16 @@ class ManageSpecialty extends Component {
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.language !== prevProps.language) {
         }
-        if (prevProps.listSpecialty !== this.props.listSpecialty) {
+        if (prevProps.listHandBook !== this.props.listHandBook) {
             this.setState({
-                name: '',
-                descriptionHTML: '',
-                descriptionMarkdown: '',
+                title: '',
+                previewImgURL: '',
+                contentHTMLVi: '',
+                contentMarkdownVi: '',
+                contentHTMLEn: '',
+                contentMarkdownEn: '',
                 avatar: '',
                 action: CRUD_ACTIONS.CREATE,
-                previewImgURL: '',
             })
         }
     }
@@ -55,12 +55,20 @@ class ManageSpecialty extends Component {
         })
     }
 
-    handleEditorChange = ({ html, text }) => {
+    handleEditorChangeVi = ({ html, text }) => {
         this.setState({
-            descriptionHTML: html,
-            descriptionMarkdown: text
+            contentHTMLVi: html,
+            contentMarkdownVi: text,
         })
     }
+
+    handleEditorChangeEn = ({ html, text }) => {
+        this.setState({
+            contentHTMLEn: html,
+            contentMarkdownEn: text,
+        })
+    }
+
 
     handleOnchangeImage = async (event) => {
         let data = event.target.files;
@@ -83,7 +91,7 @@ class ManageSpecialty extends Component {
 
     checkValidateInput = () => {
         let isValid = true;
-        let arrCheck = ['name', 'descriptionHTML', 'descriptionMarkdown']
+        let arrCheck = ['title', 'contentHTMLVi', 'contentMarkdownVi', 'contentHTMLEn', 'contentMarkdownEn']
         for (let i = 0; i < arrCheck.length; i++) {
             if (!this.state[arrCheck[i]]) {
                 isValid = false;
@@ -94,58 +102,29 @@ class ManageSpecialty extends Component {
         return isValid;
     }
 
-    handleSaveNewSpecialty = async () => {
+    handleSaveNewHandbook = async () => {
         let isValid = this.checkValidateInput();
         if (isValid === false) return;
         let { action } = this.state;
-        let res = await createNewSpecialty(this.state);
+        let res = await createNewHandbook(this.state);
 
         if (res && res.errCode === 0 && action === CRUD_ACTIONS.CREATE) {
             toast.success('Add new specialty success!')
         }
-        this.props.fetchSpecialtyRedux();
-    }
-
-    handleEditSpecialty = () => {
-        let { action } = this.state;
-        if (action === CRUD_ACTIONS.EDIT) {
-            this.props.editSpecialtyRedux({
-                id: this.state.specialtyEditId,
-                name: this.state.name,
-                avatar: this.state.avatar,
-                descriptionHTML: this.state.descriptionHTML,
-                descriptionMarkdown: this.state.descriptionMarkdown
-            })
-        }
-        this.props.fetchSpecialtyRedux();
-    }
-
-    handleEditSpecialtyFromPaent = (specialty) => {
-        let imageBase64 = '';
-        if (specialty.image) {
-            imageBase64 = new Buffer.from(specialty.image, 'base64').toString('binary');
-        }
-        this.setState({
-            name: specialty.name,
-            descriptionHTML: specialty.descriptionHTML,
-            descriptionMarkdown: specialty.descriptionMarkdown,
-            avatar: '',
-            previewImgURL: imageBase64,
-            action: CRUD_ACTIONS.EDIT,
-            specialtyEditId: specialty.id
-        })
+        this.props.fetchAllHandBookRedux();
     }
 
     render() {
+
         return (
             <div className='manage-specilty-container'>
-                <div className='ms-title'>Quản lý chuyên khoa</div>
+                <div className='ms-title'>Quản lý Cẩm nang</div>
 
                 <div className='add-new-specialty row'>
                     <div className='col-6 form-group'>
-                        <label>Tên chuyên khoa</label>
-                        <input className='form-control' type='text' value={this.state.name}
-                            onChange={(e) => this.handleOnchangInput(e, 'name')}
+                        <label>Tiêu đề </label>
+                        <input className='form-control' type='text' value={this.state.title}
+                            onChange={(e) => this.handleOnchangInput(e, 'title')}
                         />
                     </div>
                     <div className='col-3 form-group'>
@@ -163,11 +142,19 @@ class ManageSpecialty extends Component {
                         </div>
                     </div>
                     <div className='col-12'>
-                        <label>Mô tả</label>
+                        <label>Mô tả - Vi</label>
                         <MdEditor style={{ height: '350px' }}
                             renderHTML={text => mdParser.render(text)}
-                            onChange={this.handleEditorChange}
-                            value={this.state.descriptionMarkdown}
+                            onChange={this.handleEditorChangeVi}
+                            value={this.state.contentMarkdownVi}
+                        />
+                    </div>
+                    <div className='col-12 mt-4'>
+                        <label>Mô tả - En</label>
+                        <MdEditor style={{ height: '350px' }}
+                            renderHTML={text => mdParser.render(text)}
+                            onChange={this.handleEditorChangeEn}
+                            value={this.state.contentMarkdownEn}
                         />
                     </div>
                     <div className='col-12'>
@@ -175,12 +162,12 @@ class ManageSpecialty extends Component {
                             {this.state.action === CRUD_ACTIONS.EDIT ?
                                 < button className={"btn-btn-warning"}
                                     onClick={() => { this.handleEditSpecialty() }}>
-                                    <FormattedMessage id={'manage-specialty.edit'} />
+                                    <FormattedMessage id={'manage-handbook.edit'} />
                                 </button>
                                 :
                                 < button className={'btn-save-specialty'}
-                                    onClick={() => { this.handleSaveNewSpecialty() }}>
-                                    <FormattedMessage id={'manage-specialty.save'} />
+                                    onClick={() => { this.handleSaveNewHandbook() }}>
+                                    <FormattedMessage id={'manage-handbook.save'} />
                                 </button>
                             }
                         </div>
@@ -188,8 +175,8 @@ class ManageSpecialty extends Component {
                     </div>
 
                     <div className='col-12 mb-5'>
-                        <div className='title my-3'><FormattedMessage id="manage-specialty.title" /></div>
-                        <TableManagerSpecialty
+                        <div className='title my-3'><FormattedMessage id="manage-handbook.title" /></div>
+                        <TableManageHandBook
                             handleEditSpecialtyFromPaentKey={this.handleEditSpecialtyFromPaent}
                             action={this.state.action}
                         />
@@ -210,15 +197,14 @@ class ManageSpecialty extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
-        listSpecialty: state.admin.specialty
+        listHandBook: state.admin.handbook
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchSpecialtyRedux: () => dispatch(actions.fetchAllSpecialtyStart()),
-        editSpecialtyRedux: (data) => dispatch(actions.editSpecialty(data))
+        fetchAllHandBookRedux: () => dispatch(actions.fetchAllHandBookStart()),
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageSpecialty);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageHandBook);

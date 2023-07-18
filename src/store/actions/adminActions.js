@@ -2,7 +2,8 @@ import actionTypes from './actionTypes';
 import {
     getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService,
     getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService, getAllSpecialty, getAllClinic,
-    deleteClinicService, deleteSpecialtyService,deleteDoctorService ,editClinicService,editSpecialtyService
+    deleteClinicService, deleteSpecialtyService, deleteDoctorService, editClinicService, editSpecialtyService, getAllHandBook,
+    deleteHandbookService
 } from "../../services/userService";
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -504,4 +505,53 @@ export const editSpecialtySuccess = () => ({
 })
 export const editSpecialtyFailed = () => ({
     type: actionTypes.EDIT_SPECIALTY_FAILED
+})
+
+
+export const fetchAllHandBookStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllHandBook();
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllHandBookSuccess(res.data.reverse()))
+            } else {
+                dispatch(fetchAllHandBookFailed());
+            }
+        } catch (e) {
+            dispatch(fetchAllHandBookFailed());
+            console.log(e);
+        }
+    }
+}
+export const fetchAllHandBookSuccess = (data) => ({
+    type: 'FETCH_ALL_HANDBOOK_SUCCESS',
+    specialty: data
+})
+export const fetchAllHandBookFailed = () => ({
+    type: 'FETCH_ALL_HANDBOOK_FAIDED'
+})
+
+export const deleteHB = (handBookId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteHandbookService(handBookId);
+            if (res && res.errCode === 0) {
+                toast.success("Delete the handbook success!")
+                dispatch(deleteHandbookSuccess())
+                dispatch(fetchAllHandBookStart())
+            } else {
+                toast.error("Delete the handbook failed!")
+                dispatch(deleteHandbookFaided());
+            }
+        } catch (e) {
+            dispatch(deleteHandbookFaided());
+            console.log(e);
+        }
+    }
+}
+export const deleteHandbookSuccess = () => ({
+    type: actionTypes.FETCH_DELETE_HANDBOOK_SUCCESS,
+})
+export const deleteHandbookFaided = () => ({
+    type: actionTypes.FETCH_DELETE_HANDBOOK_FAIDED
 })
