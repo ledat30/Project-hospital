@@ -46,8 +46,8 @@ class HeaderHome extends Component {
                                 <div className='subs-title'><FormattedMessage id="homeheader.select-docter" /></div>
                             </div>
                             <div className='child-content'>
-                                <div><b><FormattedMessage id="homeheader.fee" /></b></div>
-                                <div className='subs-title'><FormattedMessage id="homeheader.check-health" /></div>
+                                <div><b><FormattedMessage id="homeheader.blog" /></b></div>
+                                <div className='subs-title'><FormattedMessage id="homeheader.Health-issues-to-know" /></div>
                             </div>
                         </div>
                         <div className='right-content'>

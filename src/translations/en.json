@@ -6,8 +6,8 @@
         "Select-room": "Choose hospital clinic",
         "doctor": "Doctor",
         "select-docter": "Choose a good doctor",
-        "fee": "Checkup package",
-        "check-health": "General health check",
+        "blog": "Blog",
+        "Health-issues-to-know": "Health issues to know",
         "support": "Support",
         "welcome": "Welcome "
     },
@@ -58,7 +58,25 @@
         "out-standing-doctor": "Last Week's Featured Doctor",
         "see-more": "See more",
         "specialty": "Popular Specialization",
-        "see": "See more"
+        "see": "See more",
+        "clinic": "Outstanding medical facility",
+        "see-clinic": "See more",
+        "handbook": "Health Handbook",
+        "see-hb": "See more",
+        "Health-Information": "Health information",
+        "content": {
+            "content-health-infor": "5 health indicators you need to keep in mind and check regularly",
+            "content-health-infor-2": "Periodic health check-ups will help you monitor your health indicators such as blood pressure, weight, blood sugar levels... and timely detect some abnormalities that your body is experiencing. at the earliest stage. Each health indicator is a number that represents many issues that need attention. Here are the 5 most important health indicators to look out for.",
+            "content-health-infor-3": "1. Blood pressure: A normal blood pressure reading is 120/80 mmHg 2. Cholesterol Index: 100 mg/dl for LDL cholesterol (bad) and 40 mg/dl for HDL cholesterol (good) 3. Heart rate: Normal heart rate 60 beats per minute (bpm) 4. Waist circumference: No more than 90 cm for women and 100 cm for men 5. Blood sugar: Normal range is 80 mg/dl to 100 mg/dl"
+        }
+    },
+    "footer": {
+        "health-care": "Take care of your health with Health care",
+        "address": " Street 181, Kim Son, Gia Lam, Hanoi",
+        "sp": "Customer support",
+        "email": " Priority mailbox",
+        "hotline": " Hotline",
+        "xh": " Social network link"
     },
     "manage-schedule": {
         "title": "Manage doctor's examination plan",

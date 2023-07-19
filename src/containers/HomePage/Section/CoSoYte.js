@@ -34,8 +34,8 @@ class CoSoYte extends Component {
             <div className='section-share section-medical-facility section-medical'>
                 <div className='section-container'>
                     <div className='section-header'>
-                        <span className='title-section'>Cở Sở Y Tế Nổi Bật</span>
-                        <button className='btn-section'>Xem thêm</button>
+                        <span className='title-section'><FormattedMessage id={'homepage.clinic'} /></span>
+                        <button className='btn-section'><FormattedMessage id={'homepage.see-clinic'} /></button>
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>

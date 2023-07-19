@@ -8,7 +8,7 @@ class About extends Component {
         return (
             <div className='section-share section-about'>
                 <div className='section-about-header'>
-                    Thông tin về sức khoẻ
+                    <FormattedMessage id={'homepage.Health-Information'} />
                 </div>
                 <div className='section-about-content'>
                     <div className='content-left'>
@@ -19,14 +19,10 @@ class About extends Component {
                     </div>
                     <div className='content-right'>
                         <div className='content-right-header'>
-                        5 chỉ số đánh giá sức khỏe bạn cần ghi nhớ và kiểm tra thường xuyên
+                            <FormattedMessage id={'homepage.content.content-health-infor'} />
                         </div>
-                        <p>Các cuộc kiểm tra sức khỏe định kỳ sẽ giúp bản thân theo dõi được những chỉ số về sức khoẻ như huyết áp, cân nặng, mức đường trong máu... và phát hiện kịp thời một số bất thường mà cơ thể đang gặp phải ở giai đoạn sớm nhất. Mỗi chỉ số sức khoẻ là một con số biểu lộ nhiều vấn đề cần quan tâm. Sau đây là 5 chỉ số sức khoẻ quan trọng nhất nên tìm hiểu.</p>
-                        <div style={{textAlign:'justify' }}>1. Huyết áp: Chỉ số huyết áp bình thường là 120/80 mmHg
-                        2. Chỉ số Cholesterol:  100 mg/ dl đối với LDL cholesterol (xấu) và 40 mg/ dl đối với HDL cholesterol (tốt)
-                        3. Nhịp tim: Nhịp tim bình thường 60 nhịp trong một phút (bpm)
-                        4. Chu vi vòng eo: Không quá 90 cm đối với nữ giới và 100 cm đối với nam giới
-                        5. Lượng đường huyết: Chỉ số bình thường từ 80 mg/ dl đến 100 mg/ dl
+                        <p><FormattedMessage id={'homepage.content.content-health-infor-2'} /></p>
+                        <div style={{ textAlign: 'justify' }}><FormattedMessage id={'homepage.content.content-health-infor-3'} />
                         </div>
                     </div>
                 </div>

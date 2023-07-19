@@ -1,11 +1,12 @@
 //reset slick slider css
 .slick-prev {
-    left      : -10 !important;
-    z-index   : 1000 !important;
-    height    : 48px !important;
-    width     : 44px !important;
-    background: #fff !important;
-    border    : 2px solid #d7d7d7 !important;
+    left         : -10 !important;
+    z-index      : 1000 !important;
+    height       : 48px !important;
+    width        : 44px !important;
+    background   : #fff !important;
+    border       : 2px solid #d7d7d7 !important;
+    border-radius: 5px;
 
     &:hover {
         background: #d6d6d6 !important;
@@ -19,12 +20,13 @@
 }
 
 .slick-next {
-    right     : -2 !important;
-    z-index   : 1000 !important;
-    height    : 48px !important;
-    width     : 50px !important;
-    background: #fff !important;
-    border    : 2px solid #d7d7d7 !important;
+    right        : -2 !important;
+    z-index      : 1000 !important;
+    height       : 48px !important;
+    width        : 50px !important;
+    background   : #fff !important;
+    border       : 2px solid #d7d7d7 !important;
+    border-radius: 5px;
 
     &:hover {
         background: #d6d6d6 !important;
@@ -272,7 +274,7 @@
 
         .footer-center {
             width      : 25%;
-            margin-left: 68px;
+            margin-left: 180px;
             height     : 250px;
 
             .title-footer-center {
@@ -301,9 +303,20 @@
         }
 
         .footer-right {
-            width      : 47%;
-            margin-left: 32px;
+            width      : 30%;
+            margin-left: 120px;
             height     : 250px;
+
+            .titlr-footor-right {
+                font-size  : 20px;
+                font-weight: 500;
+                padding-top: 15px;
+
+                .text-2k {
+                    font-size : 15px;
+                    margin-top: 10px;
+                }
+            }
         }
     }
 }
