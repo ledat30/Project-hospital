@@ -31,7 +31,9 @@
             "specialty": " Chuyên Khoa",
             "manage-specialty": "Quản lý chuyên khoa",
             "handbook": "Cẩm nang",
-            "manage-handbook": "Quản lý cẩm nang"
+            "manage-handbook": "Quản lý cẩm nang",
+            "manage-policy": " Quản lý chính sách",
+            "policy": "Chính sách"
         },
         "doctor": {
             "manage-schedule": " Quản lý kế hoạch khám bệnh",
@@ -98,6 +100,11 @@
         "title": "Danh sách cẩm nang",
         "save": "Lưu cẩm nang ",
         "edit": "Sửa cẩm nang "
+    },
+    "manage_policy": {
+        "title": "Danh sách chính sách",
+        "save": "Lưu chính sách ",
+        "edit": "Sửa chính sách "
     },
     "manage-doctor": {
         "title": "Danh sách bác sĩ "

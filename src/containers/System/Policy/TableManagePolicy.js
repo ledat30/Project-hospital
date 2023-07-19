@@ -1,36 +1,36 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import './TableManageHandBook.scss';
+import './TableManagePolicy.scss';
 import * as actions from '../../../store/actions';
 
 
-class TableManageHandBook extends Component {
+class TableManagePolicy extends Component {
 
 
     constructor(props) {
         super(props);
         this.state = {
-            handBookRedux: []
+            policyRedux: []
         }
     }
 
 
 
     componentDidMount() {
-        this.props.fetchAllHandBookRedux();
+        this.props.fetchAllPolicyRedux();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.listHandBook !== this.props.listHandBook) {
+        if (prevProps.listPolicy !== this.props.listPolicy) {
             this.setState({
-                handBookRedux: this.props.listHandBook
+                policyRedux: this.props.listPolicy
             })
         }
     }
 
-    handleDeleteHandbook = (handbook) => {
-        this.props.deleteHandBookRedux(handbook.id);
+    handleDeletePolicy = (policy) => {
+        this.props.deletePolicyRedux(policy.id);
     }
 
     handleEditHandbook = (handbook) => {
@@ -39,26 +39,28 @@ class TableManageHandBook extends Component {
 
 
     render() {
-        let arrHandBook = this.state.handBookRedux;
+        let arrPolicy = this.state.policyRedux;
         return (
             <>
-                <table id='TableManageHandBook'>
+                <table id='TableManagePolicy'>
                     <tbody>
                         <tr>
-                            <th>Title</th>
+                            <th>Chính sách - vi</th>
+                            <th>Chính sách - en</th>
                             <th>Action</th>
                         </tr>
-                        {arrHandBook && arrHandBook.length > 0 && arrHandBook.map((item, index) => {
+                        {arrPolicy && arrPolicy.length > 0 && arrPolicy.map((item, index) => {
                             return (
                                 <tr key={index}>
-                                    <td>{item.title}</td>
+                                    <td>{item.nameVI}</td>
+                                    <td>{item.nameEN}</td>
                                     <td>
                                         <button className='btn-edit'
                                             onClick={() => this.handleEditHandbook(item)}>
                                             <i className='fas fa-pencil-alt'></i>
                                         </button>
                                         <button className='btn-delete'
-                                            onClick={() => this.handleDeleteHandbook(item)}>
+                                            onClick={() => this.handleDeletePolicy(item)}>
                                             <i className='fas fa-trash'></i>
                                         </button>
                                     </td>
@@ -75,15 +77,15 @@ class TableManageHandBook extends Component {
 
 const mapStateToProps = state => {
     return {
-        listHandBook: state.admin.handbook
+        listPolicy: state.admin.policies
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchAllHandBookRedux: () => dispatch(actions.fetchAllHandBookStart()),
-        deleteHandBookRedux: (id) => dispatch(actions.deleteHB(id))
+        fetchAllPolicyRedux: () => dispatch(actions.fetchAllPolicyStart()),
+        deletePolicyRedux: (id) => dispatch(actions.deletePolicy(id))
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableManageHandBook);
+export default connect(mapStateToProps, mapDispatchToProps)(TableManagePolicy);

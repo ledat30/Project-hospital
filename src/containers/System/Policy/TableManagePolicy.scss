@@ -1,0 +1,28 @@
+#TableManagePolicy {
+  font-family    : Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width          : 100%;
+  margin-bottom  : 50px;
+}
+
+#TableManagePolicy td,
+#TableManagePolicy th {
+  border : 1px solid #ddd;
+  padding: 8px;
+}
+
+#TableManagePolicy tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#TableManagePolicy tr:hover {
+  background-color: #ddd;
+}
+
+#TableManagePolicy th {
+  padding-top     : 12px;
+  padding-bottom  : 12px;
+  text-align      : left;
+  background-color: #04AA6D;
+  color           : white;
+}

@@ -103,6 +103,20 @@ const editSpecialtyService = (inputData) => {
     return axios.put('/api/edit-specialty', inputData);
 }
 
+const createNewPolicy = (data) => {
+    return axios.post(`/api/create-new-policy`, data)
+}
+const getAllPolicy = () => {
+    return axios.get(`/api/get-all-policy`)
+}
+const deletePolicyService = (policyId) => {
+    return axios.delete('/api/delete-policy', {
+        data: {
+            id: policyId
+        }
+    });
+}
+
 const createNewHandbook = (data) => {
     return axios.post(`/api/create-new-handBook`, data)
 }
@@ -161,5 +175,5 @@ export {
     getAllSpecialty, getDetailSpecialtyById, createNewClinics, getAllClinic, getDetailClinicById,
     getAllPatientForDoctor, postSendRemedy, deleteClinicService, deleteSpecialtyService, deleteDoctorService,
     editClinicService, editSpecialtyService, createNewHandbook, getAllHandBook, deleteHandbookService,
-    editHandBookService ,getDetailHandBookById
+    editHandBookService, getDetailHandBookById, createNewPolicy ,getAllPolicy,deletePolicyService
 }

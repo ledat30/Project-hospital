@@ -12,6 +12,7 @@ const initialState = {
     clinics: [],
     specialty: [],
     handbook: [],
+    policies: [],
 
     allRequiredDoctorInfor: []
 }
@@ -131,6 +132,16 @@ const adminReducer = (state = initialState, action) => {
                 ...state,
             }
 
+        case actionTypes.FETCH_ALL_POLICY_SUCCESS:
+            state.policies = action.policies;
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_ALL_POLICY_FAIDED:
+            state.policies = [];
+            return {
+                ...state,
+            }
 
         case actionTypes.FETCH_ALL_SPECIALTY_SUCCESS:
             state.specialty = action.specialty;

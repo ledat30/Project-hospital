@@ -31,7 +31,9 @@
             "specialty": " Specialties",
             "manage-specialty": "Manage Specialties",
             "handbook": "Handbook",
-            "manage-handbook": "Manage Handbook"
+            "manage-handbook": "Manage Handbook",
+            "manage-policy": "Manage Policy",
+            "policy": "Policy"
         },
         "doctor": {
             "manage-schedule": "Manage Doctor's schedule",
@@ -98,6 +100,11 @@
         "title": "List of Handbook",
         "save": "Save handbook",
         "edit": "Edit handbook "
+    },
+    "manage_policy": {
+        "title": "List of policy",
+        "save": "Save policy ",
+        "edit": "Edit policy "
     },
     "manage-doctor": {
         "title": "List of Doctor "

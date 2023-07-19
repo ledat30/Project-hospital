@@ -3,7 +3,7 @@ import {
     getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService,
     getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService, getAllSpecialty, getAllClinic,
     deleteClinicService, deleteSpecialtyService, deleteDoctorService, editClinicService, editSpecialtyService, getAllHandBook,
-    deleteHandbookService, editHandBookService
+    deleteHandbookService, editHandBookService, getAllPolicy ,deletePolicyService
 } from "../../services/userService";
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -357,6 +357,54 @@ export const fetchRequiredDoctorInforSuccess = (allRequiredData) => ({
 })
 export const fetchRequiredDoctorInforFaided = () => ({
     type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAIDED
+})
+
+export const fetchAllPolicyStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllPolicy();
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllPolicySuccess(res.data.reverse()))
+            } else {
+                dispatch(fetchAllPolicyFailed());
+            }
+        } catch (e) {
+            dispatch(fetchAllPolicyFailed());
+            console.log(e);
+        }
+    }
+}
+export const fetchAllPolicySuccess = (data) => ({
+    type: 'FETCH_ALL_POLICY_SUCCESS',
+    policies: data
+})
+export const fetchAllPolicyFailed = () => ({
+    type: 'FETCH_ALL_POLICY_FAIDED'
+})
+
+export const deletePolicy = (policyId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deletePolicyService(policyId);
+            if (res && res.errCode === 0) {
+                toast.success("Delete the policy success!")
+                dispatch(deletePolicySuccess())
+                dispatch(fetchAllPolicyStart())
+            } else {
+                toast.error("Delete the policy failed!")
+                dispatch(deletePolicyFaided());
+            }
+        } catch (e) {
+            dispatch(deletePolicyFaided());
+            console.log(e);
+        }
+    }
+}
+export const deletePolicySuccess = () => ({
+    type: actionTypes.FETCH_DELETE_POLICY_SUCCESS,
+})
+export const deletePolicyFaided = () => ({
+    type: actionTypes.FETCH_DELETE_POLICY_FAIDED
 })
 
 export const fetchAllClinicStart = () => {
