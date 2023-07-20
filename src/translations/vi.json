@@ -33,7 +33,8 @@
             "handbook": "Cẩm nang",
             "manage-handbook": "Quản lý cẩm nang",
             "manage-policy": " Quản lý chính sách",
-            "policy": "Chính sách"
+            "policy": "Chính sách",
+            "manage-category_handbook":"Quản lý danh mục "
         },
         "doctor": {
             "manage-schedule": " Quản lý kế hoạch khám bệnh",
@@ -99,7 +100,10 @@
     "manage-handbook": {
         "title": "Danh sách cẩm nang",
         "save": "Lưu cẩm nang ",
-        "edit": "Sửa cẩm nang "
+        "edit": "Sửa cẩm nang ",
+        "SV": "Lưu danh mục",
+        "ed": "Sửa danh mục",
+        "tl": "Danh sách danh mục "
     },
     "manage_policy": {
         "title": "Danh sách chính sách",

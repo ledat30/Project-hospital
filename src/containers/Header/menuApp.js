@@ -38,6 +38,9 @@ export const adminMenu = [
         name: 'menu.admin.handbook',
         menus: [
             {
+                name: 'menu.admin.manage-category_handbook', link: '/system/manage-categoryhandbook',
+            },
+            {
                 name: 'menu.admin.manage-handbook', link: '/system/manage-handbook',
             },
         ]

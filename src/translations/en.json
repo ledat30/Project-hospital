@@ -33,7 +33,8 @@
             "handbook": "Handbook",
             "manage-handbook": "Manage Handbook",
             "manage-policy": "Manage Policy",
-            "policy": "Policy"
+            "policy": "Policy",
+            "manage-category_handbook": "Manage category"
         },
         "doctor": {
             "manage-schedule": "Manage Doctor's schedule",
@@ -99,7 +100,10 @@
     "manage-handbook": {
         "title": "List of Handbook",
         "save": "Save handbook",
-        "edit": "Edit handbook "
+        "edit": "Edit handbook ",
+        "SV": "Save category",
+        "ed": "Edit category",
+        "tl": "List of category "
     },
     "manage_policy": {
         "title": "List of policy",

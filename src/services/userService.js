@@ -172,6 +172,19 @@ const postSendRemedy = (data) => {
     return axios.post(`/api/send-remedy`, data)
 }
 
+const createNewCategoryHandbook = (data) => {
+    return axios.post(`/api/create-new-categoryHandBook`, data)
+}
+const getAllCategoryHandbook = () => {
+    return axios.get(`/api/get-all-categoryHandBook`)
+}
+const deleteCategoryHandbookService = (categoryId) => {
+    return axios.delete('/api/delete-categoryHandBook', {
+        data: {
+            id: categoryId
+        }
+    });
+}
 
 export {
     handleLoginApi, getAllUsers, createNewUserService, deleteUserService, editUserService,
@@ -182,5 +195,6 @@ export {
     getAllPatientForDoctor, postSendRemedy, deleteClinicService, deleteSpecialtyService, deleteDoctorService,
     editClinicService, editSpecialtyService, createNewHandbook, getAllHandBook, deleteHandbookService,
     editHandBookService, getDetailHandBookById, createNewPolicy, getAllPolicy, deletePolicyService,
-    editPolicyService, getDetailPolicyById
+    editPolicyService, getDetailPolicyById, createNewCategoryHandbook, getAllCategoryHandbook,
+    deleteCategoryHandbookService
 }

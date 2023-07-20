@@ -9,6 +9,8 @@ import ManageSpecialty from '../containers/System/Specialty/ManageSpecialty';
 import ManageClinic from '../containers/System/Clinic/ManageClinic';
 import ManageHandBook from '../containers/System/HandBook/ManageHandBook';
 import ManagePolicy from '../containers/System/Policy/ManagePolicy';
+import CategoryHandbook from '../containers/System/HandBook/CategoryHandbook';
+
 
 class System extends Component {
     render() {
@@ -27,6 +29,7 @@ class System extends Component {
                             <Route path="/system/manage-clinic" component={ManageClinic} />
                             <Route path="/system/manage-handbook" component={ManageHandBook} />
                             <Route path="/system/manage-policy" component={ManagePolicy} />
+                            <Route path="/system/manage-categoryhandbook" component={CategoryHandbook} />
                             <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                         </Switch>
                     </div>

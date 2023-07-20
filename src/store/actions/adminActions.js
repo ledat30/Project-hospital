@@ -3,7 +3,8 @@ import {
     getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService,
     getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService, getAllSpecialty, getAllClinic,
     deleteClinicService, deleteSpecialtyService, deleteDoctorService, editClinicService, editSpecialtyService, getAllHandBook,
-    deleteHandbookService, editHandBookService, getAllPolicy, deletePolicyService, editPolicyService
+    deleteHandbookService, editHandBookService, getAllPolicy, deletePolicyService, editPolicyService,
+    getAllCategoryHandbook, deleteCategoryHandbookService
 } from "../../services/userService";
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -653,4 +654,53 @@ export const editHandbookSuccess = () => ({
 })
 export const editHandbookFailed = () => ({
     type: actionTypes.EDIT_HANDBOOK_FAILED
+})
+
+export const fetchAllCategoryHBStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCategoryHandbook();
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllCategoryHandbookSuccess(res.data.reverse()))
+            } else {
+                dispatch(fetchAllCategoryHandbookFailed());
+            }
+        } catch (e) {
+            dispatch(fetchAllClinicFailed());
+            console.log(e);
+        }
+    }
+}
+export const fetchAllCategoryHandbookSuccess = (data) => ({
+    type: 'FETCH_ALL_CATEGORY_HANDBOOK_SUCCESS',
+    category: data
+})
+export const fetchAllCategoryHandbookFailed = () => ({
+    type: 'FETCH_ALL_CATEGORY_HANDBOOK_FAIDED'
+})
+
+export const deleteCategoryHB = (categoryId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteCategoryHandbookService(categoryId);
+            if (res && res.errCode === 0) {
+                toast.success("Delete the category success!")
+                dispatch(deleteCategoryHandbookSuccess())
+                dispatch(fetchAllCategoryHBStart())
+            } else {
+                toast.error("Delete the category failed!")
+                dispatch(deleteCategoryHandbookFaided());
+            }
+        } catch (e) {
+            dispatch(deleteCategoryHandbookFaided());
+            toast.error("Delete the category failed!");
+            console.log(e);
+        }
+    }
+}
+export const deleteCategoryHandbookSuccess = () => ({
+    type: actionTypes.FETCH_DELETE_CATEGORY_SUCCESS,
+})
+export const deleteCategoryHandbookFaided = () => ({
+    type: actionTypes.FETCH_DELETE_CATEGORY_FAIDED
 })
