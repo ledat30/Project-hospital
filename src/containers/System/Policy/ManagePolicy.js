@@ -23,7 +23,7 @@ class ManagePolicy extends Component {
             contentMarkdownVi: '',
             contentHTMLEn: '',
             contentMarkdownEn: '',
-            policyId: '',
+            policyEditId: '',
         }
     }
     async componentDidMount() {
@@ -41,7 +41,7 @@ class ManagePolicy extends Component {
                 contentMarkdownVi: '',
                 contentHTMLEn: '',
                 contentMarkdownEn: '',
-                // action: CRUD_ACTIONS.CREATE,
+                action: CRUD_ACTIONS.CREATE,
             })
         }
     }
@@ -95,39 +95,40 @@ class ManagePolicy extends Component {
         let { action } = this.state;
         let res = await createNewPolicy(this.state);
 
-        if (res && res.errCode === 0 ) {
+        if (res && res.errCode === 0 && CRUD_ACTIONS.CREATE) {
             toast.success('Add new policy success!')
         }
         this.props.fetchAllPolicyRedux();
     }
 
     handleEditHandBook = () => {
-        // let { action } = this.state;
-        // if (action === CRUD_ACTIONS.EDIT) {
-        //     this.props.editHandBookRedux({
-        //         id: this.state.handbookEditId,
-        //         contentHTMLVi: this.state.contentHTMLVi,
-        //         contentMarkdownVi: this.state.contentMarkdownVi,
-        //         contentHTMLEn: this.state.contentHTMLEn,
-        //         contentMarkdownEn: this.state.contentMarkdownEn,
-        //         title: this.state.title,
-        //         avatar: this.state.avatar,
-        //     })
-        // }
-        // this.props.fetchAllHandBookRedux();
+        let { action } = this.state;
+        if (action === CRUD_ACTIONS.EDIT) {
+            this.props.editPolicyRedux({
+                id: this.state.policyEditId,
+                contentHTMLVi: this.state.contentHTMLVi,
+                contentMarkdownVi: this.state.contentMarkdownVi,
+                contentHTMLEn: this.state.contentHTMLEn,
+                contentMarkdownEn: this.state.contentMarkdownEn,
+                nameEN: this.state.nameEN,
+                nameVI: this.state.nameVI,
+            })
+        }
+        this.props.fetchAllPolicyRedux();
     }
 
-    // handleEditHandBookFromPaent = (handbook) => {
-    //     this.setState({
-    //         title: handbook.title,
-    //         contentHTMLVi: handbook.contentHTMLVi,
-    //         contentMarkdownVi: handbook.contentMarkdownVi,
-    //         contentHTMLEn: handbook.contentHTMLEn,
-    //         contentMarkdownEn: handbook.contentMarkdownEn,
-    //         action: CRUD_ACTIONS.EDIT,
-    //         handbookEditId: handbook.id
-    //     })
-    // }
+    handleEditPolicyFromPaent = (policy) => {
+        this.setState({
+            nameEN: policy.nameEN,
+            nameVI: policy.nameVI,
+            contentHTMLVi: policy.contentHTMLVi,
+            contentMarkdownVi: policy.contentMarkdownVi,
+            contentHTMLEn: policy.contentHTMLEn,
+            contentMarkdownEn: policy.contentMarkdownEn,
+            action: CRUD_ACTIONS.EDIT,
+            policyEditId: policy.id
+        })
+    }
 
     render() {
 
@@ -184,8 +185,8 @@ class ManagePolicy extends Component {
                     <div className='col-12 mb-5'>
                         <div className='title my-3'><FormattedMessage id="manage_policy.title" /></div>
                         <TableManagePolicy
-                        // handleEditHandBookFromPaentKey={this.handleEditHandBookFromPaent}
-                        // action={this.state.action}
+                            handleEditPolicyFromPaentKey={this.handleEditPolicyFromPaent}
+                            action={this.state.action}
                         />
                     </div>
 
@@ -205,6 +206,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchAllPolicyRedux: () => dispatch(actions.fetchAllPolicyStart()),
+        editPolicyRedux: (data) => dispatch(actions.editPolicy(data))
     };
 };
 

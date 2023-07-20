@@ -1,10 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import { getAllPolicy } from '../../services/userService';
+import { withRouter } from 'react-router';
+import { LANGUAGES } from '../../utils';
 
 class HomeFooter extends Component {
-    render() {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            dataPolicy: []
+        }
+    }
+
+    async componentDidMount() {
+        let res = await getAllPolicy();
+        if (res && res.errCode === 0) {
+            this.setState({
+                dataPolicy: res.data ? res.data : []
+            })
+        }
+    }
+
+    handleViewDetailPolicy = (policy) => {
+        if (this.props.history) {
+            this.props.history.push(`/detail-policy/${policy.id}`)
+        }
+    }
+
+
+    render() {
+        let { dataPolicy } = this.state;
+        let { language } = this.props;
         return (
             <div className='footer '>
                 <div className='footer-container'>
@@ -31,15 +59,19 @@ class HomeFooter extends Component {
                         <div className='titlr-footor-right'>
                             <p>Chính sách của Health care</p>
                             <div className='text-2k'>
-                                <div className='text-2k'><i class="fas fa-shield-alt"></i> Chính sách khám bệnh</div>
-                                <div className='text-2k'><i class="fas fa-shield-alt"></i> Chính sách bảo mật thông tin khách hàng</div>
-                                <div className='text-2k'><i class="fas fa-shield-alt"></i> Chính sách hỗ trợ</div>
-                                <div className='text-2k'><i class="fas fa-shield-alt"></i> Chính sách hợp tác</div>
+                                {dataPolicy && dataPolicy.length > 0 && dataPolicy.map((item, index) => {
+                                    return (
+                                        <div className='text-2k' key={index}
+                                            onClick={() => this.handleViewDetailPolicy(item)} >
+                                            <i class="fas fa-shield-alt"></i> {language === LANGUAGES.VI ? item.nameVI : item.nameEN}
+                                        </div>
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 
@@ -57,4 +89,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeFooter);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeFooter));

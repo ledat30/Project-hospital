@@ -3,7 +3,7 @@ import {
     getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService,
     getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService, getAllSpecialty, getAllClinic,
     deleteClinicService, deleteSpecialtyService, deleteDoctorService, editClinicService, editSpecialtyService, getAllHandBook,
-    deleteHandbookService, editHandBookService, getAllPolicy ,deletePolicyService
+    deleteHandbookService, editHandBookService, getAllPolicy, deletePolicyService, editPolicyService
 } from "../../services/userService";
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -405,6 +405,32 @@ export const deletePolicySuccess = () => ({
 })
 export const deletePolicyFaided = () => ({
     type: actionTypes.FETCH_DELETE_POLICY_FAIDED
+})
+
+export const editPolicy = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editPolicyService(data);
+            if (res && res.errCode === 0) {
+                toast.success("Edit the policy success!")
+                dispatch(editPolicySuccess())
+                dispatch(fetchAllPolicyStart())
+            } else {
+                toast.error("Edit the policy failed!")
+                dispatch(editPolicyFailed());
+            }
+        } catch (e) {
+            dispatch(editPolicyFailed());
+            toast.error("Edit the policy failed!")
+            console.log(e);
+        }
+    }
+}
+export const editPolicySuccess = () => ({
+    type: actionTypes.EDIT_POLICY_SUCCESS,
+})
+export const editPolicyFailed = () => ({
+    type: actionTypes.EDIT_POLICY_FAILED
 })
 
 export const fetchAllClinicStart = () => {

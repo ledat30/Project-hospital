@@ -33,8 +33,8 @@ class TableManagePolicy extends Component {
         this.props.deletePolicyRedux(policy.id);
     }
 
-    handleEditHandbook = (handbook) => {
-        this.props.handleEditHandBookFromPaentKey(handbook)
+    handleEditPolicy = (policy) => {
+        this.props.handleEditPolicyFromPaentKey(policy)
     }
 
 
@@ -56,7 +56,7 @@ class TableManagePolicy extends Component {
                                     <td>{item.nameEN}</td>
                                     <td>
                                         <button className='btn-edit'
-                                            onClick={() => this.handleEditHandbook(item)}>
+                                            onClick={() => this.handleEditPolicy(item)}>
                                             <i className='fas fa-pencil-alt'></i>
                                         </button>
                                         <button className='btn-delete'

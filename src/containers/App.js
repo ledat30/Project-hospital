@@ -17,6 +17,7 @@ import VerifyEmail from './Pationt/VerifyEmail';
 import DetailSpecialty from './Pationt/Specialty/DetailSpecialty';
 import DetailClinic from './Pationt/Clinic/DetailClinic';
 import DetailHandBook from './Pationt/HandBook/DetailHandBook';
+import DetailPolicy from './Pationt/Policy/DetailPolicy';
 
 class App extends Component {
 
@@ -55,6 +56,7 @@ class App extends Component {
                                     <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty} />
                                     <Route path={path.DETAIL_CLINIC} component={DetailClinic} />
                                     <Route path={path.DETAIL_HANDBOOK} component={DetailHandBook} />
+                                    <Route path={path.DETAIL_POLICY} component={DetailPolicy} />
                                     <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail} />
                                 </Switch>
                             </CustomScrollbars>
