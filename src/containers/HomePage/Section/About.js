@@ -12,7 +12,8 @@ class About extends Component {
                 </div>
                 <div className='section-about-content'>
                     <div className='content-left'>
-                        <iframe width="90%" height="350px" src="https://www.youtube.com/embed/Nsy_3ce2Dpg"
+                        <iframe width="90%" height="350px"
+                            src="https://www.youtube.com/embed/Nsy_3ce2Dpg"
                             title="5 chỉ số đánh giá sức khỏe bạn cần ghi nhớ và kiểm tra thường xuyên"
                             frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen></iframe>

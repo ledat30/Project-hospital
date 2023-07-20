@@ -16,6 +16,7 @@ class CategoryHandbook extends Component {
         this.state = {
             nameVI: '',
             nameEN: '',
+            action: '',
             CategoryHandbookEditId: '',
         }
     }
@@ -30,7 +31,7 @@ class CategoryHandbook extends Component {
             this.setState({
                 nameEN: '',
                 nameVI: '',
-                // action: CRUD_ACTIONS.CREATE,
+                action: CRUD_ACTIONS.CREATE,
             })
         }
     }
@@ -71,40 +72,31 @@ class CategoryHandbook extends Component {
         let { action } = this.state;
         let res = await createNewCategoryHandbook(this.state);
 
-        if (res && res.errCode === 0) {
+        if (res && res.errCode === 0 && action === CRUD_ACTIONS.CREATE) {
             toast.success('Add new category success!')
         }
         this.props.fetchAllCategoryHandBookRedux();
     }
 
-    handleEditHandBook = () => {
-        // let { action } = this.state;
-        // if (action === CRUD_ACTIONS.EDIT) {
-        //     this.props.editHandBookRedux({
-        //         id: this.state.handbookEditId,
-        //         contentHTMLVi: this.state.contentHTMLVi,
-        //         contentMarkdownVi: this.state.contentMarkdownVi,
-        //         contentHTMLEn: this.state.contentHTMLEn,
-        //         contentMarkdownEn: this.state.contentMarkdownEn,
-        //         title: this.state.title,
-        //         avatar: this.state.avatar,
-        //     })
-        // }
-        // this.props.fetchAllHandBookRedux();
+    handleEditCategoryHandBook = () => {
+        let { action } = this.state;
+        if (action === CRUD_ACTIONS.EDIT) {
+            this.props.editCategoryHandBookRedux({
+                id: this.state.CategoryHandbookEditId,
+                nameEN: this.state.nameEN,
+                nameVI: this.state.nameVI,
+            })
+        }
+        this.props.fetchAllCategoryHandBookRedux();
     }
 
-    handleEditHandBookFromPaent = (handbook) => {
-        // this.setState({
-        //     title: handbook.title,
-        //     contentHTMLVi: handbook.contentHTMLVi,
-        //     contentMarkdownVi: handbook.contentMarkdownVi,
-        //     contentHTMLEn: handbook.contentHTMLEn,
-        //     contentMarkdownEn: handbook.contentMarkdownEn,
-        //     avatar: '',
-        //     previewImgURL: imageBase64,
-        //     action: CRUD_ACTIONS.EDIT,
-        //     handbookEditId: handbook.id
-        // })
+    handleEditCategoryHandBookFromPaent = (category) => {
+        this.setState({
+            nameEN: category.nameEN,
+            nameVI: category.nameVI,
+            action: CRUD_ACTIONS.EDIT,
+            CategoryHandbookEditId: category.id
+        })
     }
 
     render() {
@@ -130,7 +122,7 @@ class CategoryHandbook extends Component {
                         <div>
                             {this.state.action === CRUD_ACTIONS.EDIT ?
                                 < button className={"btn-btn-warning"}
-                                    onClick={() => { this.handleEditHandBook() }}>
+                                    onClick={() => { this.handleEditCategoryHandBook() }}>
                                     <FormattedMessage id={'manage-handbook.ed'} />
                                 </button>
                                 :
@@ -146,8 +138,8 @@ class CategoryHandbook extends Component {
                     <div className='col-12 mb-5'>
                         <div className='title my-3'><FormattedMessage id="manage-handbook.tl" /></div>
                         <TableCategory
-                        // handleEditHandBookFromPaentKey={this.handleEditHandBookFromPaent}
-                        // action={this.state.action}
+                            handleEditCategoryHandBookFromPaentKey={this.handleEditCategoryHandBookFromPaent}
+                            action={this.state.action}
                         />
                     </div>
 
@@ -173,7 +165,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchAllCategoryHandBookRedux: () => dispatch(actions.fetchAllCategoryHBStart()),
-        editHandBookRedux: (data) => dispatch(actions.editHandBook(data))
+        editCategoryHandBookRedux: (data) => dispatch(actions.editCategoryHandBook(data))
     };
 };
 

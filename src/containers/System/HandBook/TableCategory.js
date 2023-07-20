@@ -33,8 +33,8 @@ class TableCategory extends Component {
         this.props.deleteCategoryRedux(categoryHandBook.id);
     }
 
-    handleEditHandbook = (handbook) => {
-        this.props.handleEditHandBookFromPaentKey(handbook)
+    handleEditCategoryHandbook = (category) => {
+        this.props.handleEditCategoryHandBookFromPaentKey(category)
     }
 
 
@@ -56,7 +56,7 @@ class TableCategory extends Component {
                                     <td>{item.nameEN}</td>
                                     <td>
                                         <button className='btn-edit'
-                                            onClick={() => this.handleEditHandbook(item)}>
+                                            onClick={() => this.handleEditCategoryHandbook(item)}>
                                             <i className='fas fa-pencil-alt'></i>
                                         </button>
                                         <button className='btn-delete'

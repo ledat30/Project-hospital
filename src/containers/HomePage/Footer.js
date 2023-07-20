@@ -63,7 +63,7 @@ class HomeFooter extends Component {
                                     return (
                                         <div className='text-2k' key={index}
                                             onClick={() => this.handleViewDetailPolicy(item)} >
-                                            <i class="fas fa-shield-alt"></i> {language === LANGUAGES.VI ? item.nameVI : item.nameEN}
+                                            <i className="fas fa-shield-alt"></i> {language === LANGUAGES.VI ? item.nameVI : item.nameEN}
                                         </div>
                                     )
                                 })}

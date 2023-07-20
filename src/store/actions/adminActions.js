@@ -4,7 +4,7 @@ import {
     getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService, getAllSpecialty, getAllClinic,
     deleteClinicService, deleteSpecialtyService, deleteDoctorService, editClinicService, editSpecialtyService, getAllHandBook,
     deleteHandbookService, editHandBookService, getAllPolicy, deletePolicyService, editPolicyService,
-    getAllCategoryHandbook, deleteCategoryHandbookService
+    getAllCategoryHandbook, deleteCategoryHandbookService, editCategoryHandbookService
 } from "../../services/userService";
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -703,4 +703,29 @@ export const deleteCategoryHandbookSuccess = () => ({
 })
 export const deleteCategoryHandbookFaided = () => ({
     type: actionTypes.FETCH_DELETE_CATEGORY_FAIDED
+})
+
+export const editCategoryHandBook = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editCategoryHandbookService(data);
+            if (res && res.errCode === 0) {
+                toast.success("Edit the category handbook success!")
+                dispatch(editCategoryHandbookSuccess())
+                dispatch(fetchAllCategoryHBStart())
+            } else {
+                toast.error("Edit the category handbook failed!")
+                dispatch(editCategoryHandbookFailed());
+            }
+        } catch (e) {
+            dispatch(editCategoryHandbookFailed());
+            console.log(e);
+        }
+    }
+}
+export const editCategoryHandbookSuccess = () => ({
+    type: actionTypes.EDIT_CATEGORY_SUCCESS,
+})
+export const editCategoryHandbookFailed = () => ({
+    type: actionTypes.EDIT_CATEGORY_FAILED
 })
