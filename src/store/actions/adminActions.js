@@ -4,7 +4,8 @@ import {
     getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService, getAllSpecialty, getAllClinic,
     deleteClinicService, deleteSpecialtyService, deleteDoctorService, editClinicService, editSpecialtyService, getAllHandBook,
     deleteHandbookService, editHandBookService, getAllPolicy, deletePolicyService, editPolicyService,
-    getAllCategoryHandbook, deleteCategoryHandbookService, editCategoryHandbookService
+    getAllCategoryHandbook, deleteCategoryHandbookService, editCategoryHandbookService,
+    getTopHandbookHomeService
 } from "../../services/userService";
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -678,6 +679,29 @@ export const fetchAllCategoryHandbookSuccess = (data) => ({
 export const fetchAllCategoryHandbookFailed = () => ({
     type: 'FETCH_ALL_CATEGORY_HANDBOOK_FAIDED'
 })
+
+export const fetchTopHandbook = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getTopHandbookHomeService('');
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_HANDBOOK_SUCCESS,
+                    topHandbook: res.data
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_HANDBOOK_FAIDED,
+                })
+            }
+        } catch (e) {
+            console.log(e)
+            dispatch({
+                type: actionTypes.FETCH_TOP_HANDBOOK_FAIDED,
+            })
+        }
+    }
+}
 
 export const deleteCategoryHB = (categoryId) => {
     return async (dispatch, getState) => {

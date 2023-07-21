@@ -129,6 +129,10 @@ const createNewHandbook = (data) => {
 const getAllHandBook = () => {
     return axios.get(`/api/get-all-handbook`)
 }
+
+const getTopHandbookHomeService = (limit) => {
+    return axios.get(`/api/top-handbook-home?limit=${limit}`)
+}
 const deleteHandbookService = (handBookId) => {
     return axios.delete('/api/delete-handbook', {
         data: {
@@ -199,5 +203,5 @@ export {
     editClinicService, editSpecialtyService, createNewHandbook, getAllHandBook, deleteHandbookService,
     editHandBookService, getDetailHandBookById, createNewPolicy, getAllPolicy, deletePolicyService,
     editPolicyService, getDetailPolicyById, createNewCategoryHandbook, getAllCategoryHandbook,
-    deleteCategoryHandbookService, editCategoryHandbookService
+    deleteCategoryHandbookService, editCategoryHandbookService, getTopHandbookHomeService
 }

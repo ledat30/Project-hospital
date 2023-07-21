@@ -19,6 +19,13 @@ class HeaderHome extends Component {
             this.props.history.push(`/home`)
         }
     }
+
+    returnToCategory = () => {
+        if (this.props.history) {
+            this.props.history.push(`/all-category`)
+        }
+    }
+
     render() {
         let language = this.props.language;
         return (
@@ -46,8 +53,11 @@ class HeaderHome extends Component {
                                 <div className='subs-title'><FormattedMessage id="homeheader.select-docter" /></div>
                             </div>
                             <div className='child-content'>
-                                <div><b><FormattedMessage id="homeheader.blog" /></b></div>
-                                <div className='subs-title'><FormattedMessage id="homeheader.Health-issues-to-know" /></div>
+                                <div onClick={() => this.returnToCategory()}>
+                                    <div><b><FormattedMessage id="homeheader.blog" /></b></div>
+                                    <div className='subs-title'><FormattedMessage id="homeheader.Health-issues-to-know" /></div>
+                                </div>
+
                             </div>
                         </div>
                         <div className='right-content'>

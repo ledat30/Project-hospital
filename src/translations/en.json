@@ -55,7 +55,8 @@
         "save": "Save user",
         "Upload": "Upload Image",
         "manageUser": "Manage Users",
-        "edit": "Save changes"
+        "edit": "Save changes",
+        "categoryId": "Category"
     },
     "homepage": {
         "out-standing-doctor": "Last Week's Featured Doctor",
@@ -140,6 +141,9 @@
             "cancel": "Cancel",
             "Free-booking": "Free booking",
             "examination_price": "Examination price : "
+        },
+        "handbook": {
+            "title_handbook": "List of articles"
         },
         "messega": {
             "success": "CONFIRM YOUR EXAMINATION SCHEDULE IS SUCCESSFUL!",

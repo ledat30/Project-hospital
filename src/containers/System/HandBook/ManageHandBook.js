@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { FormattedMessage } from 'react-intl';
 import './ManageHandBook.scss';
 import Lightbox from 'react-image-lightbox';
-import { CommonUtils, CRUD_ACTIONS } from '../../../utils';
+import { CommonUtils, CRUD_ACTIONS, LANGUAGES } from '../../../utils';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import { createNewHandbook } from '../../../services/userService';
@@ -17,22 +17,31 @@ class ManageHandBook extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            categoryArr: [],
+
             title: '',
             previewImgURL: '',
             contentHTMLVi: '',
             contentMarkdownVi: '',
             contentHTMLEn: '',
             contentMarkdownEn: '',
+            categoryId: '',
             avatar: '',
             handbookEditId: ''
         }
     }
     async componentDidMount() {
-
+        this.props.fetchAllCategoryHandBookRedux();
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.language !== prevProps.language) {
+        }
+        if (prevProps.category !== this.props.category) {
+            let arrCategory = this.props.category;
+            this.setState({
+                categoryArr: arrCategory,
+            })
         }
         if (prevProps.listHandBook !== this.props.listHandBook) {
             this.setState({
@@ -42,6 +51,7 @@ class ManageHandBook extends Component {
                 contentMarkdownVi: '',
                 contentHTMLEn: '',
                 contentMarkdownEn: '',
+                categoryId: '',
                 avatar: '',
                 action: CRUD_ACTIONS.CREATE,
             })
@@ -70,6 +80,14 @@ class ManageHandBook extends Component {
         })
     }
 
+    onChangeInput = (event, id) => {
+        let copyState = { ...this.state }
+
+        copyState[id] = event.target.value;
+        this.setState({
+            ...copyState
+        })
+    }
 
     handleOnchangeImage = async (event) => {
         let data = event.target.files;
@@ -125,6 +143,7 @@ class ManageHandBook extends Component {
                 contentHTMLEn: this.state.contentHTMLEn,
                 contentMarkdownEn: this.state.contentMarkdownEn,
                 title: this.state.title,
+                categoryId: this.state.categoryId,
                 avatar: this.state.avatar,
             })
         }
@@ -142,6 +161,7 @@ class ManageHandBook extends Component {
             contentMarkdownVi: handbook.contentMarkdownVi,
             contentHTMLEn: handbook.contentHTMLEn,
             contentMarkdownEn: handbook.contentMarkdownEn,
+            categoryId: handbook.categoryId,
             avatar: '',
             previewImgURL: imageBase64,
             action: CRUD_ACTIONS.EDIT,
@@ -150,7 +170,9 @@ class ManageHandBook extends Component {
     }
 
     render() {
-
+        let { language } = this.props;
+        let categories = this.state.categoryArr;
+        console.log('check categories', categories)
         return (
             <div className='manage-specilty-container'>
                 <div className='ms-title'>Quản lý Cẩm nang</div>
@@ -161,6 +183,21 @@ class ManageHandBook extends Component {
                         <input className='form-control' type='text' value={this.state.title}
                             onChange={(e) => this.handleOnchangInput(e, 'title')}
                         />
+                    </div>
+                    <div className='col-3  form-group'>
+                        <label><FormattedMessage id="manage-user.categoryId" /></label>
+                        <select className="form-control"
+                            onChange={(event) => { this.onChangeInput(event, 'categoryId') }} value={this.state.categoryId}>
+                            {categories && categories.length > 0 &&
+                                categories.map((item, index) => {
+                                    return (
+                                        <option key={index} >
+                                            {language === LANGUAGES.VI ? item.nameVI : item.nameEn}
+                                        </option>
+                                    )
+                                })
+                            }
+                        </select>
                     </div>
                     <div className='col-3 form-group'>
                         <label><FormattedMessage id="manage-user.image" /></label>
@@ -232,14 +269,17 @@ class ManageHandBook extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
-        listHandBook: state.admin.handbook
+        listHandBook: state.admin.handbook,
+        category: state.admin.category
+
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         fetchAllHandBookRedux: () => dispatch(actions.fetchAllHandBookStart()),
-        editHandBookRedux: (data) => dispatch(actions.editHandBook(data))
+        editHandBookRedux: (data) => dispatch(actions.editHandBook(data)),
+        fetchAllCategoryHandBookRedux: () => dispatch(actions.fetchAllCategoryHBStart()),
     };
 };
 

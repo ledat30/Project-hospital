@@ -10,7 +10,8 @@ export const path = {
     DETAIL_SPECIALTY: '/detail-specialty/:id',
     DETAIL_CLINIC: '/detail-clinic/:id',
     DETAIL_HANDBOOK: '/detail-handbook/:id',
-    DETAIL_POLICY: '/detail-policy/:id'
+    DETAIL_POLICY: '/detail-policy/:id',
+    ALL_CATEGORY: '/all-category',
 };
 
 export const LANGUAGES = {

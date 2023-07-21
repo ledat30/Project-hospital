@@ -34,7 +34,7 @@
             "manage-handbook": "Quản lý cẩm nang",
             "manage-policy": " Quản lý chính sách",
             "policy": "Chính sách",
-            "manage-category_handbook":"Quản lý danh mục "
+            "manage-category_handbook": "Quản lý danh mục "
         },
         "doctor": {
             "manage-schedule": " Quản lý kế hoạch khám bệnh",
@@ -55,7 +55,8 @@
         "save": "Tạo mới User",
         "Upload": "Tải ảnh",
         "manageUser": "Quản lý người dùng",
-        "edit": "Lưu Thay đổi"
+        "edit": "Lưu Thay đổi",
+        "categoryId": "Danh mục"
     },
     "homepage": {
         "out-standing-doctor": "Bác sĩ nổi bật tuần qua",
@@ -140,6 +141,9 @@
             "cancel": "Huỷ bỏ",
             "Free-booking": "Miễn phí đặt lịch",
             "examination_price": "Giá khám : "
+        },
+        "handbook": {
+            "title_handbook": "Danh mục bài viết"
         },
         "messega": {
             "success": "XÁC NHẬN LỊCH HẸN KHÁM CỦA QUÝ KHÁCH ĐÃ THÀNH CÔNG !",

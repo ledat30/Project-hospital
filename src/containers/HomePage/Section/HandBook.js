@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Slider from 'react-slick';
-import { getAllHandBook } from '../../../services/userService';
 import { withRouter } from 'react-router';
+import * as actions from '../../../store/actions';
 
 class HandBook extends Component {
     constructor(props) {
@@ -13,13 +13,16 @@ class HandBook extends Component {
         }
     }
 
-    async componentDidMount() {
-        let res = await getAllHandBook();
-        if (res && res.errCode === 0) {
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.topHandbookRedux !== this.props.topHandbookRedux) {
             this.setState({
-                dataHandBook: res.data ? res.data : []
+                dataHandBook: this.props.topHandbookRedux
             })
         }
+    }
+
+    async componentDidMount() {
+        this.props.loadTopHandBooks();
     }
 
     handleViewDetailHandBook = (handbook) => {
@@ -29,7 +32,7 @@ class HandBook extends Component {
 
     }
     render() {
-        let { dataHandBook } = this.state;
+        let allHandBook = this.state.dataHandBook;
         return (
             <div className='section-share section-handbook'>
                 <div className='section-container'>
@@ -39,8 +42,8 @@ class HandBook extends Component {
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
-                            {dataHandBook && dataHandBook.length > 0 &&
-                                dataHandBook.map((item, index) => {
+                            {allHandBook && allHandBook.length > 0 &&
+                                allHandBook.map((item, index) => {
                                     return (
                                         <div className='section-customize hb-child'
                                             key={index}
@@ -65,11 +68,13 @@ const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
+        topHandbookRedux: state.admin.topHandbook,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        loadTopHandBooks: () => dispatch(actions.fetchTopHandbook())
     };
 };
 

@@ -7,6 +7,7 @@ const initialState = {
     positions: [],
     users: [],
     topDoctors: [],
+    topHandbook: [],
     allDoctors: [],
     allScheduleTime: [],
     clinics: [],
@@ -161,6 +162,17 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.FETCH_ALL_HANDBOOK_FAIDED:
             state.handbook = [];
+            return {
+                ...state,
+            }
+
+        case actionTypes.FETCH_TOP_HANDBOOK_SUCCESS:
+            state.topHandbook = action.topHandbook;
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_TOP_HANDBOOK_FAIDED:
+            state.topHandbook = [];
             return {
                 ...state,
             }
