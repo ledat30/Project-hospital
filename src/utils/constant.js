@@ -12,6 +12,8 @@ export const path = {
     DETAIL_HANDBOOK: '/detail-handbook/:id',
     DETAIL_POLICY: '/detail-policy/:id',
     ALL_CATEGORY: '/all-category',
+    DETAIL_CATEGORY: '/deatil-category/:id',
+    ALL_DOCTOR: '/all-doctor',
 };
 
 export const LANGUAGES = {

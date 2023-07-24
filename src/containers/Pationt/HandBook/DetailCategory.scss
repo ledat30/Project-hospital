@@ -1,0 +1,138 @@
+.detail-category-container {
+
+    .body {
+        padding   : 0 60px;
+        background: #eee;
+
+        .category {
+            width           : 100%;
+            min-height      : 500px;
+            background-color: white;
+            border-radius   : 5px;
+
+            .top-detail-category {
+                margin-bottom: 30px;
+
+                .back {
+                    margin-bottom: 10px;
+                    margin-left  : 15px;
+                    color        : #64b9e5;
+                    font-size    : 15px;
+                    font-weight  : 600;
+                    cursor       : pointer;
+                    width        : 80px;
+                }
+            }
+
+
+            .all-blogs {
+                display  : flex;
+                flex-wrap: wrap;
+
+                .blogs {
+                    padding: 15px;
+
+
+                    .img-blogs {
+                        background-color   : #eee;
+                        height             : 165px;
+                        box-shadow         : 0 1px 6px #20212447;
+                        width              : 280px;
+                        border-radius      : 5px;
+                        background-size    : cover;
+                        background-repeat  : no-repeat !important;
+                        background-position: center center;
+                        cursor             : pointer;
+                    }
+
+
+                    .nd-blogs {
+                        cursor : pointer;
+                        padding: 10px 0;
+                        width  : 280px;
+                        cursor : pointer;
+
+                        &:hover {
+                            color: #64b9e5;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+.container-5 {
+    margin-top    : 15px !important;
+    margin-left   : 323px !important;
+    overflow      : hidden !important;
+    width         : 594px !important;
+    vertical-align: middle !important;
+    white-space   : nowrap !important;
+}
+
+.container-5 input#search {
+    width                : 594px !important;
+    height               : 40px !important;
+    background           : #cfdfdf !important;
+    border               : none !important;
+    font-size            : 10pt !important;
+    float                : left !important;
+    color                : black !important;
+    padding-left         : 15px !important;
+    -webkit-border-radius: 5px !important;
+    -moz-border-radius   : 5px !important;
+    border-radius        : 5px !important;
+}
+
+.container-5 input#search::-webkit-input-placeholder {
+    color: #65737e !important;
+}
+
+.container-5 input#search:-moz-placeholder {
+    /* Firefox 18- */
+    color: #65737e !important;
+}
+
+.container-5 input#search::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #65737e !important;
+}
+
+.container-5 input#search:-ms-input-placeholder {
+    color: #65737e !important;
+}
+
+.container-5 button.icon {
+    -webkit-border-top-right-radius   : 5px !important;
+    -webkit-border-bottom-right-radius: 5px !important;
+    -moz-border-radius-topright       : 5px !important;
+    -moz-border-radius-bottomright    : 5px !important;
+    border-top-right-radius           : 5px !important;
+    border-bottom-right-radius        : 5px !important;
+    border                            : none !important;
+    background                        : #757677 !important;
+    height                            : 40px !important;
+    width                             : 50px !important;
+    color                             : #fafafa !important;
+    opacity                           : 0 !important;
+    font-size                         : 10pt !important;
+    -webkit-transition                : all .55s ease !important;
+    -moz-transition                   : all .55s ease !important;
+    -ms-transition                    : all .55s ease !important;
+    -o-transition                     : all .55s ease !important;
+    transition                        : all .55s ease !important;
+}
+
+.container-5:hover button.icon,
+.container-5:active button.icon,
+.container-5:focus button.icon {
+    outline    : none !important;
+    opacity    : 1 !important;
+    margin-left: -50px !important;
+}
+
+.container-5:hover button.icon:hover {
+    background: rgb(122, 122, 121) !important;
+}

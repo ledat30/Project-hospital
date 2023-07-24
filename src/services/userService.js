@@ -192,6 +192,9 @@ const deleteCategoryHandbookService = (categoryId) => {
 const editCategoryHandbookService = (inputData) => {
     return axios.put('/api/edit-categoryHandBook', inputData);
 }
+const getDetailCategoryById = (data) => {
+    return axios.get(`/api/get-all-detail-category-by-id?id=${data.id}`)
+}
 
 export {
     handleLoginApi, getAllUsers, createNewUserService, deleteUserService, editUserService,
@@ -203,5 +206,6 @@ export {
     editClinicService, editSpecialtyService, createNewHandbook, getAllHandBook, deleteHandbookService,
     editHandBookService, getDetailHandBookById, createNewPolicy, getAllPolicy, deletePolicyService,
     editPolicyService, getDetailPolicyById, createNewCategoryHandbook, getAllCategoryHandbook,
-    deleteCategoryHandbookService, editCategoryHandbookService, getTopHandbookHomeService
+    deleteCategoryHandbookService, editCategoryHandbookService, getTopHandbookHomeService,
+    getDetailCategoryById
 }

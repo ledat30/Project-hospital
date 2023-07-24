@@ -7,6 +7,7 @@ import HomeFooter from '../../HomePage/HomeFooter';
 import { getDetailHandBookById } from '../../../services/userService';
 import _ from 'lodash';
 import { LANGUAGES } from '../../../utils';
+import { withRouter } from 'react-router';
 
 
 class DetailHandBook extends Component {
@@ -37,6 +38,11 @@ class DetailHandBook extends Component {
         }
     }
 
+    returnToBlog = () => {
+        if (this.props.history) {
+            this.props.history.push(`/all-category`)
+        }
+    }
 
     render() {
         let { dataDetailHandBook } = this.state;
@@ -46,7 +52,8 @@ class DetailHandBook extends Component {
                 <HeaderHome />
                 <div className='detail-sepcialty-body'>
                     <div className='description-specialty'>
-
+                        <div className='back' onClick={() => this.returnToBlog()}>
+                            <i className="fas fa-reply"></i> <u>Quay lại</u></div>
                         {dataDetailHandBook && !_.isEmpty(dataDetailHandBook)
                             &&
                             <>
@@ -79,4 +86,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailHandBook);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DetailHandBook));

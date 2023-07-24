@@ -11,6 +11,7 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import TableManagerSpecialty from './TableManagerSpecialty';
 import * as actions from '../../../store/actions';
+import HomeFooter from '../../HomePage/HomeFooter';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -138,71 +139,75 @@ class ManageSpecialty extends Component {
 
     render() {
         return (
-            <div className='manage-specilty-container'>
-                <div className='ms-title'>Quản lý chuyên khoa</div>
+            <>
+                <div className='manage-specilty-container'>
+                    <div className='ms-title'>Quản lý chuyên khoa</div>
 
-                <div className='add-new-specialty row'>
-                    <div className='col-6 form-group'>
-                        <label>Tên chuyên khoa</label>
-                        <input className='form-control' type='text' value={this.state.name}
-                            onChange={(e) => this.handleOnchangInput(e, 'name')}
-                        />
-                    </div>
-                    <div className='col-3 form-group'>
-                        <label><FormattedMessage id="manage-user.image" /></label>
-                        <div className='preview-img-container'>
-                            <input id='prevewimg' type='file' hidden
-                                onChange={(event) => this.handleOnchangeImage(event)}
+                    <div className='add-new-specialty row'>
+                        <div className='col-6 form-group'>
+                            <label>Tên chuyên khoa</label>
+                            <input className='form-control' type='text' value={this.state.name}
+                                onChange={(e) => this.handleOnchangInput(e, 'name')}
                             />
-                            <label htmlFor='prevewimg' className='lable-upload'><FormattedMessage id="manage-user.Upload" /> <i className='fas fa-upload'></i></label>
-                            <div className='preview-image'
-                                style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
-                                onClick={() => this.openPreviewImg()}
-                            >
+                        </div>
+                        <div className='col-3 form-group'>
+                            <label><FormattedMessage id="manage-user.image" /></label>
+                            <div className='preview-img-container'>
+                                <input id='prevewimg' type='file' hidden
+                                    onChange={(event) => this.handleOnchangeImage(event)}
+                                />
+                                <label htmlFor='prevewimg' className='lable-upload'><FormattedMessage id="manage-user.Upload" /> <i className='fas fa-upload'></i></label>
+                                <div className='preview-image'
+                                    style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
+                                    onClick={() => this.openPreviewImg()}
+                                >
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='col-12'>
-                        <label>Mô tả</label>
-                        <MdEditor style={{ height: '350px' }}
-                            renderHTML={text => mdParser.render(text)}
-                            onChange={this.handleEditorChange}
-                            value={this.state.descriptionMarkdown}
-                        />
-                    </div>
-                    <div className='col-12'>
-                        <div>
-                            {this.state.action === CRUD_ACTIONS.EDIT ?
-                                < button className={"btn-btn-warning"}
-                                    onClick={() => { this.handleEditSpecialty() }}>
-                                    <FormattedMessage id={'manage-specialty.edit'} />
-                                </button>
-                                :
-                                < button className={'btn-save-specialty'}
-                                    onClick={() => { this.handleSaveNewSpecialty() }}>
-                                    <FormattedMessage id={'manage-specialty.save'} />
-                                </button>
-                            }
+                        <div className='col-12'>
+                            <label>Mô tả</label>
+                            <MdEditor style={{ height: '350px' }}
+                                renderHTML={text => mdParser.render(text)}
+                                onChange={this.handleEditorChange}
+                                value={this.state.descriptionMarkdown}
+                            />
+                        </div>
+                        <div className='col-12'>
+                            <div>
+                                {this.state.action === CRUD_ACTIONS.EDIT ?
+                                    < button className={"btn-btn-warning"}
+                                        onClick={() => { this.handleEditSpecialty() }}>
+                                        <FormattedMessage id={'manage-specialty.edit'} />
+                                    </button>
+                                    :
+                                    < button className={'btn-save-specialty'}
+                                        onClick={() => { this.handleSaveNewSpecialty() }}>
+                                        <FormattedMessage id={'manage-specialty.save'} />
+                                    </button>
+                                }
+                            </div>
+
+                        </div>
+
+                        <div className='col-12 mb-5'>
+                            <div className='title my-3'><FormattedMessage id="manage-specialty.title" /></div>
+                            <TableManagerSpecialty
+                                handleEditSpecialtyFromPaentKey={this.handleEditSpecialtyFromPaent}
+                                action={this.state.action}
+                            />
                         </div>
 
                     </div>
-
-                    <div className='col-12 mb-5'>
-                        <div className='title my-3'><FormattedMessage id="manage-specialty.title" /></div>
-                        <TableManagerSpecialty
-                            handleEditSpecialtyFromPaentKey={this.handleEditSpecialtyFromPaent}
-                            action={this.state.action}
+                    {this.state.isOpen === true &&
+                        <Lightbox
+                            mainSrc={this.state.previewImgURL}
+                            onCloseRequest={() => this.setState({ isOpen: false })}
                         />
-                    </div>
-
+                    }
                 </div>
-                {this.state.isOpen === true &&
-                    <Lightbox
-                        mainSrc={this.state.previewImgURL}
-                        onCloseRequest={() => this.setState({ isOpen: false })}
-                    />
-                }
-            </div>
+
+                <HomeFooter />
+            </>
         );
     }
 }

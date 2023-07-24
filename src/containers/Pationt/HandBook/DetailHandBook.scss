@@ -1,4 +1,13 @@
 .detail-specialty-container {
+    .back {
+        margin-bottom: 10px;
+        color        : #64b9e5;
+        font-size    : 15px;
+        font-weight  : 600;
+        cursor       : pointer;
+        width        : 80px;
+    }
+
     .description-specialty {
         padding         : 10px;
         background-color: white !important;

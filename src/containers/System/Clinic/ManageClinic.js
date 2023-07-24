@@ -11,6 +11,7 @@ import 'react-image-lightbox/style.css';
 import TableManagerClinic from './TableManagerClinic';
 import * as actions from '../../../store/actions';
 import { createNewClinics } from '../../../services/userService';
+import HomeFooter from '../../HomePage/HomeFooter';
 
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
@@ -147,78 +148,83 @@ class ManageClinic extends Component {
     }
     render() {
         return (
-            <div className='manage-specilty-container'>
-                <div className='ms-title'>Quản lý cơ sở </div>
+            <>
+                <div className='manage-specilty-container'>
+                    <div className='ms-title'>Quản lý cơ sở </div>
 
-                <div className='add-new-specialty row'>
-                    <div className='col-5 form-group'>
-                        <label>Tên cơ sở</label>
-                        <input className='form-control' type='text' value={this.state.name}
-                            onChange={(e) => this.handleOnchangInput(e, 'name')}
-                        />
-                    </div>
-                    <div className='col-5 form-group'>
-                        <label>Địa chỉ </label>
-                        <input className='form-control' type='text' value={this.state.address}
-                            onChange={(e) => this.handleOnchangInput(e, 'address')}
-                        />
-                    </div>
-                    <div className='col-2 form-group'>
-                        <label><FormattedMessage id="manage-user.image" /></label>
-                        <div className='preview-img-container'>
-                            <input id='prevewimg' type='file' hidden
-                                onChange={(event) => this.handleOnchangeImage(event)}
+                    <div className='add-new-specialty row'>
+                        <div className='col-5 form-group'>
+                            <label>Tên cơ sở</label>
+                            <input className='form-control' type='text' value={this.state.name}
+                                onChange={(e) => this.handleOnchangInput(e, 'name')}
                             />
-                            <label htmlFor='prevewimg' className='lable-upload'>
-                                <FormattedMessage id="manage-user.Upload" /> <i className='fas fa-upload'></i>
-                            </label>
-                            <div className='preview-image'
-                                style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
-                                onClick={() => this.openPreviewImg()}
-                            >
+                        </div>
+                        <div className='col-5 form-group'>
+                            <label>Địa chỉ </label>
+                            <input className='form-control' type='text' value={this.state.address}
+                                onChange={(e) => this.handleOnchangInput(e, 'address')}
+                            />
+                        </div>
+                        <div className='col-2 form-group'>
+                            <label><FormattedMessage id="manage-user.image" /></label>
+                            <div className='preview-img-container'>
+                                <input id='prevewimg' type='file' hidden
+                                    onChange={(event) => this.handleOnchangeImage(event)}
+                                />
+                                <label htmlFor='prevewimg' className='lable-upload'>
+                                    <FormattedMessage id="manage-user.Upload" /> <i className='fas fa-upload'></i>
+                                </label>
+                                <div className='preview-image'
+                                    style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
+                                    onClick={() => this.openPreviewImg()}
+                                >
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='col-12'>
-                        <MdEditor style={{ height: '300px' }}
-                            renderHTML={text => mdParser.render(text)}
-                            onChange={this.handleEditorChange}
-                            value={this.state.descriptionMarkdown}
-                        />
-                    </div>
-                    <div className='col-12'>
-                        <div>
-                            {this.state.action === CRUD_ACTIONS.EDIT ?
-                                < button className={"btn-btn-warning"}
-                                    onClick={() => { this.handleEditClinic() }}>
-                                    <FormattedMessage id={'manage-clinic.edit'} />
-                                </button>
-                                :
-                                < button className={'btn-save-specialty'}
-                                    onClick={() => { this.handleSaveNewClinic() }}>
-                                    <FormattedMessage id={'manage-clinic.save'} />
-                                </button>
-                            }
+                        <div className='col-12'>
+                            <MdEditor style={{ height: '300px' }}
+                                renderHTML={text => mdParser.render(text)}
+                                onChange={this.handleEditorChange}
+                                value={this.state.descriptionMarkdown}
+                            />
                         </div>
+                        <div className='col-12'>
+                            <div>
+                                {this.state.action === CRUD_ACTIONS.EDIT ?
+                                    < button className={"btn-btn-warning"}
+                                        onClick={() => { this.handleEditClinic() }}>
+                                        <FormattedMessage id={'manage-clinic.edit'} />
+                                    </button>
+                                    :
+                                    < button className={'btn-save-specialty'}
+                                        onClick={() => { this.handleSaveNewClinic() }}>
+                                        <FormattedMessage id={'manage-clinic.save'} />
+                                    </button>
+                                }
+                            </div>
 
 
+                        </div>
+                        <div className='col-12 mb-5'>
+                            <div className='title my-3'><FormattedMessage id="manage-clinic.title" /></div>
+                            <TableManagerClinic
+                                handleEditClinicFromPaentKey={this.handleEditClinicFromPaent}
+                                action={this.state.action}
+                            />
+                        </div>
                     </div>
-                    <div className='col-12 mb-5'>
-                        <div className='title my-3'><FormattedMessage id="manage-clinic.title" /></div>
-                        <TableManagerClinic
-                            handleEditClinicFromPaentKey={this.handleEditClinicFromPaent}
-                            action={this.state.action}
+                    {
+                        this.state.isOpen === true &&
+                        <Lightbox
+                            mainSrc={this.state.previewImgURL}
+                            onCloseRequest={() => this.setState({ isOpen: false })}
                         />
-                    </div>
-                </div>
-                {
-                    this.state.isOpen === true &&
-                    <Lightbox
-                        mainSrc={this.state.previewImgURL}
-                        onCloseRequest={() => this.setState({ isOpen: false })}
-                    />
-                }
-            </div >
+                    }
+                </div >
+
+                <HomeFooter />
+
+            </>
         );
     }
 }

@@ -148,6 +148,9 @@
         "messega": {
             "success": "CONFIRM YOUR EXAMINATION SCHEDULE IS SUCCESSFUL!",
             "fail": "CONFIRMED YOUR EXAMINATION SCHEDULE HAS Fails!"
+        },
+        "doctors": {
+            "title": "Doctor"
         }
     },
     "admin": {

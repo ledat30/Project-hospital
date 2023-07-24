@@ -11,6 +11,7 @@ import { CRUD_ACTIONS, LANGUAGES } from '../../../utils';
 import { getDetailInforDoctor } from '../../../services/userService';
 import Select from 'react-select';
 import TableManagerDoctor from './TableManagerDoctor';
+import HomeFooter from '../../HomePage/HomeFooter';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -393,6 +394,8 @@ class ManageDoctor extends Component {
                     <div className='title my-3'><FormattedMessage id="manage-doctor.title" /></div>
                     <TableManagerDoctor />
                 </div>
+
+                <HomeFooter />
             </div >
         );
     }

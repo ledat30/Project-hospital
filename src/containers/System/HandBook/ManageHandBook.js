@@ -10,6 +10,7 @@ import { createNewHandbook } from '../../../services/userService';
 import { toast } from 'react-toastify';
 import TableManageHandBook from './TableManageHandBook';
 import * as actions from '../../../store/actions';
+import HomeFooter from '../../HomePage/HomeFooter';
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 class ManageHandBook extends Component {
@@ -41,9 +42,12 @@ class ManageHandBook extends Component {
             let arrCategory = this.props.category;
             this.setState({
                 categoryArr: arrCategory,
+                categoryId: arrCategory && arrCategory.length > 0 ? arrCategory[0].id : ''
             })
         }
         if (prevProps.listHandBook !== this.props.listHandBook) {
+            let arrCategorys = this.props.category;
+
             this.setState({
                 title: '',
                 previewImgURL: '',
@@ -51,7 +55,7 @@ class ManageHandBook extends Component {
                 contentMarkdownVi: '',
                 contentHTMLEn: '',
                 contentMarkdownEn: '',
-                categoryId: '',
+                categoryId: arrCategorys && arrCategorys.length > 0 ? arrCategorys[0].id : '',
                 avatar: '',
                 action: CRUD_ACTIONS.CREATE,
             })
@@ -174,94 +178,98 @@ class ManageHandBook extends Component {
         let categories = this.state.categoryArr;
         console.log('check categories', categories)
         return (
-            <div className='manage-specilty-container'>
-                <div className='ms-title'>Quản lý Cẩm nang</div>
+            <>
+                <div className='manage-specilty-container'>
+                    <div className='ms-title'>Quản lý Cẩm nang</div>
 
-                <div className='add-new-specialty row'>
-                    <div className='col-6 form-group'>
-                        <label>Tiêu đề </label>
-                        <input className='form-control' type='text' value={this.state.title}
-                            onChange={(e) => this.handleOnchangInput(e, 'title')}
-                        />
-                    </div>
-                    <div className='col-3  form-group'>
-                        <label><FormattedMessage id="manage-user.categoryId" /></label>
-                        <select className="form-control"
-                            onChange={(event) => { this.onChangeInput(event, 'categoryId') }} value={this.state.categoryId}>
-                            {categories && categories.length > 0 &&
-                                categories.map((item, index) => {
-                                    return (
-                                        <option key={index} >
-                                            {language === LANGUAGES.VI ? item.nameVI : item.nameEn}
-                                        </option>
-                                    )
-                                })
-                            }
-                        </select>
-                    </div>
-                    <div className='col-3 form-group'>
-                        <label><FormattedMessage id="manage-user.image" /></label>
-                        <div className='preview-img-container'>
-                            <input id='prevewimg' type='file' hidden
-                                onChange={(event) => this.handleOnchangeImage(event)}
+                    <div className='add-new-specialty row'>
+                        <div className='col-6 form-group'>
+                            <label>Tiêu đề </label>
+                            <input className='form-control' type='text' value={this.state.title}
+                                onChange={(e) => this.handleOnchangInput(e, 'title')}
                             />
-                            <label htmlFor='prevewimg' className='lable-upload'><FormattedMessage id="manage-user.Upload" /> <i className='fas fa-upload'></i></label>
-                            <div className='preview-image'
-                                style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
-                                onClick={() => this.openPreviewImg()}
-                            >
+                        </div>
+                        <div className='col-3  form-group'>
+                            <label><FormattedMessage id="manage-user.categoryId" /></label>
+                            <select className="form-control"
+                                onChange={(event) => { this.onChangeInput(event, 'categoryId') }} value={this.state.categoryId}>
+                                {categories && categories.length > 0 &&
+                                    categories.map((item, index) => {
+                                        return (
+                                            <option key={index} value={item.id}>
+                                                {language === LANGUAGES.VI ? item.nameVI : item.nameEN}
+                                            </option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div className='col-3 form-group'>
+                            <label><FormattedMessage id="manage-user.image" /></label>
+                            <div className='preview-img-container'>
+                                <input id='prevewimg' type='file' hidden
+                                    onChange={(event) => this.handleOnchangeImage(event)}
+                                />
+                                <label htmlFor='prevewimg' className='lable-upload'><FormattedMessage id="manage-user.Upload" /> <i className='fas fa-upload'></i></label>
+                                <div className='preview-image'
+                                    style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
+                                    onClick={() => this.openPreviewImg()}
+                                >
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='col-12'>
-                        <label>Mô tả - Vi</label>
-                        <MdEditor style={{ height: '350px' }}
-                            renderHTML={text => mdParser.render(text)}
-                            onChange={this.handleEditorChangeVi}
-                            value={this.state.contentMarkdownVi}
-                        />
-                    </div>
-                    <div className='col-12 mt-4'>
-                        <label>Mô tả - En</label>
-                        <MdEditor style={{ height: '350px' }}
-                            renderHTML={text => mdParser.render(text)}
-                            onChange={this.handleEditorChangeEn}
-                            value={this.state.contentMarkdownEn}
-                        />
-                    </div>
-                    <div className='col-12'>
-                        <div>
-                            {this.state.action === CRUD_ACTIONS.EDIT ?
-                                < button className={"btn-btn-warning"}
-                                    onClick={() => { this.handleEditHandBook() }}>
-                                    <FormattedMessage id={'manage-handbook.edit'} />
-                                </button>
-                                :
-                                < button className={'btn-save-specialty'}
-                                    onClick={() => { this.handleSaveNewHandbook() }}>
-                                    <FormattedMessage id={'manage-handbook.save'} />
-                                </button>
-                            }
+                        <div className='col-12'>
+                            <label>Mô tả - Vi</label>
+                            <MdEditor style={{ height: '350px' }}
+                                renderHTML={text => mdParser.render(text)}
+                                onChange={this.handleEditorChangeVi}
+                                value={this.state.contentMarkdownVi}
+                            />
+                        </div>
+                        <div className='col-12 mt-4'>
+                            <label>Mô tả - En</label>
+                            <MdEditor style={{ height: '350px' }}
+                                renderHTML={text => mdParser.render(text)}
+                                onChange={this.handleEditorChangeEn}
+                                value={this.state.contentMarkdownEn}
+                            />
+                        </div>
+                        <div className='col-12'>
+                            <div>
+                                {this.state.action === CRUD_ACTIONS.EDIT ?
+                                    < button className={"btn-btn-warning"}
+                                        onClick={() => { this.handleEditHandBook() }}>
+                                        <FormattedMessage id={'manage-handbook.edit'} />
+                                    </button>
+                                    :
+                                    < button className={'btn-save-specialty'}
+                                        onClick={() => { this.handleSaveNewHandbook() }}>
+                                        <FormattedMessage id={'manage-handbook.save'} />
+                                    </button>
+                                }
+                            </div>
+
+                        </div>
+
+                        <div className='col-12 mb-5'>
+                            <div className='title my-3'><FormattedMessage id="manage-handbook.title" /></div>
+                            <TableManageHandBook
+                                handleEditHandBookFromPaentKey={this.handleEditHandBookFromPaent}
+                                action={this.state.action}
+                            />
                         </div>
 
                     </div>
-
-                    <div className='col-12 mb-5'>
-                        <div className='title my-3'><FormattedMessage id="manage-handbook.title" /></div>
-                        <TableManageHandBook
-                            handleEditHandBookFromPaentKey={this.handleEditHandBookFromPaent}
-                            action={this.state.action}
+                    {this.state.isOpen === true &&
+                        <Lightbox
+                            mainSrc={this.state.previewImgURL}
+                            onCloseRequest={() => this.setState({ isOpen: false })}
                         />
-                    </div>
-
+                    }
                 </div>
-                {this.state.isOpen === true &&
-                    <Lightbox
-                        mainSrc={this.state.previewImgURL}
-                        onCloseRequest={() => this.setState({ isOpen: false })}
-                    />
-                }
-            </div>
+
+                <HomeFooter />
+            </>
         );
     }
 }

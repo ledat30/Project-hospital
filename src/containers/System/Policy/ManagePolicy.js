@@ -9,6 +9,7 @@ import { createNewPolicy } from '../../../services/userService';
 import { toast } from 'react-toastify';
 import TableManagePolicy from './TableManagePolicy';
 import * as actions from '../../../store/actions';
+import HomeFooter from '../../HomePage/HomeFooter';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -133,65 +134,69 @@ class ManagePolicy extends Component {
     render() {
 
         return (
-            <div className='manage-specilty-container'>
-                <div className='ms-title'>Quản lý Chính sách</div>
+            <>
+                <div className='manage-specilty-container'>
+                    <div className='ms-title'>Quản lý Chính sách</div>
 
-                <div className='add-new-specialty row'>
-                    <div className='col-6 form-group'>
-                        <label>Tên chính sách - Vi </label>
-                        <input className='form-control' type='text' value={this.state.nameVI}
-                            onChange={(e) => this.handleOnchangInputVi(e, 'nameVI')}
-                        />
-                    </div>
-                    <div className='col-6 form-group'>
-                        <label>Tên chính sách - En </label>
-                        <input className='form-control' type='text' value={this.state.nameEN}
-                            onChange={(e) => this.handleOnchangInputEn(e, 'nameEN')}
-                        />
-                    </div>
-                    <div className='col-12'>
-                        <label>Mô tả - Vi</label>
-                        <MdEditor style={{ height: '350px' }}
-                            renderHTML={text => mdParser.render(text)}
-                            onChange={this.handleEditorChangeVi}
-                            value={this.state.contentMarkdownVi}
-                        />
-                    </div>
-                    <div className='col-12 mt-4'>
-                        <label>Mô tả - En</label>
-                        <MdEditor style={{ height: '350px' }}
-                            renderHTML={text => mdParser.render(text)}
-                            onChange={this.handleEditorChangeEn}
-                            value={this.state.contentMarkdownEn}
-                        />
-                    </div>
-                    <div className='col-12'>
-                        <div>
-                            {this.state.action === CRUD_ACTIONS.EDIT ?
-                                < button className={"btn-btn-warning"}
-                                    onClick={() => { this.handleEditHandBook() }}>
-                                    <FormattedMessage id={'manage_policy.edit'} />
-                                </button>
-                                :
-                                < button className={'btn-save-specialty'}
-                                    onClick={() => { this.handleSaveNewPolicy() }}>
-                                    <FormattedMessage id={'manage_policy.save'} />
-                                </button>
-                            }
+                    <div className='add-new-specialty row'>
+                        <div className='col-6 form-group'>
+                            <label>Tên chính sách - Vi </label>
+                            <input className='form-control' type='text' value={this.state.nameVI}
+                                onChange={(e) => this.handleOnchangInputVi(e, 'nameVI')}
+                            />
+                        </div>
+                        <div className='col-6 form-group'>
+                            <label>Tên chính sách - En </label>
+                            <input className='form-control' type='text' value={this.state.nameEN}
+                                onChange={(e) => this.handleOnchangInputEn(e, 'nameEN')}
+                            />
+                        </div>
+                        <div className='col-12'>
+                            <label>Mô tả - Vi</label>
+                            <MdEditor style={{ height: '350px' }}
+                                renderHTML={text => mdParser.render(text)}
+                                onChange={this.handleEditorChangeVi}
+                                value={this.state.contentMarkdownVi}
+                            />
+                        </div>
+                        <div className='col-12 mt-4'>
+                            <label>Mô tả - En</label>
+                            <MdEditor style={{ height: '350px' }}
+                                renderHTML={text => mdParser.render(text)}
+                                onChange={this.handleEditorChangeEn}
+                                value={this.state.contentMarkdownEn}
+                            />
+                        </div>
+                        <div className='col-12'>
+                            <div>
+                                {this.state.action === CRUD_ACTIONS.EDIT ?
+                                    < button className={"btn-btn-warning"}
+                                        onClick={() => { this.handleEditHandBook() }}>
+                                        <FormattedMessage id={'manage_policy.edit'} />
+                                    </button>
+                                    :
+                                    < button className={'btn-save-specialty'}
+                                        onClick={() => { this.handleSaveNewPolicy() }}>
+                                        <FormattedMessage id={'manage_policy.save'} />
+                                    </button>
+                                }
+                            </div>
+
+                        </div>
+
+                        <div className='col-12 mb-5'>
+                            <div className='title my-3'><FormattedMessage id="manage_policy.title" /></div>
+                            <TableManagePolicy
+                                handleEditPolicyFromPaentKey={this.handleEditPolicyFromPaent}
+                                action={this.state.action}
+                            />
                         </div>
 
                     </div>
-
-                    <div className='col-12 mb-5'>
-                        <div className='title my-3'><FormattedMessage id="manage_policy.title" /></div>
-                        <TableManagePolicy
-                            handleEditPolicyFromPaentKey={this.handleEditPolicyFromPaent}
-                            action={this.state.action}
-                        />
-                    </div>
-
                 </div>
-            </div>
+
+                <HomeFooter />
+            </>
         );
     }
 }

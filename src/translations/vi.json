@@ -148,6 +148,9 @@
         "messega": {
             "success": "XÁC NHẬN LỊCH HẸN KHÁM CỦA QUÝ KHÁCH ĐÃ THÀNH CÔNG !",
             "fail": "XÁC NHẬN LỊCH HẸN KHÁM CỦA QUÝ KHÁCH ĐÃ THẤT BẠI !"
+        },
+        "doctors": {
+            "title": "Bác sĩ"
         }
     },
     "admin": {

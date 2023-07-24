@@ -26,6 +26,12 @@ class HeaderHome extends Component {
         }
     }
 
+    returnToDoctor = () => {
+        if (this.props.history) {
+            this.props.history.push(`/all-doctor`)
+        }
+    }
+
     render() {
         let language = this.props.language;
         return (
@@ -49,8 +55,10 @@ class HeaderHome extends Component {
                                 <div className='subs-title'><FormattedMessage id="homeheader.Select-room" /></div>
                             </div>
                             <div className='child-content'>
-                                <div><b><FormattedMessage id="homeheader.doctor" /></b></div>
-                                <div className='subs-title'><FormattedMessage id="homeheader.select-docter" /></div>
+                                <div onClick={() => this.returnToDoctor()}>
+                                    <div><b><FormattedMessage id="homeheader.doctor" /></b></div>
+                                    <div className='subs-title'><FormattedMessage id="homeheader.select-docter" /></div>
+                                </div>
                             </div>
                             <div className='child-content'>
                                 <div onClick={() => this.returnToCategory()}>

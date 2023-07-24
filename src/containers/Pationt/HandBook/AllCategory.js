@@ -39,7 +39,17 @@ class AllCategory extends Component {
         if (this.props.language !== prevProps.language) {
         }
     }
+    handleViewDetailCategory = (category) => {
+        if (this.props.history) {
+            this.props.history.push(`/deatil-category/${category.id}`)
+        }
+    }
 
+    handleViewDetailHandbook = (handBook) => {
+        if (this.props.history) {
+            this.props.history.push(`/detail-handbook/${handBook.id}`)
+        }
+    }
 
     render() {
         let { dataCategory } = this.state;
@@ -55,7 +65,8 @@ class AllCategory extends Component {
                             <div className='all-ct'>
                                 {dataCategory && dataCategory.length > 0 && dataCategory.map((item, index) => {
                                     return (
-                                        <div className='ct' key={index}>
+                                        <div className='ct' key={index}
+                                            onClick={() => this.handleViewDetailCategory(item)} >
                                             <div className='text-ct'>{language === LANGUAGES.VI ? item.nameVI : item.nameEN} </div>
                                         </div>
                                     )
@@ -65,14 +76,15 @@ class AllCategory extends Component {
                         </div>
 
                         <div className='ct-right'>
-                            <div class="container-4">
+                            <div className="container-4">
                                 <input type="search" id="search" placeholder="Search..." />
-                                <button class="icon"><i class="fa fa-search"></i></button>
+                                <button className="icon"><i className="fa fa-search"></i></button>
                             </div>
                             <div className='all-blog'>
                                 {dataHandbook && dataHandbook.length > 0 && dataHandbook.map((item, index) => {
                                     return (
-                                        <div className='blog' key={index}>
+                                        <div className='blog' key={index}
+                                            onClick={() => this.handleViewDetailHandbook(item)}>
                                             <div className='img-blog'
                                                 style={{ backgroundImage: `url(${item.image})` }}>
                                             </div>

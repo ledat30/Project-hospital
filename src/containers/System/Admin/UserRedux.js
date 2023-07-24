@@ -8,6 +8,7 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import TableManageUser from './TableManageUser';
 import { toast } from 'react-toastify';
+import HomeFooter from '../../HomePage/HomeFooter';
 
 class UserRedux extends Component {
 
@@ -321,6 +322,8 @@ class UserRedux extends Component {
                         />
                     }
                 </div >
+
+                <HomeFooter />
             </div >
         )
     }
