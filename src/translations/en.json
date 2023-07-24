@@ -151,6 +151,9 @@
         },
         "doctors": {
             "title": "Doctor"
+        },
+        "specialy":{
+            "title": "Specialty"
         }
     },
     "admin": {

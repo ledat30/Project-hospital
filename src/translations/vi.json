@@ -151,6 +151,9 @@
         },
         "doctors": {
             "title": "Bác sĩ"
+        },
+        "specialy": {
+            "title": "Chuyên khoa"
         }
     },
     "admin": {

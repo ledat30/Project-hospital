@@ -29,12 +29,6 @@ class CategoryDoctor extends Component {
         }
     }
 
-    returnToDoctor = () => {
-        if (this.props.history) {
-            this.props.history.push(`/all-doctor`)
-        }
-    }
-
     handleViewDetailDoctor = (doctor) => {
         if (this.props.history) {
             this.props.history.push(`/detail-doctor/${doctor.id}`)
@@ -43,7 +37,6 @@ class CategoryDoctor extends Component {
 
     render() {
         let { dataDoctor } = this.state;
-        console.log('check doctor', dataDoctor)
         let { language } = this.props;
         return (
             <div className='container-doctor'>

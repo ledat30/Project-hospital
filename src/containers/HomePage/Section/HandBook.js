@@ -31,6 +31,11 @@ class HandBook extends Component {
         }
 
     }
+    returnToblog = () => {
+        if (this.props.history) {
+            this.props.history.push(`/all-category`)
+        }
+    }
     render() {
         let allHandBook = this.state.dataHandBook;
         return (
@@ -38,7 +43,7 @@ class HandBook extends Component {
                 <div className='section-container'>
                     <div className='section-header'>
                         <span className='title-section'><FormattedMessage id={'homepage.handbook'} /></span>
-                        <button className='btn-section'><FormattedMessage id={'homepage.see-hb'} /></button>
+                        <button className='btn-section' onClick={() => this.returnToblog()}><FormattedMessage id={'homepage.see-hb'} /></button>
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>

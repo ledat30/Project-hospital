@@ -14,6 +14,7 @@ export const path = {
     ALL_CATEGORY: '/all-category',
     DETAIL_CATEGORY: '/deatil-category/:id',
     ALL_DOCTOR: '/all-doctor',
+    ALL_SPECIALY: '/all-specialty',
 };
 
 export const LANGUAGES = {

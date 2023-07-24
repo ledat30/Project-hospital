@@ -21,6 +21,7 @@ import DetailPolicy from './Pationt/Policy/DetailPolicy';
 import AllCategory from './Pationt/HandBook/AllCategory';
 import DetailCategory from './Pationt/HandBook/DetailCategory';
 import CategoryDoctor from './Pationt/Doctor/CategoryDoctor/CategoryDoctor';
+import CategorySpecialty from './Pationt/Specialty/CategorySpecialty/CategorySpecialty';
 
 class App extends Component {
 
@@ -63,6 +64,7 @@ class App extends Component {
                                     <Route path={path.ALL_CATEGORY} component={AllCategory} />
                                     <Route path={path.DETAIL_CATEGORY} component={DetailCategory} />
                                     <Route path={path.ALL_DOCTOR} component={CategoryDoctor} />
+                                    <Route path={path.ALL_SPECIALY} component={CategorySpecialty} />
                                     <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail} />
                                 </Switch>
                             </CustomScrollbars>
