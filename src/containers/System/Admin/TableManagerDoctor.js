@@ -47,10 +47,10 @@ class TableManagerDoctor extends Component {
                 <table id='TableManagerDoctor'>
                     <tbody>
                         <tr>
-                            <th>Name</th>
-                            <th>Name Clinic</th>
-                            <th>Address</th>
-                            <th>Action</th>
+                            <th><FormattedMessage id={'admin.manage-doctor.name'}/></th>
+                            <th><FormattedMessage id={'admin.manage-doctor.name_clinic'}/></th>
+                            <th><FormattedMessage id={'admin.manage-doctor.address_clinic'}/></th>
+                            <th><FormattedMessage id={'admin.manage-doctor.action'}/></th>
                         </tr>
                         {arrDoctor && arrDoctor.length > 0 && arrDoctor.map((item, index) => {
                             return (

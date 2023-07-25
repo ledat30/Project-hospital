@@ -45,8 +45,8 @@ class TableManagerSpecialty extends Component {
                 <table id='TableManagerSpecialty'>
                     <tbody>
                         <tr>
-                            <th>Name</th>
-                            <th>Action</th>
+                            <th><FormattedMessage id={'manage-specialty.name'} /></th>
+                            <th><FormattedMessage id={'manage-user.action'} /></th>
                         </tr>
                         {arrSpecialty && arrSpecialty.length > 0 && arrSpecialty.map((item, index) => {
                             return (

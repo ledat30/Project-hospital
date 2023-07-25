@@ -180,11 +180,11 @@ class ManageHandBook extends Component {
         return (
             <>
                 <div className='manage-specilty-container'>
-                    <div className='ms-title'>Quản lý Cẩm nang</div>
+                    <div className='ms-title'><FormattedMessage id={'manage-handbook.tiitle3'} /></div>
 
                     <div className='add-new-specialty row'>
                         <div className='col-6 form-group'>
-                            <label>Tiêu đề </label>
+                            <label><FormattedMessage id={'manage-handbook.Title'} /></label>
                             <input className='form-control' type='text' value={this.state.title}
                                 onChange={(e) => this.handleOnchangInput(e, 'title')}
                             />
@@ -219,7 +219,7 @@ class ManageHandBook extends Component {
                             </div>
                         </div>
                         <div className='col-12'>
-                            <label>Mô tả - Vi</label>
+                            <label><FormattedMessage id={'manage-handbook.Description-Vi'} /></label>
                             <MdEditor style={{ height: '350px' }}
                                 renderHTML={text => mdParser.render(text)}
                                 onChange={this.handleEditorChangeVi}
@@ -227,7 +227,7 @@ class ManageHandBook extends Component {
                             />
                         </div>
                         <div className='col-12 mt-4'>
-                            <label>Mô tả - En</label>
+                            <label><FormattedMessage id={'manage-handbook.Description-En'} /></label>
                             <MdEditor style={{ height: '350px' }}
                                 renderHTML={text => mdParser.render(text)}
                                 onChange={this.handleEditorChangeEn}

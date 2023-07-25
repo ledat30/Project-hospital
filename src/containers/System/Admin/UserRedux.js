@@ -306,7 +306,7 @@ class UserRedux extends Component {
                             </div>
 
                             <div className='col-12 mb-5'>
-                                <div className='title my-3'><FormattedMessage id="manage-user.manageUser" /></div>
+                                <div className='title2 my-3'><FormattedMessage id="manage-user.manageUser" /></div>
                                 <TableManageUser
                                     handleEditUserFromPaentKey={this.handleEditUserFromPaent}
                                     action={this.state.action}

@@ -4,7 +4,9 @@
     .doctor-title {
         text-align    : center;
         margin        : 15px 0;
+        padding-top   : 35px;
         font-size     : 20px;
+        color         : #0071ba;
         text-transform: uppercase;
         font-weight   : 600;
     }
@@ -43,4 +45,13 @@
     .intro {
         padding-bottom: 20px;
     }
+}
+
+.title2 {
+    text-align    : center;
+    text-transform: uppercase;
+    font-weight   : bold;
+    font-size     : 20px;
+    margin-top    : 15px;
+    color         : #0071ba;
 }

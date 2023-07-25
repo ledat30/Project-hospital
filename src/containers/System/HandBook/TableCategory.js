@@ -45,9 +45,9 @@ class TableCategory extends Component {
                 <table id='TableCategory'>
                     <tbody>
                         <tr>
-                            <th>Tên danh mục -vi</th>
-                            <th>Tên danh mục -en</th>
-                            <th>Action</th>
+                            <th><FormattedMessage id={'manage-handbook.name1'} /></th>
+                            <th><FormattedMessage id={'manage-handbook.name2'} /></th>
+                            <th><FormattedMessage id={'manage-handbook.Action'} /></th>
                         </tr>
                         {arrCategoryHandBook && arrCategoryHandBook.length > 0 && arrCategoryHandBook.map((item, index) => {
                             return (

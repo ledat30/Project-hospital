@@ -6,7 +6,9 @@
         margin        : 10px 0;
         text-transform: uppercase;
         font-weight   : 600;
+        padding-top   : 40px;
         font-size     : 17px;
+        color         : #0071ba;
     }
 
     .add-new-specialty {
@@ -18,7 +20,8 @@
             margin       : 15px 0;
             min-width    : 75px;
         }
-        .btn-btn-warning{
+
+        .btn-btn-warning {
             border       : none;
             padding      : 8px 5px;
             background   : goldenrod;

@@ -45,9 +45,9 @@ class TableManagePolicy extends Component {
                 <table id='TableManagePolicy'>
                     <tbody>
                         <tr>
-                            <th>Chính sách - vi</th>
-                            <th>Chính sách - en</th>
-                            <th>Action</th>
+                            <th><FormattedMessage id={'manage_policy.name1'} /></th>
+                            <th><FormattedMessage id={'manage_policy.name2'} /></th>
+                            <th><FormattedMessage id={'manage_policy.action'} /></th>
                         </tr>
                         {arrPolicy && arrPolicy.length > 0 && arrPolicy.map((item, index) => {
                             return (

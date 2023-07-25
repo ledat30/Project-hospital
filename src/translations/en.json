@@ -56,7 +56,8 @@
         "Upload": "Upload Image",
         "manageUser": "Manage Users",
         "edit": "Save changes",
-        "categoryId": "Category"
+        "categoryId": "Category",
+        "action": "Action"
     },
     "homepage": {
         "out-standing-doctor": "Last Week's Featured Doctor",
@@ -91,12 +92,19 @@
     "manage-clinic": {
         "title": "List of medical facilities",
         "save": "Save clinic",
-        "edit": "Edit clinic "
+        "edit": "Edit clinic ",
+        "title1": "Manage Clinic",
+        "name": "Name Clinic",
+        "address": "Address",
+        "Describe": "Describe"
     },
     "manage-specialty": {
         "title": "List of specialties",
         "save": "Save specialty ",
-        "edit": "Edit specialty "
+        "edit": "Edit specialty ",
+        "title1": "Manage Specialty",
+        "name": "Name specialty",
+        "Describe": "Describe"
     },
     "manage-handbook": {
         "title": "List of Handbook",
@@ -104,12 +112,26 @@
         "edit": "Edit handbook ",
         "SV": "Save category",
         "ed": "Edit category",
-        "tl": "List of category "
+        "tl": "List of category ",
+        "tiitle1": "Manage catalogs of manuals",
+        "name1": "Category name -vi",
+        "name2": "Category name -en",
+        "Action": "Action",
+        "Title": "Title",
+        "tiitle3": "Manage Handbook",
+        "Description-Vi": "Description -Vi",
+        "Description-En": "Description -En"
     },
     "manage_policy": {
         "title": "List of policy",
         "save": "Save policy ",
-        "edit": "Edit policy "
+        "edit": "Edit policy ",
+        "title1": "Manage Policy",
+        "name1": "Policy name - Vi",
+        "name2": "Policy name - En",
+        "Description_Vi": "Description - Vi",
+        "Description_En": "Description - En",
+        "action": "Action"
     },
     "manage-doctor": {
         "title": "List of Doctor "
@@ -174,7 +196,10 @@
             "address_clinic": "Clinic address",
             "note": "Note",
             "specialty": "Choose a specialty",
-            "clinic": "Choose a clinic"
+            "clinic": "Choose a clinic",
+            "content": "Doctor's details",
+            "name": "FullName",
+            "action": "Action"
         }
     }
 }

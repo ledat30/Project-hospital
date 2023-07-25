@@ -47,9 +47,9 @@ class TableManagerClinic extends Component {
                 <table id='TableManagerClinic'>
                     <tbody>
                         <tr>
-                            <th>Name</th>
-                            <th>Address</th>
-                            <th>Action</th>
+                            <th><FormattedMessage id={'manage-user.fullName'} /></th>
+                            <th><FormattedMessage id={'manage-user.address'} /></th>
+                            <th><FormattedMessage id={'manage-user.action'} /></th>
                         </tr>
                         {arrClinic && arrClinic.length > 0 && arrClinic.map((item, index) => {
                             return (

@@ -141,11 +141,11 @@ class ManageSpecialty extends Component {
         return (
             <>
                 <div className='manage-specilty-container'>
-                    <div className='ms-title'>Quản lý chuyên khoa</div>
+                    <div className='ms-title'><FormattedMessage id={'manage-specialty.title1'} /></div>
 
                     <div className='add-new-specialty row'>
                         <div className='col-6 form-group'>
-                            <label>Tên chuyên khoa</label>
+                            <label><FormattedMessage id={'manage-specialty.name'} /></label>
                             <input className='form-control' type='text' value={this.state.name}
                                 onChange={(e) => this.handleOnchangInput(e, 'name')}
                             />
@@ -165,7 +165,7 @@ class ManageSpecialty extends Component {
                             </div>
                         </div>
                         <div className='col-12'>
-                            <label>Mô tả</label>
+                            <label><FormattedMessage id={'manage-specialty.Describe'} /></label>
                             <MdEditor style={{ height: '350px' }}
                                 renderHTML={text => mdParser.render(text)}
                                 onChange={this.handleEditorChange}

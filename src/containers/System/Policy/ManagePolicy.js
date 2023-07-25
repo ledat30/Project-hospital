@@ -136,23 +136,23 @@ class ManagePolicy extends Component {
         return (
             <>
                 <div className='manage-specilty-container'>
-                    <div className='ms-title'>Quản lý Chính sách</div>
+                    <div className='ms-title'><FormattedMessage id={'manage_policy.title1'} /></div>
 
                     <div className='add-new-specialty row'>
                         <div className='col-6 form-group'>
-                            <label>Tên chính sách - Vi </label>
+                            <label><FormattedMessage id={'manage_policy.name1'} /></label>
                             <input className='form-control' type='text' value={this.state.nameVI}
                                 onChange={(e) => this.handleOnchangInputVi(e, 'nameVI')}
                             />
                         </div>
                         <div className='col-6 form-group'>
-                            <label>Tên chính sách - En </label>
+                            <label><FormattedMessage id={'manage_policy.name2'} /></label>
                             <input className='form-control' type='text' value={this.state.nameEN}
                                 onChange={(e) => this.handleOnchangInputEn(e, 'nameEN')}
                             />
                         </div>
                         <div className='col-12'>
-                            <label>Mô tả - Vi</label>
+                            <label><FormattedMessage id={'manage_policy.Description_Vi'} /></label>
                             <MdEditor style={{ height: '350px' }}
                                 renderHTML={text => mdParser.render(text)}
                                 onChange={this.handleEditorChangeVi}
@@ -160,7 +160,7 @@ class ManagePolicy extends Component {
                             />
                         </div>
                         <div className='col-12 mt-4'>
-                            <label>Mô tả - En</label>
+                            <label><FormattedMessage id={'manage_policy.Description_En'} /></label>
                             <MdEditor style={{ height: '350px' }}
                                 renderHTML={text => mdParser.render(text)}
                                 onChange={this.handleEditorChangeEn}

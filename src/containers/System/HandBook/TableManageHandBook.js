@@ -45,8 +45,8 @@ class TableManageHandBook extends Component {
                 <table id='TableManageHandBook'>
                     <tbody>
                         <tr>
-                            <th>Title</th>
-                            <th>Action</th>
+                            <th><FormattedMessage id={'manage-handbook.Title'} /></th>
+                            <th><FormattedMessage id={'manage-handbook.Action'} /></th>
                         </tr>
                         {arrHandBook && arrHandBook.length > 0 && arrHandBook.map((item, index) => {
                             return (

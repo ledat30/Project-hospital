@@ -376,7 +376,7 @@ class ManageDoctor extends Component {
                     </div>
                 </div>
                 <div className='manage-doctor-editor'>
-                    <label>Nội dung chi tiết bác sĩ</label>
+                    <label><FormattedMessage id={'admin.manage-doctor.content'} /></label>
                     <MdEditor style={{ height: '300px' }}
                         renderHTML={text => mdParser.render(text)}
                         onChange={this.handleEditorChange}
@@ -391,7 +391,7 @@ class ManageDoctor extends Component {
                     }
                 </button>
                 <div className='col-12 mb-5'>
-                    <div className='title my-3'><FormattedMessage id="manage-doctor.title" /></div>
+                    <div className='title2 my-3'><FormattedMessage id="manage-doctor.title" /></div>
                     <TableManagerDoctor />
                 </div>
 

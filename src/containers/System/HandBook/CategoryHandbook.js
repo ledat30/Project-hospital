@@ -103,17 +103,17 @@ class CategoryHandbook extends Component {
 
         return (
             <div className='manage-specilty-container'>
-                <div className='ms-title'>Quản lý danh mục cẩm nang</div>
+                <div className='ms-title'><FormattedMessage id={'manage-handbook.tiitle1'}/></div>
 
                 <div className='add-new-specialty row'>
                     <div className='col-6 form-group'>
-                        <label>Tên danh mục -vi </label>
+                        <label><FormattedMessage id={'manage-handbook.name1'}/></label>
                         <input className='form-control' type='text' value={this.state.nameVI}
                             onChange={(e) => this.handleOnchangInputVI(e, 'nameVI')}
                         />
                     </div>
                     <div className='col-6 form-group'>
-                        <label>Tên danh mục -en </label>
+                        <label><FormattedMessage id={'manage-handbook.name2'}/></label>
                         <input className='form-control' type='text' value={this.state.nameEN}
                             onChange={(e) => this.handleOnchangInputEN(e, 'nameEN')}
                         />

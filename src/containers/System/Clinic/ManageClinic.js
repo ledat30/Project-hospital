@@ -150,17 +150,17 @@ class ManageClinic extends Component {
         return (
             <>
                 <div className='manage-specilty-container'>
-                    <div className='ms-title'>Quản lý cơ sở </div>
+                    <div className='ms-title'><FormattedMessage id={'manage-clinic.title1'} /> </div>
 
                     <div className='add-new-specialty row'>
                         <div className='col-5 form-group'>
-                            <label>Tên cơ sở</label>
+                            <label><FormattedMessage id={'manage-clinic.name'} /></label>
                             <input className='form-control' type='text' value={this.state.name}
                                 onChange={(e) => this.handleOnchangInput(e, 'name')}
                             />
                         </div>
                         <div className='col-5 form-group'>
-                            <label>Địa chỉ </label>
+                            <label><FormattedMessage id={'manage-clinic.address'} /></label>
                             <input className='form-control' type='text' value={this.state.address}
                                 onChange={(e) => this.handleOnchangInput(e, 'address')}
                             />
@@ -182,6 +182,7 @@ class ManageClinic extends Component {
                             </div>
                         </div>
                         <div className='col-12'>
+                            <label><FormattedMessage id="manage-clinic.Describe" /></label>
                             <MdEditor style={{ height: '300px' }}
                                 renderHTML={text => mdParser.render(text)}
                                 onChange={this.handleEditorChange}

@@ -45,7 +45,7 @@
         "add": "Thêm mới người dùng",
         "email": "Email",
         "password": "Mật khẩu",
-        "fullName": "Tên đầy đủ",
+        "fullName": "Họ và tên",
         "phonenumber": "Số điện thoại",
         "address": "Địa chỉ",
         "gender": "Giới tính",
@@ -56,7 +56,8 @@
         "Upload": "Tải ảnh",
         "manageUser": "Quản lý người dùng",
         "edit": "Lưu Thay đổi",
-        "categoryId": "Danh mục"
+        "categoryId": "Danh mục",
+        "action": "Trạng thái"
     },
     "homepage": {
         "out-standing-doctor": "Bác sĩ nổi bật tuần qua",
@@ -91,12 +92,19 @@
     "manage-clinic": {
         "title": "Danh sách cơ sở y tế",
         "save": "Lưu cơ sở ",
-        "edit": "Sửa cơ sở "
+        "edit": "Sửa cơ sở ",
+        "title1": "QUẢN LÝ CƠ SỞ",
+        "name": "Tên cơ sở",
+        "address": "Địa chỉ",
+        "Describe": "Mô tả"
     },
     "manage-specialty": {
         "title": "Danh sách chuyên khoa",
         "save": "Lưu chuyên khoa ",
-        "edit": "Sửa chuyên khoa "
+        "edit": "Sửa chuyên khoa ",
+        "title1": "Quản lý chuyên khoa",
+        "name": "Tên chuyên khoa",
+        "Describe": "Mô tả"
     },
     "manage-handbook": {
         "title": "Danh sách cẩm nang",
@@ -104,12 +112,26 @@
         "edit": "Sửa cẩm nang ",
         "SV": "Lưu danh mục",
         "ed": "Sửa danh mục",
-        "tl": "Danh sách danh mục "
+        "tl": "Danh sách danh mục ",
+        "tiitle1": "Quản lý danh mục cẩm nang",
+        "name1": "Tên danh mục -vi",
+        "name2": "Tên danh mục -en",
+        "Action": "Trạng thái",
+        "Title": "Tiêu đề",
+        "tiitle3": "QUẢN LÝ CẨM NANG",
+        "Description-Vi": "Mô tả -vi",
+        "Description-En": "Mô tả -en"
     },
     "manage_policy": {
         "title": "Danh sách chính sách",
         "save": "Lưu chính sách ",
-        "edit": "Sửa chính sách "
+        "edit": "Sửa chính sách ",
+        "title1": "QUẢN LÝ CHÍNH SÁCH",
+        "name1": "Tên chính sách - Vi",
+        "name2": "Tên chính sách - En",
+        "Description_Vi": "Mô tả - Vi",
+        "Description_En": "Mô tả - En",
+        "action": "Trạng thái"
     },
     "manage-doctor": {
         "title": "Danh sách bác sĩ "
@@ -174,7 +196,10 @@
             "address_clinic": "Địa chỉ phòng khám",
             "note": "Lưu ý",
             "specialty": "Chọn chuyên khoa",
-            "clinic": "Chọn phòng khám"
+            "clinic": "Chọn phòng khám",
+            "content": "Nội dung chi tiết bác sĩ",
+            "name": "Họ và tên",
+            "action": "Trạng thái"
         }
     }
 }
