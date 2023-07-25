@@ -22,6 +22,7 @@ import AllCategory from './Pationt/HandBook/AllCategory';
 import DetailCategory from './Pationt/HandBook/DetailCategory';
 import CategoryDoctor from './Pationt/Doctor/CategoryDoctor/CategoryDoctor';
 import CategorySpecialty from './Pationt/Specialty/CategorySpecialty/CategorySpecialty';
+import CategoryClinic from './Pationt/Clinic/CategoryClinic/CategoryClinic';
 
 class App extends Component {
 
@@ -65,6 +66,7 @@ class App extends Component {
                                     <Route path={path.DETAIL_CATEGORY} component={DetailCategory} />
                                     <Route path={path.ALL_DOCTOR} component={CategoryDoctor} />
                                     <Route path={path.ALL_SPECIALY} component={CategorySpecialty} />
+                                    <Route path={path.ALL_CLINIC} component={CategoryClinic} />
                                     <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail} />
                                 </Switch>
                             </CustomScrollbars>
@@ -72,7 +74,7 @@ class App extends Component {
 
                         <ToastContainer
                             position='bottom-right'
-                            autoClose={5000}
+                            autoClose={4000}
                             hideProgressBar={false}
                             newestOnTop={false}
                             closeOnClick

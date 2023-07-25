@@ -39,6 +39,12 @@ class HeaderHome extends Component {
         }
     }
 
+    returnToClinic = () => {
+        if (this.props.history) {
+            this.props.history.push(`/all-clinic`)
+        }
+    }
+
     render() {
         let language = this.props.language;
         return (
@@ -60,8 +66,11 @@ class HeaderHome extends Component {
                                 </div>
                             </div>
                             <div className='child-content'>
-                                <div><b><FormattedMessage id="homeheader.health-facility" /></b></div>
-                                <div className='subs-title'><FormattedMessage id="homeheader.Select-room" /></div>
+                                <div onClick={() => this.returnToClinic()}>
+                                    <div><b><FormattedMessage id="homeheader.health-facility" /></b></div>
+                                    <div className='subs-title'><FormattedMessage id="homeheader.Select-room" /></div>
+                                </div>
+
                             </div>
                             <div className='child-content'>
                                 <div onClick={() => this.returnToDoctor()}>
@@ -78,7 +87,7 @@ class HeaderHome extends Component {
                             </div>
                         </div>
                         <div className='right-content'>
-                            <div className='child-content '>
+                            <div className='child-content ' title="Số điện thoại ưu tiên">
                                 <div> <i className='fas fa-question-circle'></i> <FormattedMessage id="homeheader.support" /></div>
                                 <div className='subs-title'>0386582177</div>
                             </div>

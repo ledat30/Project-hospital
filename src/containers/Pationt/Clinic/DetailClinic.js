@@ -65,7 +65,8 @@ class DetailClinic extends Component {
                         {dataDetailClinic && !_.isEmpty(dataDetailClinic)
                             &&
                             <>
-                                <div>{dataDetailClinic.name}</div>
+                                <div className='name-clinic'>{dataDetailClinic.name}</div>
+                                <div style={{ padding: '15px 0', fontSize: '15px' }}><b><FormattedMessage id={'patient.clinic.address'} /> {dataDetailClinic.address}</b></div>
                                 <div dangerouslySetInnerHTML={{ __html: dataDetailClinic.descriptionHTML }}></div>
                             </>
 

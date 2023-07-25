@@ -152,8 +152,12 @@
         "doctors": {
             "title": "Doctor"
         },
-        "specialy":{
+        "specialy": {
             "title": "Specialty"
+        },
+        "clinic": {
+            "title": "Clinic",
+            "address": "Address :"
         }
     },
     "admin": {

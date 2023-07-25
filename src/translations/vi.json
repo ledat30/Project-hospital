@@ -154,6 +154,10 @@
         },
         "specialy": {
             "title": "Chuyên khoa"
+        },
+        "clinic": {
+            "title": "Cơ sở y tế",
+            "address": "Địa chỉ :"
         }
     },
     "admin": {
