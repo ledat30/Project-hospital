@@ -23,7 +23,7 @@ class TableManageUser extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.listUsers !== this.props.listUsers) {
+        if (prevProps.listUsers !== this.props.listUsers && this.state.userRedux.length === 0) {
             this.setState({
                 userRedux: this.props.listUsers
             })
@@ -38,13 +38,33 @@ class TableManageUser extends Component {
         this.props.handleEditUserFromPaentKey(user)
     }
 
-    handlePageClick = () => {
-
+    searchHandle = async (e) => {
+        let key = e.target.value;
+        if (key) {
+            let result = await fetch(`http://localhost:8080/api/search-user?q=${key}`)
+            result = await result.json()
+            if (result.errCode === 0) {
+                this.setState({
+                    userRedux: result.results
+                })
+            } else {
+                this.setState({
+                    userRedux: this.props.listUsers
+                })
+            }
+        } else {
+            this.setState({
+                userRedux: this.props.listUsers
+            })
+        }
     }
     render() {
         let arrUser = this.state.userRedux;
         return (
             <>
+                <input type='' className='search-user-box' placeholder='Search user ...'
+                    onChange={(e) => this.searchHandle(e)}
+                />
                 <table id='TableManageUser'>
                     <tbody>
                         <tr>
@@ -73,26 +93,6 @@ class TableManageUser extends Component {
                         })}
                     </tbody>
                 </table>
-
-                <ReactPaginate
-                    breakLabel="..."
-                    nextLabel="next >"
-                    onPageChange={() => this.handlePageClick}
-                    pageRangeDisplayed={5}
-                    pageCount={20}
-                    previousLabel="< previous"
-
-                    pageClassName='page-item'
-                    pageLinkClassName='page-link'
-                    previousLinkClassName='page-link'
-                    nextClassName='page-item'
-                    nextLinkClassName='page-link'
-                    breakClassName='page-item'
-                    breakLinkClassName='page-link'
-                    containerClassName='pagination'
-                    activeClassName='active'
-                />
-
             </>
         );
     }

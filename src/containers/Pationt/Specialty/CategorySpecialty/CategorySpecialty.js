@@ -6,15 +6,23 @@ import HomeFooter from '../../../HomePage/HomeFooter';
 import HeaderHome from '../../../HomePage/HeaderHome';
 import { getSpecialty } from '../../../../services/userService';
 import { LANGUAGES } from '../../../../utils';
+import { searchUsers } from '../../../../services/userService';
+//
+import axios from 'axios';
 
 class CategorySpecialty extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            dataSpecialty: []
+            dataSpecialty: [],
+            query: '',
+            results: [],
         }
+
     }
+
+
     async componentDidMount() {
         let specialties = await getSpecialty();
         if (specialties && specialties.errCode === 0) {
@@ -36,20 +44,75 @@ class CategorySpecialty extends Component {
         }
     }
 
+
+    handleInputChange = (event) => {
+        this.setState({ query: event.target.value });
+    };
+
+    handleSearch = async () => {
+        const { query } = this.state;
+        const results = await searchUsers(query);
+        this.setState({ results });
+    };
+
+
     render() {
-        let { dataSpecialty } = this.state;
+        let { dataSpecialty, query, results } = this.state;
+        console.log('check rs', results)
         return (
             <div className='container-specialty'>
                 <HeaderHome />
                 <div className='search-specialty'>
-                    <input type='search' id="search" placeholder="Search..." />
+                    <input type='' id="search"
+                        value={query}
+                        onChange={(e) => this.handleInputChange(e)}
+                        placeholder="Search..." />
+                    <button className='btn-search' onClick={this.handleSearch}>
+                        <i className="fas fa-search"></i>
+                    </button>
+                    <ul>
+                        {results && results.length > 0 ? (
+                            results.map((product, i) => <li key={i}>{product.name}</li>)
+                        ) : (
+                            <li>Không tìm thấy kết quả phù hợp</li>
+                        )}
+                    </ul>
                 </div>
+                {/* <div className='body-search'>
+                    <div className='title-search'>
+                        <FormattedMessage id={'patient.specialy.tiitle1'} />
+                    </div>
+                    <div className='all-search'>
+                        {searchResults && searchResults.length > 0 ? (
+                            searchResults.map((item, index) => {
+                                return (
+                                    <div className='search1' key={index}>
+                                        <div className='left-img-search'
+                                            style={{ backgroundImage: `url(${item.image})` }}
+                                        >
+                                        </div>
+                                        <div className='right-nd-search'>
+                                            <div>{item.name}</div>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            ))
+                            :
+                            (
+                                <li>Không tìm thấy kết quả phù hợp</li>
+                            )
+                        }
+                    </div>
+                </div> */}
+
+
                 <div className='body-specialty'>
                     <div className='title-specialty'>
                         <FormattedMessage id={'patient.specialy.title'} />
                     </div>
                     <div className='all-specialty'>
-                        {dataSpecialty && dataSpecialty.length > 0 && dataSpecialty.map((item, index) => {
+                        {dataSpecialty && dataSpecialty.length > 0 ? dataSpecialty.map((item, index) => {
                             return (
                                 <div className='specialty' key={index}
                                     onClick={() => this.handleViewDetailSpecialty(item)}
@@ -63,11 +126,16 @@ class CategorySpecialty extends Component {
                                     </div>
                                 </div>
                             )
-                        })}
+                        })
+                            :
+                            (
+                                <li>Không tìm thấy kết quả phù hợp</li>
+                            )
+                        }
                     </div>
                 </div>
                 <HomeFooter />
-            </div>
+            </div >
 
         );
     }

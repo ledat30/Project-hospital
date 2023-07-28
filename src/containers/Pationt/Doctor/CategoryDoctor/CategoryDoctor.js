@@ -37,12 +37,16 @@ class CategoryDoctor extends Component {
 
     render() {
         let { dataDoctor } = this.state;
+        console.log('check doctor', dataDoctor)
         let { language } = this.props;
         return (
             <div className='container-doctor'>
                 <HeaderHome />
                 <div className='search-doctors'>
                     <input type='search' id="search" placeholder="Search..." />
+                    <button className='btn-search'>
+                        <i className="fas fa-search"></i>
+                    </button>
                 </div>
                 <div className='body-doctor'>
                     <div className='title-doctor'>
@@ -59,9 +63,9 @@ class CategoryDoctor extends Component {
                                         style={{ backgroundImage: `url(${item.image})` }}>
                                     </div>
                                     <div className='right-nd-doctors'>
-                                        <div>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
-                                        <div>{item.Doctor_infor.nameClinic}</div>
-                                        <div>{item.Doctor_infor.addressClinic}</div>
+                                        <div className='text'>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
+                                        <div className='text'>{item.Doctor_infor.nameClinic}</div>
+                                        <div className='text'><FormattedMessage id={'patient.doctors.sdt'} /> {item.phonenumber}</div>
                                     </div>
                                 </div>
                             )

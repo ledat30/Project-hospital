@@ -8,14 +8,13 @@ import _ from 'lodash';
 import { LANGUAGES } from '../../../utils';
 import './DetailCategory.scss';
 
-
 class DetailCategory extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            arrHandBook: [],
             dataDetailCategory: {},
+            handbook: []
         }
     }
 
@@ -27,18 +26,18 @@ class DetailCategory extends Component {
             });
             if (res && res.errCode === 0) {
                 let data = res.data;
-                let arrHandBook = [];
+                let handbook = [];
                 if (data && !_.isEmpty(res.data)) {
-                    let arr = data.Handbooks;
+                    let arr = data.handBook;
                     if (arr && arr.length > 0) {
                         arr.map(item => {
-                            arrHandBook.push(item.categoryId)
+                            handbook.push(item.categoryId)
                         })
                     }
                 }
                 this.setState({
                     dataDetailCategory: res.data,
-                    arrHandBook: arrHandBook
+                    handbook: handbook
                 })
             }
         }
@@ -57,8 +56,9 @@ class DetailCategory extends Component {
         }
     }
     render() {
-        let { dataDetailCategory, arrHandBook } = this.state;
+        let { dataDetailCategory, handbook } = this.state;
         console.log('check data detail category', this.state)
+        let { language } = this.props;
         return (
             <div className='detail-category-container'>
                 <HeaderHome />
@@ -66,30 +66,34 @@ class DetailCategory extends Component {
                     <div className='category'>
                         <div className='top-detail-category'>
                             <div className='back' onClick={() => this.returnToBlog()}>
-                                <i className="fas fa-reply"></i> <u>Quay lại</u>
+                                <i className="fas fa-reply"></i> <u><FormattedMessage id={'patient.detail-category.back'} /></u>
                             </div>
                             <div className="container-5">
                                 <input type="search" id="search" placeholder="Search..." />
                                 <button className="icon"><i className="fa fa-search"></i></button>
                             </div>
                         </div>
+                        <div className='category-handbook'>
+                            {dataDetailCategory && !_.isEmpty(dataDetailCategory)
+                                &&
+                                <div className='name-category'><FormattedMessage id={'patient.detail-category.category'} />{language === LANGUAGES.VI ? dataDetailCategory.nameVI : dataDetailCategory.nameEN}</div>
+                            }
+                        </div>
                         <div className='all-blogs'>
-                            {arrHandBook && arrHandBook.length > 0 &&
-                                arrHandBook.map((item, index) => {
-                                    return (
-                                        <div className='blogs' key={index}>
-                                            <div className='img-blogs'
-                                                style={{
-                                                    backgroundImage: `url(${item.image})`
-                                                }}
-                                            >
-                                            </div>
-                                            <div className='nd-blogs'>
-                                                {item.title}
-                                            </div>
+                            {handbook && handbook.language > 0 && handbook.map((item, index) => {
+                                return (
+                                    <div className='blogs' >
+                                        <div className='img-blogs'
+
+                                        >
                                         </div>
-                                    )
-                                })}
+                                        <div className='nd-blogs'>
+
+                                        </div>
+                                    </div>
+                                )
+                            })}
+
                         </div>
                     </div>
 

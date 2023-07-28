@@ -7,6 +7,7 @@
         border-bottom: 3px solid #f1eeee;
         border-top   : 3px solid #f1eeee;
         position     : fixed;
+        display      : flex;
 
         input {
             width        : 100%;
@@ -16,6 +17,13 @@
             width        : 100%;
             border       : 1px solid #ccc;
             border-radius: 20px;
+        }
+
+        .btn-search {
+            width        : 35px;
+            margin-left  : 10px;
+            border       : none;
+            border-radius: 50%;
         }
     }
 
@@ -53,6 +61,10 @@
 
                     &:hover {
                         color: #64b9e5;
+                    }
+
+                    .text {
+                        padding-bottom: 5px;
                     }
                 }
             }

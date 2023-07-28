@@ -143,6 +143,10 @@
             "choose": "Choose ",
             "book-free": " and book (free)"
         },
+        "detail-category": {
+            "category": "Category : ",
+            "back": "Back"
+        },
         "extra-infor-doctor": {
             "address_clinic": "Address clinic",
             "price": "Examination price",
@@ -172,10 +176,12 @@
             "fail": "CONFIRMED YOUR EXAMINATION SCHEDULE HAS Fails!"
         },
         "doctors": {
-            "title": "Doctor"
+            "title": "Doctor",
+            "sdt": "Hotline : "
         },
         "specialy": {
-            "title": "Specialty"
+            "title": "Specialty",
+            "tiitle1": "Search Results"
         },
         "clinic": {
             "title": "Clinic",

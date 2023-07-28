@@ -44,6 +44,9 @@ class CategoryClinic extends Component {
                 <HeaderHome />
                 <div className='search-specialty'>
                     <input type='search' id="search" placeholder="Search..." />
+                    <button className='btn-search'>
+                        <i className="fas fa-search"></i>
+                    </button>
                 </div>
                 <div className='body-specialty'>
                     <div className='title-specialty'>

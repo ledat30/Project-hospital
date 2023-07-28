@@ -143,6 +143,10 @@
             "choose": "Chọn ",
             "book-free": " và đặt (miễn phí)"
         },
+        "detail-category": {
+            "category": "Danh mục : ",
+            "back": "Quay lại"
+        },
         "extra-infor-doctor": {
             "address_clinic": "Địa chỉ phòng khám",
             "price": "Giá khám ",
@@ -172,10 +176,12 @@
             "fail": "XÁC NHẬN LỊCH HẸN KHÁM CỦA QUÝ KHÁCH ĐÃ THẤT BẠI !"
         },
         "doctors": {
-            "title": "Bác sĩ"
+            "title": "Bác sĩ",
+            "sdt": "Số điện thoại : "
         },
         "specialy": {
-            "title": "Chuyên khoa"
+            "title": "Chuyên khoa",
+            "tiitle1":"Kết quả tìm kiếm"
         },
         "clinic": {
             "title": "Cơ sở y tế",
