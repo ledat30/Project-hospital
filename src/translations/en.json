@@ -145,7 +145,8 @@
         },
         "detail-category": {
             "category": "Category : ",
-            "back": "Back"
+            "back": "Back",
+            "tb": "No matching results were found"
         },
         "extra-infor-doctor": {
             "address_clinic": "Address clinic",

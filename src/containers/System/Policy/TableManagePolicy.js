@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableManagePolicy.scss';
 import * as actions from '../../../store/actions';
+import { debounce } from 'lodash';
 
 
 class TableManagePolicy extends Component {
@@ -22,7 +23,8 @@ class TableManagePolicy extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.listPolicy !== this.props.listPolicy) {
+        if (prevProps.listPolicy !== this.props.listPolicy
+            && this.state.policyRedux.length === 0) {
             this.setState({
                 policyRedux: this.props.listPolicy
             })
@@ -38,10 +40,34 @@ class TableManagePolicy extends Component {
     }
 
 
+    searchHandle = debounce(async (e) => {
+        let key = e.target.value;
+        if (key) {
+            let result = await fetch(`http://localhost:8080/api/search-policy?q=${key}`)
+            result = await result.json()
+            if (result.errCode === 0) {
+                this.setState({
+                    policyRedux: result.results
+                })
+            } else {
+                this.setState({
+                    policyRedux: this.props.listPolicy
+                })
+            }
+        } else {
+            this.setState({
+                policyRedux: this.props.listPolicy
+            })
+        }
+    }, 300)
+
     render() {
         let arrPolicy = this.state.policyRedux;
         return (
             <>
+                <input type='' className='search-user-box' placeholder='Search policy ...'
+                    onChange={(e) => this.searchHandle(e)}
+                />
                 <table id='TableManagePolicy'>
                     <tbody>
                         <tr>

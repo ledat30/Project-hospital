@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './TableManageUser.scss';
 import * as actions from '../../../store/actions';
 import ReactPaginate from 'react-paginate';
+import { debounce } from 'lodash';
 
 
 class TableManageUser extends Component {
@@ -38,8 +39,9 @@ class TableManageUser extends Component {
         this.props.handleEditUserFromPaentKey(user)
     }
 
-    searchHandle = async (e) => {
+    searchHandle = debounce(async (e) => {
         let key = e.target.value;
+        console.log('check', key)
         if (key) {
             let result = await fetch(`http://localhost:8080/api/search-user?q=${key}`)
             result = await result.json()
@@ -57,7 +59,8 @@ class TableManageUser extends Component {
                 userRedux: this.props.listUsers
             })
         }
-    }
+    }, 300)
+
     render() {
         let arrUser = this.state.userRedux;
         return (

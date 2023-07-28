@@ -145,7 +145,8 @@
         },
         "detail-category": {
             "category": "Danh mục : ",
-            "back": "Quay lại"
+            "back": "Quay lại",
+            "tb": "Không tìm thấy kết quả phù hợp"
         },
         "extra-infor-doctor": {
             "address_clinic": "Địa chỉ phòng khám",
@@ -181,7 +182,7 @@
         },
         "specialy": {
             "title": "Chuyên khoa",
-            "tiitle1":"Kết quả tìm kiếm"
+            "tiitle1": "Kết quả tìm kiếm"
         },
         "clinic": {
             "title": "Cơ sở y tế",

@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableManagerClinic.scss';
 import * as actions from '../../../store/actions';
+import { debounce } from 'lodash';
 
 
 class TableManagerClinic extends Component {
@@ -22,7 +23,8 @@ class TableManagerClinic extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.listClinics !== this.props.listClinics) {
+        if (prevProps.listClinics !== this.props.listClinics
+            && this.state.clinicRedux.length === 0) {
             this.setState({
                 clinicRedux: this.props.listClinics
             })
@@ -37,13 +39,34 @@ class TableManagerClinic extends Component {
         this.props.handleEditClinicFromPaentKey(clinic)
     }
 
-    handlePageClick = () => {
+    searchHandle = debounce(async (e) => {
+        let key = e.target.value;
+        if (key) {
+            let result = await fetch(`http://localhost:8080/api/search-clinic?q=${key}`)
+            result = await result.json()
+            if (result.errCode === 0) {
+                this.setState({
+                    clinicRedux: result.results
+                })
+            } else {
+                this.setState({
+                    clinicRedux: this.props.listClinics
+                })
+            }
+        } else {
+            this.setState({
+                clinicRedux: this.props.listClinics
+            })
+        }
+    }, 300)
 
-    }
     render() {
         let arrClinic = this.state.clinicRedux;
         return (
             <>
+                <input type='' className='search-user-box' placeholder='Search clinic ...'
+                    onChange={(e) => this.searchHandle(e)}
+                />
                 <table id='TableManagerClinic'>
                     <tbody>
                         <tr>

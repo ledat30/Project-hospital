@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableCategory.scss';
 import * as actions from '../../../store/actions';
+import { debounce } from 'lodash';
 
 
 class TableCategory extends Component {
@@ -22,7 +23,8 @@ class TableCategory extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.listCategory !== this.props.listCategory) {
+        if (prevProps.listCategory !== this.props.listCategory
+            && this.state.CategoryhandBookRedux.length === 0) {
             this.setState({
                 CategoryhandBookRedux: this.props.listCategory
             })
@@ -37,11 +39,34 @@ class TableCategory extends Component {
         this.props.handleEditCategoryHandBookFromPaentKey(category)
     }
 
+    searchHandle = debounce(async (e) => {
+        let key = e.target.value;
+        if (key) {
+            let result = await fetch(`http://localhost:8080/api/search-category?q=${key}`)
+            result = await result.json()
+            if (result.errCode === 0) {
+                this.setState({
+                    CategoryhandBookRedux: result.results
+                })
+            } else {
+                this.setState({
+                    CategoryhandBookRedux: this.props.listCategory
+                })
+            }
+        } else {
+            this.setState({
+                CategoryhandBookRedux: this.props.listCategory
+            })
+        }
+    }, 300)
 
     render() {
         let arrCategoryHandBook = this.state.CategoryhandBookRedux;
         return (
             <>
+                <input type='' className='search-user-box' placeholder='Search category ...'
+                    onChange={(e) => this.searchHandle(e)}
+                />
                 <table id='TableCategory'>
                     <tbody>
                         <tr>

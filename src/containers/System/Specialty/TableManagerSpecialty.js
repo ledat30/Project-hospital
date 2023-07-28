@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableManagerSpecialty.scss';
 import * as actions from '../../../store/actions';
+import { debounce } from 'lodash';
 
 
 class TableManagerSpecialty extends Component {
@@ -22,7 +23,8 @@ class TableManagerSpecialty extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.listSpecialty !== this.props.listSpecialty) {
+        if (prevProps.listSpecialty !== this.props.listSpecialty
+            && this.state.specialtyRedux.length === 0) {
             this.setState({
                 specialtyRedux: this.props.listSpecialty
             })
@@ -37,11 +39,34 @@ class TableManagerSpecialty extends Component {
         this.props.handleEditSpecialtyFromPaentKey(specialty)
     }
 
+    searchHandle = debounce(async (e) => {
+        let key = e.target.value;
+        if (key) {
+            let result = await fetch(`http://localhost:8080/api/search-specialty?q=${key}`)
+            result = await result.json()
+            if (result.errCode === 0) {
+                this.setState({
+                    specialtyRedux: result.results
+                })
+            } else {
+                this.setState({
+                    specialtyRedux: this.props.listSpecialty
+                })
+            }
+        } else {
+            this.setState({
+                specialtyRedux: this.props.listSpecialty
+            })
+        }
+    }, 300)
 
     render() {
         let arrSpecialty = this.state.specialtyRedux;
         return (
             <>
+                <input type='' className='search-user-box' placeholder='Search specialty ...'
+                    onChange={(e) => this.searchHandle(e)}
+                />
                 <table id='TableManagerSpecialty'>
                     <tbody>
                         <tr>

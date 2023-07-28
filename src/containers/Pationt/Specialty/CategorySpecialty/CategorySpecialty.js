@@ -6,9 +6,7 @@ import HomeFooter from '../../../HomePage/HomeFooter';
 import HeaderHome from '../../../HomePage/HeaderHome';
 import { getSpecialty } from '../../../../services/userService';
 import { LANGUAGES } from '../../../../utils';
-import { searchUsers } from '../../../../services/userService';
-//
-import axios from 'axios';
+import { debounce } from 'lodash';
 
 class CategorySpecialty extends Component {
 
@@ -16,8 +14,6 @@ class CategorySpecialty extends Component {
         super(props);
         this.state = {
             dataSpecialty: [],
-            query: '',
-            results: [],
         }
 
     }
@@ -25,7 +21,7 @@ class CategorySpecialty extends Component {
 
     async componentDidMount() {
         let specialties = await getSpecialty();
-        if (specialties && specialties.errCode === 0) {
+        if (specialties && specialties.errCode === 0 && this.state.dataSpecialty.length === 0) {
             this.setState({
                 dataSpecialty: specialties.data ? specialties.data : []
             })
@@ -44,67 +40,40 @@ class CategorySpecialty extends Component {
         }
     }
 
-
-    handleInputChange = (event) => {
-        this.setState({ query: event.target.value });
-    };
-
-    handleSearch = async () => {
-        const { query } = this.state;
-        const results = await searchUsers(query);
-        this.setState({ results });
-    };
-
+    handleInputChange = debounce(async (e) => {
+        let key = e.target.value;
+        if (key) {
+            let result = await fetch(`http://localhost:8080/api/search-specialty-web?q=${key}`)
+            result = await result.json()
+            if (result.errCode === 0) {
+                this.setState({
+                    dataSpecialty: result.results
+                })
+            } else {
+                this.setState({
+                    dataSpecialty: []
+                })
+            }
+        } else {
+            let specialties = await getSpecialty();
+            if (specialties && specialties.errCode === 0) {
+                this.setState({
+                    dataSpecialty: specialties.data ? specialties.data : []
+                })
+            }
+        }
+    }, 300)
 
     render() {
-        let { dataSpecialty, query, results } = this.state;
-        console.log('check rs', results)
+        let { dataSpecialty } = this.state;
         return (
             <div className='container-specialty'>
                 <HeaderHome />
                 <div className='search-specialty'>
                     <input type='' id="search"
-                        value={query}
                         onChange={(e) => this.handleInputChange(e)}
                         placeholder="Search..." />
-                    <button className='btn-search' onClick={this.handleSearch}>
-                        <i className="fas fa-search"></i>
-                    </button>
-                    <ul>
-                        {results && results.length > 0 ? (
-                            results.map((product, i) => <li key={i}>{product.name}</li>)
-                        ) : (
-                            <li>Không tìm thấy kết quả phù hợp</li>
-                        )}
-                    </ul>
                 </div>
-                {/* <div className='body-search'>
-                    <div className='title-search'>
-                        <FormattedMessage id={'patient.specialy.tiitle1'} />
-                    </div>
-                    <div className='all-search'>
-                        {searchResults && searchResults.length > 0 ? (
-                            searchResults.map((item, index) => {
-                                return (
-                                    <div className='search1' key={index}>
-                                        <div className='left-img-search'
-                                            style={{ backgroundImage: `url(${item.image})` }}
-                                        >
-                                        </div>
-                                        <div className='right-nd-search'>
-                                            <div>{item.name}</div>
-                                        </div>
-                                    </div>
-                                )
-                            }
-                            ))
-                            :
-                            (
-                                <li>Không tìm thấy kết quả phù hợp</li>
-                            )
-                        }
-                    </div>
-                </div> */}
 
 
                 <div className='body-specialty'>
@@ -129,7 +98,7 @@ class CategorySpecialty extends Component {
                         })
                             :
                             (
-                                <li>Không tìm thấy kết quả phù hợp</li>
+                                <li><FormattedMessage id={'patient.detail-category.tb'} /></li>
                             )
                         }
                     </div>
