@@ -75,7 +75,7 @@ class TableManagePolicy extends Component {
                             <th><FormattedMessage id={'manage_policy.name2'} /></th>
                             <th><FormattedMessage id={'manage_policy.action'} /></th>
                         </tr>
-                        {arrPolicy && arrPolicy.length > 0 && arrPolicy.map((item, index) => {
+                        {arrPolicy && arrPolicy.length > 0 ? arrPolicy.map((item, index) => {
                             return (
                                 <tr key={index}>
                                     <td>{item.nameVI}</td>
@@ -92,7 +92,12 @@ class TableManagePolicy extends Component {
                                     </td>
                                 </tr>
                             )
-                        })}
+                        })
+                            :
+                            (
+                                <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                            )
+                        }
                     </tbody>
                 </table>
             </>

@@ -5,7 +5,7 @@ import './AllCategory.scss';
 import HeaderHome from '../../HomePage/HeaderHome';
 import HomeFooter from '../../HomePage/HomeFooter';
 import { getAllCategoryHandbook, getAllHandBook } from '../../../services/userService';
-import _ from 'lodash';
+import _, { debounce } from 'lodash';
 import { LANGUAGES } from '../../../utils';
 
 
@@ -28,7 +28,7 @@ class AllCategory extends Component {
         }
 
         let handbooks = await getAllHandBook();
-        if (handbooks && handbooks.errCode === 0) {
+        if (handbooks && handbooks.errCode === 0 && this.state.dataHandbook.length === 0) {
             this.setState({
                 dataHandbook: handbooks.data ? handbooks.data : []
             })
@@ -50,6 +50,30 @@ class AllCategory extends Component {
             this.props.history.push(`/detail-handbook/${handBook.id}`)
         }
     }
+
+    handleInputChange = debounce(async (e) => {
+        let key = e.target.value;
+        if (key) {
+            let result = await fetch(`http://localhost:8080/api/search-handbook-web?q=${key}`)
+            result = await result.json()
+            if (result.errCode === 0) {
+                this.setState({
+                    dataHandbook: result.results
+                })
+            } else {
+                this.setState({
+                    dataHandbook: []
+                })
+            }
+        } else {
+            let handbooks = await getAllHandBook();
+            if (handbooks && handbooks.errCode === 0) {
+                this.setState({
+                    dataHandbook: handbooks.data ? handbooks.data : []
+                })
+            }
+        }
+    }, 300)
 
     render() {
         let { dataCategory } = this.state;
@@ -77,11 +101,12 @@ class AllCategory extends Component {
 
                         <div className='ct-right'>
                             <div className="container-4">
-                                <input type="search" id="search" placeholder="Search..." />
-                                <button className="icon"><i className="fa fa-search"></i></button>
+                                <input type="search" id="search" placeholder="Search..."
+                                    onChange={(e) => this.handleInputChange(e)}
+                                />
                             </div>
                             <div className='all-blog'>
-                                {dataHandbook && dataHandbook.length > 0 && dataHandbook.map((item, index) => {
+                                {dataHandbook && dataHandbook.length > 0 ? dataHandbook.map((item, index) => {
                                     return (
                                         <div className='blog' key={index}
                                             onClick={() => this.handleViewDetailHandbook(item)}>
@@ -93,7 +118,14 @@ class AllCategory extends Component {
                                             </div>
                                         </div>
                                     )
-                                })}
+                                })
+                                    :
+                                    (
+                                        <b className='tb'>
+                                            <FormattedMessage id={'patient.detail-category.tb'} />
+                                        </b>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>

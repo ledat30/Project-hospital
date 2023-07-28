@@ -73,7 +73,7 @@ class TableManageHandBook extends Component {
                             <th><FormattedMessage id={'manage-handbook.Title'} /></th>
                             <th><FormattedMessage id={'manage-handbook.Action'} /></th>
                         </tr>
-                        {arrHandBook && arrHandBook.length > 0 && arrHandBook.map((item, index) => {
+                        {arrHandBook && arrHandBook.length > 0 ? arrHandBook.map((item, index) => {
                             return (
                                 <tr key={index}>
                                     <td>{item.title}</td>
@@ -89,7 +89,12 @@ class TableManageHandBook extends Component {
                                     </td>
                                 </tr>
                             )
-                        })}
+                        })
+                            :
+                            (
+                                <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                            )
+                        }
                     </tbody>
                 </table>
             </>

@@ -73,7 +73,7 @@ class TableManagerSpecialty extends Component {
                             <th><FormattedMessage id={'manage-specialty.name'} /></th>
                             <th><FormattedMessage id={'manage-user.action'} /></th>
                         </tr>
-                        {arrSpecialty && arrSpecialty.length > 0 && arrSpecialty.map((item, index) => {
+                        {arrSpecialty && arrSpecialty.length > 0 ? arrSpecialty.map((item, index) => {
                             return (
                                 <tr key={index}>
                                     <td>{item.name}</td>
@@ -89,7 +89,12 @@ class TableManagerSpecialty extends Component {
                                     </td>
                                 </tr>
                             )
-                        })}
+                        })
+                            :
+                            (
+                                <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                            )
+                        }
                     </tbody>
                 </table>
             </>

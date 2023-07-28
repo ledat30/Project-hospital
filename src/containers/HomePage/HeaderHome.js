@@ -45,6 +45,17 @@ class HeaderHome extends Component {
         }
     }
 
+    handleViewSpecialty = () => {
+        if (this.props.history) {
+            this.props.history.push(`/all-specialty`)
+        }
+    }
+
+    handleViewBlog = () => {
+        if (this.props.history) {
+            this.props.history.push(`/all-category`)
+        }
+    }
     render() {
         let language = this.props.language;
         return (
@@ -116,7 +127,9 @@ class HeaderHome extends Component {
                         </div>
                         <div className='content-down'>
                             <div className='options'>
-                                <div className='option-child'>
+                                <div className='option-child'
+                                    onClick={() => this.handleViewSpecialty()}
+                                >
                                     <div className='icon-child'>
                                         <i className='far fa-hospital'></i>
                                     </div>
@@ -124,7 +137,8 @@ class HeaderHome extends Component {
                                         <FormattedMessage id="banner.child1" />
                                     </div>
                                 </div>
-                                <div className='option-child'>
+                                <div className='option-child'
+                                    onClick={() => this.handleViewSpecialty()}>
                                     <div className='icon-child'>
                                         <i className='fas fa-procedures'></i>
                                     </div>
@@ -132,7 +146,9 @@ class HeaderHome extends Component {
                                         <FormattedMessage id="banner.child3" />
                                     </div>
                                 </div>
-                                <div className='option-child'>
+                                <div className='option-child'
+                                    onClick={() => this.handleViewBlog()}
+                                >
                                     <div className='icon-child'>
                                         <i className='fas fa-user-md'></i>
                                     </div>
@@ -140,7 +156,9 @@ class HeaderHome extends Component {
                                         <FormattedMessage id="banner.child5" />
                                     </div>
                                 </div>
-                                <div className='option-child'>
+                                <div className='option-child'
+                                    onClick={() => this.handleViewSpecialty()}
+                                >
                                     <div className='icon-child'>
                                         <i className='fas fa-briefcase-medical'></i>
                                     </div>

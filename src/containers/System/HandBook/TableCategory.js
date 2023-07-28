@@ -74,7 +74,7 @@ class TableCategory extends Component {
                             <th><FormattedMessage id={'manage-handbook.name2'} /></th>
                             <th><FormattedMessage id={'manage-handbook.Action'} /></th>
                         </tr>
-                        {arrCategoryHandBook && arrCategoryHandBook.length > 0 && arrCategoryHandBook.map((item, index) => {
+                        {arrCategoryHandBook && arrCategoryHandBook.length > 0 ? arrCategoryHandBook.map((item, index) => {
                             return (
                                 <tr key={index}>
                                     <td>{item.nameVI}</td>
@@ -91,7 +91,12 @@ class TableCategory extends Component {
                                     </td>
                                 </tr>
                             )
-                        })}
+                        })
+                            :
+                            (
+                                <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                            )
+                        }
                     </tbody>
                 </table>
             </>

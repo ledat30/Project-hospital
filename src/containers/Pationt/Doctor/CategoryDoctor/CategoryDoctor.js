@@ -77,8 +77,8 @@ class CategoryDoctor extends Component {
                     </div>
                     <div className='all-doctor'>
                         {dataDoctor && dataDoctor.length > 0 && dataDoctor.map((item, index) => {
-                            let nameVi = `${item.positionData.valueVi}, ${item.fullName}`;
-                            let nameEn = `${item.positionData.valueEn}, ${item.fullName}`;
+                            let nameVi = item.positionData ? `${item.positionData.valueVi}, ${item.fullName}` : item.fullName;
+                            let nameEn = item.positionData ? `${item.positionData.valueEn}, ${item.fullName}` : item.fullName;
                             return (
                                 <div className='doctors' key={index}
                                     onClick={() => this.handleViewDetailDoctor(item)}>
@@ -87,7 +87,12 @@ class CategoryDoctor extends Component {
                                     </div>
                                     <div className='right-nd-doctors'>
                                         <div className='text'>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
-                                        <div className='text'>{item.Doctor_infor.nameClinic}</div>
+                                        <div className='text'>
+                                            {item.Doctor_infor
+                                                ? item.Doctor_infor.nameClinic
+                                                :
+                                                ''}
+                                        </div>
                                         <div className='text'><FormattedMessage id={'patient.doctors.sdt'} /> {item.phonenumber}</div>
                                     </div>
                                 </div>

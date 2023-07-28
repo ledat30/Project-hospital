@@ -74,7 +74,7 @@ class TableManagerClinic extends Component {
                             <th><FormattedMessage id={'manage-user.address'} /></th>
                             <th><FormattedMessage id={'manage-user.action'} /></th>
                         </tr>
-                        {arrClinic && arrClinic.length > 0 && arrClinic.map((item, index) => {
+                        {arrClinic && arrClinic.length > 0 ? arrClinic.map((item, index) => {
                             return (
                                 <tr key={index}>
                                     <td>{item.name}</td>
@@ -91,7 +91,12 @@ class TableManagerClinic extends Component {
                                     </td>
                                 </tr>
                             )
-                        })}
+                        })
+                            :
+                            (
+                                <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                            )
+                        }
                     </tbody>
                 </table>
             </>

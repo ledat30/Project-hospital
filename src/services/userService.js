@@ -203,14 +203,6 @@ const getDetailCategoryById = (data) => {
     return axios.get(`/api/get-all-detail-category-by-id?id=${data.id}`)
 }
 
-const searchUsers = async (key) => {
-    try {
-        const result = await axios.get(`/api/search-specialty?q=${key}`);
-        return result.data;
-    } catch (error) {
-        console.log(error);
-    }
-}
 
 export {
     handleLoginApi, getAllUsers, createNewUserService, deleteUserService, editUserService,
@@ -220,7 +212,7 @@ export {
     getAllSpecialty, getSpecialty, getDetailSpecialtyById, createNewClinics, getAllClinic, getDetailClinicById, getClinic,
     getAllPatientForDoctor, postSendRemedy, deleteClinicService, deleteSpecialtyService, deleteDoctorService,
     editClinicService, editSpecialtyService, createNewHandbook, getAllHandBook, deleteHandbookService,
-    editHandBookService, getDetailHandBookById, createNewPolicy, getAllPolicy, deletePolicyService, searchUsers,
+    editHandBookService, getDetailHandBookById, createNewPolicy, getAllPolicy, deletePolicyService, 
     editPolicyService, getDetailPolicyById, createNewCategoryHandbook, getAllCategoryHandbook,
     deleteCategoryHandbookService, editCategoryHandbookService, getTopHandbookHomeService,
     getDetailCategoryById

@@ -77,7 +77,7 @@ class TableManageUser extends Component {
                             <th><FormattedMessage id={'manage-user.phonenumber'} /></th>
                             <th><FormattedMessage id={'manage-user.action'} /></th>
                         </tr>
-                        {arrUser && arrUser.length > 0 && arrUser.map((item, index) => {
+                        {arrUser && arrUser.length > 0 ? arrUser.map((item, index) => {
                             return (
                                 <tr key={index}>
                                     <td>{item.fullName}</td>
@@ -93,7 +93,12 @@ class TableManageUser extends Component {
                                     </td>
                                 </tr>
                             )
-                        })}
+                        })
+                            :
+                            (
+                                <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                            )
+                        }
                     </tbody>
                 </table>
             </>

@@ -40,13 +40,13 @@
             display        : flex;
             justify-content: space-between;
             align-items    : center;
-            cursor: pointer;
+            cursor         : pointer;
 
             .child-content {
                 .subs-title {
                     font-size  : 12;
                     font-weight: 400;
-                    cursor: pointer;
+                    cursor     : pointer;
                 }
             }
 
@@ -58,12 +58,12 @@
             justify-content: center;
             align-items    : center;
             justify-content: flex-end;
-            cursor: pointer;
+            cursor         : pointer;
 
             .language-vi {
                 margin-left: 45px;
-                cursor : pointer;
-                opacity: 0.2;
+                cursor     : pointer;
+                opacity    : 0.2;
 
                 &.active {
                     opacity: 1;
@@ -180,6 +180,7 @@
                     height       : 50px;
                     padding      : 10px;
                     border-radius: 50%;
+                    cursor       : pointer;
                     text-align   : center;
                     margin       : 0 auto;
 
