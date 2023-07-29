@@ -14,6 +14,9 @@ class TableManageUser extends Component {
         super(props);
         this.state = {
             userRedux: [],
+            offset: 0, // Vị trí bắt đầu lấy dữ liệu từ danh sách user
+            perPage: 5, // Số lượng user hiển thị trên mỗi trang
+            currentPage: 0, // Trang hiện tại
         }
     }
 
@@ -26,8 +29,8 @@ class TableManageUser extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.listUsers !== this.props.listUsers && this.state.userRedux.length === 0) {
             this.setState({
-                userRedux: this.props.listUsers
-            })
+                userRedux: this.props.listUsers,
+            });
         }
     }
 
@@ -41,28 +44,44 @@ class TableManageUser extends Component {
 
     searchHandle = debounce(async (e) => {
         let key = e.target.value;
-        console.log('check', key)
         if (key) {
             let result = await fetch(`http://localhost:8080/api/search-user?q=${key}`)
             result = await result.json()
             if (result.errCode === 0) {
                 this.setState({
-                    userRedux: result.results
+                    userRedux: result.results,
+                    currentPage: 0, // Reset trang hiện tại về 0
                 })
             } else {
                 this.setState({
-                    userRedux: this.props.listUsers
+                    userRedux: this.props.listUsers,
+                    currentPage: 0,
                 })
             }
         } else {
             this.setState({
-                userRedux: this.props.listUsers
+                userRedux: this.props.listUsers,
+                currentPage: 0,
             })
         }
     }, 300)
 
+
+    handlePageClick = (data) => {
+        const selectedPage = data.selected;
+        const offset = selectedPage * this.state.perPage;
+
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset,
+        });
+    };
+
     render() {
-        let arrUser = this.state.userRedux;
+        const { userRedux, offset, perPage, currentPage } = this.state;
+        const pageCount = Math.ceil(userRedux.length / perPage);
+        const sliceUsers = userRedux.slice(offset, offset + perPage);
+
         return (
             <>
                 <input type='' className='search-user-box' placeholder='Search user ...'
@@ -71,15 +90,18 @@ class TableManageUser extends Component {
                 <table id='TableManageUser'>
                     <tbody>
                         <tr>
+                            <th>Id</th>
                             <th><FormattedMessage id={'manage-user.fullName'} /></th>
                             <th><FormattedMessage id={'manage-user.email'} /></th>
                             <th><FormattedMessage id={'manage-user.address'} /></th>
                             <th><FormattedMessage id={'manage-user.phonenumber'} /></th>
                             <th><FormattedMessage id={'manage-user.action'} /></th>
                         </tr>
-                        {arrUser && arrUser.length > 0 ? arrUser.map((item, index) => {
+                        {sliceUsers && sliceUsers.length > 0 ? sliceUsers.map((item, index) => {
+                            const rowIndex = offset + index + 1;
                             return (
                                 <tr key={index}>
+                                    <td>{rowIndex}</td>
                                     <td>{item.fullName}</td>
                                     <td>{item.email}</td>
                                     <td>{item.address}</td>
@@ -101,6 +123,27 @@ class TableManageUser extends Component {
                         }
                     </tbody>
                 </table>
+
+
+                <ReactPaginate
+                    previousLabel={<FormattedMessage id={'ReactPaginate.dau'} />}
+                    nextLabel={<FormattedMessage id={'ReactPaginate.cuoi'} />}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={'pagination'}
+                    subContainerClassName={'pages pagination'}
+                    activeClassName={'active'}
+                    pageClassName='page-item'
+                    pageLinkClassName='page-link'
+                    previousLinkClassName='page-link'
+                    nextClassName='page-item'
+                    nextLinkClassName='page-link'
+                    breakLinkClassName='page-link'
+                />
             </>
         );
     }

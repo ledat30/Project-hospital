@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './TableManageHandBook.scss';
 import * as actions from '../../../store/actions';
 import { debounce } from 'lodash';
-
+import ReactPaginate from 'react-paginate';
 
 class TableManageHandBook extends Component {
 
@@ -12,7 +12,10 @@ class TableManageHandBook extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            handBookRedux: []
+            handBookRedux: [],
+            offset: 0, // Vị trí bắt đầu lấy dữ liệu từ danh sách user
+            perPage: 5, // Số lượng user hiển thị trên mỗi trang
+            currentPage: 0, // Trang hiện tại
         }
     }
 
@@ -46,22 +49,38 @@ class TableManageHandBook extends Component {
             result = await result.json()
             if (result.errCode === 0) {
                 this.setState({
-                    handBookRedux: result.results
+                    handBookRedux: result.results,
+                    currentPage: 0,
                 })
             } else {
                 this.setState({
-                    handBookRedux: this.props.listHandBook
+                    handBookRedux: this.props.listHandBook,
+                    currentPage: 0,
                 })
             }
         } else {
             this.setState({
-                handBookRedux: this.props.listHandBook
+                handBookRedux: this.props.listHandBook,
+                currentPage: 0,
             })
         }
     }, 300)
 
+    handlePageClick = (data) => {
+        const selectedPage = data.selected;
+        const offset = selectedPage * this.state.perPage;
+
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset,
+        });
+    };
+
     render() {
-        let arrHandBook = this.state.handBookRedux;
+        const { handBookRedux, offset, perPage, currentPage } = this.state;
+        const pageCount = Math.ceil(handBookRedux.length / perPage);
+        const sliceHandbook = handBookRedux.slice(offset, offset + perPage);
+
         return (
             <>
                 <input type='' className='search-user-box' placeholder='Search handbook ...'
@@ -70,12 +89,15 @@ class TableManageHandBook extends Component {
                 <table id='TableManageHandBook'>
                     <tbody>
                         <tr>
+                            <th>Id</th>
                             <th><FormattedMessage id={'manage-handbook.Title'} /></th>
                             <th><FormattedMessage id={'manage-handbook.Action'} /></th>
                         </tr>
-                        {arrHandBook && arrHandBook.length > 0 ? arrHandBook.map((item, index) => {
+                        {sliceHandbook && sliceHandbook.length > 0 ? sliceHandbook.map((item, index) => {
+                            const rowIndex = offset + index + 1;
                             return (
                                 <tr key={index}>
+                                    <td>{rowIndex}</td>
                                     <td>{item.title}</td>
                                     <td>
                                         <button className='btn-edit'
@@ -97,6 +119,25 @@ class TableManageHandBook extends Component {
                         }
                     </tbody>
                 </table>
+                <ReactPaginate
+                    previousLabel={<FormattedMessage id={'ReactPaginate.dau'} />}
+                    nextLabel={<FormattedMessage id={'ReactPaginate.cuoi'} />}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={'pagination'}
+                    subContainerClassName={'pages pagination'}
+                    activeClassName={'active'}
+                    pageClassName='page-item'
+                    pageLinkClassName='page-link'
+                    previousLinkClassName='page-link'
+                    nextClassName='page-item'
+                    nextLinkClassName='page-link'
+                    breakLinkClassName='page-link'
+                />
             </>
         );
     }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './TableManagerSpecialty.scss';
 import * as actions from '../../../store/actions';
 import { debounce } from 'lodash';
-
+import ReactPaginate from 'react-paginate';
 
 class TableManagerSpecialty extends Component {
 
@@ -12,7 +12,10 @@ class TableManagerSpecialty extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            specialtyRedux: []
+            specialtyRedux: [],
+            offset: 0, // Vị trí bắt đầu lấy dữ liệu từ danh sách user
+            perPage: 5, // Số lượng user hiển thị trên mỗi trang
+            currentPage: 0, // Trang hiện tại
         }
     }
 
@@ -46,22 +49,38 @@ class TableManagerSpecialty extends Component {
             result = await result.json()
             if (result.errCode === 0) {
                 this.setState({
-                    specialtyRedux: result.results
+                    specialtyRedux: result.results,
+                    currentPage: 0,
                 })
             } else {
                 this.setState({
-                    specialtyRedux: this.props.listSpecialty
+                    specialtyRedux: this.props.listSpecialty,
+                    currentPage: 0,
                 })
             }
         } else {
             this.setState({
-                specialtyRedux: this.props.listSpecialty
+                specialtyRedux: this.props.listSpecialty,
+                currentPage: 0,
             })
         }
     }, 300)
 
+    handlePageClick = (data) => {
+        const selectedPage = data.selected;
+        const offset = selectedPage * this.state.perPage;
+
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset,
+        });
+    };
+
+
     render() {
-        let arrSpecialty = this.state.specialtyRedux;
+        const { specialtyRedux, offset, perPage, currentPage } = this.state;
+        const pageCount = Math.ceil(specialtyRedux.length / perPage);
+        const sliceSpecialty = specialtyRedux.slice(offset, offset + perPage);
         return (
             <>
                 <input type='' className='search-user-box' placeholder='Search specialty ...'
@@ -70,12 +89,15 @@ class TableManagerSpecialty extends Component {
                 <table id='TableManagerSpecialty'>
                     <tbody>
                         <tr>
+                            <th>Id</th>
                             <th><FormattedMessage id={'manage-specialty.name'} /></th>
                             <th><FormattedMessage id={'manage-user.action'} /></th>
                         </tr>
-                        {arrSpecialty && arrSpecialty.length > 0 ? arrSpecialty.map((item, index) => {
+                        {sliceSpecialty && sliceSpecialty.length > 0 ? sliceSpecialty.map((item, index) => {
+                            const rowIndex = offset + index + 1;
                             return (
                                 <tr key={index}>
+                                    <td>{rowIndex}</td>
                                     <td>{item.name}</td>
                                     <td>
                                         <button className='btn-edit'
@@ -97,6 +119,25 @@ class TableManagerSpecialty extends Component {
                         }
                     </tbody>
                 </table>
+                <ReactPaginate
+                    previousLabel={<FormattedMessage id={'ReactPaginate.dau'} />}
+                    nextLabel={<FormattedMessage id={'ReactPaginate.cuoi'} />}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={'pagination'}
+                    subContainerClassName={'pages pagination'}
+                    activeClassName={'active'}
+                    pageClassName='page-item'
+                    pageLinkClassName='page-link'
+                    previousLinkClassName='page-link'
+                    nextClassName='page-item'
+                    nextLinkClassName='page-link'
+                    breakLinkClassName='page-link'
+                />
             </>
         );
     }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './TableManagePolicy.scss';
 import * as actions from '../../../store/actions';
 import { debounce } from 'lodash';
-
+import ReactPaginate from 'react-paginate';
 
 class TableManagePolicy extends Component {
 
@@ -12,7 +12,10 @@ class TableManagePolicy extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            policyRedux: []
+            policyRedux: [],
+            offset: 0, // Vị trí bắt đầu lấy dữ liệu từ danh sách user
+            perPage: 5, // Số lượng user hiển thị trên mỗi trang
+            currentPage: 0, // Trang hiện tại
         }
     }
 
@@ -47,22 +50,38 @@ class TableManagePolicy extends Component {
             result = await result.json()
             if (result.errCode === 0) {
                 this.setState({
-                    policyRedux: result.results
+                    policyRedux: result.results,
+                    currentPage: 0,
                 })
             } else {
                 this.setState({
-                    policyRedux: this.props.listPolicy
+                    policyRedux: this.props.listPolicy,
+                    currentPage: 0,
                 })
             }
         } else {
             this.setState({
-                policyRedux: this.props.listPolicy
+                policyRedux: this.props.listPolicy,
+                currentPage: 0,
             })
         }
     }, 300)
 
+    handlePageClick = (data) => {
+        const selectedPage = data.selected;
+        const offset = selectedPage * this.state.perPage;
+
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset,
+        });
+    };
+
     render() {
-        let arrPolicy = this.state.policyRedux;
+        const { policyRedux, offset, perPage, currentPage } = this.state;
+        const pageCount = Math.ceil(policyRedux.length / perPage);
+        const slicePolicy = policyRedux.slice(offset, offset + perPage);
+
         return (
             <>
                 <input type='' className='search-user-box' placeholder='Search policy ...'
@@ -71,13 +90,16 @@ class TableManagePolicy extends Component {
                 <table id='TableManagePolicy'>
                     <tbody>
                         <tr>
+                            <th>Id</th>
                             <th><FormattedMessage id={'manage_policy.name1'} /></th>
                             <th><FormattedMessage id={'manage_policy.name2'} /></th>
                             <th><FormattedMessage id={'manage_policy.action'} /></th>
                         </tr>
-                        {arrPolicy && arrPolicy.length > 0 ? arrPolicy.map((item, index) => {
+                        {slicePolicy && slicePolicy.length > 0 ? slicePolicy.map((item, index) => {
+                            const rowIndex = offset + index + 1;
                             return (
                                 <tr key={index}>
+                                    <td>{rowIndex}</td>
                                     <td>{item.nameVI}</td>
                                     <td>{item.nameEN}</td>
                                     <td>
@@ -100,6 +122,25 @@ class TableManagePolicy extends Component {
                         }
                     </tbody>
                 </table>
+                <ReactPaginate
+                    previousLabel={<FormattedMessage id={'ReactPaginate.dau'} />}
+                    nextLabel={<FormattedMessage id={'ReactPaginate.cuoi'} />}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={'pagination'}
+                    subContainerClassName={'pages pagination'}
+                    activeClassName={'active'}
+                    pageClassName='page-item'
+                    pageLinkClassName='page-link'
+                    previousLinkClassName='page-link'
+                    nextClassName='page-item'
+                    nextLinkClassName='page-link'
+                    breakLinkClassName='page-link'
+                />
             </>
         );
     }

@@ -4,18 +4,20 @@ import { FormattedMessage } from 'react-intl';
 import './DetailHandBook.scss';
 import HeaderHome from '../../HomePage/HeaderHome';
 import HomeFooter from '../../HomePage/HomeFooter';
-import { getDetailHandBookById } from '../../../services/userService';
+import { getDetailHandBookById, getAllHandBook } from '../../../services/userService';
 import _ from 'lodash';
 import { LANGUAGES } from '../../../utils';
 import { withRouter } from 'react-router';
-
+import Slider from 'react-slick';
+import axios from 'axios';
 
 class DetailHandBook extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            dataDetailHandBook: {}
+            dataDetailHandBook: {},
+            relatedHandbooks: []
         }
     }
 
@@ -29,7 +31,6 @@ class DetailHandBook extends Component {
             this.setState({
                 dataDetailHandBook: res.data
             })
-
         }
     }
 
@@ -45,8 +46,7 @@ class DetailHandBook extends Component {
     }
 
     render() {
-        let { dataDetailHandBook } = this.state;
-        console.log(dataDetailHandBook)
+        let { dataDetailHandBook, relatedHandbooks } = this.state;
         let { language } = this.props;
         return (
             <div className='detail-specialty-container'>

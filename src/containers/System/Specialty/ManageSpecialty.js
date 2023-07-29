@@ -189,7 +189,7 @@ class ManageSpecialty extends Component {
 
                         </div>
 
-                        <div className='col-12 mb-5'>
+                        <div className='col-12 '>
                             <div className='title my-3'><FormattedMessage id="manage-specialty.title" /></div>
                             <TableManagerSpecialty
                                 handleEditSpecialtyFromPaentKey={this.handleEditSpecialtyFromPaent}

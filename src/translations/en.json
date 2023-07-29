@@ -136,6 +136,10 @@
     "manage-doctor": {
         "title": "List of Doctor "
     },
+    "ReactPaginate": {
+        "dau": "< Previous",
+        "cuoi": "Next >"
+    },
     "patient": {
         "detail-doctor": {
             "Schedule": "Schedule",
@@ -206,7 +210,8 @@
             "clinic": "Choose a clinic",
             "content": "Doctor's details",
             "name": "FullName",
-            "action": "Action"
+            "action": "Action",
+            "address": "Address"
         }
     }
 }

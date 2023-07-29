@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './TableCategory.scss';
 import * as actions from '../../../store/actions';
 import { debounce } from 'lodash';
-
+import ReactPaginate from 'react-paginate';
 
 class TableCategory extends Component {
 
@@ -12,7 +12,10 @@ class TableCategory extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            CategoryhandBookRedux: []
+            CategoryhandBookRedux: [],
+            offset: 0, // Vị trí bắt đầu lấy dữ liệu từ danh sách user
+            perPage: 5, // Số lượng user hiển thị trên mỗi trang
+            currentPage: 0, // Trang hiện tại
         }
     }
 
@@ -46,22 +49,37 @@ class TableCategory extends Component {
             result = await result.json()
             if (result.errCode === 0) {
                 this.setState({
-                    CategoryhandBookRedux: result.results
+                    CategoryhandBookRedux: result.results,
+                    currentPage: 0,
                 })
             } else {
                 this.setState({
-                    CategoryhandBookRedux: this.props.listCategory
+                    CategoryhandBookRedux: this.props.listCategory,
+                    currentPage: 0,
                 })
             }
         } else {
             this.setState({
-                CategoryhandBookRedux: this.props.listCategory
+                CategoryhandBookRedux: this.props.listCategory,
+                currentPage: 0,
             })
         }
     }, 300)
 
+    handlePageClick = (data) => {
+        const selectedPage = data.selected;
+        const offset = selectedPage * this.state.perPage;
+
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset,
+        });
+    };
+
     render() {
-        let arrCategoryHandBook = this.state.CategoryhandBookRedux;
+        const { CategoryhandBookRedux, offset, perPage, currentPage } = this.state;
+        const pageCount = Math.ceil(CategoryhandBookRedux.length / perPage);
+        const sliceCateogy = CategoryhandBookRedux.slice(offset, offset + perPage);
         return (
             <>
                 <input type='' className='search-user-box' placeholder='Search category ...'
@@ -70,13 +88,16 @@ class TableCategory extends Component {
                 <table id='TableCategory'>
                     <tbody>
                         <tr>
+                            <th>Id</th>
                             <th><FormattedMessage id={'manage-handbook.name1'} /></th>
                             <th><FormattedMessage id={'manage-handbook.name2'} /></th>
                             <th><FormattedMessage id={'manage-handbook.Action'} /></th>
                         </tr>
-                        {arrCategoryHandBook && arrCategoryHandBook.length > 0 ? arrCategoryHandBook.map((item, index) => {
+                        {sliceCateogy && sliceCateogy.length > 0 ? sliceCateogy.map((item, index) => {
+                            const rowIndex = offset + index + 1;
                             return (
                                 <tr key={index}>
+                                    <td>{rowIndex}</td>
                                     <td>{item.nameVI}</td>
                                     <td>{item.nameEN}</td>
                                     <td>
@@ -99,6 +120,25 @@ class TableCategory extends Component {
                         }
                     </tbody>
                 </table>
+                <ReactPaginate
+                    previousLabel={<FormattedMessage id={'ReactPaginate.dau'} />}
+                    nextLabel={<FormattedMessage id={'ReactPaginate.cuoi'} />}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={'pagination'}
+                    subContainerClassName={'pages pagination'}
+                    activeClassName={'active'}
+                    pageClassName='page-item'
+                    pageLinkClassName='page-link'
+                    previousLinkClassName='page-link'
+                    nextClassName='page-item'
+                    nextLinkClassName='page-link'
+                    breakLinkClassName='page-link'
+                />
             </>
         );
     }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './TableManagerClinic.scss';
 import * as actions from '../../../store/actions';
 import { debounce } from 'lodash';
-
+import ReactPaginate from 'react-paginate';
 
 class TableManagerClinic extends Component {
 
@@ -12,7 +12,10 @@ class TableManagerClinic extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            clinicRedux: []
+            clinicRedux: [],
+            offset: 0, // Vị trí bắt đầu lấy dữ liệu từ danh sách user
+            perPage: 5, // Số lượng user hiển thị trên mỗi trang
+            currentPage: 0, // Trang hiện tại
         }
     }
 
@@ -46,22 +49,37 @@ class TableManagerClinic extends Component {
             result = await result.json()
             if (result.errCode === 0) {
                 this.setState({
-                    clinicRedux: result.results
+                    clinicRedux: result.results,
+                    currentPage: 0,
                 })
             } else {
                 this.setState({
-                    clinicRedux: this.props.listClinics
+                    clinicRedux: this.props.listClinics,
+                    currentPage: 0,
                 })
             }
         } else {
             this.setState({
-                clinicRedux: this.props.listClinics
+                clinicRedux: this.props.listClinics,
+                currentPage: 0,
             })
         }
     }, 300)
 
+    handlePageClick = (data) => {
+        const selectedPage = data.selected;
+        const offset = selectedPage * this.state.perPage;
+
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset,
+        });
+    };
+
     render() {
-        let arrClinic = this.state.clinicRedux;
+        const { clinicRedux, offset, perPage, currentPage } = this.state;
+        const pageCount = Math.ceil(clinicRedux.length / perPage);
+        const sliceClinic = clinicRedux.slice(offset, offset + perPage);
         return (
             <>
                 <input type='' className='search-user-box' placeholder='Search clinic ...'
@@ -70,13 +88,16 @@ class TableManagerClinic extends Component {
                 <table id='TableManagerClinic'>
                     <tbody>
                         <tr>
+                            <th>Id</th>
                             <th><FormattedMessage id={'manage-user.fullName'} /></th>
                             <th><FormattedMessage id={'manage-user.address'} /></th>
                             <th><FormattedMessage id={'manage-user.action'} /></th>
                         </tr>
-                        {arrClinic && arrClinic.length > 0 ? arrClinic.map((item, index) => {
+                        {sliceClinic && sliceClinic.length > 0 ? sliceClinic.map((item, index) => {
+                            const rowIndex = offset + index + 1;
                             return (
                                 <tr key={index}>
+                                    <td>{rowIndex}</td>
                                     <td>{item.name}</td>
                                     <td>{item.address}</td>
                                     <td>
@@ -99,6 +120,25 @@ class TableManagerClinic extends Component {
                         }
                     </tbody>
                 </table>
+                <ReactPaginate
+                    previousLabel={<FormattedMessage id={'ReactPaginate.dau'} />}
+                    nextLabel={<FormattedMessage id={'ReactPaginate.cuoi'} />}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={'pagination'}
+                    subContainerClassName={'pages pagination'}
+                    activeClassName={'active'}
+                    pageClassName='page-item'
+                    pageLinkClassName='page-link'
+                    previousLinkClassName='page-link'
+                    nextClassName='page-item'
+                    nextLinkClassName='page-link'
+                    breakLinkClassName='page-link'
+                />
             </>
         );
     }

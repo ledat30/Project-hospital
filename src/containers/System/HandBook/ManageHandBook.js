@@ -253,7 +253,7 @@ class ManageHandBook extends Component {
 
                         </div>
 
-                        <div className='col-12 mb-5'>
+                        <div className='col-12'>
                             <div className='title my-3'><FormattedMessage id="manage-handbook.title" /></div>
                             <TableManageHandBook
                                 handleEditHandBookFromPaentKey={this.handleEditHandBookFromPaent}

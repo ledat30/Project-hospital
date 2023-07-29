@@ -136,6 +136,10 @@
     "manage-doctor": {
         "title": "Danh sách bác sĩ "
     },
+    "ReactPaginate": {
+        "dau": "< Đầu trang",
+        "cuoi": "Tiếp >"
+    },
     "patient": {
         "detail-doctor": {
             "Schedule": "Lịch khám",
@@ -206,7 +210,8 @@
             "clinic": "Chọn phòng khám",
             "content": "Nội dung chi tiết bác sĩ",
             "name": "Họ và tên",
-            "action": "Trạng thái"
+            "action": "Trạng thái",
+            "address": "Địa chỉ"
         }
     }
 }

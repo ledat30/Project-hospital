@@ -390,7 +390,7 @@ class ManageDoctor extends Component {
                         </span> : <span><FormattedMessage id={'admin.manage-doctor.Create_information'} /></span>
                     }
                 </button>
-                <div className='col-12 mb-5'>
+                <div className='col-12 '>
                     <div className='title2 my-3'><FormattedMessage id="manage-doctor.title" /></div>
                     <TableManagerDoctor />
                 </div>

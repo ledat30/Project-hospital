@@ -7,6 +7,7 @@ import HomeFooter from '../../HomePage/HomeFooter';
 import { getAllCategoryHandbook, getAllHandBook } from '../../../services/userService';
 import _, { debounce } from 'lodash';
 import { LANGUAGES } from '../../../utils';
+import ReactPaginate from 'react-paginate';
 
 
 class AllCategory extends Component {
@@ -15,7 +16,10 @@ class AllCategory extends Component {
         super(props);
         this.state = {
             dataCategory: [],
-            dataHandbook: []
+            dataHandbook: [],
+            offset: 0, // Vị trí bắt đầu lấy dữ liệu từ danh sách user
+            perPage: 6, // Số lượng user hiển thị trên mỗi trang
+            currentPage: 0, // Trang hiện tại
         }
     }
 
@@ -58,26 +62,41 @@ class AllCategory extends Component {
             result = await result.json()
             if (result.errCode === 0) {
                 this.setState({
-                    dataHandbook: result.results
+                    dataHandbook: result.results,
+                    currentPage: 0,
                 })
             } else {
                 this.setState({
-                    dataHandbook: []
+                    dataHandbook: [],
+                    currentPage: 0,
                 })
             }
         } else {
             let handbooks = await getAllHandBook();
             if (handbooks && handbooks.errCode === 0) {
                 this.setState({
-                    dataHandbook: handbooks.data ? handbooks.data : []
+                    dataHandbook: handbooks.data ? handbooks.data : [],
+                    currentPage: 0,
                 })
             }
         }
     }, 300)
 
+    handlePageClick = (data) => {
+        const selectedPage = data.selected;
+        const offset = selectedPage * this.state.perPage;
+
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset,
+        });
+    };
+
     render() {
         let { dataCategory } = this.state;
-        let { dataHandbook } = this.state;
+        const { dataHandbook, offset, perPage, currentPage } = this.state;
+        const pageCount = Math.ceil(dataHandbook.length / perPage);
+        const sliceHandbook = dataHandbook.slice(offset, offset + perPage);
         let { language } = this.props;
         return (
             <div className='all-categort-container'>
@@ -106,7 +125,7 @@ class AllCategory extends Component {
                                 />
                             </div>
                             <div className='all-blog'>
-                                {dataHandbook && dataHandbook.length > 0 ? dataHandbook.map((item, index) => {
+                                {sliceHandbook && sliceHandbook.length > 0 ? sliceHandbook.map((item, index) => {
                                     return (
                                         <div className='blog' key={index}
                                             onClick={() => this.handleViewDetailHandbook(item)}>
@@ -127,6 +146,25 @@ class AllCategory extends Component {
                                     )
                                 }
                             </div>
+                            <ReactPaginate
+                                previousLabel={<FormattedMessage id={'ReactPaginate.dau'}/>}
+                                nextLabel={<FormattedMessage id={'ReactPaginate.cuoi'}/>}
+                                breakLabel={'...'}
+                                breakClassName={'break-me'}
+                                pageCount={pageCount}
+                                marginPagesDisplayed={2}
+                                pageRangeDisplayed={6}
+                                onPageChange={this.handlePageClick}
+                                containerClassName={'pagination'}
+                                subContainerClassName={'pages pagination'}
+                                activeClassName={'active'}
+                                pageClassName='page-item'
+                                pageLinkClassName='page-link'
+                                previousLinkClassName='page-link'
+                                nextClassName='page-item'
+                                nextLinkClassName='page-link'
+                                breakLinkClassName='page-link'
+                            />
                         </div>
                     </div>
                 </div>
