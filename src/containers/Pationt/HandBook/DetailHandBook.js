@@ -46,6 +46,7 @@ class DetailHandBook extends Component {
 
     render() {
         let { dataDetailHandBook } = this.state;
+        console.log(dataDetailHandBook)
         let { language } = this.props;
         return (
             <div className='detail-specialty-container'>

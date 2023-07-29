@@ -33,6 +33,7 @@ class ManageHandBook extends Component {
     }
     async componentDidMount() {
         this.props.fetchAllCategoryHandBookRedux();
+        this.props.fetchAllHandBookRedux();
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -133,8 +134,8 @@ class ManageHandBook extends Component {
 
         if (res && res.errCode === 0 && action === CRUD_ACTIONS.CREATE) {
             toast.success('Add new specialty success!')
+            this.props.fetchAllHandBookRedux();
         }
-        this.props.fetchAllHandBookRedux();
     }
 
     handleEditHandBook = () => {
@@ -149,9 +150,10 @@ class ManageHandBook extends Component {
                 title: this.state.title,
                 categoryId: this.state.categoryId,
                 avatar: this.state.avatar,
-            })
+            });
+            this.props.fetchAllHandBookRedux();
         }
-        this.props.fetchAllHandBookRedux();
+
     }
 
     handleEditHandBookFromPaent = (handbook) => {

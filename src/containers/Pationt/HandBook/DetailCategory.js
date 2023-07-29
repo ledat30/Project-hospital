@@ -58,9 +58,9 @@ class DetailCategory extends Component {
         }
     }
 
-    handleViewDetailHandbook = (handBooks) => {
+    handleViewDetailHandbook = (handbook) => {
         if (this.props.history) {
-            this.props.history.push(`/detail-handbook/${handBooks.id}`)
+            this.props.history.push(`/detail-handbook/${handbook.id}`)
         }
     }
 
@@ -125,7 +125,7 @@ class DetailCategory extends Component {
                             }
                         </div>
                         <div className='all-blogs'>
-                            {handbook && handbook.length > 0 && handbook.map((item, index) => {
+                            {handbook && handbook.length > 0 ? handbook.map((item, index) => {
                                 return (
                                     <div className='blogs' key={index}
                                         onClick={() => this.handleViewDetailHandbook(item)}
@@ -139,7 +139,14 @@ class DetailCategory extends Component {
                                         </div>
                                     </div>
                                 )
-                            })}
+                            })
+                                :
+                                (
+                                    <b className='tb'>
+                                        <FormattedMessage id={'patient.detail-category.tb'} />
+                                    </b>
+                                )
+                            }
 
                         </div>
                     </div>
