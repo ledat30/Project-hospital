@@ -25,6 +25,9 @@ class ManageSpecialty extends Component {
             isOpen: false,
             descriptionHTML: '',
             descriptionMarkdown: '',
+            descriptionHTML_En: '',
+            descriptionMarkdown_En: '',
+            name_en: '',
             specialtyEditId: '',
             avatar: ''
         }
@@ -44,11 +47,22 @@ class ManageSpecialty extends Component {
                 avatar: '',
                 action: CRUD_ACTIONS.CREATE,
                 previewImgURL: '',
+                descriptionHTML_En: '',
+                descriptionMarkdown_En: '',
+                name_en: '',
             })
         }
     }
 
-    handleOnchangInput = (e, id) => {
+    handleOnchangInputVi = (e, id) => {
+        let stateCopy = { ...this.state }
+        stateCopy[id] = e.target.value;
+        this.setState({
+            ...stateCopy
+        })
+    }
+
+    handleOnchangInputEn = (e, id) => {
         let stateCopy = { ...this.state }
         stateCopy[id] = e.target.value;
         this.setState({
@@ -60,6 +74,13 @@ class ManageSpecialty extends Component {
         this.setState({
             descriptionHTML: html,
             descriptionMarkdown: text
+        })
+    }
+
+    handleEditorChangeEn = ({ html, text }) => {
+        this.setState({
+            descriptionHTML_En: html,
+            descriptionMarkdown_En: text
         })
     }
 
@@ -84,7 +105,7 @@ class ManageSpecialty extends Component {
 
     checkValidateInput = () => {
         let isValid = true;
-        let arrCheck = ['name', 'descriptionHTML', 'descriptionMarkdown']
+        let arrCheck = ['name', 'name_en', 'descriptionHTML_En', 'descriptionMarkdown_En', 'descriptionHTML', 'descriptionMarkdown']
         for (let i = 0; i < arrCheck.length; i++) {
             if (!this.state[arrCheck[i]]) {
                 isValid = false;
@@ -113,6 +134,9 @@ class ManageSpecialty extends Component {
             this.props.editSpecialtyRedux({
                 id: this.state.specialtyEditId,
                 name: this.state.name,
+                name_en: this.state.name_en,
+                descriptionHTML_En: this.state.descriptionHTML_En,
+                descriptionMarkdown_En: this.state.descriptionMarkdown_En,
                 avatar: this.state.avatar,
                 descriptionHTML: this.state.descriptionHTML,
                 descriptionMarkdown: this.state.descriptionMarkdown
@@ -130,6 +154,9 @@ class ManageSpecialty extends Component {
             name: specialty.name,
             descriptionHTML: specialty.descriptionHTML,
             descriptionMarkdown: specialty.descriptionMarkdown,
+            name_en: specialty.name_en,
+            descriptionHTML_En: specialty.descriptionHTML_En,
+            descriptionMarkdown_En: specialty.descriptionMarkdown_En,
             avatar: '',
             previewImgURL: imageBase64,
             action: CRUD_ACTIONS.EDIT,
@@ -144,13 +171,20 @@ class ManageSpecialty extends Component {
                     <div className='ms-title'><FormattedMessage id={'manage-specialty.title1'} /></div>
 
                     <div className='add-new-specialty row'>
-                        <div className='col-6 form-group'>
+                        <div className='col-4 form-group'>
                             <label><FormattedMessage id={'manage-specialty.name'} /></label>
                             <input className='form-control' type='text' value={this.state.name}
-                                onChange={(e) => this.handleOnchangInput(e, 'name')}
+                                onChange={(e) => this.handleOnchangInputVi(e, 'name')}
                             />
                         </div>
-                        <div className='col-3 form-group'>
+                        <div className='col-4 form-group'>
+                            <label><FormattedMessage id={'manage-specialty.name_en'} /></label>
+                            <input className='form-control' type='text'
+                                value={this.state.name_en}
+                                onChange={(e) => this.handleOnchangInputEn(e, 'name_en')}
+                            />
+                        </div>
+                        <div className='col-4 form-group'>
                             <label><FormattedMessage id="manage-user.image" /></label>
                             <div className='preview-img-container'>
                                 <input id='prevewimg' type='file' hidden
@@ -170,6 +204,14 @@ class ManageSpecialty extends Component {
                                 renderHTML={text => mdParser.render(text)}
                                 onChange={this.handleEditorChange}
                                 value={this.state.descriptionMarkdown}
+                            />
+                        </div>
+                        <div className='col-12'>
+                            <label><FormattedMessage id={'manage-specialty.Describe_en'} /></label>
+                            <MdEditor style={{ height: '350px' }}
+                                renderHTML={text => mdParser.render(text)}
+                                onChange={this.handleEditorChangeEn}
+                                value={this.state.descriptionMarkdown_En}
                             />
                         </div>
                         <div className='col-12'>

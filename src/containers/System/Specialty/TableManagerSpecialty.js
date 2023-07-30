@@ -91,6 +91,7 @@ class TableManagerSpecialty extends Component {
                         <tr>
                             <th>Id</th>
                             <th><FormattedMessage id={'manage-specialty.name'} /></th>
+                            <th><FormattedMessage id={'manage-specialty.name_en'} /></th>
                             <th><FormattedMessage id={'manage-user.action'} /></th>
                         </tr>
                         {sliceSpecialty && sliceSpecialty.length > 0 ? sliceSpecialty.map((item, index) => {
@@ -99,6 +100,7 @@ class TableManagerSpecialty extends Component {
                                 <tr key={index}>
                                     <td>{rowIndex}</td>
                                     <td>{item.name}</td>
+                                    <td>{item.name_en}</td>
                                     <td>
                                         <button className='btn-edit'
                                             onClick={() => this.handleEditSpecialty(item)}>

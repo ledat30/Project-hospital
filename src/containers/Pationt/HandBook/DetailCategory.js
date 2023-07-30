@@ -8,6 +8,7 @@ import _, { debounce } from 'lodash';
 import { LANGUAGES } from '../../../utils';
 import './DetailCategory.scss';
 import { withRouter } from 'react-router';
+import ReactPaginate from 'react-paginate';
 
 class DetailCategory extends Component {
 
@@ -15,7 +16,10 @@ class DetailCategory extends Component {
         super(props);
         this.state = {
             dataDetailCategory: {},
-            handbook: []
+            handbook: [],
+            offset: 0, // Vị trí bắt đầu lấy dữ liệu từ danh sách user
+            perPage: 4, // Số lượng user hiển thị trên mỗi trang
+            currentPage: 0, // Trang hiện tại
         }
     }
 
@@ -71,11 +75,13 @@ class DetailCategory extends Component {
             result = await result.json()
             if (result.errCode === 0) {
                 this.setState({
-                    handbook: result.results
+                    handbook: result.results,
+                    currentPage: 0,
                 })
             } else {
                 this.setState({
-                    handbook: []
+                    handbook: [],
+                    currentPage: 0,
                 })
             }
         } else {
@@ -95,14 +101,25 @@ class DetailCategory extends Component {
                 }
                 this.setState({
                     dataDetailCategory: res.data,
-                    handbook: handbook
+                    handbook: handbook,
+                    currentPage: 0,
                 })
             }
         }
     }, 300)
+
+    handlePageClick = ({ selected }) => {
+        const { perPage } = this.state;
+        const offset = selected * perPage;
+        this.setState({ offset, currentPage: selected });
+    };
+
     render() {
-        let { dataDetailCategory, handbook } = this.state;
+        let { dataDetailCategory } = this.state;
         let { language } = this.props;
+        const { handbook, offset, perPage, currentPage } = this.state;
+        const pageCount = Math.ceil(handbook.length / perPage);
+        const sliceHandbook = handbook.slice(offset, offset + perPage);
         return (
             <div className='detail-category-container'>
                 <HeaderHome />
@@ -125,7 +142,7 @@ class DetailCategory extends Component {
                             }
                         </div>
                         <div className='all-blogs'>
-                            {handbook && handbook.length > 0 ? handbook.map((item, index) => {
+                            {sliceHandbook && sliceHandbook.length > 0 ? sliceHandbook.map((item, index) => {
                                 return (
                                     <div className='blogs' key={index}
                                         onClick={() => this.handleViewDetailHandbook(item)}
@@ -149,6 +166,25 @@ class DetailCategory extends Component {
                             }
 
                         </div>
+                        <ReactPaginate
+                            previousLabel={<FormattedMessage id={'ReactPaginate.dau'} />}
+                            nextLabel={<FormattedMessage id={'ReactPaginate.cuoi'} />}
+                            breakLabel={'...'}
+                            breakClassName={'break-me'}
+                            pageCount={pageCount}
+                            marginPagesDisplayed={2}
+                            pageRangeDisplayed={6}
+                            onPageChange={this.handlePageClick}
+                            containerClassName={'pagination'}
+                            subContainerClassName={'pages pagination'}
+                            activeClassName={'active'}
+                            pageClassName='page-item'
+                            pageLinkClassName='page-link'
+                            previousLinkClassName='page-link'
+                            nextClassName='page-item'
+                            nextLinkClassName='page-link'
+                            breakLinkClassName='page-link'
+                        />
                     </div>
 
                 </div>

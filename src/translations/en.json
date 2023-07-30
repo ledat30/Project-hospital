@@ -104,7 +104,9 @@
         "edit": "Edit specialty ",
         "title1": "Manage Specialty",
         "name": "Name specialty",
-        "Describe": "Describe"
+        "Describe": "Describe",
+        "Describe_en": "Describe -en",
+        "name_en": "Name specialty -en"
     },
     "manage-handbook": {
         "title": "List of Handbook",

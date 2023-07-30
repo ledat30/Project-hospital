@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import Slider from 'react-slick';
 import { getAllSpecialty } from '../../../services/userService';
 import { withRouter } from 'react-router';
+import { LANGUAGES } from '../../../utils';
 
 
 class Specialty extends Component {
@@ -37,6 +38,7 @@ class Specialty extends Component {
 
     render() {
         let { dataSpecialty } = this.state;
+        let { language } = this.props;
         return (
             <div className='section-share '>
                 <div className='section-container'>
@@ -60,7 +62,7 @@ class Specialty extends Component {
                                             <div className='bg-image section-specialty'
                                                 style={{ backgroundImage: `url(${item.image})` }}
                                             />
-                                            <div className='specialty-name'>{item.name}</div>
+                                            <div className='specialty-name'>{language === LANGUAGES.VI ? item.name : item.name_en}</div>
                                         </div>
                                     )
                                 })}

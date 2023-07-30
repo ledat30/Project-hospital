@@ -104,7 +104,9 @@
         "edit": "Sửa chuyên khoa ",
         "title1": "Quản lý chuyên khoa",
         "name": "Tên chuyên khoa",
-        "Describe": "Mô tả"
+        "Describe": "Mô tả",
+        "Describe_en": "Mô tả -en",
+        "name_en":"Tên chuyên khoa -en"
     },
     "manage-handbook": {
         "title": "Danh sách cẩm nang",

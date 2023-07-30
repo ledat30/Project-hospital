@@ -66,6 +66,7 @@ class CategorySpecialty extends Component {
 
     render() {
         let { dataSpecialty } = this.state;
+        let { language } = this.props;
         return (
             <div className='container-specialty'>
                 <HeaderHome />
@@ -91,7 +92,8 @@ class CategorySpecialty extends Component {
                                     >
                                     </div>
                                     <div className='right-nd-specialty'>
-                                        <div>{item.name}</div>
+                                        <div>{language === LANGUAGES.VI ? item.name
+                                            : item.name_en}</div>
                                     </div>
                                 </div>
                             )
