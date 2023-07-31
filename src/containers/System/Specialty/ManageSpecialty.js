@@ -171,20 +171,20 @@ class ManageSpecialty extends Component {
                     <div className='ms-title'><FormattedMessage id={'manage-specialty.title1'} /></div>
 
                     <div className='add-new-specialty row'>
-                        <div className='col-4 form-group'>
+                        <div className='col-5 form-group'>
                             <label><FormattedMessage id={'manage-specialty.name'} /></label>
                             <input className='form-control' type='text' value={this.state.name}
                                 onChange={(e) => this.handleOnchangInputVi(e, 'name')}
                             />
                         </div>
-                        <div className='col-4 form-group'>
+                        <div className='col-5 form-group'>
                             <label><FormattedMessage id={'manage-specialty.name_en'} /></label>
                             <input className='form-control' type='text'
                                 value={this.state.name_en}
                                 onChange={(e) => this.handleOnchangInputEn(e, 'name_en')}
                             />
                         </div>
-                        <div className='col-4 form-group'>
+                        <div className='col-2 form-group'>
                             <label><FormattedMessage id="manage-user.image" /></label>
                             <div className='preview-img-container'>
                                 <input id='prevewimg' type='file' hidden

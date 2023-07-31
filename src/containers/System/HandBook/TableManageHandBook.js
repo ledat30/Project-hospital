@@ -91,6 +91,7 @@ class TableManageHandBook extends Component {
                         <tr>
                             <th>Id</th>
                             <th><FormattedMessage id={'manage-handbook.Title'} /></th>
+                            <th><FormattedMessage id={'manage-handbook.Title1'} /></th>
                             <th><FormattedMessage id={'manage-handbook.Action'} /></th>
                         </tr>
                         {sliceHandbook && sliceHandbook.length > 0 ? sliceHandbook.map((item, index) => {
@@ -99,6 +100,7 @@ class TableManageHandBook extends Component {
                                 <tr key={index}>
                                     <td>{rowIndex}</td>
                                     <td>{item.title}</td>
+                                    <td>{item.title_en}</td>
                                     <td>
                                         <button className='btn-edit'
                                             onClick={() => this.handleEditHandbook(item)}>

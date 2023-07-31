@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import Slider from 'react-slick';
 import { withRouter } from 'react-router';
 import * as actions from '../../../store/actions';
+import { LANGUAGES } from '../../../utils';
 
 class HandBook extends Component {
     constructor(props) {
@@ -38,6 +39,7 @@ class HandBook extends Component {
     }
     render() {
         let allHandBook = this.state.dataHandBook;
+        let { language } = this.props;
         return (
             <div className='section-share section-handbook'>
                 <div className='section-container'>
@@ -56,7 +58,7 @@ class HandBook extends Component {
                                         >
                                             <div className='bg-image section-handbook'
                                                 style={{ backgroundImage: `url(${item.image})` }} />
-                                            <div className='handbook-title'>{item.title}</div>
+                                            <div className='handbook-title'>{language === LANGUAGES.VI ? item.title : item.title_en}</div>
                                         </div>
                                     )
                                 })}

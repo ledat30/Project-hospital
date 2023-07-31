@@ -29,7 +29,11 @@ class ManageClinic extends Component {
             address: '',
             avatar: '',
             action: '',
-            userEditId: ''
+            userEditId: '',
+            name_en: '',
+            address_en: '',
+            descriptionHTML_En: '',
+            descriptionMarkdown_En: ''
         }
     }
     async componentDidMount() {
@@ -48,6 +52,10 @@ class ManageClinic extends Component {
                 avatar: '',
                 action: CRUD_ACTIONS.CREATE,
                 previewImgURL: '',
+                name_en: '',
+                address_en: '',
+                descriptionHTML_En: '',
+                descriptionMarkdown_En: ''
             })
         }
 
@@ -61,10 +69,25 @@ class ManageClinic extends Component {
         })
     }
 
+    handleOnchangInputEn = (e, id) => {
+        let stateCopy = { ...this.state }
+        stateCopy[id] = e.target.value;
+        this.setState({
+            ...stateCopy
+        })
+    }
+
     handleEditorChange = ({ html, text }) => {
         this.setState({
             descriptionHTML: html,
             descriptionMarkdown: text
+        })
+    }
+
+    handleEditorChangeEn = ({ html, text }) => {
+        this.setState({
+            descriptionHTML_En: html,
+            descriptionMarkdown_En: text
         })
     }
 
@@ -89,7 +112,7 @@ class ManageClinic extends Component {
 
     checkValidateInput = () => {
         let isValid = true;
-        let arrCheck = ['name', 'address', 'descriptionHTML', 'descriptionMarkdown']
+        let arrCheck = ['name', 'address', 'name_en', 'address_en', 'descriptionHTML_En', 'descriptionMarkdown_En', 'descriptionHTML', 'descriptionMarkdown']
         for (let i = 0; i < arrCheck.length; i++) {
             if (!this.state[arrCheck[i]]) {
                 isValid = false;
@@ -124,7 +147,11 @@ class ManageClinic extends Component {
                 avatar: this.state.avatar,
                 address: this.state.address,
                 descriptionHTML: this.state.descriptionHTML,
-                descriptionMarkdown: this.state.descriptionMarkdown
+                descriptionMarkdown: this.state.descriptionMarkdown,
+                name_en: this.state.name_en,
+                address_en: this.state.address_en,
+                descriptionHTML_En: this.state.descriptionHTML_En,
+                descriptionMarkdown_En: this.state.descriptionMarkdown_En,
             })
         }
         this.props.fetchClinicRedux();
@@ -143,7 +170,11 @@ class ManageClinic extends Component {
             avatar: '',
             previewImgURL: imageBase64,
             action: CRUD_ACTIONS.EDIT,
-            userEditId: clinic.id
+            userEditId: clinic.id,
+            name_en: clinic.name_en,
+            address_en: clinic.address_en,
+            descriptionHTML_En: clinic.descriptionHTML_En,
+            descriptionMarkdown_En: clinic.descriptionMarkdown_En,
         })
     }
     render() {
@@ -153,16 +184,30 @@ class ManageClinic extends Component {
                     <div className='ms-title'><FormattedMessage id={'manage-clinic.title1'} /> </div>
 
                     <div className='add-new-specialty row'>
-                        <div className='col-5 form-group'>
+                        <div className='col-6 form-group'>
                             <label><FormattedMessage id={'manage-clinic.name'} /></label>
                             <input className='form-control' type='text' value={this.state.name}
                                 onChange={(e) => this.handleOnchangInput(e, 'name')}
                             />
                         </div>
-                        <div className='col-5 form-group'>
+                        <div className='col-6 form-group'>
+                            <label><FormattedMessage id={'manage-clinic.name_en'} /></label>
+                            <input className='form-control' type='text'
+                                value={this.state.name_en}
+                                onChange={(e) => this.handleOnchangInputEn(e, 'name_en')}
+                            />
+                        </div>
+                        <div className='col-6 form-group'>
                             <label><FormattedMessage id={'manage-clinic.address'} /></label>
                             <input className='form-control' type='text' value={this.state.address}
                                 onChange={(e) => this.handleOnchangInput(e, 'address')}
+                            />
+                        </div>
+                        <div className='col-6 form-group'>
+                            <label><FormattedMessage id={'manage-clinic.address_en'} /></label>
+                            <input className='form-control' type='text'
+                                value={this.state.address_en}
+                                onChange={(e) => this.handleOnchangInputEn(e, 'address_en')}
                             />
                         </div>
                         <div className='col-2 form-group'>
@@ -187,6 +232,14 @@ class ManageClinic extends Component {
                                 renderHTML={text => mdParser.render(text)}
                                 onChange={this.handleEditorChange}
                                 value={this.state.descriptionMarkdown}
+                            />
+                        </div>
+                        <div className='col-12'>
+                            <label><FormattedMessage id="manage-clinic.Describe-en" /></label>
+                            <MdEditor style={{ height: '300px' }}
+                                renderHTML={text => mdParser.render(text)}
+                                onChange={this.handleEditorChangeEn}
+                                value={this.state.descriptionMarkdown_En}
                             />
                         </div>
                         <div className='col-12'>

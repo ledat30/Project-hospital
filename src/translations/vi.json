@@ -96,7 +96,10 @@
         "title1": "QUẢN LÝ CƠ SỞ",
         "name": "Tên cơ sở",
         "address": "Địa chỉ",
-        "Describe": "Mô tả"
+        "Describe": "Mô tả",
+        "name_en": "Tên cơ sở -en",
+        "address_en": "Địa chỉ -en",
+        "Describe-en": "Mô tả -en"
     },
     "manage-specialty": {
         "title": "Danh sách chuyên khoa",
@@ -106,7 +109,7 @@
         "name": "Tên chuyên khoa",
         "Describe": "Mô tả",
         "Describe_en": "Mô tả -en",
-        "name_en":"Tên chuyên khoa -en"
+        "name_en": "Tên chuyên khoa -en"
     },
     "manage-handbook": {
         "title": "Danh sách cẩm nang",
@@ -122,7 +125,8 @@
         "Title": "Tiêu đề",
         "tiitle3": "QUẢN LÝ CẨM NANG",
         "Description-Vi": "Mô tả -vi",
-        "Description-En": "Mô tả -en"
+        "Description-En": "Mô tả -en",
+        "Title1":"Tiêu đề -en"
     },
     "manage_policy": {
         "title": "Danh sách chính sách",

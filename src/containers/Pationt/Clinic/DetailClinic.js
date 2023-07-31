@@ -55,7 +55,7 @@ class DetailClinic extends Component {
 
     render() {
         let { arrDoctorId, dataDetailClinic } = this.state;
-        console.log(this.state)
+        let { language } = this.props;
 
         return (
             <div className='detail-specialty-container'>
@@ -65,9 +65,12 @@ class DetailClinic extends Component {
                         {dataDetailClinic && !_.isEmpty(dataDetailClinic)
                             &&
                             <>
-                                <div className='name-clinic'>{dataDetailClinic.name}</div>
-                                <div style={{ padding: '15px 0', fontSize: '15px' }}><b><FormattedMessage id={'patient.clinic.address'} /> {dataDetailClinic.address}</b></div>
-                                <div dangerouslySetInnerHTML={{ __html: dataDetailClinic.descriptionHTML }}></div>
+                                <div className='name-clinic'>{language === LANGUAGES.VI ? dataDetailClinic.name : dataDetailClinic.name_en}</div>
+                                <div style={{ padding: '15px 0', fontSize: '15px' }}><b><FormattedMessage id={'patient.clinic.address'} /> {language === LANGUAGES.VI ? dataDetailClinic.address : dataDetailClinic.address_en}</b></div>
+                                <div dangerouslySetInnerHTML={language === LANGUAGES.VI ?
+                                    { __html: dataDetailClinic.descriptionHTML }
+                                    :
+                                    { __html: dataDetailClinic.descriptionHTML_En }}></div>
                             </>
 
                         }

@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import Slider from 'react-slick';
 import { getAllClinic } from '../../../services/userService';
 import { withRouter } from 'react-router';
+import { LANGUAGES } from '../../../utils';
 
 class CoSoYte extends Component {
 
@@ -28,14 +29,21 @@ class CoSoYte extends Component {
             this.props.history.push(`/detail-clinic/${clinic.id}`)
         }
     }
+
+    returnToClinic = () => {
+        if (this.props.history) {
+            this.props.history.push(`/all-clinic`)
+        }
+    }
     render() {
         let { dataClinic } = this.state;
+        let { language } = this.props;
         return (
             <div className='section-share section-medical-facility section-medical'>
                 <div className='section-container'>
                     <div className='section-header'>
                         <span className='title-section'><FormattedMessage id={'homepage.clinic'} /></span>
-                        <button className='btn-section'><FormattedMessage id={'homepage.see-clinic'} /></button>
+                        <button className='btn-section' onClick={() => this.returnToClinic()}><FormattedMessage id={'homepage.see-clinic'} /></button>
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
@@ -49,7 +57,8 @@ class CoSoYte extends Component {
                                             <div className='bg-image section-medical-facility'
                                                 style={{ backgroundImage: `url(${item.image})`, backgroundSize: 'contain ', backgroundColor: 'white' }}
                                             />
-                                            <div className='clinic-name'>{item.name}</div>
+                                            <div className='clinic-name'>
+                                                {language === LANGUAGES.VI ? item.name : item.name_en}</div>
                                         </div>
                                     )
                                 })}
@@ -64,7 +73,8 @@ class CoSoYte extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        language: state.app.language,
     };
 };
 

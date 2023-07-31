@@ -89,8 +89,8 @@ class TableManagerClinic extends Component {
                     <tbody>
                         <tr>
                             <th>Id</th>
-                            <th><FormattedMessage id={'manage-user.fullName'} /></th>
-                            <th><FormattedMessage id={'manage-user.address'} /></th>
+                            <th><FormattedMessage id={'manage-clinic.name'} /></th>
+                            <th><FormattedMessage id={'manage-clinic.name_en'} /></th>
                             <th><FormattedMessage id={'manage-user.action'} /></th>
                         </tr>
                         {sliceClinic && sliceClinic.length > 0 ? sliceClinic.map((item, index) => {
@@ -99,7 +99,7 @@ class TableManagerClinic extends Component {
                                 <tr key={index}>
                                     <td>{rowIndex}</td>
                                     <td>{item.name}</td>
-                                    <td>{item.address}</td>
+                                    <td>{item.name_en}</td>
                                     <td>
                                         <button className='btn-edit'
                                             onClick={() => this.handleEditClinic(item)}>

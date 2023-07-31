@@ -133,7 +133,7 @@ class AllCategory extends Component {
                                                 style={{ backgroundImage: `url(${item.image})` }}>
                                             </div>
                                             <div className='nd-blog'>
-                                                <p>{item.title}</p>
+                                                <p>{language === LANGUAGES.VI ? item.title : item.title_en}</p>
                                             </div>
                                         </div>
                                     )
@@ -147,8 +147,8 @@ class AllCategory extends Component {
                                 }
                             </div>
                             <ReactPaginate
-                                previousLabel={<FormattedMessage id={'ReactPaginate.dau'}/>}
-                                nextLabel={<FormattedMessage id={'ReactPaginate.cuoi'}/>}
+                                previousLabel={<FormattedMessage id={'ReactPaginate.dau'} />}
+                                nextLabel={<FormattedMessage id={'ReactPaginate.cuoi'} />}
                                 breakLabel={'...'}
                                 breakClassName={'break-me'}
                                 pageCount={pageCount}

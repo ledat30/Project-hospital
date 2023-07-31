@@ -96,7 +96,10 @@
         "title1": "Manage Clinic",
         "name": "Name Clinic",
         "address": "Address",
-        "Describe": "Describe"
+        "Describe": "Describe",
+        "name_en": "Name clinic -en",
+        "address_en": "Address -en",
+        "Describe-en": "Describe -en"
     },
     "manage-specialty": {
         "title": "List of specialties",
@@ -122,7 +125,8 @@
         "Title": "Title",
         "tiitle3": "Manage Handbook",
         "Description-Vi": "Description -Vi",
-        "Description-En": "Description -En"
+        "Description-En": "Description -En",
+        "Title1": "Title -en"
     },
     "manage_policy": {
         "title": "List of policy",

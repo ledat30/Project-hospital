@@ -20,6 +20,7 @@ class ManageHandBook extends Component {
         this.state = {
             categoryArr: [],
 
+            title_en: '',
             title: '',
             previewImgURL: '',
             contentHTMLVi: '',
@@ -58,12 +59,21 @@ class ManageHandBook extends Component {
                 contentMarkdownEn: '',
                 categoryId: arrCategorys && arrCategorys.length > 0 ? arrCategorys[0].id : '',
                 avatar: '',
+                title_en: '',
                 action: CRUD_ACTIONS.CREATE,
             })
         }
     }
 
     handleOnchangInput = (e, id) => {
+        let stateCopy = { ...this.state }
+        stateCopy[id] = e.target.value;
+        this.setState({
+            ...stateCopy
+        })
+    }
+
+    handleOnchangInputEn = (e, id) => {
         let stateCopy = { ...this.state }
         stateCopy[id] = e.target.value;
         this.setState({
@@ -148,6 +158,7 @@ class ManageHandBook extends Component {
                 contentHTMLEn: this.state.contentHTMLEn,
                 contentMarkdownEn: this.state.contentMarkdownEn,
                 title: this.state.title,
+                title_en: this.state.title_en,
                 categoryId: this.state.categoryId,
                 avatar: this.state.avatar,
             });
@@ -163,6 +174,7 @@ class ManageHandBook extends Component {
         }
         this.setState({
             title: handbook.title,
+            title_en: handbook.title_en,
             contentHTMLVi: handbook.contentHTMLVi,
             contentMarkdownVi: handbook.contentMarkdownVi,
             contentHTMLEn: handbook.contentHTMLEn,
@@ -189,6 +201,12 @@ class ManageHandBook extends Component {
                             <label><FormattedMessage id={'manage-handbook.Title'} /></label>
                             <input className='form-control' type='text' value={this.state.title}
                                 onChange={(e) => this.handleOnchangInput(e, 'title')}
+                            />
+                        </div>
+                        <div className='col-6 form-group'>
+                            <label><FormattedMessage id={'manage-handbook.Title1'} /></label>
+                            <input className='form-control' type='text' value={this.state.title_en}
+                                onChange={(e) => this.handleOnchangInputEn(e, 'title_en')}
                             />
                         </div>
                         <div className='col-3  form-group'>

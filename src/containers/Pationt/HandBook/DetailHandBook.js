@@ -54,11 +54,12 @@ class DetailHandBook extends Component {
                 <div className='detail-sepcialty-body'>
                     <div className='description-specialty'>
                         <div className='back' onClick={() => this.returnToBlog()}>
-                            <i className="fas fa-reply"></i> <u>Quay lại</u></div>
+                            <i className="fas fa-reply"></i> <u><FormattedMessage id={'patient.detail-category.back'} /></u>
+                        </div>
                         {dataDetailHandBook && !_.isEmpty(dataDetailHandBook)
                             &&
                             <>
-                                <div className='title-HB'>{dataDetailHandBook.title}</div>
+                                <div className='title-HB'>{language === LANGUAGES.VI ? dataDetailHandBook.title : dataDetailHandBook.title_en}</div>
                                 <div dangerouslySetInnerHTML={language === LANGUAGES.VI ?
                                     { __html: dataDetailHandBook.contentHTMLVi }
                                     :

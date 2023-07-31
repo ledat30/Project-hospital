@@ -63,6 +63,7 @@ class CategoryClinic extends Component {
 
     render() {
         let { dataClinic } = this.state;
+        let { language } = this.props;
         return (
             <div className='container-specialty'>
                 <HeaderHome />
@@ -86,8 +87,15 @@ class CategoryClinic extends Component {
                                     >
                                     </div>
                                     <div className='right-nd-specialty'>
-                                        <div style={{ padding: "7px 0" }}>{item.name}</div>
-                                        <div><FormattedMessage id={'patient.clinic.address'} />  {item.address}</div>
+                                        <div style={{ padding: "7px 0" }}>
+                                            {
+                                                language === LANGUAGES.VI ? item.name : item.name_en
+                                            }
+                                        </div>
+                                        <div><FormattedMessage id={'patient.clinic.address'} />  {
+                                            language === LANGUAGES.VI ? item.address : item.address_en
+                                        }
+                                        </div>
                                     </div>
                                 </div>
                             )

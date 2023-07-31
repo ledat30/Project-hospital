@@ -103,7 +103,9 @@ class ManageDoctor extends Component {
             if (type === 'CLINIC') {
                 inputData.map((item, index) => {
                     let object = {};
-                    object.label = item.name;
+                    let labelVi = `${item.name}`;
+                    let labelEn = `${item.name_en}`;
+                    object.label = language === LANGUAGES.VI ? labelVi : labelEn;
                     object.value = item.id;
                     result.push(object)
                 })
@@ -139,18 +141,20 @@ class ManageDoctor extends Component {
         }
         if (prevProps.language !== this.props.language) {
             let dataSelect = this.buildDataInputSelect(this.props.allDoctors, 'USERS');
-            let { resPayment, resPrice, resProvince, resSpecialty } = this.props.allRequiredDoctorInfor;
+            let { resPayment, resPrice, resProvince, resSpecialty, resCLinic } = this.props.allRequiredDoctorInfor;
 
             let dataSelectPrice = this.buildDataInputSelect(resPrice, 'PRICE');
             let dataSelectPayment = this.buildDataInputSelect(resPayment, 'PAYMENT')
             let dataSelectProvince = this.buildDataInputSelect(resProvince, 'PROVINCE')
             let dataSelectSpecialty = this.buildDataInputSelect(resSpecialty, 'SPECIALTY')
+            let dataSelectClinic = this.buildDataInputSelect(resCLinic, 'CLINIC')
             this.setState({
                 listDoctors: dataSelect,
                 listPrice: dataSelectPrice,
                 listPayment: dataSelectPayment,
                 listProvince: dataSelectProvince,
                 listSpecialty: dataSelectSpecialty,
+                listClinic: dataSelectClinic,
             })
         }
     }
