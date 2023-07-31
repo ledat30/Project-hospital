@@ -87,12 +87,6 @@ class CategoryDoctor extends Component {
                                     </div>
                                     <div className='right-nd-doctors'>
                                         <div className='text'>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
-                                        <div className='text'>
-                                            {item.Doctor_infor
-                                                ? item.Doctor_infor.nameClinic
-                                                :
-                                                ''}
-                                        </div>
                                         <div className='text'><FormattedMessage id={'patient.doctors.sdt'} /> {item.phonenumber}</div>
                                     </div>
                                 </div>

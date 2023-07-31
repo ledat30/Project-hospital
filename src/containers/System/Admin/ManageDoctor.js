@@ -20,15 +20,16 @@ class ManageDoctor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            //sava to markdown table
             contentMarkdown: '',
+            contentMarkdown_en: '',
             contentHTML: '',
+            contentHTML_en: '',
             selectedDoctor: '',
             description: '',
+            description_en: '',
             listDoctors: [],
             hasOldData: false,
 
-            //save to doctor_infor table
             listPrice: [],
             listPayment: [],
             listProvince: [],
@@ -42,8 +43,11 @@ class ManageDoctor extends Component {
             selectedSpecialty: '',
 
             nameClinic: '',
+            nameClinic_en: '',
             addressClinic: '',
+            addressClinic_en: '',
             note: '',
+            note_en: '',
             clinicId: '',
             specialtyId: '',
 
@@ -166,11 +170,21 @@ class ManageDoctor extends Component {
         })
     }
 
+    handleEditorChangeEn = ({ html, text }) => {
+        this.setState({
+            contentMarkdown_en: text,
+            contentHTML_en: html,
+        })
+    }
+
     handleSaveContentMarkdown = () => {
         let { hasOldData } = this.state;
         this.props.saveDetailDoctor({
             contentHTML: this.state.contentHTML,
+            contentHTML_en: this.state.contentHTML_en,
+            contentMarkdown_en: this.state.contentMarkdown_en,
             contentMarkdown: this.state.contentMarkdown,
+            description_en: this.state.description_en,
             description: this.state.description,
             doctorId: this.state.selectedDoctor.value,
             action: hasOldData === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE,
@@ -179,8 +193,11 @@ class ManageDoctor extends Component {
             selectedPayment: this.state.selectedPayment.value,
             selectedProvince: this.state.selectedProvince.value,
             nameClinic: this.state.nameClinic,
+            nameClinic_en: this.state.nameClinic_en,
             addressClinic: this.state.addressClinic,
+            addressClinic_en: this.state.addressClinic_en,
             note: this.state.note,
+            note_en: this.state.note_en,
             clinicId: this.state.selectedClinic && this.state.selectedClinic.value ? this.state.selectedClinic.value : '',
             specialtyId: this.state.selectedSpecialty.value,
         })
@@ -198,6 +215,12 @@ class ManageDoctor extends Component {
             selectedProvince: '',
             selectedSpecialty: '',
             selectedClinic: '',
+            contentMarkdown_en: '',
+            contentHTML_en: '',
+            note_en: '',
+            nameClinic_en: '',
+            addressClinic_en: '',
+            description_en: ''
         })
     }
 
@@ -210,13 +233,16 @@ class ManageDoctor extends Component {
             let markdown = res.data.Doctor_infor;
 
             let addressClinic = '', nameClinic = '', note = '', paymentId = '', priceId = '',
-                specialtyId = '', clinicId = '', provinceId = '', selectedPayment = '', selectedPrice = '',
+                specialtyId = '', clinicId = '', provinceId = '', selectedPayment = '', selectedPrice = '', nameClinic_en = '', addressClinic_en = '', note_en = '',
                 selectedProvince = '', selectedSpecialty = '', selectedClinic = '';
 
             if (res.data.Doctor_infor) {
                 addressClinic = res.data.Doctor_infor.addressClinic;
+                addressClinic_en = res.data.Doctor_infor.addressClinic_en;
                 nameClinic = res.data.Doctor_infor.nameClinic;
+                nameClinic_en = res.data.Doctor_infor.nameClinic_en;
                 note = res.data.Doctor_infor.note;
+                note_en = res.data.Doctor_infor.note_en;
                 paymentId = res.data.Doctor_infor.paymentId;
                 priceId = res.data.Doctor_infor.priceId;
                 provinceId = res.data.Doctor_infor.provinceId;
@@ -245,10 +271,16 @@ class ManageDoctor extends Component {
                 contentHTML: markdown.contentHTML,
                 contentMarkdown: markdown.contentMarkdown,
                 description: markdown.description,
+                description_en: markdown.description_en,
+                contentHTML_en: markdown.contentHTML_en,
+                contentMarkdown_en: markdown.contentMarkdown_en,
                 hasOldData: true,
                 addressClinic: addressClinic,
                 nameClinic: nameClinic,
                 note: note,
+                addressClinic_en: addressClinic_en,
+                nameClinic_en: nameClinic_en,
+                note_en: note_en,
                 selectedPayment: selectedPayment,
                 selectedPrice: selectedPrice,
                 selectedProvince: selectedProvince,
@@ -264,6 +296,12 @@ class ManageDoctor extends Component {
                 addressClinic: '',
                 nameClinic: '',
                 note: '',
+                contentHTML_en: '',
+                contentMarkdown_en: '',
+                note_en: '',
+                nameClinic_en: '',
+                addressClinic_en: '',
+                description_en: ''
             })
         }
     };
@@ -285,6 +323,16 @@ class ManageDoctor extends Component {
             ...stateCopy
         })
     }
+
+    handleOnchangeTextEn = (event, id) => {
+        let stateCopy = { ...this.state };
+        stateCopy[id] = event.target.value;
+
+        this.setState({
+            ...stateCopy
+        })
+    }
+
     render() {
         let { hasOldData, listSpecialty, listClinic } = this.state;
         console.log(this.state);
@@ -361,16 +409,35 @@ class ManageDoctor extends Component {
                         />
                     </div>
                     <div className='col-4 form-group'>
+                        <label><FormattedMessage id={'admin.manage-doctor.name_clinic1'} /></label>
+                        <input className='form-control'
+                            onChange={(event) => this.handleOnchangeTextEn(event, 'nameClinic_en')}
+                            value={this.state.nameClinic_en}
+                        />
+                    </div>
+                    <div className='col-4 form-group'>
                         <label><FormattedMessage id={'admin.manage-doctor.address_clinic'} /></label>
                         <input className='form-control'
                             onChange={(event) => this.handleOnchangeText(event, 'addressClinic')}
                             value={this.state.addressClinic} />
                     </div>
                     <div className='col-4 form-group'>
+                        <label><FormattedMessage id={'admin.manage-doctor.address_clinic1'} /></label>
+                        <input className='form-control'
+                            onChange={(event) => this.handleOnchangeTextEn(event, 'addressClinic_en')}
+                            value={this.state.addressClinic_en} />
+                    </div>
+                    <div className='col-4 form-group'>
                         <label><FormattedMessage id={'admin.manage-doctor.note'} /></label>
                         <input className='form-control'
                             onChange={(event) => this.handleOnchangeText(event, 'note')}
                             value={this.state.note} />
+                    </div>
+                    <div className='col-4 form-group'>
+                        <label><FormattedMessage id={'admin.manage-doctor.note1'} /></label>
+                        <input className='form-control'
+                            onChange={(event) => this.handleOnchangeTextEn(event, 'note_en')}
+                            value={this.state.note_en} />
                     </div>
                 </div>
                 <div className='row'>
@@ -383,12 +450,30 @@ class ManageDoctor extends Component {
                         </textarea>
                     </div>
                 </div>
+                <div className='row'>
+                    <div className='col-12 intro '>
+                        <label><FormattedMessage id={'admin.manage-doctor.Introduction_information1'} /></label>
+                        <textarea className='form-control' rows={4}//rows={4}
+                            onChange={(event) => this.handleOnchangeTextEn(event, 'description_en')}
+                            value={this.state.description_en}
+                        >
+                        </textarea>
+                    </div>
+                </div>
                 <div className='manage-doctor-editor'>
                     <label><FormattedMessage id={'admin.manage-doctor.content'} /></label>
                     <MdEditor style={{ height: '300px' }}
                         renderHTML={text => mdParser.render(text)}
                         onChange={this.handleEditorChange}
                         value={this.state.contentMarkdown} />
+
+                </div>
+                <div className='manage-doctor-editor'>
+                    <label><FormattedMessage id={'admin.manage-doctor.content1'} /></label>
+                    <MdEditor style={{ height: '300px' }}
+                        renderHTML={text => mdParser.render(text)}
+                        onChange={this.handleEditorChangeEn}
+                        value={this.state.contentMarkdown_en} />
 
                 </div>
                 <button onClick={() => this.handleSaveContentMarkdown()}

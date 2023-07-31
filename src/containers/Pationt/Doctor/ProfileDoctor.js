@@ -92,9 +92,10 @@ class ProfileDoctor extends Component {
                                 <>
                                     {dataProfile && dataProfile.Doctor_infor
                                         && dataProfile.Doctor_infor.description
+                                        && dataProfile.Doctor_infor.description_en
                                         &&
                                         <span>
-                                            {dataProfile.Doctor_infor.description}
+                                            {language === LANGUAGES.VI ? dataProfile.Doctor_infor.description : dataProfile.Doctor_infor.description_en}
                                         </span>
                                     }
                                 </>
@@ -109,7 +110,7 @@ class ProfileDoctor extends Component {
 
                 {isShowLinkDetail === true &&
                     <div className='view-detail-doctor'>
-                        <Link to={`/detail-doctor/${doctorId}`}>Xem thêm</Link>
+                        <Link to={`/detail-doctor/${doctorId}`}><FormattedMessage id="homepage.see-more" /></Link>
                     </div>
                 }
 

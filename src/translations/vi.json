@@ -126,7 +126,7 @@
         "tiitle3": "QUẢN LÝ CẨM NANG",
         "Description-Vi": "Mô tả -vi",
         "Description-En": "Mô tả -en",
-        "Title1":"Tiêu đề -en"
+        "Title1": "Tiêu đề -en"
     },
     "manage_policy": {
         "title": "Danh sách chính sách",
@@ -217,7 +217,12 @@
             "content": "Nội dung chi tiết bác sĩ",
             "name": "Họ và tên",
             "action": "Trạng thái",
-            "address": "Địa chỉ"
+            "address": "Địa chỉ",
+            "name_clinic1": "Tên phòng khám -en",
+            "address_clinic1": "Địa chỉ phòng khám -en",
+            "note1": "Lưu ý -en",
+            "Introduction_information1": "Thông tin giới thiệu -en",
+            "content1": "Nội dung chi tiết bác sĩ -en"
         }
     }
 }

@@ -52,10 +52,12 @@ class DoctorExtrainfor extends Component {
                 <div className='content-up'>
                     <div className='text-address'><FormattedMessage id={'patient.extra-infor-doctor.address_clinic'} /></div>
                     <div className='name-clinic'>
-                        {axtraInfor && axtraInfor.nameClinic ? axtraInfor.nameClinic : ''}
+                        {axtraInfor && axtraInfor.nameClinic && language === LANGUAGES.VI ? axtraInfor.nameClinic : ''}
+                        {axtraInfor && axtraInfor.nameClinic && language === LANGUAGES.EN ? axtraInfor.nameClinic_en : ''}
                     </div>
                     <div className='address-detail'>
-                        {axtraInfor && axtraInfor.addressClinic ? axtraInfor.addressClinic : ''}
+                        {axtraInfor && axtraInfor.addressClinic && language === LANGUAGES.VI ? axtraInfor.addressClinic : ''}
+                        {axtraInfor && axtraInfor.addressClinic && language === LANGUAGES.EN ? axtraInfor.addressClinic_en : ''}
                     </div>
                 </div>
                 <div className='content-down'>
@@ -116,7 +118,8 @@ class DoctorExtrainfor extends Component {
                                     </span>
                                 </div>
                                 <div className='note'>
-                                    {axtraInfor && axtraInfor.note ? axtraInfor.note : ''}
+                                    {axtraInfor && axtraInfor.note && language === LANGUAGES.VI ? axtraInfor.note : ''}
+                                    {axtraInfor && axtraInfor.note && language === LANGUAGES.EN ? axtraInfor.note_en : ''}
                                 </div>
                             </div>
                             <div className='payment'>

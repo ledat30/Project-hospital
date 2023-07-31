@@ -217,7 +217,12 @@
             "content": "Doctor's details",
             "name": "FullName",
             "action": "Action",
-            "address": "Address"
+            "address": "Address",
+            "name_clinic1": "Clinic name -en",
+            "address_clinic1": "Clinic address -en",
+            "note1": "Note -en",
+            "Introduction_information1": "Introduction information1 -en",
+            "content1": "Doctor's details -en"
         }
     }
 }

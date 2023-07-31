@@ -63,9 +63,10 @@ class DetailDoctor extends Component {
                             <div className='down'>
                                 {detaiDoctor && detaiDoctor.Doctor_infor
                                     && detaiDoctor.Doctor_infor.description
+                                    && detaiDoctor.Doctor_infor.description_en
                                     &&
                                     <span>
-                                        {detaiDoctor.Doctor_infor.description}
+                                        {language === LANGUAGES.VI ? detaiDoctor.Doctor_infor.description : detaiDoctor.Doctor_infor.description_en}
                                     </span>
                                 }
                                 <div className='like-share-plugin'>
@@ -87,9 +88,12 @@ class DetailDoctor extends Component {
                         </div>
                     </div>
                     <div className='detail-infor-doctor'>
-                        {detaiDoctor && detaiDoctor.Doctor_infor && detaiDoctor.Doctor_infor.contentHTML
+                        {detaiDoctor && detaiDoctor.Doctor_infor && detaiDoctor.Doctor_infor.contentHTML && detaiDoctor.Doctor_infor.contentHTML_en
                             &&
-                            <div dangerouslySetInnerHTML={{ __html: detaiDoctor.Doctor_infor.contentHTML }}></div>
+                            <div dangerouslySetInnerHTML={language === LANGUAGES.VI ?
+                                { __html: detaiDoctor.Doctor_infor.contentHTML }
+                                :
+                                { __html: detaiDoctor.Doctor_infor.contentHTML_en }}></div>
                         }
                     </div>
                     <div className='comment-doctor'>
