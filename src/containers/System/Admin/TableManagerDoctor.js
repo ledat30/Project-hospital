@@ -5,6 +5,7 @@ import './TableManagerDoctor.scss';
 import * as actions from '../../../store/actions';
 import ReactPaginate from 'react-paginate';
 import { debounce } from 'lodash';
+import HomeFooter from '../../HomePage/HomeFooter';
 
 class TableManagerDoctor extends Component {
 
@@ -14,7 +15,7 @@ class TableManagerDoctor extends Component {
         this.state = {
             doctorRedux: [],
             offset: 0, // Vị trí bắt đầu lấy dữ liệu từ danh sách user
-            perPage: 5, // Số lượng user hiển thị trên mỗi trang
+            perPage: 8, // Số lượng user hiển thị trên mỗi trang
             currentPage: 0, // Trang hiện tại
         }
     }
@@ -81,56 +82,65 @@ class TableManagerDoctor extends Component {
         const sliceUsers = doctorRedux.slice(offset, offset + perPage);
         return (
             <>
-                <input type='' className='search-user-box' placeholder='Search user ...'
-                    onChange={(e) => this.searchHandle(e)}
-                />
-                <table id='TableManagerDoctor'>
-                    <tbody>
-                        <tr>
-                            <th>Id</th>
-                            <th><FormattedMessage id={'admin.manage-doctor.name'} /></th>
-                            <th>Email</th>
-                            <th><FormattedMessage id={'admin.manage-doctor.address'} /></th>
-                            <th><FormattedMessage id={'admin.manage-doctor.action'} /></th>
-                        </tr>
-                        {sliceUsers && sliceUsers.length > 0 && sliceUsers.map((item, index) => {
-                            const rowIndex = offset + index + 1; // Tính thứ tự hiển thị
-                            return (
-                                <tr key={index}>
-                                    <td>{rowIndex}</td>
-                                    <td>{item.fullName}</td>
-                                    <td>{item.email}</td>
-                                    <td>{item.address}</td>
-                                    <td>
-                                        <button className='btn-delete'
-                                            onClick={() => this.handleDeleteDoctor(item)}>
-                                            <i className='fas fa-trash'></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
-                <ReactPaginate
-                    previousLabel={<FormattedMessage id={'ReactPaginate.dau'} />}
-                    nextLabel={<FormattedMessage id={'ReactPaginate.cuoi'} />}
-                    breakLabel={'...'}
-                    breakClassName={'break-me'}
-                    pageCount={pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={this.handlePageClick}
-                    containerClassName={'pagination'}
-                    subContainerClassName={'pages pagination'}
-                    activeClassName={'active'}
-                    pageClassName='page-item'
-                    pageLinkClassName='page-link'
-                    previousLinkClassName='page-link'
-                    nextClassName='page-item'
-                    nextLinkClassName='page-link'
-                    breakLinkClassName='page-link'
-                />
+                <div className='col-12'>
+                    <div className='title3 mt-10'><FormattedMessage id="manage-doctor.title" /></div>
+                    <input type='' className='search-doctor-box' placeholder='Search doctor ...'
+                        onChange={(e) => this.searchHandle(e)}
+                    />
+                    <table id='TableManagerDoctor'>
+                        <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <th><FormattedMessage id={'admin.manage-doctor.name'} /></th>
+                                <th>Email</th>
+                                <th><FormattedMessage id={'admin.manage-doctor.address'} /></th>
+                                <th><FormattedMessage id={'admin.manage-doctor.action'} /></th>
+                            </tr>
+                            {sliceUsers && sliceUsers.length > 0 ? sliceUsers.map((item, index) => {
+                                const rowIndex = offset + index + 1; // Tính thứ tự hiển thị
+                                return (
+                                    <tr key={index}>
+                                        <td>{rowIndex}</td>
+                                        <td>{item.fullName}</td>
+                                        <td>{item.email}</td>
+                                        <td>{item.address}</td>
+                                        <td>
+                                            <button className='btn-delete'
+                                                onClick={() => this.handleDeleteDoctor(item)}>
+                                                <i className='fas fa-trash'></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                                :
+                                (
+                                    <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                    <ReactPaginate
+                        previousLabel={<FormattedMessage id={'ReactPaginate.dau'} />}
+                        nextLabel={<FormattedMessage id={'ReactPaginate.cuoi'} />}
+                        breakLabel={'...'}
+                        breakClassName={'break-me'}
+                        pageCount={pageCount}
+                        marginPagesDisplayed={2}
+                        pageRangeDisplayed={5}
+                        onPageChange={this.handlePageClick}
+                        containerClassName={'pagination'}
+                        subContainerClassName={'pages pagination'}
+                        activeClassName={'active'}
+                        pageClassName='page-item'
+                        pageLinkClassName='page-link'
+                        previousLinkClassName='page-link'
+                        nextClassName='page-item'
+                        nextLinkClassName='page-link'
+                        breakLinkClassName='page-link'
+                    />
+                </div>
+                <HomeFooter/>
             </>
         );
     }

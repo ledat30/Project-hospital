@@ -7,7 +7,12 @@ export const adminMenu = [
                 name: 'menu.admin.crud-redux', link: '/system/user-redux',
             },
             {
-                name: 'menu.admin.manage-doctor', link: '/system/manage-doctor',
+                // name: 'menu.admin.manage-doctor', link: '/system/manage-doctor',
+                name: 'menu.admin.manage-doctor',
+                subMenus: [
+                    { name: 'menu.admin.list', link: '/system/manage-doctor' },
+                    { name: 'menu.admin.creat_edit', link: '/system/create_edit' }
+                ]
 
             },
 

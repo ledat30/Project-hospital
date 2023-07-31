@@ -34,7 +34,9 @@
             "manage-handbook": "Manage Handbook",
             "manage-policy": "Manage Policy",
             "policy": "Policy",
-            "manage-category_handbook": "Manage category"
+            "manage-category_handbook": "Manage category",
+            "list": "List doctor",
+            "creat_edit": "Add & edit"
         },
         "doctor": {
             "manage-schedule": "Manage Doctor's schedule",

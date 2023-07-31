@@ -34,7 +34,9 @@
             "manage-handbook": "Quản lý cẩm nang",
             "manage-policy": " Quản lý chính sách",
             "policy": "Chính sách",
-            "manage-category_handbook": "Quản lý danh mục "
+            "manage-category_handbook": "Quản lý danh mục ",
+            "list": "Danh sách bác sĩ",
+            "creat_edit": "Thêm mới & sửa"
         },
         "doctor": {
             "manage-schedule": " Quản lý kế hoạch khám bệnh",

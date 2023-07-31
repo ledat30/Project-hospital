@@ -10,7 +10,7 @@ import ManageClinic from '../containers/System/Clinic/ManageClinic';
 import ManageHandBook from '../containers/System/HandBook/ManageHandBook';
 import ManagePolicy from '../containers/System/Policy/ManagePolicy';
 import CategoryHandbook from '../containers/System/HandBook/CategoryHandbook';
-
+import TableManagerDoctor from '../containers/System/Admin/TableManagerDoctor';
 
 class System extends Component {
     render() {
@@ -24,7 +24,8 @@ class System extends Component {
                         <Switch>
                             {/* <Route path="/system/user-manage" component={UserManage} /> */}
                             <Route path="/system/user-redux" component={UserRedux} />
-                            <Route path="/system/manage-doctor" component={ManageDoctor} />
+                            <Route path="/system/manage-doctor" component={TableManagerDoctor} />
+                            <Route path="/system/create_edit" component={ManageDoctor} />
                             <Route path="/system/manage-specialty" component={ManageSpecialty} />
                             <Route path="/system/manage-clinic" component={ManageClinic} />
                             <Route path="/system/manage-handbook" component={ManageHandBook} />
