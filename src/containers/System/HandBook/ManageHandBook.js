@@ -19,6 +19,7 @@ class ManageHandBook extends Component {
         super(props);
         this.state = {
             categoryArr: [],
+            doctorArr: [],
 
             title_en: '',
             title: '',
@@ -28,6 +29,7 @@ class ManageHandBook extends Component {
             contentHTMLEn: '',
             contentMarkdownEn: '',
             categoryId: '',
+            user_id: '',
             avatar: '',
             handbookEditId: ''
         }
@@ -35,6 +37,7 @@ class ManageHandBook extends Component {
     async componentDidMount() {
         this.props.fetchAllCategoryHandBookRedux();
         this.props.fetchAllHandBookRedux();
+        this.props.fetchAllDoctor();
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -47,8 +50,16 @@ class ManageHandBook extends Component {
                 categoryId: arrCategory && arrCategory.length > 0 ? arrCategory[0].id : ''
             })
         }
+        if (prevProps.listDoctor !== this.props.listDoctor) {
+            let arrDoctor = this.props.listDoctor;
+            this.setState({
+                doctorArr: arrDoctor,
+                user_id: arrDoctor && arrDoctor.length > 0 ? arrDoctor[0].id : ''
+            })
+        }
         if (prevProps.listHandBook !== this.props.listHandBook) {
             let arrCategorys = this.props.category;
+            let arrDoctor = this.props.listDoctor;
 
             this.setState({
                 title: '',
@@ -58,6 +69,7 @@ class ManageHandBook extends Component {
                 contentHTMLEn: '',
                 contentMarkdownEn: '',
                 categoryId: arrCategorys && arrCategorys.length > 0 ? arrCategorys[0].id : '',
+                user_id: arrDoctor && arrDoctor.length > 0 ? arrDoctor[0].id : '',
                 avatar: '',
                 title_en: '',
                 action: CRUD_ACTIONS.CREATE,
@@ -125,7 +137,7 @@ class ManageHandBook extends Component {
 
     checkValidateInput = () => {
         let isValid = true;
-        let arrCheck = ['title', 'contentHTMLVi', 'contentMarkdownVi', 'contentHTMLEn', 'contentMarkdownEn']
+        let arrCheck = ['title', 'title_en', 'contentHTMLVi', 'contentMarkdownVi', 'contentHTMLEn', 'contentMarkdownEn']
         for (let i = 0; i < arrCheck.length; i++) {
             if (!this.state[arrCheck[i]]) {
                 isValid = false;
@@ -160,6 +172,7 @@ class ManageHandBook extends Component {
                 title: this.state.title,
                 title_en: this.state.title_en,
                 categoryId: this.state.categoryId,
+                user_id: this.state.user_id,
                 avatar: this.state.avatar,
             });
             this.props.fetchAllHandBookRedux();
@@ -180,6 +193,7 @@ class ManageHandBook extends Component {
             contentHTMLEn: handbook.contentHTMLEn,
             contentMarkdownEn: handbook.contentMarkdownEn,
             categoryId: handbook.categoryId,
+            user_id: handbook.user_id,
             avatar: '',
             previewImgURL: imageBase64,
             action: CRUD_ACTIONS.EDIT,
@@ -190,7 +204,7 @@ class ManageHandBook extends Component {
     render() {
         let { language } = this.props;
         let categories = this.state.categoryArr;
-        console.log('check categories', categories)
+        let userDoctor = this.state.doctorArr;
         return (
             <>
                 <div className='manage-specilty-container'>
@@ -218,6 +232,21 @@ class ManageHandBook extends Component {
                                         return (
                                             <option key={index} value={item.id}>
                                                 {language === LANGUAGES.VI ? item.nameVI : item.nameEN}
+                                            </option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div className='col-3  form-group'>
+                            <label><FormattedMessage id="manage-user.categoryId" /></label>
+                            <select className="form-control"
+                                onChange={(event) => { this.onChangeInput(event, 'user_id') }} value={this.state.user_id}>
+                                {userDoctor && userDoctor.length > 0 &&
+                                    userDoctor.map((item, index) => {
+                                        return (
+                                            <option key={index} value={item.id}>
+                                                {item.fullName}
                                             </option>
                                         )
                                     })
@@ -298,8 +327,8 @@ const mapStateToProps = state => {
     return {
         language: state.app.language,
         listHandBook: state.admin.handbook,
-        category: state.admin.category
-
+        category: state.admin.category,
+        listDoctor: state.admin.allDoctors
     };
 };
 
@@ -308,6 +337,7 @@ const mapDispatchToProps = dispatch => {
         fetchAllHandBookRedux: () => dispatch(actions.fetchAllHandBookStart()),
         editHandBookRedux: (data) => dispatch(actions.editHandBook(data)),
         fetchAllCategoryHandBookRedux: () => dispatch(actions.fetchAllCategoryHBStart()),
+        fetchAllDoctor: () => dispatch(actions.fetchAllDoctor()),
     };
 };
 

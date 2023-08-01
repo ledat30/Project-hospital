@@ -1,3 +1,10 @@
+.detail-deatilhandbook-body {
+    padding       : 0 60px;
+    background    : #eee;
+    display       : flex;
+    flex-direction: column;
+}
+
 .detail-specialty-container {
     .back {
         margin-bottom: 10px;
@@ -8,10 +15,22 @@
         width        : 80px;
     }
 
+    .date {
+        display    : flex;
+        float      : right;
+        font-weight: 600;
+
+        .date1 {
+            padding-right: 30px;
+        }
+    }
+
     .description-specialty {
         padding         : 10px;
         background-color: white !important;
         margin          : 15px 0;
+        box-shadow      : 0 1px 6px #2f303347;
+        border-radius   : 8px;
 
         h1,
         h2,
@@ -86,6 +105,74 @@
 
                 .doctor-extra-infor-container {
                     padding-left: 0 !important;
+                }
+            }
+        }
+    }
+
+    .container-tag {
+        padding         : 10px;
+        background-color: white !important;
+        margin          : 0 0 15px 0;
+
+        .title-tag {
+            font-weight: 600;
+            font-size  : 15px;
+        }
+
+        .containers {
+            padding-top: 10px;
+            display    : flex;
+            flex-wrap  : wrap;
+
+            .tag_category {
+                margin-top   : 10px;
+                margin-right : 15px;
+                box-shadow   : 0 1px 6px #2f303347;
+                border-radius: 8px;
+                cursor       : pointer;
+                padding      : 10px 15px;
+            }
+        }
+    }
+
+    .container-related-blogs {
+        padding         : 10px;
+        background-color: white !important;
+        margin          : 0 0 15px 0;
+
+        .title-related-blogs {
+            font-weight: 600;
+            font-size  : 15px;
+        }
+
+        .main {
+            margin-top: 20px;
+            display   : flex;
+
+            .containe {
+                padding: 13px;
+
+                .image-random {
+                    background-color   : #eee;
+                    height             : 165px;
+                    width              : 280px;
+                    background-size    : cover;
+                    background-repeat  : no-repeat !important;
+                    background-position: center center;
+                    box-shadow         : 0 1px 6px #2f303347;
+                    border-radius      : 10px;
+                    cursor             : pointer;
+
+                }
+
+                .title-random {
+                    padding: 10px 0;
+                    cursor : pointer;
+
+                    &:hover {
+                        color: #64b9e5;
+                    }
                 }
             }
         }

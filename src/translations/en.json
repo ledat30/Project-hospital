@@ -182,7 +182,11 @@
             "examination_price": "Examination price : "
         },
         "handbook": {
-            "title_handbook": "List of articles"
+            "title_handbook": "List of articles",
+            "date": "Publication date : ",
+            "date1": "Update date : ",
+            "category": "Category : ",
+            "blog": "Maybe you are interested"
         },
         "messega": {
             "success": "CONFIRM YOUR EXAMINATION SCHEDULE IS SUCCESSFUL!",
