@@ -61,12 +61,6 @@ class ManageSchedule extends Component {
                 rangeTime: data
             })
         }
-        // if (prevProps.language !== this.props.language) {
-        //     let dataSelect = this.buildDataInputSelect(this.props.allDoctors)
-        //     this.setState({
-        //         listDoctors: dataSelect
-        //     })
-        // }
     }
 
     handleChangeSelect = async (selectedDoctor) => {
@@ -104,8 +98,6 @@ class ManageSchedule extends Component {
             toast.error("Invalid selected doctor!");
             return;
         }
-        // let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
-        // let formatedDate = moment(currentDate).unix();
         let formatedDate = new Date(currentDate).getTime();
 
         if (rangeTime && rangeTime.length > 0) {
@@ -136,11 +128,10 @@ class ManageSchedule extends Component {
         }
     }
     render() {
-        // console.log(this.state)
         let { rangeTime } = this.state;
         let { language } = this.props;
-        let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-        // let yesterday = new Date(new Date().setDate(new Date().getDate()));
+        // let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+        let yesterday = new Date(new Date().setDate(new Date().getDate()));
         return (
             <div className='manage-schedule-container'>
                 <div className='m-s-title'>

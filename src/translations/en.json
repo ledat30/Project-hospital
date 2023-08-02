@@ -40,7 +40,10 @@
         },
         "doctor": {
             "manage-schedule": "Manage Doctor's schedule",
-            "manage-patient": "Management of medical examination patients"
+            "manage-patient": "Management of medical examination patients",
+            "list_schedule": "List of medical examination plans",
+            "creat_schedule": "More medical plans",
+            "title": "List of medical examination plans"
         }
     },
     "manage-user": {

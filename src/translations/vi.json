@@ -40,7 +40,10 @@
         },
         "doctor": {
             "manage-schedule": " Quản lý kế hoạch khám bệnh",
-            "manage-patient": " Quản lý bệnh nhân khám bệnh"
+            "manage-patient": " Quản lý bệnh nhân khám bệnh",
+            "list_schedule": "Danh sách kế hoạch khám bệnh",
+            "creat_schedule": "Thêm kế hoạch khám bệnh",
+            "title": "Danh sách kế hoạch khám bệnh "
         }
     },
     "manage-user": {
