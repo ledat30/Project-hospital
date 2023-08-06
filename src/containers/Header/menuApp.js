@@ -7,7 +7,6 @@ export const adminMenu = [
                 name: 'menu.admin.crud-redux', link: '/system/user-redux',
             },
             {
-                // name: 'menu.admin.manage-doctor', link: '/system/manage-doctor',
                 name: 'menu.admin.manage-doctor',
                 subMenus: [
                     { name: 'menu.admin.list', link: '/system/manage-doctor' },
@@ -18,7 +17,7 @@ export const adminMenu = [
 
 
             { //quản lý kế hoạch khám bệnh của doctor
-                name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule',
+                name: 'menu.doctor.creat_schedule', link: '/doctor/create-schedule',
             },
 
         ]
@@ -55,6 +54,13 @@ export const adminMenu = [
         menus: [
             {
                 name: 'menu.admin.manage-policy', link: '/system/manage-policy',
+            },
+        ]
+    }, { //quản lý thống kê
+        name: 'menu.admin.statistical',
+        menus: [
+            {
+                name: 'menu.admin.manage-statistical', link: '/system/manage-statistical',
             },
         ]
     },

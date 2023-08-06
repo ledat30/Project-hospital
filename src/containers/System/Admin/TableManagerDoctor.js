@@ -33,6 +33,18 @@ class TableManagerDoctor extends Component {
                 doctorRedux: this.props.listDoctor
             })
         }
+        // if (prevProps.listDoctor !== this.props.listDoctor) {
+        //     this.setState({
+        //         doctorRedux: this.props.listDoctor.sort((a, b) => a.id - b.id),
+        //     }, () => {
+        //         const newPageCount = Math.ceil(this.state.doctorRedux.length / this.state.perPage);
+        //         if (this.state.currentPage >= newPageCount) {
+        //             this.setState({
+        //                 currentPage: 0,
+        //             });
+        //         }
+        //     });
+        // }
     }
 
     handleDeleteDoctor = (allDoctors) => {
@@ -140,7 +152,7 @@ class TableManagerDoctor extends Component {
                         breakLinkClassName='page-link'
                     />
                 </div>
-                <HomeFooter/>
+                <HomeFooter />
             </>
         );
     }

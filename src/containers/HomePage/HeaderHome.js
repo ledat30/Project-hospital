@@ -8,10 +8,36 @@ import { withRouter } from 'react-router';
 
 class HeaderHome extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false
+        };
+        this.dropdownRef = React.createRef();
+    }
+
+    toggleMenu = () => {
+        this.setState(prevState => ({
+            isOpen: !prevState.isOpen
+        }));
+    };
+
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+    handleClickOutside = event => {
+        if (this.dropdownRef && !this.dropdownRef.current.contains(event.target)) {
+            this.setState({ isOpen: false });
+        }
+    };
+
     changeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language)
-        //fire redux event :actions
-
     }
 
     returnToHome = () => {
@@ -56,14 +82,33 @@ class HeaderHome extends Component {
             this.props.history.push(`/all-category`)
         }
     }
+
+    returnToPolicy = () => {
+        if (this.props.history) {
+            this.props.history.push(`/all-policy`)
+        }
+    }
     render() {
         let language = this.props.language;
+        const { isOpen } = this.state;
         return (
             <>
                 <div className='home-header-container'>
                     <div className='home-header-content'>
                         <div className='left-content'>
-                            <i className='fas fa-bars'></i>
+                            <div className={`dropdown ${isOpen ? 'open' : ''}`}
+                                ref={this.dropdownRef}>
+                                <div className='dropdown-toggles'>
+                                    <button className='but' onClick={this.toggleMenu}>
+                                        <i className='fas fa-bars'></i>
+                                    </button>
+                                </div>
+                                <ul className={`dropdown-menu ${isOpen ? 'show' : ''}`}>
+                                    <li className='li' onClick={() => this.returnToPolicy()}><FormattedMessage id={'homeheader.policy'}/></li>
+                                    <li className='li' onClick={() => this.returnToQuestion()}><FormattedMessage id={'homeheader.question'}/></li>
+                                </ul>
+                            </div>
+
                             <div className='header-logo'
                                 onClick={() => this.returnToHome()}
                             >

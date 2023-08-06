@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { getAllPolicy } from '../../services/userService';
+import { getLimitPolicy } from '../../services/userService';
 import { withRouter } from 'react-router';
 import { LANGUAGES } from '../../utils';
 
@@ -15,7 +15,7 @@ class HomeFooter extends Component {
     }
 
     async componentDidMount() {
-        let res = await getAllPolicy();
+        let res = await getLimitPolicy();
         if (res && res.errCode === 0) {
             this.setState({
                 dataPolicy: res.data ? res.data : []
@@ -57,7 +57,7 @@ class HomeFooter extends Component {
                     </div>
                     <div className='footer-right'>
                         <div className='titlr-footor-right'>
-                            <p>Chính sách của Health care</p>
+                            <p><FormattedMessage id={'footer.policy'} /></p>
                             <div className='text-2k'>
                                 {dataPolicy && dataPolicy.length > 0 && dataPolicy.map((item, index) => {
                                     return (

@@ -152,7 +152,9 @@ class DetailCategory extends Component {
                                         >
                                         </div>
                                         <div className='nd-blogs'>
-                                            {item.title}
+                                            {
+                                                language === LANGUAGES.VI ? item.title : item.title_en
+                                            }
                                         </div>
                                     </div>
                                 )

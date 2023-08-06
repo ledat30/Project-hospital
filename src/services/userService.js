@@ -113,6 +113,10 @@ const createNewPolicy = (data) => {
 const getAllPolicy = () => {
     return axios.get(`/api/get-all-policy`)
 }
+
+const getLimitPolicy = () => {
+    return axios.get(`/api/get-limit-policy`)
+}
 const deletePolicyService = (policyId) => {
     return axios.delete('/api/delete-policy', {
         data: {
@@ -212,7 +216,7 @@ export {
     getAllSpecialty, getSpecialty, getDetailSpecialtyById, createNewClinics, getAllClinic, getDetailClinicById, getClinic,
     getAllPatientForDoctor, postSendRemedy, deleteClinicService, deleteSpecialtyService, deleteDoctorService,
     editClinicService, editSpecialtyService, createNewHandbook, getAllHandBook, deleteHandbookService,
-    editHandBookService, getDetailHandBookById, createNewPolicy, getAllPolicy, deletePolicyService, 
+    editHandBookService, getDetailHandBookById, createNewPolicy, getAllPolicy, getLimitPolicy, deletePolicyService,
     editPolicyService, getDetailPolicyById, createNewCategoryHandbook, getAllCategoryHandbook,
     deleteCategoryHandbookService, editCategoryHandbookService, getTopHandbookHomeService,
     getDetailCategoryById

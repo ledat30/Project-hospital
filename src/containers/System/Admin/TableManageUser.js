@@ -27,9 +27,21 @@ class TableManageUser extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.listUsers !== this.props.listUsers && this.state.userRedux.length === 0) {
+        // if (prevProps.listUsers !== this.props.listUsers && this.state.userRedux.length === 0) {
+        //     this.setState({
+        //         userRedux: this.props.listUsers,
+        //     });
+        // }
+        if (prevProps.listUsers !== this.props.listUsers) {
             this.setState({
-                userRedux: this.props.listUsers,
+                userRedux: this.props.listUsers.sort((a, b) => a.id - b.id),
+            }, () => {
+                const newPageCount = Math.ceil(this.state.userRedux.length / this.state.perPage);
+                if (this.state.currentPage >= newPageCount) {
+                    this.setState({
+                        currentPage: 0,
+                    });
+                }
             });
         }
     }

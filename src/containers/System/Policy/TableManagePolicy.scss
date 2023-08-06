@@ -25,3 +25,21 @@
   background-color: #04AA6D;
   color           : white;
 }
+
+.btn-save-policy {
+  border       : none;
+  padding      : 8px 5px;
+  background   : goldenrod;
+  border-radius: 3px;
+  margin       : 15px 0;
+  min-width    : 75px;
+}
+
+.btn_cancel {
+  border       : none;
+  padding      : 8px 5px;
+  background   : rgb(199, 243, 188);
+  border-radius: 3px;
+  margin       : 15px 0 15px 15px;
+  min-width    : 75px;
+}

@@ -26,11 +26,17 @@ class TableCategory extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.listCategory !== this.props.listCategory
-            && this.state.CategoryhandBookRedux.length === 0) {
+        if (prevProps.listCategory !== this.props.listCategory ) {
             this.setState({
-                CategoryhandBookRedux: this.props.listCategory
-            })
+                CategoryhandBookRedux: this.props.listCategory.sort((a, b) => a.id - b.id),
+            }, () => {
+                const newPageCount = Math.ceil(this.state.CategoryhandBookRedux.length / this.state.perPage);
+                if (this.state.currentPage >= newPageCount) {
+                    this.setState({
+                        currentPage: 0,
+                    });
+                }
+            });
         }
     }
 

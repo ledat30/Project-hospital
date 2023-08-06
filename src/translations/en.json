@@ -9,7 +9,9 @@
         "blog": "Blog",
         "Health-issues-to-know": "Health issues to know",
         "support": "Support",
-        "welcome": "Welcome "
+        "welcome": "Welcome ",
+        "policy": "Policy",
+        "question": "Questions ?"
     },
     "banner": {
         "tiitle1": "MEDICAL PLATFORM",
@@ -36,7 +38,9 @@
             "policy": "Policy",
             "manage-category_handbook": "Manage category",
             "list": "List doctor",
-            "creat_edit": "Add & edit"
+            "creat_edit": "Add & edit",
+            "statistical": "Statistical",
+            "manage-statistical": "Manage statistical"
         },
         "doctor": {
             "manage-schedule": "Manage Doctor's schedule",
@@ -86,7 +90,8 @@
         "sp": "Customer support",
         "email": " Priority mailbox",
         "hotline": " Hotline",
-        "xh": " Social network link"
+        "xh": " Social network link",
+        "policy": "Health care policy !"
     },
     "manage-schedule": {
         "title": "Manage doctor's examination plan",
@@ -98,23 +103,27 @@
         "title": "List of medical facilities",
         "save": "Save clinic",
         "edit": "Edit clinic ",
-        "title1": "Manage Clinic",
+        "title1": "CREATE Clinic",
+        "title2": "EDIT Clinic",
         "name": "Name Clinic",
         "address": "Address",
         "Describe": "Describe",
         "name_en": "Name clinic -en",
         "address_en": "Address -en",
-        "Describe-en": "Describe -en"
+        "Describe-en": "Describe -en",
+        "create": "Create clinic"
     },
     "manage-specialty": {
         "title": "List of specialties",
         "save": "Save specialty ",
         "edit": "Edit specialty ",
-        "title1": "Manage Specialty",
+        "title1": "Create Specialty",
+        "title2": "Edit Specialty",
         "name": "Name specialty",
         "Describe": "Describe",
         "Describe_en": "Describe -en",
-        "name_en": "Name specialty -en"
+        "name_en": "Name specialty -en",
+        "SAVE": "Create Speciality"
     },
     "manage-handbook": {
         "title": "List of Handbook",
@@ -128,21 +137,25 @@
         "name2": "Category name -en",
         "Action": "Action",
         "Title": "Title",
-        "tiitle3": "Manage Handbook",
+        "tiitle3": "CREATE HANDBOOK",
+        "tiitle4": "EDIT HANDBOOK",
         "Description-Vi": "Description -Vi",
         "Description-En": "Description -En",
-        "Title1": "Title -en"
+        "Title1": "Title -en",
+        "create": "Create handbook"
     },
     "manage_policy": {
         "title": "List of policy",
         "save": "Save policy ",
         "edit": "Edit policy ",
         "title1": "Manage Policy",
+        "title2": "EDIT Policy",
         "name1": "Policy name - Vi",
         "name2": "Policy name - En",
         "Description_Vi": "Description - Vi",
         "Description_En": "Description - En",
-        "action": "Action"
+        "action": "Action",
+        "create": "Create policy"
     },
     "manage-doctor": {
         "title": "List of Doctor "
@@ -206,6 +219,9 @@
         "clinic": {
             "title": "Clinic",
             "address": "Address :"
+        },
+        "policy": {
+            "category": "Category : Policy"
         }
     },
     "admin": {

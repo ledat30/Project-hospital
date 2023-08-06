@@ -9,7 +9,9 @@
         "blog": "Bài viết",
         "Health-issues-to-know": "Các vấn đề sức khoẻ cần biết",
         "support": "Hỗ trợ",
-        "welcome": "Xin chào "
+        "welcome": "Xin chào ",
+        "policy": "Chính sách",
+        "question": "Những câu hỏi ?"
     },
     "banner": {
         "tiitle1": "NỀN TẢNG Y TẾ",
@@ -36,7 +38,9 @@
             "policy": "Chính sách",
             "manage-category_handbook": "Quản lý danh mục ",
             "list": "Danh sách bác sĩ",
-            "creat_edit": "Thêm mới & sửa"
+            "creat_edit": "Thêm mới & sửa",
+            "statistical": "Thống kê",
+            "manage-statistical": "Quản lý thống kê"
         },
         "doctor": {
             "manage-schedule": " Quản lý kế hoạch khám bệnh",
@@ -86,7 +90,8 @@
         "sp": "Hỗ trợ khách hàng",
         "email": " Hòm thư ưu tiên",
         "hotline": " Số điện thoại",
-        "xh": " Liên kết mạng xã hội"
+        "xh": " Liên kết mạng xã hội",
+        "policy": "Chính sách của Health care !"
     },
     "manage-schedule": {
         "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
@@ -98,23 +103,27 @@
         "title": "Danh sách cơ sở y tế",
         "save": "Lưu cơ sở ",
         "edit": "Sửa cơ sở ",
-        "title1": "QUẢN LÝ CƠ SỞ",
+        "title1": "THÊM MỚI CƠ SỞ",
+        "title2": "SỬA CƠ SỞ",
         "name": "Tên cơ sở",
         "address": "Địa chỉ",
         "Describe": "Mô tả",
         "name_en": "Tên cơ sở -en",
         "address_en": "Địa chỉ -en",
-        "Describe-en": "Mô tả -en"
+        "Describe-en": "Mô tả -en",
+        "create": "Thêm Cơ sở"
     },
     "manage-specialty": {
         "title": "Danh sách chuyên khoa",
         "save": "Lưu chuyên khoa ",
         "edit": "Sửa chuyên khoa ",
-        "title1": "Quản lý chuyên khoa",
+        "title1": "Thêm chuyên khoa",
+        "title2": "Sửa chuyên khoa",
         "name": "Tên chuyên khoa",
         "Describe": "Mô tả",
         "Describe_en": "Mô tả -en",
-        "name_en": "Tên chuyên khoa -en"
+        "name_en": "Tên chuyên khoa -en",
+        "SAVE": "Tạo mới"
     },
     "manage-handbook": {
         "title": "Danh sách cẩm nang",
@@ -128,21 +137,25 @@
         "name2": "Tên danh mục -en",
         "Action": "Trạng thái",
         "Title": "Tiêu đề",
-        "tiitle3": "QUẢN LÝ CẨM NANG",
+        "tiitle3": "THÊM MỚI CẨM NANG",
+        "tiitle4": "SỬA CẨM NANG",
         "Description-Vi": "Mô tả -vi",
         "Description-En": "Mô tả -en",
-        "Title1": "Tiêu đề -en"
+        "Title1": "Tiêu đề -en",
+        "create": "Thêm mới"
     },
     "manage_policy": {
         "title": "Danh sách chính sách",
         "save": "Lưu chính sách ",
         "edit": "Sửa chính sách ",
-        "title1": "QUẢN LÝ CHÍNH SÁCH",
+        "title1": "THÊM MỚI CHÍNH SÁCH",
+        "title2": "SỬA CHÍNH SÁCH",
         "name1": "Tên chính sách - Vi",
         "name2": "Tên chính sách - En",
         "Description_Vi": "Mô tả - Vi",
         "Description_En": "Mô tả - En",
-        "action": "Trạng thái"
+        "action": "Trạng thái",
+        "create": "Tạo mới"
     },
     "manage-doctor": {
         "title": "Danh sách bác sĩ "
@@ -206,6 +219,9 @@
         "clinic": {
             "title": "Cơ sở y tế",
             "address": "Địa chỉ :"
+        },
+        "policy": {
+            "category": "Danh mục : Chính sách"
         }
     },
     "admin": {
