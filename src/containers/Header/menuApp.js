@@ -56,7 +56,16 @@ export const adminMenu = [
                 name: 'menu.admin.manage-policy', link: '/system/manage-policy',
             },
         ]
-    }, { //quản lý thống kê
+    },
+    { //quản lý câu hỏi
+        name: 'menu.admin.question',
+        menus: [
+            {
+                name: 'menu.admin.manage-question', link: '/system/manage-question',
+            },
+        ]
+    },
+    { //quản lý thống kê
         name: 'menu.admin.statistical',
         menus: [
             {

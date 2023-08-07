@@ -40,7 +40,9 @@
             "list": "List doctor",
             "creat_edit": "Add & edit",
             "statistical": "Statistical",
-            "manage-statistical": "Manage statistical"
+            "manage-statistical": "Manage statistical",
+            "manage-question": "Manage question",
+            "question": "Question"
         },
         "doctor": {
             "manage-schedule": "Manage Doctor's schedule",
@@ -156,6 +158,17 @@
         "Description_En": "Description - En",
         "action": "Action",
         "create": "Create policy"
+    },
+    "manage-question": {
+        "tiitle": "List questions",
+        "create": "Create",
+        "name1": "Question -en",
+        "name2": "Question -vi",
+        "tiitle1": "CREATE QUESTION",
+        "save": "Save",
+        "tiitle2": "EDIT QUESTION",
+        "rep1": "Answer -vi",
+        "rep2": "Answer -en"
     },
     "manage-doctor": {
         "title": "List of Doctor "

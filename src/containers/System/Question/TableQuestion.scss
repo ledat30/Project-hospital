@@ -1,0 +1,49 @@
+.manage-question-container {
+    padding: 0 15px;
+
+    .ms-title1 {
+        text-align    : center;
+        margin        : 50px 0 20px 0;
+        text-transform: uppercase;
+        font-weight   : 600;
+        font-size     : 17px;
+        color         : #0071ba;
+    }
+
+    #TableManageQuestion {
+        font-family    : Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width          : 100%;
+    }
+
+    #TableManageQuestion td,
+    #TableManageQuestion th {
+        border : 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #TableManageQuestion tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #TableManageQuestion tr:hover {
+        background-color: #ddd;
+    }
+
+    #TableManageQuestion th {
+        padding-top     : 12px;
+        padding-bottom  : 12px;
+        text-align      : left;
+        background-color: #04AA6D;
+        color           : white;
+    }
+
+    .btn-save-question {
+        border       : none;
+        padding      : 8px 5px;
+        background   : goldenrod;
+        border-radius: 3px;
+        margin       : 15px 0;
+        min-width    : 75px;
+    }
+}

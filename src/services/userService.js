@@ -207,6 +207,25 @@ const getDetailCategoryById = (data) => {
     return axios.get(`/api/get-all-detail-category-by-id?id=${data.id}`)
 }
 
+const createNewQuestion = (data) => {
+    return axios.post(`/api/create-new-questions`, data)
+}
+
+const getAllQuestion = () => {
+    return axios.get(`/api/get-all-question`)
+}
+
+const deleteQuestion = (questionId) => {
+    return axios.delete('/api/delete-question', {
+        data: {
+            id: questionId
+        }
+    });
+}
+
+const editQuestion = (inputData) => {
+    return axios.put('/api/edit-question', inputData);
+}
 
 export {
     handleLoginApi, getAllUsers, createNewUserService, deleteUserService, editUserService,
@@ -219,5 +238,5 @@ export {
     editHandBookService, getDetailHandBookById, createNewPolicy, getAllPolicy, getLimitPolicy, deletePolicyService,
     editPolicyService, getDetailPolicyById, createNewCategoryHandbook, getAllCategoryHandbook,
     deleteCategoryHandbookService, editCategoryHandbookService, getTopHandbookHomeService,
-    getDetailCategoryById
+    getDetailCategoryById, createNewQuestion, getAllQuestion, deleteQuestion, editQuestion
 }

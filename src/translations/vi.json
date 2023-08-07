@@ -40,7 +40,9 @@
             "list": "Danh sách bác sĩ",
             "creat_edit": "Thêm mới & sửa",
             "statistical": "Thống kê",
-            "manage-statistical": "Quản lý thống kê"
+            "manage-statistical": "Quản lý thống kê",
+            "manage-question": "Quản lý câu hỏi",
+            "question": "Câu hỏi"
         },
         "doctor": {
             "manage-schedule": " Quản lý kế hoạch khám bệnh",
@@ -156,6 +158,17 @@
         "Description_En": "Mô tả - En",
         "action": "Trạng thái",
         "create": "Tạo mới"
+    },
+    "manage-question": {
+        "tiitle": "Danh sách câu hỏi",
+        "create": "Tạo mới",
+        "name1": "Câu hỏi -en",
+        "name2": "Câu hỏi -vi",
+        "tiitle1": "THÊM CÂU HỎI",
+        "save": "Lưu câu hỏi",
+        "tiitle2": "Sửa câu hỏi",
+        "rep1": "Câu trả lời -vi",
+        "rep2": "Câu trả lời -en"
     },
     "manage-doctor": {
         "title": "Danh sách bác sĩ "

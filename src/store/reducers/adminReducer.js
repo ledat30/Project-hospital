@@ -15,6 +15,7 @@ const initialState = {
     handbook: [],
     policies: [],
     category: [],
+    question: [],
     allRequiredDoctorInfor: []
 }
 
@@ -184,6 +185,17 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.FETCH_ALL_CATEGORY_HANDBOOK_FAIDED:
             state.category = [];
+            return {
+                ...state,
+            }
+
+        case actionTypes.FETCH_ALL_QUESTION_SUCCESS:
+            state.question = action.question;
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_ALL_QUESTION_FAIDED:
+            state.question = [];
             return {
                 ...state,
             }

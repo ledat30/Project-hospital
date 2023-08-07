@@ -5,7 +5,7 @@ import {
     deleteClinicService, deleteSpecialtyService, deleteDoctorService, editClinicService, editSpecialtyService, getAllHandBook,
     deleteHandbookService, editHandBookService, getAllPolicy, deletePolicyService, editPolicyService,
     getAllCategoryHandbook, deleteCategoryHandbookService, editCategoryHandbookService,
-    getTopHandbookHomeService
+    getTopHandbookHomeService, getAllQuestion, deleteQuestion, editQuestion
 } from "../../services/userService";
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -752,4 +752,81 @@ export const editCategoryHandbookSuccess = () => ({
 })
 export const editCategoryHandbookFailed = () => ({
     type: actionTypes.EDIT_CATEGORY_FAILED
+})
+
+
+export const fetchAllQuestion = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllQuestion();
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllQuestionSuccess(res.data))
+            } else {
+                dispatch(fetchAllQuestionFailed());
+            }
+        } catch (e) {
+            dispatch(fetchAllQuestionFailed());
+            console.log(e);
+        }
+    }
+}
+export const fetchAllQuestionSuccess = (data) => ({
+    type: 'FETCH_ALL_QUESTION_SUCCESS',
+    question: data
+})
+export const fetchAllQuestionFailed = () => ({
+    type: 'FETCH_ALL_QUESTION_FAIDED'
+})
+
+
+export const deleteQuestions = (questionId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteQuestion(questionId);
+            if (res && res.errCode === 0) {
+                toast.success("Delete the question success!")
+                dispatch(deleteQuestionSuccess())
+                dispatch(fetchAllQuestion())
+            } else {
+                toast.error("Delete the question failed!")
+                dispatch(deleteQuestionFaided());
+            }
+        } catch (e) {
+            dispatch(deleteQuestionFaided());
+            toast.error("Delete the question failed!");
+            console.log(e);
+        }
+    }
+}
+export const deleteQuestionSuccess = () => ({
+    type: actionTypes.FETCH_DELETE_QUESTION_SUCCESS,
+})
+export const deleteQuestionFaided = () => ({
+    type: actionTypes.FETCH_DELETE_QUESTION_FAIDED
+})
+
+
+export const editQuestions = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editQuestion(data);
+            if (res && res.errCode === 0) {
+                toast.success("Edit the question success!")
+                dispatch(editQuestionSuccess())
+                dispatch(fetchAllQuestion())
+            } else {
+                toast.error("Edit the question failed!")
+                dispatch(editQuestionFailed());
+            }
+        } catch (e) {
+            dispatch(editQuestionFailed());
+            console.log(e);
+        }
+    }
+}
+export const editQuestionSuccess = () => ({
+    type: actionTypes.EDIT_QUESTION_SUCCESS,
+})
+export const editQuestionFailed = () => ({
+    type: actionTypes.EDIT_QUESTION_FAILED
 })

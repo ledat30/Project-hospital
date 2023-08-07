@@ -15,6 +15,7 @@ import TableManagePolicy from '../containers/System/Policy/TableManagePolicy';
 import TableManageHandBook from '../containers/System/HandBook/TableManageHandBook';
 import TableManagerSpecialty from '../containers/System/Specialty/TableManagerSpecialty';
 import TableManagerClinic from '../containers/System/Clinic/TableManagerClinic';
+import TableQuestion from '../containers/System/Question/TableQuestion';
 class System extends Component {
     render() {
 
@@ -32,6 +33,7 @@ class System extends Component {
                             <Route path="/system/manage-specialty" component={TableManagerSpecialty} />
                             <Route path="/system/manage-clinic" component={TableManagerClinic} />
                             <Route path="/system/manage-handbook" component={TableManageHandBook} />
+                            <Route path="/system/manage-question" component={TableQuestion} />
                             <Route path="/system/manage-policy" component={TableManagePolicy} />
                             <Route path="/system/manage-categoryhandbook" component={CategoryHandbook} />
                             <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
