@@ -235,6 +235,9 @@
         },
         "policy": {
             "category": "Category : Policy"
+        },
+        "question": {
+            "category": "Category : Frequently asked questions"
         }
     },
     "admin": {

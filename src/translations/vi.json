@@ -235,6 +235,9 @@
         },
         "policy": {
             "category": "Danh mục : Chính sách"
+        },
+        "question": {
+            "category": "Danh mục : Câu hỏi thường gặp"
         }
     },
     "admin": {

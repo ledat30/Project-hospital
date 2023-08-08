@@ -88,6 +88,12 @@ class HeaderHome extends Component {
             this.props.history.push(`/all-policy`)
         }
     }
+
+    returnToQuestion = () => {
+        if (this.props.history) {
+            this.props.history.push(`/all-question`)
+        }
+    }
     render() {
         let language = this.props.language;
         const { isOpen } = this.state;
@@ -104,8 +110,8 @@ class HeaderHome extends Component {
                                     </button>
                                 </div>
                                 <ul className={`dropdown-menu ${isOpen ? 'show' : ''}`}>
-                                    <li className='li' onClick={() => this.returnToPolicy()}><FormattedMessage id={'homeheader.policy'}/></li>
-                                    <li className='li' onClick={() => this.returnToQuestion()}><FormattedMessage id={'homeheader.question'}/></li>
+                                    <li className='li' onClick={() => this.returnToPolicy()}><FormattedMessage id={'homeheader.policy'} /></li>
+                                    <li className='li' onClick={() => this.returnToQuestion()}><FormattedMessage id={'homeheader.question'} /></li>
                                 </ul>
                             </div>
 

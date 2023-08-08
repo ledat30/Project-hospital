@@ -24,6 +24,7 @@ import CategoryDoctor from './Pationt/Doctor/CategoryDoctor/CategoryDoctor';
 import CategorySpecialty from './Pationt/Specialty/CategorySpecialty/CategorySpecialty';
 import CategoryClinic from './Pationt/Clinic/CategoryClinic/CategoryClinic';
 import AllPolicy from './Pationt/Policy/AllPolicy/AllPolicy';
+import AllQuestion from './Pationt/Question/AllQuestion';
 
 class App extends Component {
 
@@ -66,6 +67,7 @@ class App extends Component {
                                     <Route path={path.ALL_CATEGORY} component={AllCategory} />
                                     <Route path={path.DETAIL_CATEGORY} component={DetailCategory} />
                                     <Route path={path.ALL_POLICY} component={AllPolicy} />
+                                    <Route path={path.ALL_QUESTION} component={AllQuestion} />
                                     <Route path={path.ALL_DOCTOR} component={CategoryDoctor} />
                                     <Route path={path.ALL_SPECIALY} component={CategorySpecialty} />
                                     <Route path={path.ALL_CLINIC} component={CategoryClinic} />
