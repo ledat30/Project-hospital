@@ -11,50 +11,51 @@ module.exports = {
             doctorId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'Users',
-                //     key: 'id'
-                // }
+                unique: true,
+                references: {
+                    model: 'Users',
+                    key: 'id'
+                }
             },
             specialtyId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'specialties',
-                //     key: 'id'
-                // }
+                references: {
+                    model: 'specialties',
+                    key: 'id'
+                }
             },
             clinicId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'clinics',
-                //     key: 'id'
-                // }
+                references: {
+                    model: 'clinics',
+                    key: 'id'
+                }
             },
             priceId: {
-                type: Sequelize.STRING,
+                type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'Allcodes',
-                //     key: 'id'
-                // }
+                references: {
+                    model: 'Allcodes',
+                    key: 'id'
+                }
             },
             provinceId: {
-                type: Sequelize.STRING,
+                type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'Allcodes',
-                //     key: 'id'
-                // }
+                references: {
+                    model: 'Allcodes',
+                    key: 'id'
+                }
             },
             paymentId: {
-                type: Sequelize.STRING,
+                type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'Allcodes',
-                //     key: 'id'
-                // }
+                references: {
+                    model: 'Allcodes',
+                    key: 'id'
+                }
             },
             addressClinic: {
                 type: Sequelize.STRING,

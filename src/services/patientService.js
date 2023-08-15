@@ -30,7 +30,7 @@ let postBookAppointment = (data) => {
                     where: { email: data.email },
                     defaults: {
                         email: data.email,
-                        roleId: 'R3',
+                        roleId: 3,
                         gender: data.selectedGender,
                         address: data.address,
                         fullName: data.fullName,
@@ -39,14 +39,14 @@ let postBookAppointment = (data) => {
                 });
 
 
-                
+
 
                 //create a booking record
                 if (user && user[0]) {
                     await db.Booking.findOrCreate({
                         where: { patientId: user[0].id },
                         defaults: {
-                            statusId: 'S1',
+                            statusId: 4,
                             doctorId: data.doctorId,
                             patientId: user[0].id,
                             date: data.date,
@@ -85,12 +85,12 @@ let postVerifyBookAppointment = (data) => {
                     where: {
                         doctorId: data.doctorId,
                         token: data.token,
-                        statusId: 'S1'
+                        statusId: 4
                     },
                     raw: false
                 })
                 if (appointment) {
-                    appointment.statusId = 'S2';
+                    appointment.statusId = 5;
                     await appointment.save();
 
                     resolve({

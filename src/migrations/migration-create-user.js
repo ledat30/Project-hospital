@@ -21,14 +21,20 @@ module.exports = {
         type: Sequelize.STRING
       },
       gender: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Allcodes',
+          key: 'id'
+        }
       },
       roleId: {
-        type: Sequelize.STRING,
-        // references: {
-        //   model: 'Allcodes',
-        //   key: 'id'
-        // }
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Allcodes',
+          key: 'id'
+        }
       },
       phonenumber: {
         type: Sequelize.STRING
@@ -37,11 +43,12 @@ module.exports = {
         type: Sequelize.BLOB('long')
       },
       positionId: {
-        type: Sequelize.STRING,
-        // references: {
-        //   model: 'Allcodes',
-        //   key: 'id'
-        // }
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Allcodes',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

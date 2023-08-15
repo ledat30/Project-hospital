@@ -11,7 +11,7 @@ let getTopDoctorHome = (limitInput) => {
         try {
             let users = await db.User.findAll({
                 limit: limitInput,
-                where: { roleId: 'R2' },
+                where: { roleId: '2' },
                 order: [['createdAt', 'DESC']],
                 attributes: {
                     exclude: ['password']
@@ -39,7 +39,7 @@ let getAllDoctor = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let doctors = await db.User.findAll({
-                where: { roleId: 'R2' },
+                where: { roleId: 2 },
                 attributes: {
                     exclude: ['password']
                 },
@@ -410,7 +410,7 @@ let getListPatientForDoctor = (doctorId, date) => {
             } else {
                 let data = await db.Booking.findAll({
                     where: {
-                        statusId: 'S2',
+                        statusId: 5,
                         doctorId: doctorId,
                         date: date
                     },
@@ -445,7 +445,7 @@ let sendRemedy = (data) => {
         try {
             if (!data.email || !data.doctorId || !data.patientId || !data.timeType) {
                 resolve({
-                    errCode: 1,
+                    errCode: -1,
                     errMessage: 'Missing required parmeter!'
                 })
             } else {
@@ -455,12 +455,12 @@ let sendRemedy = (data) => {
                         doctorId: data.doctorId,
                         patientId: data.patientId,
                         timeType: data.timeType,
-                        statusId: 'S2'
+                        statusId: 5
                     },
                     raw: false
                 })
                 if (appointment) {
-                    appointment.statusId = 'S3';
+                    appointment.statusId = 6;
                     await appointment.save();
                 }
 

@@ -17,18 +17,18 @@ module.exports = {
             categoryId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'CategoryHandbooks',
-                //     key: 'id'
-                // }
+                references: {
+                    model: 'CategoryHandbooks',
+                    key: 'id'
+                }
             },
             user_id: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'Users',
-                //     key: 'id'
-                // }
+                references: {
+                    model: 'Users',
+                    key: 'id'
+                }
             },
             contentHTMLVi: {
                 type: Sequelize.TEXT('long')

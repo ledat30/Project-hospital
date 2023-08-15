@@ -18,20 +18,20 @@ module.exports = {
                 type: Sequelize.STRING
             },
             timeType: {
-                type: Sequelize.STRING,
+                type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'Allcodes',
-                //     key: 'keyMap'
-                // }
+                references: {
+                    model: 'Allcodes',
+                    key: 'id'
+                }
             },
             doctorId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'Users',
-                //     key: 'id'
-                // }
+                references: {
+                    model: 'Users',
+                    key: 'id'
+                }
             },
             createdAt: {
                 allowNull: false,

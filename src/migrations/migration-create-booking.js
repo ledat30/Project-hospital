@@ -9,34 +9,39 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             statusId: {
-                type: Sequelize.STRING,
+                type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'Allcodes',
-                //     key: 'id'
-                // }
+                references: {
+                    model: 'Allcodes',
+                    key: 'id'
+                }
             },
             doctorId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'Users',
-                //     key: 'id'
-                // }
+                references: {
+                    model: 'Users',
+                    key: 'id'
+                }
             },
             patientId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'Users',
-                //     key: 'id'
-                // }
+                references: {
+                    model: 'Users',
+                    key: 'id'
+                }
             },
             date: {
                 type: Sequelize.STRING
             },
             timeType: {
-                type: Sequelize.STRING
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'Allcodes',
+                    key: 'id'
+                }
             },
             token: {
                 type: Sequelize.STRING

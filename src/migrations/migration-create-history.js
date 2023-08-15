@@ -11,18 +11,18 @@ module.exports = {
             patientId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'Users',
-                //     key: 'id'
-                // }
+                references: {
+                    model: 'Users',
+                    key: 'id'
+                }
             },
             doctorId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
-                // references: {
-                //     model: 'Users',
-                //     key: 'id'
-                // }
+                references: {
+                    model: 'Users',
+                    key: 'id'
+                }
             },
             description: {
                 type: Sequelize.TEXT

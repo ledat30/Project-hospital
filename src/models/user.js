@@ -10,9 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.belongsTo(models.Allcode, { foreignKey: 'positionId', targetKey: 'keyMap', as: 'positionData' })
-      User.belongsTo(models.Allcode, { foreignKey: 'gender', targetKey: 'keyMap', as: 'genderData' })
-      User.hasOne(models.Doctor_infor, { foreignKey: 'doctorId' }),
+      User.belongsTo(models.Allcode, { foreignKey: 'positionId', primaryKey: 'id', as: 'positionData' })
+      User.belongsTo(models.Allcode, { foreignKey: 'gender', primaryKey: 'id', as: 'genderData' })
+
+      User.hasOne(models.Doctor_infor, { foreignKey: 'doctorId' })
       User.hasMany(models.Schedule, { foreignKey: 'doctorId', as: 'doctorData' })
 
       User.hasMany(models.Booking, { foreignKey: 'patientId', as: 'patientData' })
@@ -24,10 +25,10 @@ module.exports = (sequelize, DataTypes) => {
     fullName: DataTypes.STRING,
     address: DataTypes.STRING,
     phonenumber: DataTypes.STRING,
-    gender: DataTypes.STRING,
+    gender: DataTypes.INTEGER,
     image: DataTypes.STRING,
-    roleId: DataTypes.STRING,
-    positionId: DataTypes.STRING,
+    roleId: DataTypes.INTEGER,
+    positionId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'User',
