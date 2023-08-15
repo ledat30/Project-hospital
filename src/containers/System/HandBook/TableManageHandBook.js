@@ -381,7 +381,7 @@ class TableManageHandBook extends Component {
                                     </select>
                                 </div>
                                 <div className='col-3  form-group'>
-                                    <label><FormattedMessage id="manage-user.categoryId" /></label>
+                                    <label><FormattedMessage id="manage-user.userId" /></label>
                                     <select className="form-control"
                                         onChange={(event) => { this.onChangeInput(event, 'user_id') }} value={this.state.creatingHandBook.user_id}>
                                         {userDoctor && userDoctor.length > 0 &&

@@ -27,7 +27,7 @@
             "manage-doctor": "Quản lý bác sĩ",
             "manage-admin": "Quản lý Admin",
             "crud": "CRUD user",
-            "crud-redux": "CRUD redux",
+            "crud-redux": "Quản lý người dùng",
             "manage-clinic": "Quản lý Phòng khám",
             "clinic": "Phòng khám",
             "specialty": " Chuyên Khoa",
@@ -68,7 +68,8 @@
         "manageUser": "Quản lý người dùng",
         "edit": "Lưu Thay đổi",
         "categoryId": "Danh mục",
-        "action": "Trạng thái"
+        "action": "Trạng thái",
+        "userId": "Tác giả"
     },
     "homepage": {
         "out-standing-doctor": "Bác sĩ nổi bật tuần qua",

@@ -79,7 +79,7 @@ class ManageDoctor extends Component {
                     let labelVi = `${item.valueVi} VND`;
                     let labelEn = `${item.valueEn} USD`;
                     object.label = language === LANGUAGES.VI ? labelVi : labelEn;
-                    object.value = item.keyMap;
+                    object.value = item.id;
                     result.push(object)
                 })
             }
@@ -89,7 +89,7 @@ class ManageDoctor extends Component {
                     let labelVi = `${item.valueVi} `;
                     let labelEn = `${item.valueEn} `;
                     object.label = language === LANGUAGES.VI ? labelVi : labelEn;
-                    object.value = item.keyMap;
+                    object.value = item.id;
                     result.push(object)
                 })
             }
@@ -336,7 +336,6 @@ class ManageDoctor extends Component {
 
     render() {
         let { hasOldData } = this.state;
-        console.log(this.state);
         return (
             <>
                 <div className='manage-doctor-container'>

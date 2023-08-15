@@ -120,7 +120,6 @@ export const fetchAllUsersStart = () => {
         try {
             let res = await getAllUsers("ALL");
             if (res && res.errCode === 0) {
-                let users = res.users.re
                 dispatch(fetchAllUserSuccess(res.users.reverse())) //reverse đảo user lên đầu khi add
             } else {
                 dispatch(fetchAllUserFaided());

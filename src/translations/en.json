@@ -27,7 +27,7 @@
             "manage-doctor": "Manage Doctor",
             "manage-admin": "Manage Admin",
             "crud": "CRUD user",
-            "crud-redux": "CRUD redux",
+            "crud-redux": "Manage users",
             "manage-clinic": "Manage ClinicsS",
             "clinic": "Clinics",
             "specialty": " Specialties",
@@ -68,7 +68,8 @@
         "manageUser": "Manage Users",
         "edit": "Save changes",
         "categoryId": "Category",
-        "action": "Action"
+        "action": "Action",
+        "userId": "Author"
     },
     "homepage": {
         "out-standing-doctor": "Last Week's Featured Doctor",
