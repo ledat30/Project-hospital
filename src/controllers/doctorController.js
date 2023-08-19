@@ -133,6 +133,20 @@ let getListPatientForDoctor = async (req, res) => {
     }
 }
 
+let getListScheduleByDate = async (req, res) => {
+    try {
+        let infor = await doctorService.getListScheduleByDate(req.query.doctorId, req.query.date);
+        return res.status(200).json(infor)
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from the server'
+        })
+    }
+}
+
+
 let sendRemedy = async (req, res) => {
     try {
         let infor = await doctorService.sendRemedy(req.body);
@@ -207,5 +221,5 @@ let searchSchedule = async (req, res) => {
 module.exports = {
     getTopDoctorHome: getTopDoctorHome, getAllDoctor, postInforDoctor, getDetailDoctorById, bulkCreateSchedule, searchDoctor, search, searchSchedule,
     getScheduleDoctorByDate, getExtraInfforDoctorById, getProfileDoctorById, getListPatientForDoctor, sendRemedy, getAllSchedule,
-    HandleDeleteDoctor
+    HandleDeleteDoctor, getListScheduleByDate
 }

@@ -39,12 +39,13 @@ let initWebRouter = (app) => {
     router.get('/api/get-schedule-doctor-by-date', doctorController.getScheduleDoctorByDate);
     router.get('/api/get-extra-infor-by-id', doctorController.getExtraInfforDoctorById);
     router.get('/api/get-profile-doctor-by-id', doctorController.getProfileDoctorById);
-    
+
     router.get('/api/search-doctor-web', doctorController.searchDoctor);
     router.get('/api/search-doctor-admin', doctorController.search);
 
     router.get('/api/getAllSchedule', doctorController.getAllSchedule);
     router.get('/api/search-schedule', doctorController.searchSchedule);
+    router.get('/api/get-list-schedule-by-date', doctorController.getListScheduleByDate);
 
     router.get('/api/get-list-patient', doctorController.getListPatientForDoctor);
     router.post('/api/send-remedy', doctorController.sendRemedy);

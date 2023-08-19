@@ -440,6 +440,38 @@ let getListPatientForDoctor = (doctorId, date) => {
     })
 }
 
+let getListScheduleByDate = (doctorId, date) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!doctorId || !date) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing required parmeter!'
+                })
+            } else {
+                let data = await db.Schedule.findAll({
+                    where: {
+                        doctorId: doctorId,
+                        date: date
+                    },
+                    include: [
+                        { model: db.Allcode, as: 'timeTypeData', attributes: ['valueEn', 'valueVi'] },
+                        { model: db.User, as: 'doctorData', attributes: ['fullName', 'id'] }
+                    ],
+                    raw: false,
+                    nest: true
+                })
+                resolve({
+                    errCode: 0,
+                    data: data
+                })
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 let sendRemedy = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -601,5 +633,5 @@ let searchSchedule = (keyword) => {
 module.exports = {
     getTopDoctorHome: getTopDoctorHome, getAllDoctor, saveDetailInforDoctor, getDetailDoctorById, searchDoctor, search, searchSchedule,
     bulkCreateSchedule, getScheduleDoctorByDate, getExtraInfforDoctorById, getProfileDoctorById,
-    getListPatientForDoctor, sendRemedy, deleteDoctor, getAllSchedule
+    getListPatientForDoctor, sendRemedy, deleteDoctor, getAllSchedule, getListScheduleByDate
 }
