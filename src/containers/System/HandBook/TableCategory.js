@@ -26,7 +26,7 @@ class TableCategory extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.listCategory !== this.props.listCategory ) {
+        if (prevProps.listCategory !== this.props.listCategory) {
             this.setState({
                 CategoryhandBookRedux: this.props.listCategory.sort((a, b) => a.id - b.id),
             }, () => {
@@ -121,7 +121,11 @@ class TableCategory extends Component {
                         })
                             :
                             (
-                                <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                                <tr className="error">
+                                    <td colSpan={6}>
+                                        <FormattedMessage id={"patient.detail-category.tb"} />
+                                    </td>
+                                </tr>
                             )
                         }
                     </tbody>

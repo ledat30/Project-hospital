@@ -227,8 +227,7 @@ class TableQuestion extends Component {
 
 
     render() {
-        const { questionRedux, offset, perPage, currentPage } = this.state;
-        console.log('check question', questionRedux)
+        const { questionRedux, offset, perPage } = this.state;
         const pageCount = Math.ceil(questionRedux.length / perPage);
         const sliceQuestion = questionRedux.slice(offset, offset + perPage);
         return (
@@ -364,7 +363,11 @@ class TableQuestion extends Component {
                         })
                             :
                             (
-                                <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                                <tr className="error">
+                                    <td colSpan={6}>
+                                        <FormattedMessage id={"patient.detail-category.tb"} />
+                                    </td>
+                                </tr>
                             )
                         }
                     </tbody>

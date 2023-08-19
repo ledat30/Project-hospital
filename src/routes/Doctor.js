@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import ManageSchedule from '../containers/System/Doctor/ManageSchedule';
 import Header from '../containers/Header/Header';
 import ManagePatinet from '../containers/System/Doctor/ManagePatinet';
@@ -8,7 +8,6 @@ import TableManageSchedule from '../containers/System/Doctor/TableManageSchedule
 class Doctor extends Component {
     render() {
 
-        const { isLoggedIn } = this.props;
         return (
             <>
                 {this.props.isLoggedIn && <Header />}

@@ -6,7 +6,6 @@ import * as actions from "../../store/actions";
 
 // import './Login.scss';
 import './Login.scss';
-import { FormattedMessage } from 'react-intl';
 // import { userService } from '../../services/userService';
 import { handleLoginApi } from '../../services/userService';
 

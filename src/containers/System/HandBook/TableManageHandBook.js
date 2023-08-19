@@ -344,7 +344,6 @@ class TableManageHandBook extends Component {
         let { language } = this.props;
         let categories = this.state.categoryArr;
         let userDoctor = this.state.doctorArr;
-        console.log('check ', categories)
         return (
             <>
                 <div className='manage-specilty-container'>
@@ -575,7 +574,11 @@ class TableManageHandBook extends Component {
                             })
                                 :
                                 (
-                                    <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                                    <tr className="error">
+                                        <td colSpan={6}>
+                                            <FormattedMessage id={"patient.detail-category.tb"} />
+                                        </td>
+                                    </tr>
                                 )
                             }
                         </tbody>

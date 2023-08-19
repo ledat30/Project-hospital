@@ -287,7 +287,7 @@ class TableManagerSpecialty extends Component {
 
 
     render() {
-        const { specialtyRedux, offset, perPage, currentPage } = this.state;
+        const { specialtyRedux, offset, perPage } = this.state;
         const pageCount = Math.ceil(specialtyRedux.length / perPage);
         const sliceSpecialty = specialtyRedux.slice(offset, offset + perPage);
         return (
@@ -463,7 +463,11 @@ class TableManagerSpecialty extends Component {
                             })
                                 :
                                 (
-                                    <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                                    <tr className="error">
+                                        <td colSpan={6}>
+                                            <FormattedMessage id={"patient.detail-category.tb"} />
+                                        </td>
+                                    </tr>
                                 )
                             }
                         </tbody>

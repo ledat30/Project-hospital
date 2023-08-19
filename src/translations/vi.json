@@ -42,7 +42,10 @@
             "statistical": "Thống kê",
             "manage-statistical": "Quản lý thống kê",
             "manage-question": "Quản lý câu hỏi",
-            "question": "Câu hỏi"
+            "question": "Câu hỏi",
+            "manage-schedule": " Quản lý kế hoạch khám bệnh",
+            "list_schedule": "Danh sách kế hoạch khám bệnh",
+            "creat_schedule": "Thêm kế hoạch khám bệnh"
         },
         "doctor": {
             "manage-schedule": " Quản lý kế hoạch khám bệnh",
@@ -69,7 +72,9 @@
         "edit": "Lưu Thay đổi",
         "categoryId": "Danh mục",
         "action": "Trạng thái",
-        "userId": "Tác giả"
+        "userId": "Tác giả",
+        "tt": "Đã hết nhận",
+        "tt1": "Còn nhận lịch"
     },
     "homepage": {
         "out-standing-doctor": "Bác sĩ nổi bật tuần qua",
@@ -264,7 +269,11 @@
             "address_clinic1": "Địa chỉ phòng khám -en",
             "note1": "Lưu ý -en",
             "Introduction_information1": "Thông tin giới thiệu -en",
-            "content1": "Nội dung chi tiết bác sĩ -en"
+            "content1": "Nội dung chi tiết bác sĩ -en",
+            "max": "Số lượng tối đa",
+            "current": "Còn lại",
+            "date": "Ngày",
+            "time": "Thời gian"
         }
     }
 }

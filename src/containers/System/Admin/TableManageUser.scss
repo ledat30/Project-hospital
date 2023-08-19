@@ -26,6 +26,32 @@
   color           : white;
 }
 
+.btn-edit {
+  width     : 50px;
+  border    : none;
+  outline   : none;
+  background: transparent;
+  color     : orange;
+
+  &:hover {
+    background-color: transparent !important;
+    color           : orange !important;
+  }
+}
+
+.btn-delete {
+  width     : 50px;
+  border    : none;
+  outline   : none;
+  background: transparent;
+  color     : rgb(238, 20, 20);
+
+  &:hover {
+    background-color: transparent !important;
+    color           : rgb(238, 20, 20) !important;
+  }
+}
+
 .search-user-box {
   float        : right;
   width        : 350px;

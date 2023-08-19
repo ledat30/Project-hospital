@@ -242,7 +242,7 @@ class TableManagePolicy extends Component {
     };
 
     render() {
-        const { policyRedux, offset, perPage, currentPage } = this.state;
+        const { policyRedux, offset, perPage } = this.state;
         const pageCount = Math.ceil(policyRedux.length / perPage);
         const slicePolicy = policyRedux.slice(offset, offset + perPage);
 
@@ -374,7 +374,11 @@ class TableManagePolicy extends Component {
                             })
                                 :
                                 (
-                                    <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                                    <tr className="error">
+                                        <td colSpan={6}>
+                                            <FormattedMessage id={"patient.detail-category.tb"} />
+                                        </td>
+                                    </tr>
                                 )
                             }
                         </tbody>

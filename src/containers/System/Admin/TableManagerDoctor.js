@@ -115,7 +115,11 @@ class TableManagerDoctor extends Component {
                             })
                                 :
                                 (
-                                    <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                                    <tr className="error">
+                                        <td colSpan={6}>
+                                            <FormattedMessage id={"patient.detail-category.tb"} />
+                                        </td>
+                                    </tr>
                                 )
                             }
                         </tbody>

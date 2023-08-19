@@ -98,67 +98,66 @@ class ManagePatinet extends Component {
         let { language } = this.props;
         return (
             <>
-                    <div className='manage-patient-container'>
-                        <div className='m-p-title'>
-                            Quản lý lịch khám
+                <div className='manage-patient-container'>
+                    <div className='title3 mt-10'>
+                        Quản lý lịch khám
+                    </div>
+                    <div className='manage-patient-body row'>
+                        <div className='col-2 form-group'>
+                            <label>Chọn ngày khám</label>
+                            <DatePicker onChange={this.handleOnchangeDetaPicker}
+                                className="form-control"
+                                value={this.state.currentDate}
+                            />
                         </div>
-                        <div className='manage-patient-body row'>
-                            <div className='col-2 form-group'>
-                                <label>Chọn ngày khám</label>
-                                <DatePicker onChange={this.handleOnchangeDetaPicker}
-                                    className="form-control"
-                                    value={this.state.currentDate}
-                                // minDate={yesterday}
-                                />
-                            </div>
-                            <div className='col-12'>
-                                <table id="customers">
-                                    <tbody>
-                                        <tr>
-                                            <th>STT</th>
-                                            <th>Thời gian</th>
-                                            <th>Họ và Tên</th>
-                                            <th>Địa chỉ</th>
-                                            <th>Giới tính</th>
-                                            <th>Trạng thái</th>
+                        <div className='col-12'>
+                            <table id="customers">
+                                <tbody>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Thời gian</th>
+                                        <th>Họ và Tên</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Giới tính</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+                                    {dataPatient && dataPatient.length > 0 ?
+                                        dataPatient.map((item, index) => {
+                                            let time = language === LANGUAGES.VI ?
+                                                item.timeTypeDataPatient.valueVi : item.timeTypeDataPatient.valueEn;
+                                            let gender = language === LANGUAGES.VI ?
+                                                item.patientData.genderData.valueVi : item.patientData.genderData.valueEn;
+                                            return (
+                                                <tr key={index}>
+                                                    <td>{index + 1}</td>
+                                                    <td>{time}</td>
+                                                    <td>{item.patientData.fullName}</td>
+                                                    <td>{item.patientData.address}</td>
+                                                    <td>{gender}</td>
+                                                    <td>
+                                                        <button className='btn-confirm'
+                                                            onClick={() => this.handleBtnConfirm(item)}>
+                                                            Xác nhận
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                        :
+                                        <tr className='error'>
+                                            <td colSpan={6}> Không có lịch đặt khám trong khoảng thời gian này!</td>
                                         </tr>
-                                        {dataPatient && dataPatient.length > 0 ?
-                                            dataPatient.map((item, index) => {
-                                                let time = language === LANGUAGES.VI ?
-                                                    item.timeTypeDataPatient.valueVi : item.timeTypeDataPatient.valueEn;
-                                                let gender = language === LANGUAGES.VI ?
-                                                    item.patientData.genderData.valueVi : item.patientData.genderData.valueEn;
-                                                return (
-                                                    <tr key={index}>
-                                                        <td>{index + 1}</td>
-                                                        <td>{time}</td>
-                                                        <td>{item.patientData.fullName}</td>
-                                                        <td>{item.patientData.address}</td>
-                                                        <td>{gender}</td>
-                                                        <td>
-                                                            <button className='btn-confirm'
-                                                                onClick={() => this.handleBtnConfirm(item)}>
-                                                                Xác nhận
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                )
-                                            })
-                                            :
-                                            <tr className='error'>
-                                                <td colSpan={6}> Không có lịch đặt khám trong khoảng thời gian này!</td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
-                    </div >
-                    <RemedyModal
-                        isOpenModal={isOpenRemedy}
-                        dataModal={dataModal}
-                        closeRemedyModal={this.closeRemedyModal}
-                        sendRemedy={this.sendRemedy} />
+                    </div>
+                </div >
+                <RemedyModal
+                    isOpenModal={isOpenRemedy}
+                    dataModal={dataModal}
+                    closeRemedyModal={this.closeRemedyModal}
+                    sendRemedy={this.sendRemedy} />
             </>
         );
     }

@@ -42,7 +42,10 @@
             "statistical": "Statistical",
             "manage-statistical": "Manage statistical",
             "manage-question": "Manage question",
-            "question": "Question"
+            "question": "Question",
+            "manage-schedule": "Manage medical examination plan",
+            "list_schedule": "List of medical examination plans",
+            "creat_schedule": "More medical plans"
         },
         "doctor": {
             "manage-schedule": "Manage Doctor's schedule",
@@ -69,7 +72,9 @@
         "edit": "Save changes",
         "categoryId": "Category",
         "action": "Action",
-        "userId": "Author"
+        "userId": "Author",
+        "tt": "Out of receipt",
+        "tt1": "Still accepting calendars"
     },
     "homepage": {
         "out-standing-doctor": "Last Week's Featured Doctor",
@@ -264,7 +269,11 @@
             "address_clinic1": "Clinic address -en",
             "note1": "Note -en",
             "Introduction_information1": "Introduction information1 -en",
-            "content1": "Doctor's details -en"
+            "content1": "Doctor's details -en",
+            "max": "MaxNumber",
+            "current": "CurrentNumber",
+            "date": "Date",
+            "time": "Time"
         }
     }
 }

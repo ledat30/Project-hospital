@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableManagerClinic.scss';
+import './ManageClinic.scss';
 import * as actions from '../../../store/actions';
 import { debounce } from 'lodash';
 import ReactPaginate from 'react-paginate';
@@ -482,7 +483,11 @@ class TableManagerClinic extends Component {
                             })
                                 :
                                 (
-                                    <b><FormattedMessage id={'patient.detail-category.tb'} /></b>
+                                    <tr className="error">
+                                        <td colSpan={6}>
+                                            <FormattedMessage id={"patient.detail-category.tb"} />
+                                        </td>
+                                    </tr>
                                 )
                             }
                         </tbody>
