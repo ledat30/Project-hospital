@@ -186,6 +186,10 @@ const getAllPatientForDoctor = (data) => {
     return axios.get(`/api/get-list-patient?doctorId=${data.doctorId}&date=${data.date}`)
 }
 
+const getScheduleByDate = (data) => {
+    return axios.get(`/api/get-list-schedule-by-date?doctorId=${data.doctorId}&date=${data.date}`)
+}
+
 const postSendRemedy = (data) => {
     return axios.post(`/api/send-remedy`, data)
 }
@@ -237,7 +241,7 @@ export {
     , getProfileDoctorById, postPatientBookAppointment, postVerifyBookAppointment, createNewSpecialty,
     getAllSpecialty, getSpecialty, getDetailSpecialtyById, createNewClinics, getAllClinic, getDetailClinicById, getClinic,
     getAllPatientForDoctor, postSendRemedy, deleteClinicService, deleteSpecialtyService, deleteDoctorService,
-    editClinicService, editSpecialtyService, createNewHandbook, getAllHandBook, deleteHandbookService, getAllSchedule,
+    editClinicService, editSpecialtyService, createNewHandbook, getAllHandBook, deleteHandbookService, getAllSchedule, getScheduleByDate,
     editHandBookService, getDetailHandBookById, createNewPolicy, getAllPolicy, getLimitPolicy, deletePolicyService,
     editPolicyService, getDetailPolicyById, createNewCategoryHandbook, getAllCategoryHandbook,
     deleteCategoryHandbookService, editCategoryHandbookService, getTopHandbookHomeService,
