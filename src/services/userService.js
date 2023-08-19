@@ -237,26 +237,62 @@ let getAllCodeService = (typeInput) => {
     })
 }
 
+// let search = (keyword) => {
+//     return new Promise(async (resolve, reject) => {
+//         try {
+//             const results = await db.User.findAll({
+//                 where: {
+//                     fullName: {
+//                         [db.Sequelize.Op.like]: `%${keyword}%`,
+//                     },
+
+//                 },
+//             });
+//             resolve({
+//                 errCode: 0,
+//                 errMessage: "ok",
+//                 results
+//             })
+//         } catch (e) {
+//             reject(e);
+//         }
+//     })
+// };
+
 let search = (keyword) => {
     return new Promise(async (resolve, reject) => {
         try {
             const results = await db.User.findAll({
                 where: {
-                    fullName: {
-                        [db.Sequelize.Op.like]: `%${keyword}%`,
-                    },
-
+                    [db.Sequelize.Op.or]: [
+                        {
+                            fullName: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        },
+                        {
+                            email: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        },
+                        {
+                            phonenumber: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        },
+                    ],
                 },
+                attributes: ['fullName', 'email', 'phonenumber', 'address'],
             });
             resolve({
                 errCode: 0,
                 errMessage: "ok",
                 results
-            })
+            });
         } catch (e) {
             reject(e);
         }
-    })
+    });
 };
 module.exports = {
     handleUserLogin: handleUserLogin, getAllUsers: getAllUsers, createNewUser, deleteUser,

@@ -220,11 +220,20 @@ let search = (keyword) => {
         try {
             const results = await db.Clinic.findAll({
                 where: {
-                    name: {
-                        [db.Sequelize.Op.like]: `%${keyword}%`,
-                    },
-
+                    [db.Sequelize.Op.or]: [
+                        {
+                            name: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        },
+                        {
+                            name_en: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        }
+                    ],
                 },
+                attributes: ['name', 'name_en'],
             });
             resolve({
                 errCode: 0,

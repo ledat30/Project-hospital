@@ -214,43 +214,25 @@ let getSpecialty = () => {
     })
 }
 
-// let search = (keyword) => {
-//     return new Promise(async (resolve, reject) => {
-//         try {
-//             const results = await db.Specialty.findAll({
-//                 where: {
-//                     name: {
-//                         [db.Sequelize.Op.like]: `%${keyword}%`,
-//                     },
-//                 },
-//             });
-//             if (results && results.length > 0) {
-//                 results.map(item => {
-//                     item.image = new Buffer.from(item.image, 'base64').toString('binary'); //
-//                     return item;
-//                 })
-//             }
-//             resolve({
-//                 errCode: 0,
-//                 errMessage: "ok",
-//                 results
-//             })
-//         } catch (e) {
-//             reject(e);
-//         }
-//     })
-// };
-
 let search = (keyword) => {
     return new Promise(async (resolve, reject) => {
         try {
             const results = await db.Specialty.findAll({
                 where: {
-                    name: {
-                        [db.Sequelize.Op.like]: `%${keyword}%`,
-                    },
-
+                    [db.Sequelize.Op.or]: [
+                        {
+                            name: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        },
+                        {
+                            name_en: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        }
+                    ],
                 },
+                attributes: ['name', 'name_en'],
             });
             resolve({
                 errCode: 0,

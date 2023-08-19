@@ -173,8 +173,39 @@ let search = async (req, res) => {
         })
     }
 }
+
+const getAllSchedule = async (req, res) => {
+    try {
+        let { date } = req.query;
+        let schedule = await doctorService.getAllSchedule(date);
+        return res.status(200).json(schedule);
+    } catch (error) {
+        console.log(error);
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from the server'
+        });
+    }
+};
+
+let searchSchedule = async (req, res) => {
+    try {
+        const keyword = req.query.q;
+        const results = await doctorService.searchSchedule(keyword);
+        if (results.errCode === -1) { // Kiểm tra mã lỗi
+            return res.status(500).json(results); // Trả về mã lỗi và thông báo lỗi từ service
+        }
+        res.json(results);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({
+            errCode: -1,
+            errMessage: 'Error from the server'
+        });
+    }
+};
 module.exports = {
-    getTopDoctorHome: getTopDoctorHome, getAllDoctor, postInforDoctor, getDetailDoctorById, bulkCreateSchedule, searchDoctor, search,
-    getScheduleDoctorByDate, getExtraInfforDoctorById, getProfileDoctorById, getListPatientForDoctor, sendRemedy,
+    getTopDoctorHome: getTopDoctorHome, getAllDoctor, postInforDoctor, getDetailDoctorById, bulkCreateSchedule, searchDoctor, search, searchSchedule,
+    getScheduleDoctorByDate, getExtraInfforDoctorById, getProfileDoctorById, getListPatientForDoctor, sendRemedy, getAllSchedule,
     HandleDeleteDoctor
 }

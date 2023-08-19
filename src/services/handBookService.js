@@ -372,11 +372,20 @@ let searchCategory = (keyword) => {
         try {
             const results = await db.CategoryHandbook.findAll({
                 where: {
-                    nameVI: {
-                        [db.Sequelize.Op.like]: `%${keyword}%`,
-                    },
-
+                    [db.Sequelize.Op.or]: [
+                        {
+                            nameVI: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        },
+                        {
+                            nameEN: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        }
+                    ],
                 },
+                attributes: ['nameVI', 'nameEN'],
             });
             resolve({
                 errCode: 0,
@@ -394,11 +403,20 @@ let searchHandBook = (keyword) => {
         try {
             const results = await db.Handbook.findAll({
                 where: {
-                    title: {
-                        [db.Sequelize.Op.like]: `%${keyword}%`,
-                    },
-
+                    [db.Sequelize.Op.or]: [
+                        {
+                            title: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        },
+                        {
+                            title_en: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        }
+                    ],
                 },
+                attributes: ['title', 'title_en'],
             });
             resolve({
                 errCode: 0,

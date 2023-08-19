@@ -525,8 +525,81 @@ let search = (keyword) => {
         }
     })
 };
+
+const getAllSchedule = (date) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!date) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing required parameters!'
+                });
+            } else {
+                let schedule = await db.Schedule.findAll({
+                    where: {
+                        date: date
+                    },
+                    include: [
+                        { model: db.Allcode, as: 'timeTypeData', attributes: ['valueEn', 'valueVi'] },
+                        { model: db.User, as: 'doctorData', attributes: ['fullName', 'id'] }
+                    ],
+                    raw: false,
+                    nest: true
+                });
+
+                if (!schedule) schedule = [];
+                resolve({
+                    errCode: 0,
+                    data: schedule
+                });
+            }
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
+let searchSchedule = (keyword) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const results = await db.Schedule.findAll({
+                include: [
+                    {
+                        model: db.User,
+                        as: 'doctorData',
+                        attributes: ['fullName'],
+                        where: {
+                            fullName: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        },
+                    },
+                    {
+                        model: db.Allcode,
+                        as: 'timeTypeData',
+                        attributes: ['valueEn', 'valueVi'],
+                    },
+                ],
+                raw: true // Thêm option raw: true để lấy dữ liệu gốc từ cơ sở dữ liệu
+            });
+
+            resolve({
+                errCode: 0,
+                errMessage: "ok",
+                results: results
+            });
+        } catch (e) {
+            console.log(e);
+            reject({
+                errCode: -1,
+                errMessage: 'Error from the server'
+            });
+        }
+    });
+};
+
 module.exports = {
-    getTopDoctorHome: getTopDoctorHome, getAllDoctor, saveDetailInforDoctor, getDetailDoctorById, searchDoctor, search,
+    getTopDoctorHome: getTopDoctorHome, getAllDoctor, saveDetailInforDoctor, getDetailDoctorById, searchDoctor, search, searchSchedule,
     bulkCreateSchedule, getScheduleDoctorByDate, getExtraInfforDoctorById, getProfileDoctorById,
-    getListPatientForDoctor, sendRemedy, deleteDoctor
+    getListPatientForDoctor, sendRemedy, deleteDoctor, getAllSchedule
 }
