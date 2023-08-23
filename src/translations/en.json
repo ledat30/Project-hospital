@@ -45,14 +45,16 @@
             "question": "Question",
             "manage-schedule": "Manage medical examination plan",
             "list_schedule": "List of medical examination plans",
-            "creat_schedule": "More medical plans"
+            "creat_schedule": "More medical plans",
+            "manage-schdele&patinet": "Schedule management"
         },
         "doctor": {
             "manage-schedule": "Manage Doctor's schedule",
             "manage-patient": "Management of medical examination patients",
             "list_schedule": "List of medical examination plans",
             "creat_schedule": "More medical plans",
-            "title": "List of medical examination plans"
+            "title": "List of medical examination plans",
+            "manage-profile": "Manage profiel"
         }
     },
     "manage-user": {
@@ -214,7 +216,9 @@
             "Confirm": "Confirm",
             "cancel": "Cancel",
             "Free-booking": "Free booking",
-            "examination_price": "Examination price : "
+            "examination_price": "Examination price : ",
+            "current": "Still receive : ",
+            "text": " patients during this period."
         },
         "handbook": {
             "title_handbook": "List of articles",
@@ -225,7 +229,8 @@
         },
         "messega": {
             "success": "CONFIRM YOUR EXAMINATION SCHEDULE IS SUCCESSFUL!",
-            "fail": "CONFIRMED YOUR EXAMINATION SCHEDULE HAS Fails!"
+            "fail": "CONFIRMED YOUR EXAMINATION SCHEDULE HAS Fails!",
+            "fail2": "Note: The booking failure may be because you have already confirmed the appointment within this time period. Please contact customer service for assistance and understanding what your booking error is!"
         },
         "doctors": {
             "title": "Doctor",

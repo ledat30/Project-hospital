@@ -8,6 +8,7 @@ import moment from 'moment';
 import { LANGUAGES } from '../../../utils';
 import RemedyModal from './RemedyModal';
 import { toast } from 'react-toastify';
+import LoadingOverlay from 'react-loading-overlay';
 
 class ManagePatinet extends Component {
 
@@ -18,6 +19,7 @@ class ManagePatinet extends Component {
             dataPatient: [],
             isOpenRemedy: false,
             dataModal: {},
+            isShowLoading: false
         }
     }
     async componentDidMount() {
@@ -75,6 +77,9 @@ class ManagePatinet extends Component {
 
     sendRemedy = async (dataChildFromModal) => {
         let { dataModal } = this.state;
+        this.setState({
+            isShowLoading: true
+        })
         let res = await postSendRemedy({
             email: dataChildFromModal.email,
             imgBase64: dataChildFromModal.imgBase64,
@@ -85,10 +90,16 @@ class ManagePatinet extends Component {
             patientName: dataModal.patientName
         });
         if (res && res.errCode === 0) {
+            this.setState({
+                isShowLoading: false
+            })
             toast.success('Send remedy succeed!');
             this.closeRemedyModal();
             await this.getDataPatient();
         } else {
+            this.setState({
+                isShowLoading: false
+            })
             toast.error('Send remedy error')
         }
     }
@@ -158,6 +169,13 @@ class ManagePatinet extends Component {
                     dataModal={dataModal}
                     closeRemedyModal={this.closeRemedyModal}
                     sendRemedy={this.sendRemedy} />
+
+                <LoadingOverlay
+                    active={this.state.isShowLoading}
+                    spinner
+                    text='Loading...'
+                >
+                </LoadingOverlay>
             </>
         );
     }

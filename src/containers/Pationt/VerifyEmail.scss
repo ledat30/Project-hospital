@@ -10,9 +10,16 @@
         .content-fail {
             font-size     : 18px;
             font-weight   : 600;
-            padding-top   : 130px;
+            padding-top   : 90px;
             text-align    : center;
+            margin        : 10px;
             text-transform: uppercase;
+        }
+
+        .note {
+            font-size : 15px;
+            text-align: justify;
+            margin    : 0 20px;
         }
     }
 

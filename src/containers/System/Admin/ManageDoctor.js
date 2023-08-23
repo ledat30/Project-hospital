@@ -463,7 +463,7 @@ class ManageDoctor extends Component {
                     </div>
                     <div className='manage-doctor-editor'>
                         <label><FormattedMessage id={'admin.manage-doctor.content'} /></label>
-                        <MdEditor style={{ height: '300px' }}
+                        <MdEditor style={{ height: '500px' }}
                             renderHTML={text => mdParser.render(text)}
                             onChange={this.handleEditorChange}
                             value={this.state.contentMarkdown} />
@@ -471,7 +471,7 @@ class ManageDoctor extends Component {
                     </div>
                     <div className='manage-doctor-editor'>
                         <label><FormattedMessage id={'admin.manage-doctor.content1'} /></label>
-                        <MdEditor style={{ height: '300px' }}
+                        <MdEditor style={{ height: '500px' }}
                             renderHTML={text => mdParser.render(text)}
                             onChange={this.handleEditorChangeEn}
                             value={this.state.contentMarkdown_en} />

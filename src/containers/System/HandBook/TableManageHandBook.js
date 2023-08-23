@@ -410,7 +410,7 @@ class TableManageHandBook extends Component {
                                 </div>
                                 <div className='col-12'>
                                     <label><FormattedMessage id={'manage-handbook.Description-Vi'} /></label>
-                                    <MdEditor style={{ height: '350px' }}
+                                    <MdEditor style={{ height: '500px' }}
                                         renderHTML={text => mdParser.render(text)}
                                         onChange={this.handleEditorChangeVi}
                                         value={this.state.creatingHandBook.contentMarkdownVi}
@@ -418,7 +418,7 @@ class TableManageHandBook extends Component {
                                 </div>
                                 <div className='col-12 mt-4'>
                                     <label><FormattedMessage id={'manage-handbook.Description-En'} /></label>
-                                    <MdEditor style={{ height: '350px' }}
+                                    <MdEditor style={{ height: '500px' }}
                                         renderHTML={text => mdParser.render(text)}
                                         onChange={this.handleEditorChangeEn}
                                         value={this.state.creatingHandBook.contentMarkdownEn}

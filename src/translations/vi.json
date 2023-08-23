@@ -45,14 +45,16 @@
             "question": "Câu hỏi",
             "manage-schedule": " Quản lý kế hoạch khám bệnh",
             "list_schedule": "Danh sách kế hoạch khám bệnh",
-            "creat_schedule": "Thêm kế hoạch khám bệnh"
+            "creat_schedule": "Thêm kế hoạch khám bệnh",
+            "manage-schdele&patinet": "Quản lý lịch trình"
         },
         "doctor": {
             "manage-schedule": " Quản lý kế hoạch khám bệnh",
             "manage-patient": " Quản lý bệnh nhân khám bệnh",
             "list_schedule": "Danh sách kế hoạch khám bệnh",
             "creat_schedule": "Thêm kế hoạch khám bệnh",
-            "title": "Danh sách kế hoạch khám bệnh "
+            "title": "Danh sách kế hoạch khám bệnh ",
+            "manage-profile": "Quản lý hồ sơ"
         }
     },
     "manage-user": {
@@ -214,7 +216,9 @@
             "Confirm": "Xác nhận",
             "cancel": "Huỷ bỏ",
             "Free-booking": "Miễn phí đặt lịch",
-            "examination_price": "Giá khám : "
+            "examination_price": "Giá khám : ",
+            "current": "Còn nhận : ",
+            "text": " bệnh nhân trong khoảng thời gian này."
         },
         "handbook": {
             "title_handbook": "Danh mục bài viết",
@@ -225,7 +229,8 @@
         },
         "messega": {
             "success": "XÁC NHẬN LỊCH HẸN KHÁM CỦA QUÝ KHÁCH ĐÃ THÀNH CÔNG !",
-            "fail": "XÁC NHẬN LỊCH HẸN KHÁM CỦA QUÝ KHÁCH ĐÃ THẤT BẠI !"
+            "fail": "XÁC NHẬN LỊCH HẸN KHÁM CỦA QUÝ KHÁCH ĐÃ THẤT BẠI !",
+            "fail2": "Lưu ý : Việc đặt lịch thất bại có thể do quý khách đã xác nhận lịch hẹn trong khoảng thời gian này rồi . Quý khách vui lòng liên hệ với bộ phận chăm sóc để được hỗ trợ và hiểu rõ lỗi khi đặt lịch của quý khách là gì!"
         },
         "doctors": {
             "title": "Bác sĩ",

@@ -34,6 +34,10 @@
             padding: 15px;
         }
 
+        .left_currentNumber {
+            margin-bottom: 10px;
+        }
+
         .booking-modal-footer {
             border-top     : 1px solid #ccc;
             display        : flex;
@@ -57,5 +61,13 @@
                 background-color: orange;
             }
         }
+    }
+}
+
+div._loading_overlay_wrapper {
+    position: unset;
+
+    ._loading_overlay_overlay {
+        z-index: 10000000;
     }
 }

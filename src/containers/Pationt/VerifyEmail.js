@@ -65,6 +65,10 @@ class VerifyEmail extends Component {
                                 <div className='infor-booking-fail'>
                                     <div className='content-fail'>
                                         <FormattedMessage id={'patient.messega.fail'} />
+
+                                    </div>
+                                    <div className='note'>
+                                        <FormattedMessage id={'patient.messega.fail2'} />
                                     </div>
                                 </div>
                             }
