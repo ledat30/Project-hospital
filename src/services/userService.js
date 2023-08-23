@@ -237,27 +237,6 @@ let getAllCodeService = (typeInput) => {
     })
 }
 
-// let search = (keyword) => {
-//     return new Promise(async (resolve, reject) => {
-//         try {
-//             const results = await db.User.findAll({
-//                 where: {
-//                     fullName: {
-//                         [db.Sequelize.Op.like]: `%${keyword}%`,
-//                     },
-
-//                 },
-//             });
-//             resolve({
-//                 errCode: 0,
-//                 errMessage: "ok",
-//                 results
-//             })
-//         } catch (e) {
-//             reject(e);
-//         }
-//     })
-// };
 
 let search = (keyword) => {
     return new Promise(async (resolve, reject) => {

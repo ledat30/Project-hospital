@@ -65,12 +65,6 @@ let postBookAppointment = (data) => {
                                 { currentNumber: schedule.currentNumber },
                                 { where: { id: data.scheduleId } }
                             );
-
-                            if (schedule.currentNumber === 0) {
-                                canBook = false;
-                            } else {
-                                canBook = true;
-                            }
                         } else {
                             canBook = false;
                         }
