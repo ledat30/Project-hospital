@@ -75,11 +75,20 @@ let search = (keyword) => {
         try {
             const results = await db.Question.findAll({
                 where: {
-                    question_vi: {
-                        [db.Sequelize.Op.like]: `%${keyword}%`,
-                    },
-
+                    [db.Sequelize.Op.or]: [
+                        {
+                            question_vi: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        },
+                        {
+                            question_en: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        }
+                    ],
                 },
+                attributes: ['question_vi', 'question_en'],
             });
             resolve({
                 errCode: 0,

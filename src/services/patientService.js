@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 let postBookAppointment = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
+            let canBook;
             if (!data.email || !data.doctorId || !data.timeType || !data.date || !data.fullName
                 || !data.selectedGender || !data.address || !data.fullName || !data.phoneNumber) {
                 resolve({
@@ -23,7 +24,7 @@ let postBookAppointment = (data) => {
                     doctorName: data.doctorName,
                     language: data.language,
                     redirectLink: buildUrlEmail(data.doctorId, token)
-                })
+                });
 
                 //upsert patient
                 let user = await db.User.findOrCreate({
@@ -39,21 +40,41 @@ let postBookAppointment = (data) => {
                 });
 
 
-
-
                 //create a booking record
                 if (user && user[0]) {
                     await db.Booking.findOrCreate({
-                        where: { patientId: user[0].id },
+                        where: {
+                            timeType: data.timeType,
+                            date: data.date
+                        },
                         defaults: {
                             statusId: 4,
                             doctorId: data.doctorId,
+                            scheduleId: data.scheduleId,
                             patientId: user[0].id,
                             date: data.date,
                             timeType: data.timeType,
                             token: token
                         }
                     })
+                    let schedule = await db.Schedule.findOne({ where: { id: data.scheduleId } });
+                    if (schedule) {
+                        if (schedule.currentNumber > 0) {
+                            schedule.currentNumber -= 1;
+                            await db.Schedule.update(
+                                { currentNumber: schedule.currentNumber },
+                                { where: { id: data.scheduleId } }
+                            );
+
+                            if (schedule.currentNumber === 0) {
+                                canBook = false;
+                            } else {
+                                canBook = true;
+                            }
+                        } else {
+                            canBook = false;
+                        }
+                    }
                 }
                 resolve({
                     errCode: 0,

@@ -32,6 +32,14 @@ module.exports = {
                     key: 'id'
                 }
             },
+            scheduleId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'Schedules',
+                    key: 'id'
+                }
+            },
             date: {
                 type: Sequelize.STRING
             },

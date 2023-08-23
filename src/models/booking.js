@@ -13,13 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Booking.belongsTo(models.User, { foreignKey: 'patientId', primaryKey: 'id', as: 'patientData' })
       Booking.belongsTo(models.Allcode, { foreignKey: 'timeType', primaryKey: 'id', as: 'timeTypeDataPatient' })
-
+      Booking.belongsTo(models.Schedule, { foreignKey: 'scheduleId', primaryKey: 'id', as: 'schedule' })
     }
   };
   Booking.init({
     statusId: DataTypes.INTEGER,
     doctorId: DataTypes.INTEGER,
     patientId: DataTypes.INTEGER,
+    scheduleId: DataTypes.INTEGER,
     date: DataTypes.STRING,
     timeType: DataTypes.INTEGER,
     token: DataTypes.STRING,

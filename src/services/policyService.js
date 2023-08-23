@@ -184,10 +184,20 @@ let search = (keyword) => {
         try {
             const results = await db.Policy.findAll({
                 where: {
-                    nameVI: {
-                        [db.Sequelize.Op.like]: `%${keyword}%`,
-                    },
+                    [db.Sequelize.Op.or]: [
+                        {
+                            nameVI: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        },
+                        {
+                            nameEN: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        }
+                    ],
                 },
+                attributes: ['nameVI', 'nameEN'],
             });
             resolve({
                 errCode: 0,
@@ -205,10 +215,20 @@ let searchPolicy = (keyword) => {
         try {
             const results = await db.Policy.findAll({
                 where: {
-                    nameVI: {
-                        [db.Sequelize.Op.like]: `%${keyword}%`,
-                    },
+                    [db.Sequelize.Op.or]: [
+                        {
+                            nameVI: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        },
+                        {
+                            nameEN: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        }
+                    ],
                 },
+                attributes: ['nameVI', 'nameEN'],
             });
             resolve({
                 errCode: 0,
