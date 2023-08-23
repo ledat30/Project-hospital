@@ -49,7 +49,7 @@ class DetailSpecialty extends Component {
                 if (dataPovince && dataPovince.length > 0) {
                     dataPovince.unshift({
                         createdAt: null,
-                        keyMap: "ALL",
+                        id: "ALL",
                         type: "PROVINCE",
                         valueEn: "ALL",
                         valueVi: "Toàn quốc"
@@ -102,7 +102,7 @@ class DetailSpecialty extends Component {
     render() {
         let { arrDoctorId, dataDetailSpecialty, listProvince } = this.state;
         let { language } = this.props;
-
+        console.log(arrDoctorId, listProvince)
         return (
             <div className='detail-specialty-container'>
                 <HeaderHome />
@@ -122,7 +122,7 @@ class DetailSpecialty extends Component {
                             {listProvince && listProvince.length > 0 &&
                                 listProvince.map((item, index) => {
                                     return (
-                                        <option key={index} value={item.keyMap}>
+                                        <option key={index} value={item.id}>
                                             {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                         </option>
                                     )
@@ -130,7 +130,7 @@ class DetailSpecialty extends Component {
                             }
                         </select>
                     </div>
-                    {arrDoctorId && arrDoctorId.length > 0 &&
+                    {arrDoctorId && arrDoctorId.length > 0 ?
                         arrDoctorId.map((item, index) => {
                             return (
                                 <div className='each-doctor' key={index}>
@@ -141,7 +141,6 @@ class DetailSpecialty extends Component {
                                                 isShowDescriptionDoctor={true}
                                                 isShowLinkDetail={true}
                                                 isShowPrice={false}
-                                            // dataTime={dataTime}
                                             />
                                         </div>
                                     </div>
@@ -157,8 +156,14 @@ class DetailSpecialty extends Component {
                                     </div>
                                 </div>
                             )
-
                         })
+                        :
+                        (
+                            <div className='text-specialty'>
+                                * <FormattedMessage id={'patient.specialy.text'} />
+                            </div>
+
+                        )
                     }
                 </div>
                 <HomeFooter />

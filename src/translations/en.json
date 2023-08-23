@@ -238,7 +238,8 @@
         },
         "specialy": {
             "title": "Specialty",
-            "tiitle1": "Search Results"
+            "tiitle1": "Search Results",
+            "text": "There are no doctors in your chosen city"
         },
         "clinic": {
             "title": "Clinic",

@@ -22,14 +22,14 @@ class HomePage extends Component {
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 4,
-        }  
+        }
         return (
             <div>
                 <HeaderHome isShowBanner={true} />
                 <Specialty settings={settings} />
                 <CoSoYte settings={settings} />
-                <OutStandingDoctor settings={settings} />
                 <HandBook settings={settings} />
+                <OutStandingDoctor settings={settings} />
                 <About />
                 <Footer />
                 <HomeFooter />

@@ -238,7 +238,8 @@
         },
         "specialy": {
             "title": "Chuyên khoa",
-            "tiitle1": "Kết quả tìm kiếm"
+            "tiitle1": "Kết quả tìm kiếm",
+            "text": "Không có bác sĩ nào ở thành phố bạn đã chọn"
         },
         "clinic": {
             "title": "Cơ sở y tế",

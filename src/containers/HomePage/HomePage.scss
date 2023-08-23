@@ -46,8 +46,6 @@
     }
 
     &.section-handbook {
-        background   : #f5f5ff;
-        border-top   : 3px solid #f1eeee;
         border-bottom: 3px solid #f1eeee;
     }
 
@@ -176,6 +174,9 @@
 }
 
 .section-outStandingDoctor {
+    background   : #f5f5ff;
+    border-bottom: 3px solid #f1eeee;
+
     .outer-bg {
         display        : flex;
         justify-content: center;
@@ -211,7 +212,7 @@
     margin: 0 100px;
 
     .section-about-header {
-        padding    : 20px 10px;
+        padding    : 40px 0px 30px 0px;
         font-size  : 22px;
         font-weight: 600;
     }
@@ -244,7 +245,9 @@
 .footer {
     height     : 300px !important;
     padding-top: 20px;
+    margin-top : 30px;
     background : #f5f5ff !important;
+    border-top : 3px solid #f1eeee;
 
     .footer-container {
         margin : 0 100px !important;
