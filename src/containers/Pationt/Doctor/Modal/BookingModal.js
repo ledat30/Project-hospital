@@ -144,6 +144,15 @@ class BookingModal extends Component {
     }
 
     handleConfirmBooking = async () => {
+        if (
+            !this.state.fullName || !this.state.phoneNumber || !this.state.email ||
+            !this.state.address || !this.state.reason || !this.state.birthday ||
+            !this.state.selectedGender || !this.state.doctorId || !this.state.timeType ||
+            !this.state.scheduleId
+        ) {
+            toast.error(<FormattedMessage id={'toast.toast1'} />);
+            return;
+        }
         let date = new Date(this.state.birthday).getTime();
 
         let timeString = this.buildTimeBooking(this.props.dataTime);
@@ -169,10 +178,12 @@ class BookingModal extends Component {
             doctorName: doctorName,
         })
         if (res && res.errCode === 0) {
-            toast.success('Booking a new appointment success!')
+            toast.success(<FormattedMessage id={'toast.toast2'} />)
             this.props.closeBookingClose();
+        } else if (res && res.errCode === 1) {
+            toast.error(<FormattedMessage id={'toast.toast3'} />)
         } else {
-            toast.error('Booking a new appointment error!')
+            toast.error(<FormattedMessage id={'toast.toast4'} />)
         }
         this.setState({
             fullName: '',

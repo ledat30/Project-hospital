@@ -131,7 +131,7 @@ class ManageClinic extends Component {
 
 
         if (res && res.errCode === 0 && action === CRUD_ACTIONS.CREATE) {
-            toast.success('Add new clinic success!')
+            toast.success(<FormattedMessage id={'toast.toast5'} />)
 
         }
         this.props.fetchClinicRedux();

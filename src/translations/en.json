@@ -281,5 +281,14 @@
             "date": "Date",
             "time": "Time"
         }
+    },
+    "toast": {
+        "toast1": "Please fill in all required fields.",
+        "toast2": "Booking a new appointment success!",
+        "toast3": "You already have an appointment during this time!",
+        "toast4": "Booking a new appointment error!",
+        "toast5": "Add new clinic success!",
+        "toast6": "Send remedy succeed!",
+        "toast7": "Send remedy error"
     }
 }

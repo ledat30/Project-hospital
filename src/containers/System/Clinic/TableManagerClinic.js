@@ -216,7 +216,7 @@ class TableManagerClinic extends Component {
         let res = await createNewClinics(this.state)
 
         if (res && res.errCode === 0) {
-            toast.success('Add new clinic success!')
+            toast.success(<FormattedMessage id={'toast.toast5'} />)
             this.props.fetchClinicRedux();
         }
         this.setState({

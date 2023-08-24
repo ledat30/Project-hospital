@@ -281,5 +281,14 @@
             "date": "Ngày",
             "time": "Thời gian"
         }
+    },
+    "toast": {
+        "toast1": "Vui lòng điền đầy đủ thông tin.",
+        "toast2": "Đặt lịch khám thành công",
+        "toast3": "Bạn đã có lịch khám trong khoảng thời gian này",
+        "toast4": "Lịch hẹn của bạn đã bị lỗi!",
+        "toast5": "Thêm mới cơ sở thành công!",
+        "toast6": "Gửi thành công!",
+        "toast7": "Gửi thất bại!"
     }
 }

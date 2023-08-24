@@ -93,14 +93,14 @@ class ManagePatinet extends Component {
             this.setState({
                 isShowLoading: false
             })
-            toast.success('Send remedy succeed!');
+            toast.success(<FormattedMessage id={'toast.toast6'} />);
             this.closeRemedyModal();
             await this.getDataPatient();
         } else {
             this.setState({
                 isShowLoading: false
             })
-            toast.error('Send remedy error')
+            toast.error(<FormattedMessage id={'toast.toast7'} />)
         }
     }
 
