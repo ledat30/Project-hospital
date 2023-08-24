@@ -280,6 +280,53 @@ let bulkCreateSchedule = (data) => {
     })
 }
 
+let CreateScheduleDoctor = (data, doctorId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!data.arrSchedule || !doctorId || !data.formatedDate) {
+                resolve({
+                    errCode: 1,
+                    errMessage: "Missing required param!"
+                })
+            } else {
+                let schedule = data.arrSchedule;
+                if (schedule && schedule.length > 0) {
+                    schedule = schedule.map(item => {
+                        item.maxNumber = MAX_NUMBER_SCHEDULE;
+                        item.currentNumber = CURRENT_NUMBER_SCHEDULE;
+                        return item;
+                    })
+                }
+
+                //get all existing data
+                let existing = await db.Schedule.findAll(
+                    {
+                        where: { doctorId: doctorId, date: data.formatedDate },
+                        attributes: ['timeType', 'date', 'doctorId', 'maxNumber'],
+                        raw: true
+                    }
+                );
+
+                //compare different
+                let toCreate = _.differenceWith(schedule, existing, (a, b) => {
+                    return a.timeType === b.timeType && +a.date === +b.date;
+                });
+
+                //create data
+                if (toCreate && toCreate.length > 0) {
+                    await db.Schedule.bulkCreate(toCreate);
+                }
+                resolve({
+                    errCode: 0,
+                    errMessage: "OK"
+                })
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 let getScheduleDoctorByDate = (doctorId, date) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -631,7 +678,7 @@ let searchSchedule = (keyword) => {
 };
 
 module.exports = {
-    getTopDoctorHome: getTopDoctorHome, getAllDoctor, saveDetailInforDoctor, getDetailDoctorById, searchDoctor, search, searchSchedule,
+    getTopDoctorHome: getTopDoctorHome, getAllDoctor, saveDetailInforDoctor, getDetailDoctorById, searchDoctor, search, searchSchedule, CreateScheduleDoctor,
     bulkCreateSchedule, getScheduleDoctorByDate, getExtraInfforDoctorById, getProfileDoctorById,
     getListPatientForDoctor, sendRemedy, deleteDoctor, getAllSchedule, getListScheduleByDate
 }
