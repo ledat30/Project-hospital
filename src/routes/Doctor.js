@@ -9,16 +9,21 @@ import ManageScheduleDoctor from '../containers/System/Doctor/ManageScheduleDoct
 
 class Doctor extends Component {
     render() {
-
+        const { userRole } = this.props;
+        const isUserDoctor = userRole === 2;
         return (
             <>
                 {this.props.isLoggedIn && <Header />}
                 <div className="system-container">
                     <div className="system-list">
                         <Switch>
-                            <Route path="/doctor/manage-schedule" component={TableManageSchedule} />
-                            <Route path="/doctor/create-schedule" component={ManageScheduleDoctor} />
-                            <Route path="/doctor/manage-patient" component={ManagePatinet} />
+                            {isUserDoctor && (
+                                <>
+                                    <Route path="/doctor/manage-schedule" component={TableManageSchedule} />
+                                    <Route path="/doctor/create-schedule" component={ManageScheduleDoctor} />
+                                    <Route path="/doctor/manage-patient" component={ManagePatinet} />
+                                </>
+                            )}
                         </Switch>
                     </div>
                 </div>
@@ -29,8 +34,8 @@ class Doctor extends Component {
 
 const mapStateToProps = state => {
     return {
-        systemMenuPath: state.app.systemMenuPath,
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        userRole: state.user.userInfo.roleId
     };
 };
 
