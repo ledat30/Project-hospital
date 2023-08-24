@@ -17,15 +17,6 @@ let postBookAppointment = (data) => {
 
                 let token = uuidv4(); //⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
 
-                await emailService.sendsimpleEmail({
-                    receiverEmail: data.email,
-                    patientName: data.fullName,
-                    time: data.timeString,
-                    doctorName: data.doctorName,
-                    language: data.language,
-                    redirectLink: buildUrlEmail(data.doctorId, token)
-                });
-
                 //upsert patient
                 let user = await db.User.findOrCreate({
                     where: { email: data.email },
@@ -42,31 +33,56 @@ let postBookAppointment = (data) => {
 
                 //create a booking record
                 if (user && user[0]) {
-                    await db.Booking.findOrCreate({
+                    let existingBooking = await db.Booking.findOne({
                         where: {
                             timeType: data.timeType,
-                            date: data.date
-                        },
-                        defaults: {
-                            statusId: 4,
-                            doctorId: data.doctorId,
-                            scheduleId: data.scheduleId,
-                            patientId: user[0].id,
                             date: data.date,
-                            timeType: data.timeType,
-                            token: token
+                            patientId: user[0].id
                         }
-                    })
-                    let schedule = await db.Schedule.findOne({ where: { id: data.scheduleId } });
-                    if (schedule) {
-                        if (schedule.currentNumber > 0) {
-                            schedule.currentNumber -= 1;
-                            await db.Schedule.update(
-                                { currentNumber: schedule.currentNumber },
-                                { where: { id: data.scheduleId } }
-                            );
-                        } else {
-                            canBook = false;
+                    });
+                    if (existingBooking) {
+                        resolve({
+                            errCode: 1,
+                            errMessage: "You already have an appointment at this time."
+                        });
+                    } else {
+                        await db.Booking.findOrCreate({
+                            where: {
+                                timeType: data.timeType,
+                                date: data.date
+                            },
+                            defaults: {
+                                statusId: 4,
+                                doctorId: data.doctorId,
+                                scheduleId: data.scheduleId,
+                                patientId: user[0].id,
+                                date: data.date,
+                                timeType: data.timeType,
+                                token: token
+                            }
+                        });
+
+                        // Gửi email chỉ khi không tồn tại lịch hẹn
+                        await emailService.sendsimpleEmail({
+                            receiverEmail: data.email,
+                            patientName: data.fullName,
+                            time: data.timeString,
+                            doctorName: data.doctorName,
+                            language: data.language,
+                            redirectLink: buildUrlEmail(data.doctorId, token)
+                        });
+
+                        let schedule = await db.Schedule.findOne({ where: { id: data.scheduleId } });
+                        if (schedule) {
+                            if (schedule.currentNumber > 0) {
+                                schedule.currentNumber -= 1;
+                                await db.Schedule.update(
+                                    { currentNumber: schedule.currentNumber },
+                                    { where: { id: data.scheduleId } }
+                                );
+                            } else {
+                                canBook = false;
+                            }
                         }
                     }
                 }
