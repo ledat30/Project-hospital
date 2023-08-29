@@ -8,6 +8,7 @@ import clinicController from '../controllers/clinicController';
 import handBookController from '../controllers/handBookController';
 import policyController from '../controllers/policyController';
 import questionController from '../controllers/questionController';
+import searchHomePageController from '../controllers/searchHomePageController';
 
 let router = express.Router();
 
@@ -104,6 +105,7 @@ let initWebRouter = (app) => {
     router.delete('/api/delete-question', questionController.HandleDeleteQuestion);
     router.put('/api/edit-question', questionController.HandleEditQuestion);
 
+    router.get('/api/search-home-website', searchHomePageController.searchHomePage);
     return app.use("/", router);
 }
 module.exports = initWebRouter;

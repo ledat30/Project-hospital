@@ -250,10 +250,20 @@ let searchSpecialty = (keyword) => {
         try {
             const results = await db.Specialty.findAll({
                 where: {
-                    name: {
-                        [db.Sequelize.Op.like]: `%${keyword}%`,
-                    },
+                    [db.Sequelize.Op.or]: [
+                        {
+                            name: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        },
+                        {
+                            name_en: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        }
+                    ],
                 },
+                attributes: ['name', 'name_en', 'image'],
             });
             if (results && results.length > 0) {
                 results.map(item => {

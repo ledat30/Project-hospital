@@ -434,10 +434,20 @@ let search = (keyword) => {
         try {
             const results = await db.Handbook.findAll({
                 where: {
-                    title: {
-                        [db.Sequelize.Op.like]: `%${keyword}%`,
-                    },
+                    [db.Sequelize.Op.or]: [
+                        {
+                            title: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        },
+                        {
+                            title_en: {
+                                [db.Sequelize.Op.like]: `%${keyword}%`,
+                            },
+                        }
+                    ],
                 },
+                attributes: ['title', 'title_en', 'image'],
             });
             if (results && results.length > 0) {
                 results.map(item => {
