@@ -5,13 +5,16 @@ import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../utils';
 import { changeLanguageApp } from '../../store/actions';
 import { withRouter } from 'react-router';
+import { debounce } from 'lodash';
 
 class HeaderHome extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            searchKeyword: '',
+            result: [],
         };
         this.dropdownRef = React.createRef();
     }
@@ -94,9 +97,70 @@ class HeaderHome extends Component {
             this.props.history.push(`/all-question`)
         }
     }
+
+    handleSearch = debounce(async (e) => {
+        const keyword = e.target.value;
+        this.setState({
+            searchKeyword: keyword,
+            result: [],
+            hasSearchResults: false
+        });
+        if (keyword) {
+            let result = await fetch(`http://localhost:8080/api/search-home-website?q=${keyword}`)
+            result = await result.json()
+            if (result.errCode === 0) {
+                this.setState({
+                    result: [
+                        ...result.clinicResults,
+                        ...result.handbookResults,
+                        ...result.renamedResults,
+                        ...result.doctorResults,
+                        ...result.policyResults
+                    ],
+                    hasSearchResults:
+                        result.clinicResults.length > 0 ||
+                        result.handbookResults.length > 0 ||
+                        result.renamedResults.length > 0 ||
+                        result.doctorResults.length > 0 ||
+                        result.policyResults.length > 0
+                });
+            } else {
+                this.setState({
+                    result: [],
+                    hasSearchResults: false
+                })
+            }
+        }
+    }, 300)
+
+    ToDetailClinic = (clinic) => {
+        this.props.history.push(`/detail-clinic/${clinic.id}`);
+    };
+
+    ToDetailSpecialty = (specialty) => {
+        this.props.history.push(`/detail-specialty/${specialty.id}`);
+    };
+
+    ToDetailDoctor = (doctor) => {
+        this.props.history.push(`/detail-doctor/${doctor.id}`);
+    };
+
+    ToDetailPolicy = (policy) => {
+        this.props.history.push(`/detail-policy/${policy.id}`);
+    };
+
+    ToDetailHandbook = (handBook) => {
+        this.props.history.push(`/detail-handbook/${handBook.id}`);
+    };
+
+
     render() {
         let language = this.props.language;
-        const { isOpen } = this.state;
+        const { searchKeyword, result, isOpen } = this.state;
+        const hasSearchResults = result && result.length > 0;
+
+
+        console.log('check result', result)
         return (
             <>
                 <div className='home-header-container'>
@@ -173,7 +237,42 @@ class HeaderHome extends Component {
                             </div>
                             <div className='search'>
                                 <i className='fas fa-search'></i>
-                                <input type='text' placeholder=' Search ...' />
+                                <input type='text'
+                                    placeholder=' Search ...'
+                                    value={searchKeyword}
+                                    onChange={(e) => {
+                                        this.setState({ searchKeyword: e.target.value });
+                                        this.handleSearch(e);
+                                    }}
+                                />
+                            </div>
+                            <div className='search-results'>
+                                {result && result.map((item, index) => (
+                                    <div className='search-result-item' key={index}>
+                                        <div className='name-result'>
+                                            <div onClick={() => this.ToDetailClinic(item)}>
+                                                {language === LANGUAGES.VI ? item.name : item.name_en}
+                                            </div>
+                                            <div onClick={() => this.ToDetailSpecialty(item)}>
+                                                {language === LANGUAGES.VI ? item.name_specialty : item.name_en_specialty}
+                                            </div>
+                                            <div onClick={() => this.ToDetailHandbook(item)}>
+                                                {language === LANGUAGES.VI ? item.title : item.title_en}
+                                            </div>
+                                            <div onClick={() => this.ToDetailPolicy(item)}>
+                                                {language === LANGUAGES.VI ? item.nameVI : item.nameEN}
+                                            </div>
+                                            <div onClick={() => this.ToDetailDoctor(item)}>
+                                                {item.fullName}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                                {!hasSearchResults && searchKeyword.length > 0 && (
+                                    <div className='no-results'>
+                                        Không có kết quả tìm kiếm.
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className='content-down'>
