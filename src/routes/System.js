@@ -13,6 +13,7 @@ import TableManagerClinic from '../containers/System/Clinic/TableManagerClinic';
 import TableQuestion from '../containers/System/Question/TableQuestion';
 import ManageSchedule from '../containers/System/Doctor/ManageSchedule';
 import TableScheduleAdmin from '../containers/System/Doctor/TableScheduleAdmin';
+import TableManageContact from '../containers/System/Contact/TableManageContact';
 
 class System extends Component {
     render() {
@@ -35,6 +36,7 @@ class System extends Component {
                                     <Route path="/system/manage-schedule" component={TableScheduleAdmin} />
                                     <Route path="/system/create-schedule" component={ManageSchedule} />
                                     <Route path="/system/manage-handbook" component={TableManageHandBook} />
+                                    <Route path="/system/manage-contact" component={TableManageContact} />
                                     <Route path="/system/manage-question" component={TableQuestion} />
                                     <Route path="/system/manage-policy" component={TableManagePolicy} />
                                     <Route path="/system/manage-categoryhandbook" component={CategoryHandbook} />

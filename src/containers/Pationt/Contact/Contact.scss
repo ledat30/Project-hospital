@@ -1,0 +1,137 @@
+.svg {
+  height      : 23rem;
+  margin-right: 4rem;
+}
+
+#envelope {
+  animation: float 2s ease-in-out infinite;
+}
+
+#star1,
+#star2,
+#star3,
+#star4,
+#star5,
+#star6 {
+  animation: blink 1s ease-in-out infinite;
+}
+
+#star2 {
+  animation-delay: 100ms;
+}
+
+#star3 {
+  animation-delay: 500ms;
+}
+
+#star4 {
+  animation-delay: 700ms;
+}
+
+#star5 {
+  animation-delay: 300ms;
+}
+
+#star6 {
+  animation-delay: 200ms;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.container7 {
+  height: 81vh !important;
+}
+
+form {
+  min-width: 25rem !important;
+}
+
+form .title9 {
+  font-family: "Pacifico", cursive !important;
+  color      : #212529 !important;
+  font-size  : 2.5rem !important;
+}
+
+form .form-control {
+  background-color: #f2f6f8 !important;
+  border-radius   : 2rem !important;
+  border          : none !important;
+  box-shadow      : 0px 7px 5px rgba(0, 0, 0, 0.11) !important;
+}
+
+form .form-control.thick {
+  height : 3.3rem !important;
+  padding: 0.5rem 1.8rem !important;
+}
+
+form .form-control:focus {
+  background-color: #f2f6f8 !important;
+  border          : none !important;
+  box-shadow      : 0px 7px 5px rgba(0, 0, 0, 0.11) !important;
+}
+
+form .message .form-control {
+  padding: 0.5rem 1.8rem !important;
+}
+
+form ::placeholder {
+  font-family: "Quicksand", sans-serif !important;
+  font-weight: 600 !important;
+  font-size  : 1.1rem !important;
+  color      : #838788 !important;
+  position   : relative !important;
+  left       : 0 !important;
+}
+
+form input,
+form textarea {
+  font-family: "Quicksand", sans-serif !important;
+  color      : #212529 !important;
+  font-size  : 1.1rem !important;
+}
+
+
+.btn.btn-primary1 {
+  font-family     : "Quicksand", sans-serif;
+  font-weight     : bold;
+  height          : 2.5rem;
+  line-height     : 2.5rem;
+  padding         : 0 3rem;
+  border          : 0;
+  border-radius   : 3rem;
+  background-image: linear-gradient(131deg, #ffd340, #ff923c, #ff923c, #ff923c);
+  background-size : 300% 100%;
+  transition      : all 0.3s ease-in-out;
+}
+
+.btn.btn-primary1:hover:enabled {
+  box-shadow     : 0 0.5em 0.5em -0.4em #ff923cba;
+  background-size: 100% 100%;
+  transform      : translateY(-0.15em);
+}

@@ -25,6 +25,7 @@ import CategorySpecialty from './Pationt/Specialty/CategorySpecialty/CategorySpe
 import CategoryClinic from './Pationt/Clinic/CategoryClinic/CategoryClinic';
 import AllPolicy from './Pationt/Policy/AllPolicy/AllPolicy';
 import AllQuestion from './Pationt/Question/AllQuestion';
+import Contact from './Pationt/Contact/Contact';
 
 class App extends Component {
 
@@ -71,6 +72,7 @@ class App extends Component {
                                     <Route path={path.ALL_DOCTOR} component={CategoryDoctor} />
                                     <Route path={path.ALL_SPECIALY} component={CategorySpecialty} />
                                     <Route path={path.ALL_CLINIC} component={CategoryClinic} />
+                                    <Route path={path.CONTACT} component={Contact} />
                                     <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail} />
                                 </Switch>
                             </CustomScrollbars>

@@ -61,6 +61,12 @@ class HeaderHome extends Component {
         }
     }
 
+    returnToContact = () => {
+        if (this.props.history) {
+            this.props.history.push(`/contact`)
+        }
+    }
+
 
     returnToSpecialty = () => {
         if (this.props.history) {
@@ -158,9 +164,6 @@ class HeaderHome extends Component {
         let language = this.props.language;
         const { searchKeyword, result, isOpen } = this.state;
         const hasSearchResults = result && result.length > 0;
-
-
-        console.log('check result', result)
         return (
             <>
                 <div className='home-header-container'>
@@ -209,14 +212,15 @@ class HeaderHome extends Component {
                                     <div><b><FormattedMessage id="homeheader.blog" /></b></div>
                                     <div className='subs-title'><FormattedMessage id="homeheader.Health-issues-to-know" /></div>
                                 </div>
-
+                            </div>
+                            <div className='child-content'>
+                                <div onClick={() => this.returnToContact()}>
+                                    <div><b><FormattedMessage id="homeheader.support" /></b></div>
+                                    <div className='subs-title'><FormattedMessage id="homeheader.support1" /></div>
+                                </div>
                             </div>
                         </div>
                         <div className='right-content'>
-                            <div className='child-content ' title="Số điện thoại ưu tiên">
-                                <div> <i className='fas fa-question-circle'></i> <FormattedMessage id="homeheader.support" /></div>
-                                <div className='subs-title'>0386582177</div>
-                            </div>
                             <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}>
                                 <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN </span> /
                             </div>

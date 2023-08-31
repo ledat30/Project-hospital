@@ -17,7 +17,8 @@ export const path = {
     ALL_SPECIALY: '/all-specialty',
     ALL_CLINIC: '/all-clinic',
     ALL_POLICY: '/all-policy',
-    ALL_QUESTION: '/all-question'
+    ALL_QUESTION: '/all-question',
+    CONTACT: '/contact'
 };
 
 export const LANGUAGES = {

@@ -69,6 +69,14 @@ export const adminMenu = [
             },
         ]
     },
+    { //quản contact
+        name: 'menu.admin.contact',
+        menus: [
+            {
+                name: 'menu.admin.manage-contact', link: '/system/manage-contact',
+            },
+        ]
+    },
     { //quản lý thống kê
         name: 'menu.admin.statistical',
         menus: [

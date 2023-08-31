@@ -3,9 +3,9 @@ import {
     getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService,
     getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService, getAllSpecialty, getAllClinic,
     deleteClinicService, deleteSpecialtyService, deleteDoctorService, editClinicService, editSpecialtyService, getAllHandBook,
-    deleteHandbookService, editHandBookService, getAllPolicy, deletePolicyService, editPolicyService,
+    deleteHandbookService, editHandBookService, getAllPolicy, deletePolicyService, editPolicyService, getAllContact,
     getAllCategoryHandbook, deleteCategoryHandbookService, editCategoryHandbookService,
-    getTopHandbookHomeService, getAllQuestion, deleteQuestion, editQuestion
+    getTopHandbookHomeService, getAllQuestion, deleteQuestion, editQuestion, deleteContact
 } from "../../services/userService";
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -828,4 +828,55 @@ export const editQuestionSuccess = () => ({
 })
 export const editQuestionFailed = () => ({
     type: actionTypes.EDIT_QUESTION_FAILED
+})
+
+
+export const fetchAllContact = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllContact();
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllContactSuccess(res.data))
+            } else {
+                dispatch(fetchAllContactFailed());
+            }
+        } catch (e) {
+            dispatch(fetchAllContactFailed());
+            console.log(e);
+        }
+    }
+}
+export const fetchAllContactSuccess = (data) => ({
+    type: 'FETCH_ALL_CONTACT_SUCCESS',
+    contact: data
+})
+export const fetchAllContactFailed = () => ({
+    type: 'FETCH_ALL_CONTACT_FAIDED'
+})
+
+
+export const deleteContacts = (contactId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteContact(contactId);
+            if (res && res.errCode === 0) {
+                toast.success("Delete the contact success!")
+                dispatch(deleteContactSuccess())
+                dispatch(fetchAllContact())
+            } else {
+                toast.error("Delete the contact failed!")
+                dispatch(deleteContactFaided());
+            }
+        } catch (e) {
+            dispatch(deleteContactFaided());
+            toast.error("Delete the contact failed!");
+            console.log(e);
+        }
+    }
+}
+export const deleteContactSuccess = () => ({
+    type: actionTypes.FETCH_DELETE_CONTACT_SUCCESS,
+})
+export const deleteContactFaided = () => ({
+    type: actionTypes.FETCH_DELETE_CONTACT_FAIDED
 })

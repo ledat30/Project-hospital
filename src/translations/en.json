@@ -7,11 +7,12 @@
         "doctor": "Doctor",
         "select-docter": "Choose a good doctor",
         "blog": "Blog",
-        "Health-issues-to-know": "Health issues to know",
-        "support": "Support",
+        "Health-issues-to-know": "Health issues",
+        "support": "Contact",
         "welcome": "Welcome ",
         "policy": "Policy",
-        "question": "Questions ?"
+        "question": "Questions ?",
+        "support1": "Support for all problems"
     },
     "banner": {
         "tiitle1": "MEDICAL PLATFORM",
@@ -46,7 +47,9 @@
             "manage-schedule": "Manage medical examination plan",
             "list_schedule": "List of medical examination plans",
             "creat_schedule": "More medical plans",
-            "manage-schdele&patinet": "Schedule management"
+            "manage-schdele&patinet": "Schedule management",
+            "contact": "Contact",
+            "manage-contact": "Manage contact"
         },
         "doctor": {
             "manage-schedule": "Manage Doctor's schedule",
@@ -180,6 +183,19 @@
     },
     "manage-doctor": {
         "title": "List of Doctor "
+    },
+    "profile_doctor": {
+        "information": "Doctor's Information",
+        "email": "Email account : ",
+        "sdt": "Personal phone number : ",
+        "address": "Personal address : "
+    },
+    "manage-contact": {
+        "title": "List contact",
+        "title2": "Title",
+        "message": "Message",
+        "title3": "Talk to Us",
+        "bt": "Send message"
     },
     "ReactPaginate": {
         "dau": "< Previous",

@@ -15,7 +15,7 @@
         display: flex;
 
         .left-content {
-            width      : 26%;
+            width      : 27%;
             display    : flex;
             align-items: center;
 
@@ -78,7 +78,7 @@
         }
 
         .center-content {
-            width          : 57%;
+            width          : 67%;
             display        : flex;
             justify-content: space-between;
             align-items    : center;
@@ -95,7 +95,7 @@
         }
 
         .right-content {
-            width          : 17%;
+            width          : 7%;
             display        : flex;
             justify-content: center;
             align-items    : center;
@@ -103,7 +103,7 @@
             cursor         : pointer;
 
             .language-vi {
-                margin-left: 45px;
+                margin-left: 25px;
                 cursor     : pointer;
                 opacity    : 0.2;
 

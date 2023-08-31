@@ -5,7 +5,7 @@ import Header from '../containers/Header/Header';
 import ManagePatinet from '../containers/System/Doctor/ManagePatinet';
 import TableManageSchedule from '../containers/System/Doctor/TableManageSchedule';
 import ManageScheduleDoctor from '../containers/System/Doctor/ManageScheduleDoctor';
-
+import ProfileDoctor from '../containers/System/Doctor/Profile/ProfileDoctor';
 
 class Doctor extends Component {
     render() {
@@ -22,6 +22,7 @@ class Doctor extends Component {
                                     <Route path="/doctor/manage-schedule" component={TableManageSchedule} />
                                     <Route path="/doctor/create-schedule" component={ManageScheduleDoctor} />
                                     <Route path="/doctor/manage-patient" component={ManagePatinet} />
+                                    <Route path="/doctor/manage-profile" component={ProfileDoctor} />
                                 </>
                             )}
                         </Switch>

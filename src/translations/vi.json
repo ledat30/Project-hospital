@@ -7,11 +7,12 @@
         "doctor": "Bác sĩ",
         "select-docter": "Chọn bác sĩ giỏi",
         "blog": "Bài viết",
-        "Health-issues-to-know": "Các vấn đề sức khoẻ cần biết",
-        "support": "Hỗ trợ",
+        "Health-issues-to-know": "Các vấn đề sức khoẻ",
+        "support": "Liên hệ",
         "welcome": "Xin chào ",
         "policy": "Chính sách",
-        "question": "Những câu hỏi ?"
+        "question": "Những câu hỏi ?",
+        "support1": "Hỗ trợ mọi vấn đề"
     },
     "banner": {
         "tiitle1": "NỀN TẢNG Y TẾ",
@@ -46,7 +47,9 @@
             "manage-schedule": " Quản lý kế hoạch khám bệnh",
             "list_schedule": "Danh sách kế hoạch khám bệnh",
             "creat_schedule": "Thêm kế hoạch khám bệnh",
-            "manage-schdele&patinet": "Quản lý lịch trình"
+            "manage-schdele&patinet": "Quản lý lịch trình",
+            "contact": "Liên hệ",
+            "manage-contact": "Quản lý liên hệ"
         },
         "doctor": {
             "manage-schedule": " Quản lý kế hoạch khám bệnh",
@@ -180,6 +183,19 @@
     },
     "manage-doctor": {
         "title": "Danh sách bác sĩ "
+    },
+    "profile_doctor": {
+        "information": "Thông tin bác sĩ",
+        "email": "Tài khoản email : ",
+        "sdt": "Số điện thoại cá nhân : ",
+        "address": "Địa chỉ cá nhân : "
+    },
+    "manage-contact": {
+        "title": "Danh sách liên hệ",
+        "title2": "Tiêu đề",
+        "message": "Nội dung",
+        "title3": "Liên hệ với chúng tôi",
+        "bt": "Gửi tin nhắn"
     },
     "ReactPaginate": {
         "dau": "< Đầu trang",

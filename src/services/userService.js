@@ -238,6 +238,34 @@ const editQuestion = (inputData) => {
     return axios.put('/api/edit-question', inputData);
 }
 
+const getAllContact = () => {
+    return axios.get(`/api/get-all-contact`)
+}
+
+const deleteContact = (contactId) => {
+    return axios.delete('/api/delete-contact', {
+        data: {
+            id: contactId
+        }
+    });
+}
+
+export const updateDoctorImage = async (id, file) => {
+    const formData = new FormData();
+    formData.append('id', id);
+    formData.append('image', file);
+
+    try {
+        await axios.put('/api/profile/update-image', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 export {
     handleLoginApi, getAllUsers, createNewUserService, deleteUserService, editUserService,
     getAllCodeService, getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService,
@@ -249,5 +277,5 @@ export {
     editHandBookService, getDetailHandBookById, createNewPolicy, getAllPolicy, getLimitPolicy, deletePolicyService,
     editPolicyService, getDetailPolicyById, createNewCategoryHandbook, getAllCategoryHandbook,
     deleteCategoryHandbookService, editCategoryHandbookService, getTopHandbookHomeService,
-    getDetailCategoryById, createNewQuestion, getAllQuestion, deleteQuestion, editQuestion
+    getDetailCategoryById, createNewQuestion, getAllQuestion, deleteQuestion, editQuestion, getAllContact, deleteContact
 }
