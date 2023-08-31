@@ -677,8 +677,41 @@ let searchSchedule = (keyword) => {
     });
 };
 
+const updateDoctorImage = async (id, file) => {
+    try {
+        console.log(id);
+        const doctor = await db.User.findOne({ where: { id: id } });
+        if (!doctor) {
+            return {
+                errCode: 404,
+                errMessage: 'Không tìm thấy bác sĩ'
+            };
+        }
+
+        if (file) {
+            const image = file.filename; // Tên tệp tin hình ảnh được lưu trữ
+
+            // Cập nhật hình ảnh trong đối tượng bác sĩ
+            doctor.image = image;
+            await doctor.save();
+        }
+
+        return {
+            errCode: 0,
+            errMessage: 'success',
+            doctor: doctor
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            errCode: -1,
+            errMessage: 'Error from the server'
+        };
+    }
+};
+
 module.exports = {
-    getTopDoctorHome: getTopDoctorHome, getAllDoctor, saveDetailInforDoctor, getDetailDoctorById, searchDoctor, search, searchSchedule, CreateScheduleDoctor,
+    getTopDoctorHome: getTopDoctorHome, getAllDoctor, saveDetailInforDoctor, getDetailDoctorById, searchDoctor, search, searchSchedule, CreateScheduleDoctor, updateDoctorImage,
     bulkCreateSchedule, getScheduleDoctorByDate, getExtraInfforDoctorById, getProfileDoctorById,
     getListPatientForDoctor, sendRemedy, deleteDoctor, getAllSchedule, getListScheduleByDate
 }

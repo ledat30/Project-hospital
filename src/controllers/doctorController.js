@@ -231,8 +231,31 @@ let searchSchedule = async (req, res) => {
         });
     }
 };
+
+let updateImage = async (req, res) => {
+    try {
+        const { id } = req.body;
+        const result = await doctorService.updateDoctorImage(id, req.file);
+
+        if (result.errCode === 0) {
+            return res.status(200).json(result.doctor);
+        } else {
+            return res.status(404).json({
+                errCode: result.errCode,
+                errMessage: result.errMessage
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            errCode: -1,
+            errMessage: 'Error from the server'
+        });
+    }
+};
+
 module.exports = {
     getTopDoctorHome: getTopDoctorHome, getAllDoctor, postInforDoctor, getDetailDoctorById, bulkCreateSchedule, searchDoctor, search, searchSchedule,
     getScheduleDoctorByDate, getExtraInfforDoctorById, getProfileDoctorById, getListPatientForDoctor, sendRemedy, getAllSchedule, CreateScheduleDoctor,
-    HandleDeleteDoctor, getListScheduleByDate
+    HandleDeleteDoctor, getListScheduleByDate, updateImage
 }

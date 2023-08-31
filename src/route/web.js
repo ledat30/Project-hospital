@@ -9,6 +9,7 @@ import handBookController from '../controllers/handBookController';
 import policyController from '../controllers/policyController';
 import questionController from '../controllers/questionController';
 import searchHomePageController from '../controllers/searchHomePageController';
+import contactController from '../controllers/contactController';
 
 let router = express.Router();
 
@@ -41,6 +42,8 @@ let initWebRouter = (app) => {
     router.get('/api/get-schedule-doctor-by-date', doctorController.getScheduleDoctorByDate);
     router.get('/api/get-extra-infor-by-id', doctorController.getExtraInfforDoctorById);
     router.get('/api/get-profile-doctor-by-id', doctorController.getProfileDoctorById);
+
+    router.put('/api/profile/update-image', doctorController.updateImage);
 
     router.get('/api/search-doctor-web', doctorController.searchDoctor);
     router.get('/api/search-doctor-admin', doctorController.search);
@@ -104,6 +107,11 @@ let initWebRouter = (app) => {
     router.get('/api/search-question', questionController.search);
     router.delete('/api/delete-question', questionController.HandleDeleteQuestion);
     router.put('/api/edit-question', questionController.HandleEditQuestion);
+
+    router.get('/api/get-all-contact', contactController.getAllContact);
+    router.delete('/api/delete-contact', contactController.HandleDeleteContact);
+    router.get('/api/search-contact', contactController.search);
+    router.post('/api/contact', contactController.createContact);
 
     router.get('/api/search-home-website', searchHomePageController.searchHomePage);
     return app.use("/", router);
