@@ -266,6 +266,24 @@ export const updateDoctorImage = async (id, file) => {
     }
 };
 
+let forgotPassword = async (email) => {
+    try {
+        const response = await axios.post('/api/forgot-password', { email });
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+};
+
+let resetPassword = async (resetToken, newPassword) => {
+    try {
+        const response = await axios.post('/api/reset-password', { resetToken, newPassword });
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+};
+
 export {
     handleLoginApi, getAllUsers, createNewUserService, deleteUserService, editUserService,
     getAllCodeService, getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService,
@@ -277,5 +295,5 @@ export {
     editHandBookService, getDetailHandBookById, createNewPolicy, getAllPolicy, getLimitPolicy, deletePolicyService,
     editPolicyService, getDetailPolicyById, createNewCategoryHandbook, getAllCategoryHandbook,
     deleteCategoryHandbookService, editCategoryHandbookService, getTopHandbookHomeService,
-    getDetailCategoryById, createNewQuestion, getAllQuestion, deleteQuestion, editQuestion, getAllContact, deleteContact
+    getDetailCategoryById, createNewQuestion, getAllQuestion, deleteQuestion, editQuestion, getAllContact, deleteContact, forgotPassword, resetPassword
 }

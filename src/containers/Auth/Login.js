@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from "connected-react-router";
-// import * as actions from "../store/actions";
 import * as actions from "../../store/actions";
-
-// import './Login.scss';
 import './Login.scss';
-// import { userService } from '../../services/userService';
 import { handleLoginApi } from '../../services/userService';
+import { toast } from 'react-toastify';
 
 
 class Login extends Component {
@@ -52,6 +49,7 @@ class Login extends Component {
             if (data && data.errCode === 0) {
                 this.props.userLoginSuccess(data.user);
                 console.log('loging success');
+                toast.success("Đăng nhập thành công!");
             }
 
         } catch (e) {
@@ -80,6 +78,12 @@ class Login extends Component {
         }
     }
 
+    returnToChangePassword = () => {
+        if (this.props.history) {
+            this.props.history.push(`/reset-password`)
+        }
+    }
+
     render() {
         return (
             <div className="login-background">
@@ -87,11 +91,11 @@ class Login extends Component {
                     <div className="login-content row">
                         <div className="col-12 text-center login-title">Login</div>
                         <div className="col-12 form-group">
-                            <label>Username: </label>
+                            <label>Email: </label>
                             <input
                                 type="text"
                                 className="form-control login-input"
-                                placeholder="Enter your user name"
+                                placeholder="Enter your email"
                                 value={this.state.username}
                                 onChange={(e) => this.handleOnChangeUserName(e)}
                             />
@@ -123,7 +127,7 @@ class Login extends Component {
                             >Login</button>
                         </div>
                         <div className="col-12">
-                            <span className="forgot-password">Forgot your password?</span>
+                            <button className="forgot_password" onClick={() => this.returnToChangePassword()}>Forgot your password?</button>
                         </div>
                     </div>
                 </div>
@@ -141,7 +145,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        // userLoginFail: () => dispatch(actions.adminLoginFail()),
         userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo))
     };
 

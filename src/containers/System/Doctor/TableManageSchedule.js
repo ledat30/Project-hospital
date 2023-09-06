@@ -88,7 +88,6 @@ class TableManageSchedule extends Component {
         const pageCount = Math.ceil(dataScheduleByDate.length / perPage);
         const sliceSchedule = dataScheduleByDate.slice(offset, offset + perPage);
         let { language } = this.props;
-        console.log('check data schedule by date', sliceSchedule)
         return (
             <>
                 <div className='manage-patient-container'>

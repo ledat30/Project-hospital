@@ -26,6 +26,7 @@ import CategoryClinic from './Pationt/Clinic/CategoryClinic/CategoryClinic';
 import AllPolicy from './Pationt/Policy/AllPolicy/AllPolicy';
 import AllQuestion from './Pationt/Question/AllQuestion';
 import Contact from './Pationt/Contact/Contact';
+import ChangePassword from './Auth/ChangePassword';
 
 class App extends Component {
 
@@ -58,6 +59,7 @@ class App extends Component {
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
+                                    <Route path={path.RESETPASSWORD} component={userIsNotAuthenticated(ChangePassword)} />
                                     <Route path={path.DOCTOR} component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />

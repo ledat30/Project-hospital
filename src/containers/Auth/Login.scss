@@ -71,8 +71,76 @@
 
     }
 
-    .forgot-password {
-        float    : right;
-        font-size: 12px;
+    .forgot_password {
+        float        : right;
+        font-size    : 12px;
+        background   : linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+        border-radius: 25px;
+        border       : none;
+        margin       : 12px 0px;
+        padding      : 4px 8px;
+    }
+}
+
+
+.change-password-container {
+    max-width       : 500px;
+    min-width       : 300px;
+    height          : 460px;
+    width           : 400px;
+    background-color: #fff;
+    border-radius   : 20px;
+    margin          : 0 auto;
+    position        : absolute;
+    top             : 0;
+    bottom          : 0;
+    left            : 0;
+    right           : 0;
+    margin          : auto;
+
+    .change-password-content {
+        padding: 20px;
+
+        .changPassword-title {
+            font-size    : 25px;
+            font-weight  : 600;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size  : 15px;
+            font-weight: 600;
+        }
+
+        .changePassword_input {
+            margin       : 2px 0px;
+            border       : none;
+            border-radius: none;
+            outline      : 0;
+            border-bottom: 1px solid #999;
+        }
+
+        .change-password {
+            position: relative;
+
+            .show-password {
+                position: absolute;
+                right   : 10px;
+                top     : 10px;
+                color   : #777;
+                cursor  : pointer;
+            }
+        }
+
+        .btn_send_email {
+            width        : 40%;
+            margin       : 5px 0px;
+            border       : none;
+            color        : #fff;
+            padding      : 8px 0px;
+            border-radius: 25px;
+            cursor       : pointer;
+            background   : linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+        }
     }
 }
