@@ -29,6 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
     roleId: DataTypes.INTEGER,
     positionId: DataTypes.INTEGER,
+    reset_token: DataTypes.STRING,
+    expires_at: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'User',

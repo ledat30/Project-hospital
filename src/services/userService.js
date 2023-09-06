@@ -1,5 +1,6 @@
 import db from '../models/index';
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
 const salt = bcrypt.genSaltSync(10);
 const notifier = require('node-notifier');
 
@@ -273,7 +274,69 @@ let search = (keyword) => {
         }
     });
 };
+
+let createPasswordResetToken = async (email) => {
+    const resetToken = generateResetToken();
+    const expiresAt = new Date(Date.now() + 3600000); // Hết hạn sau 1 giờ
+
+    // Lưu mã đặt lại mật khẩu vào bảng user
+    await db.User.update(
+        { reset_token: resetToken, expires_at: expiresAt },
+        { where: { email } }
+    );
+
+    return resetToken;
+};
+
+const checkAndDeleteResetToken = async (resetToken) => {
+    const user = await db.User.findOne({ where: { reset_token: resetToken || null } });
+
+    if (!user) {
+        return { isValid: false };
+    }
+
+    const userId = user.id;
+    const expiresAt = user.expires_at;
+    if (expiresAt < new Date()) {
+        // Xóa mã đặt lại mật khẩu hết hạn
+        await db.User.update(
+            { reset_token: null, expires_at: null },
+            { where: { reset_token: resetToken } }
+        );
+        return { isValid: false };
+    }
+
+    // Mã đặt lại mật khẩu hợp lệ và chưa hết hạn
+    return { isValid: true, userId };
+};
+
+const resetUserPassword = async (userId, newPassword) => {
+    try {
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+
+        // Cập nhật mật khẩu mới trong bảng user
+        await db.User.update(
+            { password: hashedPassword },
+            { where: { id: userId } }
+        );
+    } catch (error) {
+        // Xử lý lỗi nếu có
+        console.log('Lỗi khi reset mật khẩu:', error);
+        throw error;
+    }
+};
+
+// Hàm tạo mã đặt lại mật khẩu
+const generateResetToken = () => {
+    // Thực hiện logic để tạo mã đặt lại mật khẩu
+    // Ví dụ: sử dụng thư viện crypto để tạo một chuỗi ngẫu nhiên làm mã đặt lại mật khẩu
+    const resetToken = crypto.randomBytes(5).toString('hex');
+    return resetToken;
+};
+
 module.exports = {
     handleUserLogin: handleUserLogin, getAllUsers: getAllUsers, createNewUser, deleteUser,
-    updateUserData, getAllCodeService, search
+    updateUserData, getAllCodeService, search, createPasswordResetToken, checkAndDeleteResetToken,
+    resetUserPassword
 }

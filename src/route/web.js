@@ -114,6 +114,10 @@ let initWebRouter = (app) => {
     router.post('/api/contact', contactController.createContact);
 
     router.get('/api/search-home-website', searchHomePageController.searchHomePage);
+
+    router.post('/api/forgot-password', userController.forgotPassword);
+    router.post('/api/reset-password', userController.resetPassword);
+
     return app.use("/", router);
 }
 module.exports = initWebRouter;
