@@ -162,6 +162,35 @@ let saveDetailInforDoctor = (inputData) => {
     })
 }
 
+let increaseCount = async (inputId) => {
+    try {
+        const doctor = await db.Doctor_infor.findOne({
+            where: {
+                doctorId: inputId
+            },
+
+        });
+
+        if (!doctor) {
+            throw new Error("Doctor not found");
+        }
+
+        doctor.count += 1;
+
+        await db.Doctor_infor.update(
+            { count: doctor.count },
+            { where: { doctorId: inputId } }
+        );
+
+        return {
+            errCode: 0,
+            errMessage: "OK"
+        };
+    } catch (error) {
+        throw error;
+    }
+};
+
 let getDetailDoctorById = (inputId) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -344,7 +373,15 @@ let getScheduleDoctorByDate = (doctorId, date) => {
                     },
                     include: [
                         { model: db.Allcode, as: 'timeTypeData', attributes: ['valueEn', 'valueVi'] },
-                        { model: db.User, as: 'doctorData', attributes: ['fullName'] }
+                        {
+                            model: db.User, as: 'doctorData', attributes: ['fullName'],
+                            include: [
+                                {
+                                    model: db.Doctor_infor,
+                                    attributes: ['priceId']
+                                }
+                            ]
+                        }
                     ],
                     raw: false,
                     nest: true
@@ -411,7 +448,7 @@ let getProfileDoctorById = (inputId) => {
                         id: inputId
                     },
                     attributes: {
-                        exclude: ['password']
+                        exclude: ['password', 'expires_at', 'reset_token']
                     },
                     include: [
                         { model: db.Allcode, as: 'positionData', attributes: ['valueEn', 'valueVi'] }
@@ -503,7 +540,9 @@ let getListScheduleByDate = (doctorId, date) => {
                     },
                     include: [
                         { model: db.Allcode, as: 'timeTypeData', attributes: ['valueEn', 'valueVi'] },
-                        { model: db.User, as: 'doctorData', attributes: ['fullName', 'id'] }
+                        {
+                            model: db.User, as: 'doctorData', attributes: ['fullName', 'id']
+                        },
                     ],
                     raw: false,
                     nest: true
@@ -710,8 +749,46 @@ const updateDoctorImage = async (id, file) => {
     }
 };
 
+let cancelAppointment = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!data.email || !data.doctorId || !data.patientId || !data.timeType) {
+                resolve({
+                    errCode: -1,
+                    errMessage: 'Missing required parmeter!'
+                })
+            } else {
+                //update patient status
+                let appointment = await db.Booking.findOne({
+                    where: {
+                        doctorId: data.doctorId,
+                        patientId: data.patientId,
+                        timeType: data.timeType,
+                        statusId: 5
+                    },
+                    raw: false
+                })
+                if (appointment) {
+                    appointment.statusId = 7;
+                    await appointment.save();
+                }
+
+                //send email remedy
+                await emailService.sendCancelBooking(data);
+
+                resolve({
+                    errCode: 0,
+                    errMessage: 'ok'
+                })
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     getTopDoctorHome: getTopDoctorHome, getAllDoctor, saveDetailInforDoctor, getDetailDoctorById, searchDoctor, search, searchSchedule, CreateScheduleDoctor, updateDoctorImage,
     bulkCreateSchedule, getScheduleDoctorByDate, getExtraInfforDoctorById, getProfileDoctorById,
-    getListPatientForDoctor, sendRemedy, deleteDoctor, getAllSchedule, getListScheduleByDate
+    getListPatientForDoctor, sendRemedy, deleteDoctor, getAllSchedule, getListScheduleByDate, cancelAppointment, increaseCount
 }

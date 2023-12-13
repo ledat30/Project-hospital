@@ -47,6 +47,7 @@ let postInforDoctor = async (req, res) => {
 let getDetailDoctorById = async (req, res) => {
     try {
         let infor = await doctorService.getDetailDoctorById(req.query.id);
+        await doctorService.increaseCount(req.query.id);
         return res.status(200).json(infor)
     } catch (e) {
         console.log(e);
@@ -254,8 +255,21 @@ let updateImage = async (req, res) => {
     }
 };
 
+let cancelAppointment = async (req, res) => {
+    try {
+        let cancel = await doctorService.cancelAppointment(req.body);
+        return res.status(200).json(cancel)
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from the server'
+        })
+    };
+}
+
 module.exports = {
     getTopDoctorHome: getTopDoctorHome, getAllDoctor, postInforDoctor, getDetailDoctorById, bulkCreateSchedule, searchDoctor, search, searchSchedule,
     getScheduleDoctorByDate, getExtraInfforDoctorById, getProfileDoctorById, getListPatientForDoctor, sendRemedy, getAllSchedule, CreateScheduleDoctor,
-    HandleDeleteDoctor, getListScheduleByDate, updateImage
+    HandleDeleteDoctor, getListScheduleByDate, updateImage, cancelAppointment
 }

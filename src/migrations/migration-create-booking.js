@@ -40,6 +40,14 @@ module.exports = {
                     key: 'id'
                 }
             },
+            priceId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'Allcodes',
+                    key: 'id'
+                }
+            },
             date: {
                 type: Sequelize.STRING
             },

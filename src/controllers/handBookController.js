@@ -52,6 +52,7 @@ let HandleEditHB = async (req, res) => {
 let getDetailHandBookById = async (req, res) => {
     try {
         let infor = await handBookService.getDetailHandBookById(req.query.id);
+        await handBookService.increaseCount(req.query.id);
         return res.status(200).json(infor)
     } catch (e) {
         console.log(e);

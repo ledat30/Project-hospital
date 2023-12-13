@@ -55,6 +55,7 @@ let postBookAppointment = (data) => {
                                 statusId: 4,
                                 doctorId: data.doctorId,
                                 scheduleId: data.scheduleId,
+                                priceId: data.priceId,
                                 patientId: user[0].id,
                                 date: data.date,
                                 timeType: data.timeType,

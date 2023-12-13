@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         contentHTMLEn: DataTypes.TEXT('long'),
         contentMarkdownEn: DataTypes.TEXT('long'),
         image: DataTypes.TEXT,
+        count: DataTypes.INTEGER,
     }, {
         sequelize,
         modelName: 'Handbook',

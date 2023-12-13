@@ -147,6 +147,34 @@ let HandleEditHandBook = (data) => {
     })
 }
 
+const increaseCount = async (inputId) => {
+    try {
+        const handbook = await db.Handbook.findOne({
+            where: {
+                id: inputId
+            }
+        });
+
+        if (!handbook) {
+            throw new Error("Handbook not found");
+        }
+
+        handbook.count += 1;
+
+        await db.Handbook.update(
+            { count: handbook.count },
+            { where: { id: inputId } }
+        );
+
+        return {
+            errCode: 0,
+            errMessage: "OK"
+        };
+    } catch (error) {
+        throw error;
+    }
+};
+
 let getDetailHandBookById = (inputId) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -160,7 +188,7 @@ let getDetailHandBookById = (inputId) => {
                     where: {
                         id: inputId
                     },
-                    attributes: ['title', 'title_en', 'contentHTMLVi', 'contentMarkdownVi',
+                    attributes: ['title', 'title_en', 'count', 'contentHTMLVi', 'contentMarkdownVi',
                         'contentHTMLEn', 'categoryId', 'contentMarkdownEn', 'user_id', 'createdAt', 'updatedAt'],
                 })
                 if (!data) {
@@ -467,5 +495,5 @@ let search = (keyword) => {
 };
 module.exports = {
     createHandbookService, getAllHandBook, deleteHandBook, HandleEditHandBook, getDetailHandBookById, createCategoryHandbookService, getAllCategory, searchCategory, HandleDeleteCategoryHB, HandleEditCategoryHB, getTopHandbookHome, getDetailCategoryById,
-    searchHandBook, search
+    searchHandBook, search, increaseCount
 }

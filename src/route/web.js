@@ -10,6 +10,7 @@ import policyController from '../controllers/policyController';
 import questionController from '../controllers/questionController';
 import searchHomePageController from '../controllers/searchHomePageController';
 import contactController from '../controllers/contactController';
+import statisticalController from '../controllers/statisticalController';
 
 let router = express.Router();
 
@@ -54,6 +55,7 @@ let initWebRouter = (app) => {
 
     router.get('/api/get-list-patient', doctorController.getListPatientForDoctor);
     router.post('/api/send-remedy', doctorController.sendRemedy);
+    router.post('/api/cancelAppointment', doctorController.cancelAppointment);
 
     router.post('/api/patient-book-appointment', patientController.postBookAppointment);
     router.post('/api/verify-book-appointment', patientController.postVerifyBookAppointment);
@@ -117,6 +119,12 @@ let initWebRouter = (app) => {
 
     router.post('/api/forgot-password', userController.forgotPassword);
     router.post('/api/reset-password', userController.resetPassword);
+
+    router.get('/api/total-appointments', statisticalController.tableTotalApppointment)
+    router.get('/api/total-user', statisticalController.tableTotalUser)
+    router.get('/api/topView-handbook', statisticalController.getTopViewedHandbooks);
+    router.get('/api/topView-doctor', statisticalController.getTopViewedDoctors);
+    router.get('/api/booking-total', statisticalController.getBookingTotal);
 
     return app.use("/", router);
 }
