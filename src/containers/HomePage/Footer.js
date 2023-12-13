@@ -52,7 +52,7 @@ class HomeFooter extends Component {
                             <div className='text-lk'><i className="fas fa-phone-volume"></i><FormattedMessage id={'footer.hotline'} /></div>
                             <span className='text-lk' style={{ color: '#45c3d2' }}><b>0386582177 </b>(7h-18h)</span>
                             <div className='text-lk'><i className="fas fa-link"></i><FormattedMessage id={'footer.xh'} /></div>
-                            <a href='https://www.facebook.com/le.dat.1276487' target='_blank' className='social-login'><i className="fab fa-facebook social-icon fb"></i></a>
+                            <a href='https://www.facebook.com/groups/1306573389974034/' target='_blank' rel="noreferrer" className='social-login'><i className="fab fa-facebook social-icon fb"></i></a>
                         </div>
                     </div>
                     <div className='footer-right'>

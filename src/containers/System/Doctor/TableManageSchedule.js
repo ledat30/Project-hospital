@@ -16,10 +16,6 @@ class TableManageSchedule extends Component {
         this.state = {
             currentDate: moment(new Date()).startOf('day').valueOf(),
             dataScheduleByDate: [],
-
-            offset: 0, // Vị trí bắt đầu lấy dữ liệu từ danh sách user
-            perPage: 10, // Số lượng user hiển thị trên mỗi trang
-            currentPage: 0, // Trang hiện tại
         }
     }
 
@@ -39,7 +35,6 @@ class TableManageSchedule extends Component {
                 doctorId: user.id,
                 date: formatedDate
             })
-            console.log('check res', res)
 
             if (res && res.errCode === 0) {
                 this.setState({
@@ -69,24 +64,8 @@ class TableManageSchedule extends Component {
 
     }
 
-    handlePageClick = (data) => {
-        const selectedPage = data.selected;
-        const offset = selectedPage * this.state.perPage;
-        const { dataScheduleByDate } = this.state;
-        const sliceSchedule = dataScheduleByDate.slice(offset, offset + this.state.perPage);
-
-        this.setState({
-            currentPage: selectedPage,
-            offset: offset,
-            sliceSchedule: sliceSchedule,
-        });
-    };
-
-
     render() {
-        let { dataScheduleByDate, offset, perPage } = this.state;
-        const pageCount = Math.ceil(dataScheduleByDate.length / perPage);
-        const sliceSchedule = dataScheduleByDate.slice(offset, offset + perPage);
+        let { dataScheduleByDate } = this.state;
         let { language } = this.props;
         return (
             <>
@@ -123,7 +102,7 @@ class TableManageSchedule extends Component {
                                     </tr>
                                     {dataScheduleByDate && dataScheduleByDate.length > 0 ? (
                                         dataScheduleByDate.map((item, index) => {
-                                            const rowIndex = offset + index + 1;
+                                            const rowIndex = index + 1;
                                             const action = item.currentNumber <= 5 ? (item.currentNumber === 0 ? <FormattedMessage id={'manage-user.tt'} /> : <FormattedMessage id={'manage-user.tt1'} />) : '';
                                             return (
                                                 <tr key={index}>
@@ -149,25 +128,6 @@ class TableManageSchedule extends Component {
                                     }
                                 </tbody>
                             </table>
-                            <ReactPaginate
-                                previousLabel={<FormattedMessage id={'ReactPaginate.dau'} />}
-                                nextLabel={<FormattedMessage id={'ReactPaginate.cuoi'} />}
-                                breakLabel={'...'}
-                                breakClassName={'break-me'}
-                                pageCount={pageCount}
-                                marginPagesDisplayed={2}
-                                pageRangeDisplayed={5}
-                                onPageChange={this.handlePageClick}
-                                containerClassName={'pagination'}
-                                subContainerClassName={'pages pagination'}
-                                activeClassName={'active'}
-                                pageClassName='page-item'
-                                pageLinkClassName='page-link'
-                                previousLinkClassName='page-link'
-                                nextClassName='page-item'
-                                nextLinkClassName='page-link'
-                                breakLinkClassName='page-link'
-                            />
                         </div>
                     </div>
                 </div >

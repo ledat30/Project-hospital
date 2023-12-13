@@ -197,6 +197,27 @@
         "title3": "Talk to Us",
         "bt": "Send message"
     },
+    "statistical": {
+        "title": "Health care management statistics",
+        "total": "Total number of bookings",
+        "confirm": "Total number examined",
+        "cancel": "Total canceled",
+        "admin": "Admin",
+        "doctor": "Doctor",
+        "patient": "Patient",
+        "date": "Day/month/Year",
+        "doanhthu": "Revenue",
+        "detail": "Action",
+        "cf": "Total confirmed",
+        "all": "Total number of people",
+        "table1": "Examination schedule management table",
+        "table2": "Scheduling statistics chart",
+        "table3": "Management table for the number of people",
+        "table4": "Revenue statistics table",
+        "bv": "The article has high views",
+        "bs": "The doctor has high views",
+        "total2": "Total revenue"
+    },
     "ReactPaginate": {
         "dau": "< Previous",
         "cuoi": "Next >"
@@ -241,7 +262,9 @@
             "date": "Publication date : ",
             "date1": "Update date : ",
             "category": "Category : ",
-            "blog": "Maybe you are interested"
+            "blog": "Maybe you are interested",
+            "view1": "View ",
+            "view2": " view"
         },
         "messega": {
             "success": "CONFIRM YOUR EXAMINATION SCHEDULE IS SUCCESSFUL!",

@@ -197,6 +197,27 @@
         "title3": "Liên hệ với chúng tôi",
         "bt": "Gửi tin nhắn"
     },
+    "statistical": {
+        "title": "Thống kê quản lý Health care",
+        "total": "Tổng số lịch đặt",
+        "confirm": "Tổng số đã khám",
+        "cancel": "Tổng số đã huỷ",
+        "admin": "Quản trị viên",
+        "doctor": "Bác sĩ",
+        "patient": "Bệnh nhân",
+        "date": "Ngày/Tháng/Năm",
+        "doanhthu": "Doanh thu",
+        "detail": "Trạng thái",
+        "cf": "Tổng số đã xác nhận",
+        "all": "Tổng số người",
+        "table1": "Bảng quản lý lịch khám",
+        "table2": "Biểu đồ thống kê đặt lịch",
+        "table3": "Bảng quản lý số lượng người",
+        "table4": "Bảng thống kê doanh thu",
+        "bv": "Bài viết có lượt xem cao",
+        "bs": "Bác sĩ có lượt xem cao",
+        "total2": "Tổng doanh thu"
+    },
     "ReactPaginate": {
         "dau": "< Đầu trang",
         "cuoi": "Tiếp >"
@@ -241,7 +262,9 @@
             "date": "Ngày xuất bản : ",
             "date1": "Ngày cập nhập : ",
             "category": "Danh mục : ",
-            "blog": "Có thể bạn quan tâm"
+            "blog": "Có thể bạn quan tâm",
+            "view1": "Lượt xem ",
+            "view2": " lượt"
         },
         "messega": {
             "success": "XÁC NHẬN LỊCH HẸN KHÁM CỦA QUÝ KHÁCH ĐÃ THÀNH CÔNG !",

@@ -14,6 +14,7 @@ import TableQuestion from '../containers/System/Question/TableQuestion';
 import ManageSchedule from '../containers/System/Doctor/ManageSchedule';
 import TableScheduleAdmin from '../containers/System/Doctor/TableScheduleAdmin';
 import TableManageContact from '../containers/System/Contact/TableManageContact';
+import ManageStatistical from '../containers/System/Statistical/ManageStatistical';
 
 class System extends Component {
     render() {
@@ -40,6 +41,7 @@ class System extends Component {
                                     <Route path="/system/manage-question" component={TableQuestion} />
                                     <Route path="/system/manage-policy" component={TableManagePolicy} />
                                     <Route path="/system/manage-categoryhandbook" component={CategoryHandbook} />
+                                    <Route path="/system/manage-statistical" component={ManageStatistical} />
                                 </>
                             )}
 

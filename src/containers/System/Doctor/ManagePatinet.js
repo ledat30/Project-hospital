@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { FormattedMessage } from 'react-intl';
 import './ManagePatinet.scss';
 import DatePicker from '../../../components/Input/DatePicker';
-import { getAllPatientForDoctor, postSendRemedy } from '../../../services/userService';
+import { getAllPatientForDoctor, postSendRemedy, postSendCancelBooking } from '../../../services/userService';
 import moment from 'moment';
 import { LANGUAGES } from '../../../utils';
 import RemedyModal from './RemedyModal';
@@ -66,6 +66,41 @@ class ManagePatinet extends Component {
             isOpenRemedy: true,
             dataModal: data
         })
+    }
+
+    handleBtnCancel = async (item) => {
+        this.setState({
+            isShowLoading: true
+        });
+
+        try {
+            const res = await postSendCancelBooking({
+                doctorId: item.doctorId,
+                patientId: item.patientId,
+                email: item.patientData.email,
+                timeType: item.timeType,
+                language: this.props.language,
+                patientName: item.patientData.fullName
+            });
+
+            if (res && res.errCode === 0) {
+                this.setState({
+                    isShowLoading: false
+                });
+                toast.success("Huỷ lịch khám thành công!");
+                await this.getDataPatient();
+            } else {
+                this.setState({
+                    isShowLoading: false
+                });
+                toast.success("Huỷ lịch khám thất bại!");
+            }
+        } catch (error) {
+            this.setState({
+                isShowLoading: false
+            });
+            toast.error("Có lỗi xảy ra");
+        }
     }
 
     closeRemedyModal = () => {
@@ -149,6 +184,10 @@ class ManagePatinet extends Component {
                                                         <button className='btn-confirm'
                                                             onClick={() => this.handleBtnConfirm(item)}>
                                                             Xác nhận
+                                                        </button>
+                                                        <button className='btn-cancel'
+                                                            onClick={() => this.handleBtnCancel(item)}>
+                                                            Huỷ
                                                         </button>
                                                     </td>
                                                 </tr>

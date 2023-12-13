@@ -30,6 +30,7 @@ class BookingModal extends Component {
             genders: '',
             timeType: '',
             scheduleId: '',
+            priceId: '',
             currentNumber: 0,
             isShowLoading: false
         }
@@ -68,11 +69,13 @@ class BookingModal extends Component {
                 let doctorId = this.props.dataTime.doctorId;
                 let timeTypes = this.props.dataTime.timeType;
                 let scheduleId = this.props.dataTime.id;
+                let priceId = this.props.dataTime.doctorData.Doctor_infor.priceId;
 
                 this.setState({
                     doctorId: doctorId,
                     timeType: timeTypes,
                     scheduleId: scheduleId,
+                    priceId: priceId,
                 })
             }
         }
@@ -174,6 +177,7 @@ class BookingModal extends Component {
             timeType: this.state.timeType,
             language: this.props.language,
             scheduleId: this.state.scheduleId,
+            priceId: this.state.priceId,
             timeString: timeString,
             doctorName: doctorName,
         })
@@ -197,11 +201,13 @@ class BookingModal extends Component {
             genders: '',
             timeType: '',
             scheduleId: '',
+            priceId: '',
             isShowLoading: false
         })
     }
     render() {
         let { isOpenModal, closeBookingClose, dataTime } = this.props;
+        console.log('check data time', dataTime)
         const { currentNumber } = dataTime;
         let doctorId = '';
         if (dataTime && !_.isEmpty(dataTime)) {

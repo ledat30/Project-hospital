@@ -101,7 +101,11 @@ class DetailHandBook extends Component {
                                     <p className='date1'><FormattedMessage id={'patient.handbook.date'} />{dataDetailHandBook.createdAt ? new Date(dataDetailHandBook.createdAt).toLocaleDateString() : null}</p>
                                     <p><FormattedMessage id={'patient.handbook.date1'} />{dataDetailHandBook.updatedAt ? new Date(dataDetailHandBook.updatedAt).toLocaleDateString() : null}</p>
                                 </div>
-                                <div className='title-HB'>{language === LANGUAGES.VI ? dataDetailHandBook.title : dataDetailHandBook.title_en}</div>
+                                <div className='title-HB'>{language === LANGUAGES.VI ? dataDetailHandBook.title : dataDetailHandBook.title_en}
+                                </div>
+                                <div className='view'>
+                                    <b ><FormattedMessage id={'patient.handbook.view1'} />:    {dataDetailHandBook.count} <FormattedMessage id={'patient.handbook.view2'} /></b>
+                                </div>
                                 <div dangerouslySetInnerHTML={language === LANGUAGES.VI ?
                                     { __html: dataDetailHandBook.contentHTMLVi }
                                     :

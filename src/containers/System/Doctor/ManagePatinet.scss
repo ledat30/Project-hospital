@@ -52,6 +52,15 @@ div._loading_overlay_wrapper {
             height       : 30px;
             border-radius: 3px;
             background   : orange;
+            color        : white;
+        }
+
+        .btn-cancel {
+            height       : 30px;
+            width        : 70px;
+            border-radius: 3px;
+            background   : rgb(241, 47, 47);
+            color        : white;
         }
 
         .btn-hoadon {

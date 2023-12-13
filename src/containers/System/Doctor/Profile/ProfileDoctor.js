@@ -22,7 +22,6 @@ class ProfileDoctor extends Component {
 
     updateImage = async (file) => {
         const { user } = this.props;
-        console.log(user.id);
         await updateDoctorImage(user.id, file);
         // Thực hiện các thao tác bổ sung sau khi cập nhật hình ảnh thành công (ví dụ: cập nhật trạng thái hoặc hiển thị thông báo thành công).
     }

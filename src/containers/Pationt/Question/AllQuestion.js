@@ -86,7 +86,6 @@ class AllQuestion extends Component {
 
     render() {
         const { dataQuestion, offset, perPage, isShowDetailQuestion } = this.state;
-        console.log('check question', dataQuestion)
         const pageCount = Math.ceil(dataQuestion.length / perPage);
         const sliceQuestion = dataQuestion.slice(offset, offset + perPage);
         let { language } = this.props;

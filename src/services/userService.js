@@ -198,6 +198,10 @@ const postSendRemedy = (data) => {
     return axios.post(`/api/send-remedy`, data)
 }
 
+const postSendCancelBooking = (data) => {
+    return axios.post(`/api/cancelAppointment`, data)
+}
+
 const createNewCategoryHandbook = (data) => {
     return axios.post(`/api/create-new-categoryHandBook`, data)
 }
@@ -295,5 +299,5 @@ export {
     editHandBookService, getDetailHandBookById, createNewPolicy, getAllPolicy, getLimitPolicy, deletePolicyService,
     editPolicyService, getDetailPolicyById, createNewCategoryHandbook, getAllCategoryHandbook,
     deleteCategoryHandbookService, editCategoryHandbookService, getTopHandbookHomeService,
-    getDetailCategoryById, createNewQuestion, getAllQuestion, deleteQuestion, editQuestion, getAllContact, deleteContact, forgotPassword, resetPassword
+    getDetailCategoryById, createNewQuestion, getAllQuestion, deleteQuestion, editQuestion, getAllContact, deleteContact, forgotPassword, resetPassword, postSendCancelBooking, 
 }

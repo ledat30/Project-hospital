@@ -9,6 +9,7 @@ import HomeFooter from '../../HomePage/HomeFooter';
 import DoctorExtrainfor from './DoctorExtrainfor';
 import LikeAndShare from '../SocialPlugin/LikeAndShare';
 import Comment from '../SocialPlugin/Comment';
+import { FormattedMessage } from 'react-intl';
 
 class DetailDoctor extends Component {
 
@@ -66,7 +67,8 @@ class DetailDoctor extends Component {
                                     && detaiDoctor.Doctor_infor.description_en
                                     &&
                                     <span>
-                                        {language === LANGUAGES.VI ? detaiDoctor.Doctor_infor.description : detaiDoctor.Doctor_infor.description_en}
+                                        {language === LANGUAGES.VI ? detaiDoctor.Doctor_infor.description : detaiDoctor.Doctor_infor.description_en}  <br />
+                                        <b>{detaiDoctor.Doctor_infor.count} <FormattedMessage id={'patient.handbook.view1'} /></b>
                                     </span>
                                 }
                                 <div className='like-share-plugin'>
